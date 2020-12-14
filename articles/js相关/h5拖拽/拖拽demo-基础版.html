@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <style>
+        html,body{
+            height: 100%;
+            margin: 0;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main{
+            border: 1px solid blueviolet;
+        }
+        .drag{
+            border: 1px solid deepskyblue;
+            width: 100px;
+            height: 100px;
+            background: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .drag:hover{
+            cursor: move;
+        }
+        .drop{
+            border: 1px solid black;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body ondrop="drop(event)">
+<div class="main">
+    <div id="drag"
+         class="drag"
+         onselectstart="return false"
+         ondragstart="drag(event)"
+         draggable="true">被拖拽元素</div>
+    <div id="drop"
+         ondrop="drop(event)"
+         class="drop">接收拖拽元素</div>
+</div>
+</body>
+</html>
+
+<script>
+    function drag(e) {
+        let self = e.target;
+        // 传递当前拖拽id
+        e.dataTransfer.setData('dragId',self.id);
+    }
+    function drop(e) {
+        let self = e.target,
+            dragId = e.dataTransfer.getData('dragId');// 接收id
+        self.appendChild(document.getElementById(dragId));// 插入节点
+    }
+
+
+    window.onload = function () {
+        //监听document的drop事件——取消其默认行为：在新窗口中打开图片
+        document.ondragover = function(e){
+            e.preventDefault(); //使得drop事件可以触发
+        }
+        document.ondrop = function(e) {
+            e.preventDefault(); //阻止在新窗口中打开图片，否则仍然会执行下载操作！！！
+        }
+    }
+</script>
