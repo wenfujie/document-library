@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" oninput="testDebounce()">
+  <button onclick="testThrottle()">测试节流</button>
+</body>
+
+</html>
+<script>
+  // 实现防抖
+  const debounce = (function () {
+    let interval;
+
+    return (fn, time) => {
+      if (interval) {
+        clearInterval(interval);
+      }
+      interval = setTimeout(() => {
+        fn();
+      }, time);
+    };
+  })();
+
+  // 防抖测试：短时间多次触发函数，仅执行最后一次触发
+  function testDebounce(e) {
+    debounce(() => console.log("test"), 500);
+  }
+
+  // 实现节流
+  const throttle = (function () {
+    let touchTimestamp = 0;
+
+    return (fn, time) => {
+      let nowTimestamp = Date.now();
+      if (touchTimestamp + time < nowTimestamp) {
+        touchTimestamp = nowTimestamp;
+        fn();
+      }
+    };
+  })();
+
+  // 节流测试：3s内按钮点击仅触发一次
+  function testThrottle() {
+    throttle(() => console.log("test throttle"), 3000);
+  }
+</script>
