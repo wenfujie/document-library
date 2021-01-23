@@ -15,7 +15,8 @@ wenf 的文档库，包含了wenf学习、工作中关于编程的经验文档�
 1. [闭包，我吃定了耶稣都挡不住，我说的](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E9%97%AD%E5%8C%85%EF%BC%8C%E6%88%91%E5%90%83%E5%AE%9A%E4%BA%86%E8%80%B6%E7%A8%A3%E9%83%BD%E6%8C%A1%E4%B8%8D%E4%BD%8F%EF%BC%8C%E6%88%91%E8%AF%B4%E7%9A%84.md "没错，就是我说的")
 1. [h5拖拽介绍](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/h5%E6%8B%96%E6%8B%BD/drag-drop.md)
 1. [函数式编程](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.md)
-2. [防抖与节流](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/index.md)
+1. [防抖与节流](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/index.md)
+1. [对比几种判断数据类型为数组的方式](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Array%E7%9B%B8%E5%85%B3/%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%B8%BA%E6%95%B0%E7%BB%84%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E6%AF%94%E8%BE%83.md)
 
 ## css 相关
 1. [砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）](https://github.com/wenfujie/document-library/blob/master/articles/css%E7%9B%B8%E5%85%B3/animation%E5%8A%A8%E7%94%BB/%E7%A0%B8%E9%87%91%E8%9B%8B%E6%95%88%E6%9E%9C%EF%BC%88steps%2B%E9%9B%AA%E7%A2%A7%E5%9B%BE%E8%A7%A3%E5%86%B3%E5%9B%BE%E7%89%87%E5%BF%AB%E9%80%9F%E5%88%87%E6%8D%A2%E4%B8%8D%E9%97%AA%E7%83%81%EF%BC%89/index.html)
