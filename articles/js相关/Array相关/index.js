@@ -31,3 +31,20 @@ if (!Array.isArray) {
     return Object.prototype.toString.call(data) === '[object Array]'
   }
 }
+
+// 递归实现数组扁平化
+function flatten(arr) {
+  return arr.reduce((preArr, item) => {
+    return preArr.concat(Array.isArray(item) ? flatten(item) : item)
+  }, [])
+}
+
+console.log(
+  flatten([
+    [
+      [1, 2, 3],
+      [4, 5]
+    ],
+    [7, 8]
+  ])
+)
