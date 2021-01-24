@@ -5,6 +5,8 @@
 - [分割线](#分割线)
 - [斜体、加粗](#斜体加粗)
 - [代码块](#代码块)
+- [超链接](#超链接)
+- [图片](#图片)
 ### 标记关键词
 使用 `` 将关键词包裹
 
@@ -93,3 +95,17 @@ _凡有所学，皆成性格。_
 ```javascript
   console.log('hello world')
 ```
+
+### 超链接
+```
+[百度](https://www.baidu.com)
+```
+
+[百度](https://www.baidu.com)
+
+### 图片
+```
+![鼠标放上去图片描述](图片地址)
+```
+
+![鼠标放上去图片描述](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimages.enet.com.cn%2F2014%2F0718%2F23%2F6743905.jpg&refer=http%3A%2F%2Fimages.enet.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614068421&t=4cb4ab8617f18f19c5fa8fdf8720d266)
