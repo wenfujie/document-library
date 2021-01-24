@@ -18,9 +18,20 @@ wenf 的文档库，包含了wenf学习、工作中关于编程的经验文档�
 1. [防抖与节流](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/index.md)
 1. [对比几种判断数据类型为数组的方式](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Array%E7%9B%B8%E5%85%B3/%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%B8%BA%E6%95%B0%E7%BB%84%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E6%AF%94%E8%BE%83.md)
 1. [数组扁平化](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Array%E7%9B%B8%E5%85%B3/%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96.md)
+1. [js实现浏览器压缩并下载](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/js%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85.md)
+2. [Node自动化部署](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/node%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2.md)
+
+## Vue相关
+1. [Vue源码解读](https://github.com/wenfujie/document-library/blob/master/articles/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.md)
 
 ## css 相关
 1. [砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）](https://github.com/wenfujie/document-library/blob/master/articles/css%E7%9B%B8%E5%85%B3/animation%E5%8A%A8%E7%94%BB/%E7%A0%B8%E9%87%91%E8%9B%8B%E6%95%88%E6%9E%9C%EF%BC%88steps%2B%E9%9B%AA%E7%A2%A7%E5%9B%BE%E8%A7%A3%E5%86%B3%E5%9B%BE%E7%89%87%E5%BF%AB%E9%80%9F%E5%88%87%E6%8D%A2%E4%B8%8D%E9%97%AA%E7%83%81%EF%BC%89/index.html)
+
+## 测试相关
+1. [手摸手带你用js实现端到端自动化测试](https://github.com/wenfujie/document-library/blob/master/articles/%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%89%8B%E6%91%B8%E6%89%8B%E5%B8%A6%E4%BD%A0%E7%94%A8js%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95.md)
+
+## 书籍
+1. [刻意练习](https://github.com/wenfujie/document-library/blob/master/articles/%E4%B9%A6%E7%B1%8D/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0.md)
 
 ## 其他
 1. [MarkDown语法](https://github.com/wenfujie/document-library/blob/master/articles/MarkDown/MarkDown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95.md#%E5%88%86%E5%89%B2%E7%BA%BF)
