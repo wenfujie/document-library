@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="">
+    <input type="file" name="file" id="files" multiple accept="video/quicktime,audio/mpeg" />
+  </form>
+
+  <button onclick="selectFile()">模拟点击</button>
+
+</body>
+
+</html>
+
+<script>
+  document.getElementById("files")
+    .addEventListener('change', function (event) {
+      let fileItem = null
+      for (var i = 0; i < event.target.files.length; i++) {
+        fileItem = event.target.files[i]
+        console.log('选择文件' + i, fileItem);
+      }
+
+      // 解决无法再次选择上次所选文件
+      event.target.value = ''
+    });
+
+  function selectFile() {
+    document.getElementById("files").click()
+  }
+</script>
