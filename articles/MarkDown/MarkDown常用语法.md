@@ -7,6 +7,7 @@
 - [代码块](#代码块)
 - [超链接](#超链接)
 - [图片](#图片)
+- [引用](#引用)
 ### 标记关键词
 使用 `` 将关键词包裹
 
@@ -111,3 +112,28 @@ _凡有所学，皆成性格。_
 ```
 
 ![鼠标放上去图片描述](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimages.enet.com.cn%2F2014%2F0718%2F23%2F6743905.jpg&refer=http%3A%2F%2Fimages.enet.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614068421&t=4cb4ab8617f18f19c5fa8fdf8720d266)
+
+### 引用
+使用 `>` 字符，即可添加引用，在行尾添加 `<br>` 即可换行
+```
+>1. If the this value is undefined, return "[object Undefined]".
+>2. If the this value is null, return "[object Null]".
+
+>你好<br>
+- [标记关键词](#标记关键词)
+- [文字字体、颜色、大小](#文字字体颜色大小)
+- [文字底色](#文字底色)
+- [常用颜色](#常用颜色)
+- [分割线](#分割线)
+- [斜体、加粗](#斜体加粗)
+- [代码块](#代码块)
+- [超链接](#超链接)
+- [图片](#图片)
+- [引用](#引用)
+```
+
+>1. If the this value is undefined, return "[object Undefined]".
+>2. If the this value is null, return "[object Null]".
+
+>你好<br>
+今天天气不错
