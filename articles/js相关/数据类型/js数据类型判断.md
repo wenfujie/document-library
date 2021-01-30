@@ -1,4 +1,13 @@
-
+- [基础数据类型判断](#基础数据类型判断)
+- [复杂数据类型判断](#复杂数据类型判断)
+- [封装一个数据判断方法](#封装一个数据判断方法)
+- [拓展：判断空对象](#拓展判断空对象)
+- [拓展：判断 window 对象](#拓展判断-window-对象)
+- [拓展：判断 DOM 元素](#拓展判断-dom-元素)
+- [拓展：判断数组类型的几种方式比较](#拓展判断数组类型的几种方式比较)
+  - [方式一：使用 instanceof 判断](#方式一使用-instanceof-判断)
+  - [方式二：使用 Object 原型上的toString方法](#方式二使用-object-原型上的tostring方法)
+  - [方式三：es5 增加的 Array.isArray](#方式三es5-增加的-arrayisarray)
 ## 基础数据类型判断
 
 **使用 typeof 操作符判断基础数据类型**
@@ -167,6 +176,59 @@ function isFunction(data) {
 ```javascript
 var isArray = Array.isArray || function (data) {
   return type(data) === 'array'
+}
+```
+
+## 拓展：判断空对象
+jQuery 提供了 `isEmptyObject` 方法判断空对象
+
+**原理**：只要 for 循环有执行，就表示具有属性，有属性即非空对象，否则为空对象。
+
+```javascript
+function isEmptyObject( obj ) {
+  var name;
+  for ( name in obj ) {
+    return false;
+  }
+  return true;
+}
+
+// 可以看出，判断的并不仅仅是空对象
+console.log(isEmptyObject({})); // true
+console.log(isEmptyObject([])); // true
+console.log(isEmptyObject(null)); // true
+console.log(isEmptyObject(undefined)); // true
+console.log(isEmptyObject(1)); // true
+console.log(isEmptyObject('')); // true
+console.log(isEmptyObject(true)); // true
+```
+
+所以可以根据场景，结合使用 `type` 方法判断.
+```javascript
+function isEmptyObject( obj ) {
+  if(type(obj) !== 'object') return false;
+  var name;
+  for ( name in obj ) {
+    return false;
+  }
+  return true;
+}
+```
+
+## 拓展：判断 window 对象
+**判断原理**：`window` 对象有一个window属性指向自己
+
+```javascript
+function isWindow(data) {
+  return !!data && data === data.window
+}
+```
+
+## 拓展：判断 DOM 元素
+**判断原理**：DOM 元素的 `nodeType` 值为1
+```javascript
+function isElement(data) {
+  return !!data && data.nodeType === 1
 }
 ```
 
