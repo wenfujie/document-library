@@ -170,6 +170,62 @@ var isArray = Array.isArray || function (data) {
 }
 ```
 
+## 拓展：判断数组类型的几种方式比较
+### 方式一：使用 instanceof 判断
+
+判断原理：判断数据原型是否为Array。
+
+```javascript
+  console.log([] instanceof Array) // true
+  console.log({} instanceof Array) // false
+```
+
+弊端一：复杂数据类型 instanceof Object 时都返回true
+
+```javascript
+  console.log([] instanceof Object) // true
+  console.log({} instanceof Object) // true
+```
+
+弊端二：修改数据的原型，导致判断错误
+
+```javascript
+  let a = []
+  a.__proto__ = {}
+  console.log(a instanceof Array) // false
+```
+
+### 方式二：使用 Object 原型上的toString方法
+
+判断原理： Object 原型上的toString方法会返回描述数据类型的字符串
+
+```javascript
+  // 判断数组
+  Object.prototype.toString.call([]) === '[object Array]'
+```
+
+### 方式三：es5 增加的 Array.isArray
+
+该方式最为简洁
+
+```javascript
+  Array.isArray([]) // true
+  Array.isArray({}) // false
+```
+
+弊端：由于是es5增加函数，所以不兼容IE8以下浏览器
+
+可以做如下兼容处理
+
+
+```javascript
+  if (!Array.isArray) {
+    Array.isArray = function (data) {
+      return Object.prototype.toString.call(data) === '[object Array]'
+    }
+  }
+```
+
 
 参考：[JavaScript专题之类型判断(上) #28](https://github.com/mqyqingfeng/Blog/issues/28)
 

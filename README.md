@@ -16,12 +16,12 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 1. [h5拖拽介绍](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/h5%E6%8B%96%E6%8B%BD/drag-drop.md)
 1. [函数式编程](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.md)
 1. [防抖与节流](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/index.md)
-1. [对比几种判断数据类型为数组的方式](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Array%E7%9B%B8%E5%85%B3/%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%B8%BA%E6%95%B0%E7%BB%84%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E6%AF%94%E8%BE%83.md)
-1. [数组扁平化](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Array%E7%9B%B8%E5%85%B3/%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96.md)
-1. [js实现浏览器下打包压缩多个文件并下载](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/js%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85.md)
-2. [Node自动化部署](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/node%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2.md)
-3. [对象的拷贝](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Object%E7%9B%B8%E5%85%B3/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D.md)
-4. [打开系统选择文件弹窗](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97.md)
+2. [数据类型判断](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD.md)
+3. [数组扁平化](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Array%E7%9B%B8%E5%85%B3/%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96.md)
+4. [js实现浏览器下打包压缩多个文件并下载](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/js%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85.md)
+5. [Node自动化部署](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/node%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2.md)
+6. [对象的拷贝](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Object%E7%9B%B8%E5%85%B3/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D.md)
+7. [打开系统选择文件弹窗](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97.md)
 
 ## Vue相关
 1. [Vue源码解读](https://github.com/wenfujie/document-library/blob/master/articles/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.md)
