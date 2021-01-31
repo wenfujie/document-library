@@ -1,0 +1,22 @@
+{
+  "name": "document-library",
+  "version": "1.0.0",
+  "description": "wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` 的经验文档。",
+  "main": "index.js",
+  "scripts": {
+    "syncToGhpageBranch": "git push origin master:gh-pages"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wenfujie/document-library.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "wenfujie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wenfujie/document-library/issues"
+  },
+  "homepage": "https://github.com/wenfujie/document-library#readme"
+}
