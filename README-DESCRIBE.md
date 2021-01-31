@@ -7,7 +7,3 @@ https://wenfujie.github.io/document-library/
 
 后面拼上html文件路径即可
 
-## master 分支快速同步代码到 gh-pages 分支
-```bash
-npm run depl 
-```
