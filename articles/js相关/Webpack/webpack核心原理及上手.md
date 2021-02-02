@@ -181,10 +181,12 @@ module.exports = {
 webpack --mode=production
 ```
 
-其实等同于
-```javascript
-new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("production") })
-```
+| 选项 | 描述 |
+| :----: | :----: |
+|development|	会将 DefinePlugin 中 process.env.NODE_ENV 的值设置为 development。启用 NamedChunksPlugin 和 NamedModulesPlugin
+|production|	会将 DefinePlugin 中 process.env.NODE_ENV 的值设置为 production。启用 FlagDependencyUsagePlugin, FlagIncludedChunksPlugin, ModuleConcatenationPlugin, NoEmitOnErrorsPlugin, OccurrenceOrderPlugin, SideEffectsFlagPlugin 和 TerserPlugin。
+|none|	没有任何默认优化选项
+
 
 在业务中区分环境
 ```javascript
