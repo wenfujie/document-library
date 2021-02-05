@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/wenfujie/document-library/issues"
   },
-  "homepage": "https://github.com/wenfujie/document-library#readme"
+  "homepage": "https://github.com/wenfujie/document-library#readme",
+  "devDependencies": {
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.5.0"
+  }
 }
