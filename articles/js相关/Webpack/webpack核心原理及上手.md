@@ -44,7 +44,7 @@ module.exports = {
 const path = require('path');
 
 module.exports = {
-  entry: main: './src/main.js',
+  entry: './src/main.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
@@ -195,4 +195,71 @@ if(process.env.NODE_ENV === 'development'){
 }else{
     //生产环境 do something
 }
+```
+
+## 拓展
+### 模拟实现一个loader
+loader 也是一个 node 模块，它导出一个函数，该函数的参数是 require 的源模块，处理 source 后把返回值交给下一个 loader。所以它的 “模版” 应该是这样的：
+
+```javascript
+module.exports = function (source) {
+    // 处理 source ...
+    return handledSource;
+}
+```
+
+如果是最后一个执行的loader，该loader需返回一个node可执行的 javascript 脚本（用字符串储存）。
+```javascript
+// 处理顺序排在最后的 loader
+module.exports = function (source) {
+    // 这个 loader 的功能是把源模块转化为字符串交给 require 的调用方
+    return 'module.exports = ' + JSON.stringify(source);
+}
+```
+
+**模拟写一个脚本**
+
+```bash
+# 安装所需依赖
+npm i html-loader minimize  -D
+```
+
+```javascript
+// src/loaders/html-minify-loader.js
+
+var Minimize = require('minimize');
+
+module.exports = function(source) {
+    var minimize = new Minimize();
+    return minimize.parse(source);
+};
+```
+
+```javascript
+// webpack.config.js
+
+const path = require('path')
+module.exports = {
+  entry: path.resolve(__dirname, './index.html'),
+  output: {
+    filename: 'index.html',
+    path: path.resolve(__dirname, 'dist')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.html$/,
+        use: ['html-loader', 'html-minify-loader'] // 处理顺序 html-minify-loader => html-loader => webpack
+      }
+    ]
+  },
+  resolveLoader: {
+    // 因为 html-loader 是开源 npm 包，所以这里要添加 'node_modules' 目录
+    modules: [path.join(__dirname, './src/loaders'), 'node_modules']
+  }
+}
+```
+**开始打包**
+```bash
+npx webpack --config webpack.config.js
 ```
