@@ -23,6 +23,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 6. [对象的拷贝](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Object%E7%9B%B8%E5%85%B3/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D.md)
 7. [打开系统选择文件弹窗](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97.md)
 8. [原型以及原型链](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E5%9F%BA%E7%A1%80/%E5%8E%9F%E5%9E%8B%E4%BB%A5%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
+9. [搞懂js中的类](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E7%B1%BB/%E6%90%9E%E6%87%82js%E4%B8%AD%E7%9A%84%E7%B1%BB.md)
 
 ## Vue相关
 1. [Vue源码解读](https://github.com/wenfujie/document-library/blob/master/articles/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.md)
