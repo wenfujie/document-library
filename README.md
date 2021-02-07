@@ -11,28 +11,30 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 [掘金首页](https://juejin.cn/user/2629687546229784 "掘金个人首页")
 
-## javascript 相关
-1. [闭包，我吃定了耶稣都挡不住，我说的](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E9%97%AD%E5%8C%85%EF%BC%8C%E6%88%91%E5%90%83%E5%AE%9A%E4%BA%86%E8%80%B6%E7%A8%A3%E9%83%BD%E6%8C%A1%E4%B8%8D%E4%BD%8F%EF%BC%8C%E6%88%91%E8%AF%B4%E7%9A%84.md "没错，就是我说的")
-1. [h5拖拽介绍](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/h5%E6%8B%96%E6%8B%BD/drag-drop.md)
-1. [函数式编程](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.md)
-1. [防抖与节流](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/index.md)
-2. [数据类型判断](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD.md)
-3. [数组扁平化](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Array%E7%9B%B8%E5%85%B3/%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96.md)
-4. [js实现浏览器下打包压缩多个文件并下载](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/js%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85.md)
-5. [Node自动化部署](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/node%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2.md)
-6. [对象的拷贝](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Object%E7%9B%B8%E5%85%B3/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D.md)
-7. [打开系统选择文件弹窗](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97.md)
-8. [原型以及原型链](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E5%9F%BA%E7%A1%80/%E5%8E%9F%E5%9E%8B%E4%BB%A5%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
-9. [搞懂js中的类](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E7%B1%BB/%E6%90%9E%E6%87%82js%E4%B8%AD%E7%9A%84%E7%B1%BB.md)
+## javascript
+1. [闭包](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E9%97%AD%E5%8C%85%EF%BC%8C%E6%88%91%E5%90%83%E5%AE%9A%E4%BA%86%E8%80%B6%E7%A8%A3%E9%83%BD%E6%8C%A1%E4%B8%8D%E4%BD%8F%EF%BC%8C%E6%88%91%E8%AF%B4%E7%9A%84.md)
+2. [函数式编程](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.md)
+3. [防抖与节流](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/index.md)
+4. [数据类型判断](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD.md)
+5. [数组扁平化](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Array%E7%9B%B8%E5%85%B3/%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96.md)
+8. [对象的拷贝](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Object%E7%9B%B8%E5%85%B3/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D.md)
+10. [原型以及原型链](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E5%9F%BA%E7%A1%80/%E5%8E%9F%E5%9E%8B%E4%BB%A5%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
+11. [构造函数和类](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E7%B1%BB/%E6%90%9E%E6%87%82js%E4%B8%AD%E7%9A%84%E7%B1%BB.md)
 
-## Vue相关
+## Vue
 1. [Vue源码解读](https://github.com/wenfujie/document-library/blob/master/articles/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.md)
 
-## css 相关
+## Css
 1. [砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）](https://github.com/wenfujie/document-library/blob/master/articles/css%E7%9B%B8%E5%85%B3/animation%E5%8A%A8%E7%94%BB/%E7%A0%B8%E9%87%91%E8%9B%8B%E6%95%88%E6%9E%9C%EF%BC%88steps%2B%E9%9B%AA%E7%A2%A7%E5%9B%BE%E8%A7%A3%E5%86%B3%E5%9B%BE%E7%89%87%E5%BF%AB%E9%80%9F%E5%88%87%E6%8D%A2%E4%B8%8D%E9%97%AA%E7%83%81%EF%BC%89/index.html)
 
-## 测试相关
+## 测试
 1. [手摸手带你用js实现端到端自动化测试](https://github.com/wenfujie/document-library/blob/master/articles/%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%89%8B%E6%91%B8%E6%89%8B%E5%B8%A6%E4%BD%A0%E7%94%A8js%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95.md)
+
+## 业务Demo
+1. [Node自动化部署](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/node%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2.md)
+9. [打开系统选择文件弹窗](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97.md)
+2. [h5拖拽介绍](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/h5%E6%8B%96%E6%8B%BD/drag-drop.md)
+3. [js实现浏览器下打包压缩多个文件并下载](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/js%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85.md)
 
 ## 书籍
 1. [刻意练习](https://github.com/wenfujie/document-library/blob/master/articles/%E4%B9%A6%E7%B1%8D/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0.md)
