@@ -40,6 +40,9 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 2. [h5拖拽介绍](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/h5%E6%8B%96%E6%8B%BD/drag-drop.md)
 3. [js实现浏览器下打包压缩多个文件并下载](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/js%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85.md)
 
+## 开发相关知识
+1. [安全问题：csrf和css](https://github.com/wenfujie/document-library/blob/master/articles/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9ACSRF%E5%92%8CXSS.md)
+
 ## 书籍
 1. [刻意练习](https://github.com/wenfujie/document-library/blob/master/articles/%E4%B9%A6%E7%B1%8D/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0.md)
 
