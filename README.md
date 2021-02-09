@@ -28,6 +28,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 1. [砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）](https://github.com/wenfujie/document-library/blob/master/articles/css%E7%9B%B8%E5%85%B3/animation%E5%8A%A8%E7%94%BB/%E7%A0%B8%E9%87%91%E8%9B%8B%E6%95%88%E6%9E%9C%EF%BC%88steps%2B%E9%9B%AA%E7%A2%A7%E5%9B%BE%E8%A7%A3%E5%86%B3%E5%9B%BE%E7%89%87%E5%BF%AB%E9%80%9F%E5%88%87%E6%8D%A2%E4%B8%8D%E9%97%AA%E7%83%81%EF%BC%89/index.html)
 
 ## 工具
+1. [npm详细使用说明](https://github.com/wenfujie/document-library/blob/master/articles/%E5%B7%A5%E5%85%B7/npm%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)
 1. [Webpack上手](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Webpack/webpack%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%8F%8A%E4%B8%8A%E6%89%8B.md)
 1. [20行代码实现Promise](https://github.com/wenfujie/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/Promise/20%E8%A1%8C%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0Promise.md)
 
@@ -42,6 +43,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 开发相关知识
 1. [安全问题：csrf和css](https://github.com/wenfujie/document-library/blob/master/articles/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9ACSRF%E5%92%8CXSS.md)
+2. [面试题汇总](https://github.com/wenfujie/document-library/blob/master/articles/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E6%80%BB.md)
 
 ## 书籍
 1. [刻意练习](https://github.com/wenfujie/document-library/blob/master/articles/%E4%B9%A6%E7%B1%8D/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0.md)
