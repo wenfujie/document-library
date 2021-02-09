@@ -21,8 +21,11 @@
   },
   "homepage": "https://github.com/wenfujie/document-library#readme",
   "devDependencies": {
+    "commander": "^7.0.0",
+    "download-git-repo": "^3.0.2",
     "html-loader": "^1.3.2",
     "minimize": "^2.2.0",
+    "ora": "^5.3.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^4.5.0"
   }

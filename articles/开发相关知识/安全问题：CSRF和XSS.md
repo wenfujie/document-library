@@ -174,4 +174,6 @@ Encode的作用是将`$var`等一些字符进行转化，使得浏览器在最�
 
 比如，他的第一篇文章就讲到了[XSS的原理分析与解剖](http://www.freebuf.com/articles/web/40520.html)。有句话摘抄如下：弹窗只是测试xss的存在性和使用性。
 
-转发自：https://github.com/qianguyihao/Web/blob/master/13-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/01-%E9%9D%A2%E8%AF%95%E5%BF%85%E7%9C%8B/07-%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9ACSRF%E5%92%8CXSS.md
+**本文转发自：**
+
+https://github.com/qianguyihao/Web/blob/master/13-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/01-%E9%9D%A2%E8%AF%95%E5%BF%85%E7%9C%8B/07-%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9ACSRF%E5%92%8CXSS.md
