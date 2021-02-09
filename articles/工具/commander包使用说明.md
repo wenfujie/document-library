@@ -14,7 +14,7 @@ const { program } = require('commander')
 program.version('0.0.1')
 
 /**
- * option 方法
+ * option 方法：添加全局参数
  * 1.指令上的参数符号 {string} -参数缩写,--参数全称 例：'-d, --debug' or '--debug'
  * 2.指令描述 {string}
  * 3.默认值
@@ -73,9 +73,10 @@ const wfjCli = program.command('wfj-cli')
 // 自定义子指令以及触发回调
 wfjCli
   // 子指令名称
-  .command('init')
-  // 配置指令参数
-  .arguments('<filderName>')
+  .command('init <filderName>')
+  // 或者使用 arguments 方法配置参数
+  // .arguments('<filderName>')
+  .option('-s, --save', '指令参数')
   // 子指令描述
   .description('脚手架初始化的描述')
   // 回调
@@ -84,8 +85,8 @@ wfjCli
     // console.log('脚手架初始化事件出发', options)
   })
 
-// 该句为了找到node安装路径，必须执行
-program.parse(process.argv)
+  // 该行放置末尾，解析option方法所构建的参数
+  program.parse(process.argv)
 ```
 **使用**
 ```bash
