@@ -1,11 +1,15 @@
 
-## commander 如何用
+## commander 包使用说明
+>`commander` 是一个 npm 包，是完整的 node.js 命令行解决方案。
 
-`commander` 是一个npm包，主要用于构建自己的系统指令。
+使用 `commander` 可以完美解决接收指令参数、提供指令选项、设置多个子指令等问题。
 
+以下是我整理的使用概览，具体细节可看
 [官方使用说明](https://github.com/tj/commander.js/blob/HEAD/Readme_zh-CN.md)
 
 ```javascript
+// index.js
+
 const { program } = require('commander')
 program.version('0.0.1')
 
@@ -68,10 +72,13 @@ const wfjCli = program.command('wfj-cli')
 
 // 自定义子指令以及触发回调
 wfjCli
+  // 子指令名称
   .command('init')
   // 配置指令参数
-    .arguments('<filderName>')
+  .arguments('<filderName>')
+  // 子指令描述
   .description('脚手架初始化的描述')
+  // 回调
   .action((filderName) => {
     console.log(filderName, '---')
     // console.log('脚手架初始化事件出发', options)
@@ -79,6 +86,9 @@ wfjCli
 
 // 该句为了找到node安装路径，必须执行
 program.parse(process.argv)
-
 ```
-
+**使用**
+```bash
+# 执行以下指令即可触发 wfj-cli 下的子指令 init 的回调
+node index.js wfj-cli init filderName -s -t test
+```
