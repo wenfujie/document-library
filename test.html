@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+  window.addEventListener('error', (err) => {
+    console.log(err, '-----')
+  })
+
+  document.getElementById('test').test()
+
+  function digui(num) {
+    if (num > 1) {
+      num--;
+    }
+    console.log(123);
+    return num * digui(num)
+  }
+</script>
