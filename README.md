@@ -46,6 +46,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 1. [安全问题：csrf和xss](https://github.com/wenfujie/document-library/blob/master/articles/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9ACSRF%E5%92%8CXSS.md)
 2. [面试题汇总](https://github.com/wenfujie/document-library/blob/master/articles/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E6%80%BB.md)
 3. [DOM事件总结](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/DOM%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BB%93.md)
+4. [盒模型及BFC](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8F%8ABFC.md)
 
 ## 书籍
 1. [刻意练习](https://github.com/wenfujie/document-library/blob/master/articles/%E4%B9%A6%E7%B1%8D/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0.md)
