@@ -48,6 +48,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 3. [DOM事件总结](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/DOM%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BB%93.md)
 4. [盒模型及BFC](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8F%8ABFC.md)
 5. [http协议](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/http%E5%8D%8F%E8%AE%AE.md)
+6. [跨域资源共享cors详解](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%ABcors%E8%AF%A6%E8%A7%A3.md)
 
 ## 书籍
 1. [刻意练习](https://github.com/wenfujie/document-library/blob/master/articles/%E4%B9%A6%E7%B1%8D/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0.md)

@@ -2,8 +2,7 @@
 
 CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin resource sharing）。
 
-它允许浏览器向跨源服务器，发出[`XMLHttpRequest`](http://www.ruanyifeng.com/blog/2012/09/xmlhttprequest_level_2.html)请求，从而克服了AJAX只能[同源](http://www.ruanyifeng.com/blog/2016/04/same-
-origin-policy.html)使用的限制。
+它允许浏览器向跨源服务器，发出[`XMLHttpRequest`](http://www.ruanyifeng.com/blog/2012/09/xmlhttprequest_level_2.html)请求，从而克服了AJAX只能[同源](http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)使用的限制。
 
 本文详细介绍CORS的内部机制。
 
