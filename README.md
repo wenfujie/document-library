@@ -50,6 +50,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 5. [http协议](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/http%E5%8D%8F%E8%AE%AE.md)
 6. [跨域资源共享cors详解](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%ABcors%E8%AF%A6%E8%A7%A3.md)
 7. [算法](https://github.com/wenfujie/document-library/blob/master/articles/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95.md)
+8. [浏览器渲染机制](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6.md)
 
 ## 书籍
 1. [刻意练习](https://github.com/wenfujie/document-library/blob/master/articles/%E4%B9%A6%E7%B1%8D/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0.md)
