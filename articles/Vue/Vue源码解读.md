@@ -6,12 +6,14 @@
   - [Watcher](#watcher)
   - [开始依赖收集](#开始依赖收集)
 - [虚拟节点VNode](#虚拟节点vnode)
-
-### vue内部机制流程图
+- [新、旧VNode比对过程](#新旧vnode比对过程)
+  - [sameVnode实现](#samevnode实现)
+  - [patch VNode](#patch-vnode)
+## vue内部机制流程图
 
 ![image](https://s1.ax1x.com/2020/08/05/asdyWR.png)
 
-### 双向绑定实现
+## 双向绑定实现
 
 首先通过一次渲染操作触发Data的getter（这里保证只有视图中需要被用到的data才会触发getter）进行依赖收集，这时候其实Watcher与data可以看成一种被绑定的状态（实际上是data的闭包中有一个 `Deps` 订阅者，在修改的时候会通知所有的Watcher观察者），在data发生变化的时候会触发它的setter，setter通知 `Watcher` ，Watcher进行回调通知组件重新渲染的函数，之后根据 `diff算法` 来决定是否发生视图的更新。
 
@@ -60,8 +62,8 @@
   </script>
 ```
 
-### 依赖收集
-#### 为什么要依赖收集？
+## 依赖收集
+### 为什么要依赖收集？
 
 如下代码，test2属性并无关联视图，但从上文“双向绑定”原理可知：当修改值this.test2 = 'hello'时会触发setter从而更新视图
 
@@ -80,7 +82,7 @@
   }
 ```
 
-#### Dep类
+### Dep类
 在最开始初始化vue的render函数时，将此时触发getter的对应Watcher收集到Dep的subs中去。在对data中的数据进行修改的时候setter只要触发Dep的subs的函数即可。
 
 
@@ -116,7 +118,7 @@ function remove (arr, item) {
 }
 ```
 
-#### Watcher
+### Watcher
 订阅者，当依赖收集的时候会addSub到sub中，在修改data中数据的时候会触发dep对象的notify，通知所有Watcher对象去修改对应视图。
 
 ```javascript
@@ -138,7 +140,7 @@ class Watcher {
 }
 ```
 
-#### 开始依赖收集
+### 开始依赖收集
 
 ```javascript
 class Vue {
@@ -174,11 +176,18 @@ Dep.target = null;
 将观察者Watcher实例赋值给全局的Dep.target，然后触发render操作只有被Dep.target标记过的才会进行依赖收集。有Dep.target的对象会将Watcher的实例push到subs中，在对象被修改触发setter操作的时候dep会调用subs中的Watcher实例的update方法进行渲染。
 
 
-### 虚拟节点VNode
+## 虚拟节点VNode
+**什么是 `VNode`？**
 
+vue中将Dom树抽象为js对象构成的抽象 `VNode` （virtual dom），用属性来表示Dom的特性，当 `VNode` 改变时就去修改视图。
+
+**为什么使用 `VNode`？**
+
+如果不使用 `VNode` 当修改某条数据的时候，这时候js会将整个DOM Tree进行替换，这种操作是相当消耗性能的。
+
+VNode是对真实DOM节点的模拟，可以对VNode Tree进行增加节点、删除节点和修改节点操作。这些过程都只需要操作VNode Tree，不需要操作真实的DOM，大大的提升了性能。修改之后使用diff算法计算出修改的最小单位，在将这些小单位的视图进行更新。
 
 ```javascript
-
 // Vue.js源码中对VNode类的定义
 
 export default class VNode {
@@ -255,12 +264,9 @@ export default class VNode {
   }
 }
 ```
-
 举例说明，以下VNode
 
-
 ```javascript
-
 {
     tag: 'div'
     data: {
@@ -285,3 +291,133 @@ export default class VNode {
 </div>
 ```
 
+## 新、旧VNode比对过程
+patch比对VNode更新视图的过程：
+1. 从最深层从左往右比较新旧VNode节点
+2. 比对节点前，先判断oldVNode和VNode是否是sameVNode，如果不是则创建新dom移除旧dom，如果是则继续以下步骤
+3. 则使用diff算法计算差异
+4. 得到差异后，仅需更新差异视图
+
+![](./images/domThen.png)
+
+### sameVnode实现
+
+```javascript
+/*
+  判断两个VNode节点是否是同一个节点，需要满足以下条件
+  key相同
+  tag（当前节点的标签名）相同
+  isComment（是否为注释节点）相同
+  是否data（当前节点对应的对象，包含了具体的一些数据信息，是一个VNodeData类型，可以参考VNodeData类型中的数据信息）都有定义
+  当标签是<input>的时候，type必须相同
+*/
+function sameVnode (a, b) {
+  return (
+    a.key === b.key &&
+    a.tag === b.tag &&
+    a.isComment === b.isComment &&
+    isDef(a.data) === isDef(b.data) &&
+    sameInputType(a, b)
+  )
+}
+
+// Some browsers do not support dynamically changing type for <input>
+// so they need to be treated as different nodes
+/*
+  判断当标签是<input>的时候，type是否相同
+  某些浏览器不支持动态修改<input>类型，所以他们被视为不同节点
+*/
+function sameInputType (a, b) {
+  if (a.tag !== 'input') return true
+  let i
+  const typeA = isDef(i = a.data) && isDef(i = i.attrs) && i.type
+  const typeB = isDef(i = b.data) && isDef(i = i.attrs) && i.type
+  return typeA === typeB
+}
+```
+
+当两个VNode的tag、key、isComment都相同，并且同时定义或未定义data的时候，且如果标签为input则type必须相同。这时候这两个VNode则算sameVnode，可以直接进行patchVnode操作。
+
+### patch VNode
+**patchVnode规则**
+
+1. 如果新旧VNode都是静态的，同时它们的key相同（代表同一节点），并且新的VNode是clone或者是标记了once（标记v-once属性，只渲染一次），那么只需要替换elm以及componentInstance即可。
+
+2. 新老节点均有children子节点，则对子节点进行diff操作，调用updateChildren，这个updateChildren也是diff的核心。
+
+3. 如果老节点没有子节点而新节点存在子节点，先清空老节点DOM的文本内容，然后为当前DOM节点加入子节点。
+
+4. 当新节点没有子节点而老节点有子节点的时候，则移除该DOM节点的所有子节点。
+
+5. 当新老节点都无子节点的时候，只是文本的替换。
+
+**实现代码**
+
+```javascript
+/*patch VNode节点*/
+  function patchVnode (oldVnode, vnode, insertedVnodeQueue, removeOnly) {
+    /*两个VNode节点相同则直接返回*/
+    if (oldVnode === vnode) {
+      return
+    }
+    // reuse element for static trees.
+    // note we only do this if the vnode is cloned -
+    // if the new node is not cloned it means the render functions have been
+    // reset by the hot-reload-api and we need to do a proper re-render.
+    /*
+      如果新旧VNode都是静态的，同时它们的key相同（代表同一节点），
+      并且新的VNode是clone或者是标记了once（标记v-once属性，只渲染一次），
+      那么只需要替换elm以及componentInstance即可。
+    */
+    if (isTrue(vnode.isStatic) &&
+        isTrue(oldVnode.isStatic) &&
+        vnode.key === oldVnode.key &&
+        (isTrue(vnode.isCloned) || isTrue(vnode.isOnce))) {
+      vnode.elm = oldVnode.elm
+      vnode.componentInstance = oldVnode.componentInstance
+      return
+    }
+    let i
+    const data = vnode.data
+    if (isDef(data) && isDef(i = data.hook) && isDef(i = i.prepatch)) {
+      /*i = data.hook.prepatch，如果存在的话，见"./create-component componentVNodeHooks"。*/
+      i(oldVnode, vnode)
+    }
+    const elm = vnode.elm = oldVnode.elm
+    const oldCh = oldVnode.children
+    const ch = vnode.children
+    if (isDef(data) && isPatchable(vnode)) {
+      /*调用update回调以及update钩子*/
+      for (i = 0; i < cbs.update.length; ++i) cbs.update[i](oldVnode, vnode)
+      if (isDef(i = data.hook) && isDef(i = i.update)) i(oldVnode, vnode)
+    }
+    /*如果这个VNode节点没有text文本时*/
+    if (isUndef(vnode.text)) {
+      if (isDef(oldCh) && isDef(ch)) {
+        /*新老节点均有children子节点，则对子节点进行diff操作，调用updateChildren*/
+        if (oldCh !== ch) updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly)
+      } else if (isDef(ch)) {
+        /*如果老节点没有子节点而新节点存在子节点，先清空elm的文本内容，然后为当前节点加入子节点*/
+        if (isDef(oldVnode.text)) nodeOps.setTextContent(elm, '')
+        addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue)
+      } else if (isDef(oldCh)) {
+        /*当新节点没有子节点而老节点有子节点的时候，则移除所有ele的子节点*/
+        removeVnodes(elm, oldCh, 0, oldCh.length - 1)
+      } else if (isDef(oldVnode.text)) {
+        /*当新老节点都无子节点的时候，只是文本的替换，因为这个逻辑中新节点text不存在，所以直接去除ele的文本*/
+        nodeOps.setTextContent(elm, '')
+      }
+    } else if (oldVnode.text !== vnode.text) {
+      /*当新老节点text不一样时，直接替换这段文本*/
+      nodeOps.setTextContent(elm, vnode.text)
+    }
+    /*调用postpatch钩子*/
+    if (isDef(data)) {
+      if (isDef(i = data.hook) && isDef(i = i.postpatch)) i(oldVnode, vnode)
+    }
+  }
+```
+
+**参考文档**
+
+https://github.com/answershuto/learnVue/blob/master/docs/VirtualDOM%E4%B8%8Ediff(Vue%E5%AE%9E%E7%8E%B0).MarkDown
