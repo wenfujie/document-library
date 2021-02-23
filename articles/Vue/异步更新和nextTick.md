@@ -3,8 +3,7 @@
 
 在使用vue.js的时候，有时候因为一些特定的业务场景，不得不去操作DOM，比如这样：
 
-    
-    
+```javascript
     <template>
       <div>
         <div ref="test">{{test}}</div>
@@ -26,7 +25,7 @@
             }
         }
     }
-
+```
 打印的结果是begin，为什么我们明明已经将test设置成了“end”，获取真实DOM节点的innerText却没有得到我们预期中的“end”，而是得到之前的值“begin”呢？
 
 ## Watcher队列
@@ -34,7 +33,7 @@
 带着疑问，我们找到了Vue.js源码的Watch实现。当某个响应式数据发生变化的时候，它的setter函数会通知闭包中的Dep，Dep则会调用它管理的所有Watch对象。触发Watch对象的update实现。我们来看一下update的实现。
 
     
-    
+```javascript
     update () {
         /* istanbul ignore else */
         if (this.lazy) {
@@ -47,12 +46,13 @@
             queueWatcher(this)
         }
     }
+```
 
 我们发现Vue.js默认是使用[异步执行DOM更新](https://cn.vuejs.org/v2/guide/reactivity.html#%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E9%98%9F%E5%88%97)。
 当异步执行update的时候，会调用queueWatcher函数。
 
     
-    
+```javascript
      /*将一个观察者对象push进观察者队列，在队列中已经存在相同的id则该观察者对象将被跳过，除非它是在队列被刷新时推送*/
     export function queueWatcher (watcher: Watcher) {
       /*获取watcher的id*/
@@ -79,20 +79,18 @@
         }
       }
     }
-
+```
 查看queueWatcher的源码我们发现，Watch对象并不是立即更新视图，而是被push进了一个队列queue，此时状态处于waiting的状态，这时候会继续会有Watch对象被push进这个队列queue，等到下一个tick运行时，这些Watch对象才会被遍历取出，更新视图。同时，id重复的Watcher不会被多次加入到queue中去，因为在最终渲染时，我们只需要关心数据的最终结果。
 
 那么，什么是下一个tick？
 
 ## nextTick
 
-vue.js提供了一个[nextTick](https://cn.vuejs.org/v2/api/#Vue-
-nextTick)函数，其实也就是上面调用的nextTick。
+vue.js提供了一个[nextTick](https://cn.vuejs.org/v2/api/#Vue-nextTick)函数，其实也就是上面调用的nextTick。
 
 nextTick的实现比较简单，执行的目的是在microtask或者task中推入一个function，在当前栈执行完毕（也许还会有一些排在前面的需要执行的任务）以后执行nextTick传入的function，看一下源码：
 
-    
-    
+```javascript
     /**
      * Defer a task to execute it asynchronously.
      */
@@ -205,7 +203,7 @@ nextTick的实现比较简单，执行的目的是在microtask或者task中推�
         }
       }
     })()
-
+```
 它是一个立即执行函数,返回一个queueNextTick接口。
 
 传入的cb会被push进callbacks中存放起来，然后执行timerFunc（pending是一个状态标记，保证timerFunc在下一个tick之前只执行一次）。
@@ -243,9 +241,8 @@ setTimeout是最后的一种备选方案，它会将回调函数加入task中，
 综上，nextTick的目的就是产生一个回调函数加入task或者microtask中，当前栈执行完以后（可能中间还有别的排在前面的函数）调用该回调函数，起到了异步触发（即下一个tick时触发）的目的。
 
 ## flushSchedulerQueue
-
     
-    
+```javascript
     /*Github:https://github.com/answershuto*/
     /**
      * Flush both queues and run the watchers.
@@ -329,15 +326,14 @@ setTimeout是最后的一种备选方案，它会将回调函数加入task中，
         devtools.emit('flush')
       }
     }
-
+```
 flushSchedulerQueue是下一个tick时的回调函数，主要目的是执行Watcher的run函数，用来更新视图
 
 ## 为什么要异步更新视图
 
 来看一下下面这一段代码
 
-    
-    
+```javascript
     <template>
       <div>
         <div>{{test}}</div>
@@ -357,6 +353,7 @@ flushSchedulerQueue是下一个tick时的回调函数，主要目的是执行Wat
           }
         }
     }
+```
 
 现在有这样的一种情况，mounted的时候test的值会被++循环执行1000次。
 每次++时，都会根据响应式触发setter->Dep->Watcher->update->patch。
@@ -368,8 +365,7 @@ flushSchedulerQueue是下一个tick时的回调函数，主要目的是执行Wat
 
 所以我们需要在修改data中的数据后访问真实的DOM节点更新后的数据，只需要这样，我们把文章第一个例子进行修改。
 
-    
-    
+```javascript
     <template>
       <div>
         <div ref="test">{{test}}</div>
@@ -394,7 +390,7 @@ flushSchedulerQueue是下一个tick时的回调函数，主要目的是执行Wat
             }
         }
     }
-
+```
 使用Vue.js的global API的$nextTick方法，即可在回调中获取已经更新好的DOM实例了。
 
 **原文**
