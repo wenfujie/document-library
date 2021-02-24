@@ -292,7 +292,10 @@ export default class VNode {
 ```
 
 ## 新、旧VNode比对过程
-patch比对VNode更新视图的过程：
+
+**`patch函数`主要实现将虚拟节点转化为真实DOM渲染的过程**
+
+patch中比对新、旧VNode差异过程：
 1. 从最深层从左往右比较新旧VNode节点
 2. 比对节点前，先判断oldVNode和VNode是否是sameVNode，如果不是则创建新dom移除旧dom，如果是则继续以下步骤
 3. 则使用diff算法计算差异
