@@ -1,18 +1,20 @@
 
-## 概览
+## Vue和React相同和差异
 **相同**
 - 都使用虚拟节点
 - 都提供响应式、组件化的视图组件
-- 同样把注意力放在核心库，辅助功能如路由、全局状态管理抽取成独立的库
+- 核心库，路由和全局状态的管理都是脱离开来
 
 **区别**
-- vue将js、css、html组合在一起形成固定模板，react使用jsx
+- react采用html in js，使用jsx渲染，vue使用template模板
 - vue脚手架vue-cli，react则是用create-react-app
 - 数据和视图中，vue是双向绑定，react则是单向数据流
 - 路由和状态管理库，vue使用vue-router和vuex，react则是用react-router和redux
 - 开发模式，vue是mvvm，react是mvc
 - 使用场景，vue
 - 服务端渲染，vue有nuxt.js，react有next.js
+- vue文档阅读性比react好，react生态比vue庞大，react后台是facebook，vue则是自由开发者尤雨溪。
+- 件状态改变时，react会触发整个子组件数重新渲染，使用PureComponent可以避免，vue中则会自动根据属性依赖关系针对子组件前后差异进行渲染。
 
 **使用场景**
 
