@@ -73,7 +73,7 @@ C更新成F，D更新成C，E更新成D，在插入一个新的E，效率很低�
 | c | 1 | 1 |
 | d | 2 | 2 |
 
-可以看到，c d 的key值同时会受到影响。此时 diff算法比对VNode的 c d节点，旧VNode上的c节点key为2新VNode上个c节点key为1，所以会判断他们不是sameVnode，同样的新旧Vnode上d节点也不是sameVnode，从而发生了c d节点的重新渲染。
+可以看到，c d 的key值同时会受到影响。此时 diff算法比对VNode的 c d节点，旧VNode上的c节点key为2，新VNode上的c节点key为1，判断是否为sameVnode条件之一就是key值要相同，所以会判断他们不是sameVnode，同样的新旧Vnode上d节点也不是sameVnode，从而导致了c d无法复用触发了多于的额外渲染。
 
 ## 总结
 
