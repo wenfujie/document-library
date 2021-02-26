@@ -181,11 +181,11 @@ module.exports = {
 webpack --mode=production
 ```
 
-| 选项 | 描述 |
-| :----: | :----: |
-|development|	会将 DefinePlugin 中 process.env.NODE_ENV 的值设置为 development。启用 NamedChunksPlugin 和 NamedModulesPlugin
-|production|	会将 DefinePlugin 中 process.env.NODE_ENV 的值设置为 production。启用 FlagDependencyUsagePlugin, FlagIncludedChunksPlugin, ModuleConcatenationPlugin, NoEmitOnErrorsPlugin, OccurrenceOrderPlugin, SideEffectsFlagPlugin 和 TerserPlugin。
-|none|	没有任何默认优化选项
+|    选项     |                                                                                                                    描述                                                                                                                    |
+| :---------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| development |                                                               会将 DefinePlugin 中 process.env.NODE_ENV 的值设置为 development。启用 NamedChunksPlugin 和 NamedModulesPlugin                                                               |
+| production  | 会将 DefinePlugin 中 process.env.NODE_ENV 的值设置为 production。启用 FlagDependencyUsagePlugin, FlagIncludedChunksPlugin, ModuleConcatenationPlugin, NoEmitOnErrorsPlugin, OccurrenceOrderPlugin, SideEffectsFlagPlugin 和 TerserPlugin。 |
+|    none     |                                                                                                            没有任何默认优化选项                                                                                                            |
 
 
 在业务中区分环境
@@ -196,6 +196,150 @@ if(process.env.NODE_ENV === 'development'){
     //生产环境 do something
 }
 ```
+
+## 常用的webpack插件
+### 配置类
+#### ProvidePlugin
+
+用途：$ 出现，就会自动加载模块；$ 默认为'jquery'的exports
+
+```javascript
+new webpack.ProvidePlugin({
+  $: 'jquery',
+})
+```
+
+#### DefinePlugin
+用途：定义全局常量
+
+```javascript
+new webpack.DefinePlugin({
+    'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+    },
+    PRODUCTION: JSON.stringify(PRODUCTION),
+    APP_CONFIG: JSON.stringify(appConfig[process.env.NODE_ENV]),
+}),
+```
+
+#### ExtractTextPlugin
+用途：分离css文件
+
+```javascript
+new ExtractTextPlugin(PRODUCTION ? '[name]-[chunkhash].css' : '[name].css')
+```
+
+我们通常会在webpack配置中使用 css-loader 和 style-loader 来将css文件处理成js，如果不使用 extractTextPlugin ，css代码将会和js代码打包到一起，引入html后效果如下：
+
+```html
+<head>
+  <script src="./index.js"></script>
+  <style>
+    p{
+      color: red;
+    }
+  </style>
+</head>
+```
+css 会以style标签的形式引入。
+
+使用extractTextPlugin后，可以将css代码和js代码分离，打包成独立的文件，引入后效果如下：
+
+```html
+<head>
+  <script src="./index.js"></script>
+  <link href="./style.css" rel="stylesheet">
+</head>
+```
+
+#### HtmlWebpackPlugin
+用途：重构入口html，动态添加 `<link>` 和 `<script>` ，在以hash命名的文件上非常有用，因为每次编译都会改变
+
+```javascript
+new HtmlWebpackPlugin({
+    template: './src/index.html'
+})
+```
+
+### optimize优化类
+#### uglifyjs-webpack-plugin
+用途：js代码压缩
+
+```javascript
+new webpack.optimize.UglifyJsPlugin()
+```
+
+#### commonsChunkPlugin
+用途：将公共模块合并为单独文件，从而可设置从缓存获取，优化网页性能。比如：全局js、依赖等
+
+注意：只能在webpack4之前使用，在webpack4中已被移除
+
+参数：
+1. name: 提取出来的公共chunk的名字
+2. filename: 生成公共文件的文件名，如果不配置，默认的output里面的filename
+3. minChunks:  number|Infinity|function(module, count) -> boolean，三种选择。
+
+    ```
+        number：代表模块至少被调用定义的次数才会被放到公共模块当中；（默认为chunks的数量）
+
+        Infinity： 生成的公共文件只包含webpack运行代码，不会包含其他的模块
+
+        function：设置特定的模块，webpack会遍历工程的所有模块调用改函数，并作为module入参传入，只要匹配(return true)，该模块就会被编译进该公共js中
+    ```
+4. chunks：用于从公共模块当中再进行抽取。如vue工程配置由app.js，vendor.js，manifest.js。
+
+**使用场景：**
+
+1. 不使用commonsChunkPlugin时，会将代码都打包到一个文件下：
+
+```
+// 包含依赖代码，文件很大
+app.asdadzxcasdadasdasd.js
+```
+
+2. 使用commonsChunkPlugin，分离业务模块app
+
+```javascript
+new webpack.optimize.CommonsChunkPlugin({
+  name: 'app',
+  async: 'vendor-async',
+  children: true,
+  minChunks: 3
+})
+```
+
+3. 使用commonsChunkPlugin，分离公共模块vendor
+
+将node_modules中有使用到的依赖独立打包到vendor.js文件，并为vendor.js文件设置缓存，优化性能
+```javascript
+new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: '[name].js',
+    minChunks (module) {
+      // any required modules inside node_modules are extracted to vendor
+      return (
+        module.resource &&
+        /\.js$/.test(module.resource) &&
+        module.resource.indexOf(
+          path.join(__dirname, '../node_modules')
+        ) === 0
+      )
+    }
+})
+```
+
+![](./images/commonsChunkPlugin打包效果.png)
+
+4. 使用commonsChunkPlugin，分离webpack运行代码模块manifest
+```javascript
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      minChunks: Infinity
+    }),
+```
+该模块仅包含webpack运行时代码，比如：vendor模块原本会有一段生成script标签并插入到html的代码，当业务改变会重新打包app文件生成新的hash，app.[hash].js文件名称也就改变了，此时又得重新打包新的vendor模块。
+
+我们可以将这一类的webpack运行时代码打包到manifest模块中，这样就不会影响到vendor模块的缓存了。
 
 ## 拓展
 ### 模拟实现一个loader
