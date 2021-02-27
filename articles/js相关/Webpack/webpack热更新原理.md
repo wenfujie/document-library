@@ -5,7 +5,9 @@
 
 通常我们可以通过 `HotModuleReplacementPlugin` 或 启动指令增加参数 `--hot` 来启用热更新。
 
-**HMR是如何实现热更新的呢？**
+如果不关心细节只想知道热更新的大概流程，请直接拉到文章末尾 `总结` 。
+
+**HMR是如何实现热更新的呢？下面一步步拆分介绍**
 
 ## 热更新实现原理
 
@@ -267,14 +269,14 @@
 
 *   利用上一次保存的`hash`值，调用`hotDownloadManifest`发送`xxx/hash.hot-update.json`的`ajax`请求；
 *   请求结果获取热更新模块，以及下次热更新的`Hash` 标识，并进入热更新准备阶段。
-
+```javascript
     hotAvailableFilesMap = update.c; // 需要更新的文件
     hotUpdateNewHash = update.h; // 更新下次热更新hash值
     hotSetStatus("prepare"); // 进入热更新准备状态
-    
+```
 
 *   调用`hotDownloadUpdateChunk`发送`xxx/hash.hot-update.js` 请求，通过`JSONP`方式。
-
+```javascript
     function hotDownloadUpdateChunk(chunkId) {
         var script = document.createElement("script");
         script.charset = "utf-8";
@@ -282,7 +284,7 @@
         if (null) script.crossOrigin = null;
         document.head.appendChild(script);
      }
-    
+```
 
 这个函数体为什么要单独拿出来，因为这里要解释下为什么使用`JSONP`获取最新代码？主要是因为`JSONP`获取的代码可以直接执行。为什么要直接执行？我们来回忆下`/hash.hot-update.js`的代码格式是怎么样的。
 
@@ -297,7 +299,7 @@
 
 *   `hotAddUpdateChunk`方法会把更新的模块`moreModules`赋值给全局全量`hotUpdate`。
 *   `hotUpdateDownloaded`方法会调用`hotApply`进行代码的替换。
-
+```javascript
     function hotAddUpdateChunk(chunkId, moreModules) {
         // 更新的模块moreModules赋值给全局全量hotUpdate
         for (var moduleId in moreModules) {
@@ -308,7 +310,7 @@
         // 调用hotApply进行模块的替换
         hotUpdateDownloaded();
     }
-    
+```
 
 ### 8\. hotApply 热更新模块替换
 
@@ -362,7 +364,26 @@ for (moduleId in appliedUpdate) {
 
 ## 总结
 
-还是以阅读源码的形式画的图，①-④的小标记，是文件发生变化的一个流程。
+- 一、使用webpack-dev-server启动本地服务
+    1. 启动webpack生成compiler实例，compiler主要用于监听本地文件变化和编译工作
+    2. 启动本地服务，让浏览器可访问本地静态资源，主要依赖express库
+    3. 启动websocket服务，建立浏览器和本地服务的双向通信
+
+- 二、监听编译结束
+    1. 利用`compiler.hooks`提供的`done`钩子来监听编译结束
+    2. 利用websocket通知浏览器编译结束，并传递新的hash值，浏览器做检查更新逻辑
+
+- 三、使用webpack-dev-middleware库编译、输出、监听本地文件
+    1. 调用`compiler.watch`方法，对本地代码进行编译，结束后开启对本地文件的监听，当文件发生变化，重新编译，编译完成后继续监听
+    2. 代码编译后，会使用memory-fs库将编译好的文件存放在内存中，这是因为访问内存中的代码比访问系统文件更快，同时也减少了写入文件的开销
+
+- 四、浏览器接收热更新通知
+    1. webpack会在entry增加入口，打包webpack运行时代码到`bundle.js`中，该部分代码运行在浏览器
+    2. bundle.js代码就是将HotModuleReplacementPlugin插件的代码塞进去
+    3. 浏览器通过bundle.js发送ajax请求，请求需要更新的文件和hash值
+    4. 通过HotModuleReplacementPlugin中的hotApply方法实现热更新模块替换。主要流程：删除过期模块、将新的模块添加module中、使用__webpack_require__执行相关模块代码
+
+下面是以阅读源码的形式画的图，①-④的小标记，是文件发生变化的一个流程。
 
 ![](https://user-gold-cdn.xitu.io/2019/12/1/16ec13499800dfce?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
