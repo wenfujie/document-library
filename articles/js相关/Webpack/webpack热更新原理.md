@@ -26,7 +26,7 @@
   });
 ```
 本地服务代码：
-
+```javascript
     // node_modules/webpack-dev-server/lib/Server.js
     class Server {
         constructor() {
@@ -49,8 +49,7 @@
             }
         }                                   
     }
-    
-
+```
 这一小节代码主要做了三件事：
 
 *   启动`webpack`，生成`compiler`实例。`compiler`上有很多方法，比如可以启动 `webpack` 所有**编译**工作，以及**监听**本地文件的变化。
@@ -62,7 +61,7 @@
 ### 2\. 修改webpack.config.js的entry配置
 
 启动本地服务前，调用了`updateCompiler(this.compiler)`方法。这个方法中有 2 段关键性代码。一个是获取`websocket`客户端代码路径，另一个是根据配置获取`webpack`热更新代码路径。
-
+```javascript
     // 获取websocket客户端代码
     const clientEntry = `${require.resolve(
         '../../client/'
@@ -75,10 +74,10 @@
     } else if (options.hot) {
         hotEntry = require.resolve('webpack/hot/dev-server');
     }
-    
+```
 
 修改后的`webpack`入口配置如下：
-
+```javascript
     // 修改后的entry入口
     { entry:
         { index: 
@@ -92,7 +91,7 @@
         	],
         },
     }      
-    
+```
 
 为什么要新增了 2 个文件？在入口默默增加了 2 个文件，那就意味会一同打包到`bundle`文件中去，也就是线上运行时。
 
@@ -107,7 +106,7 @@
 ### 3\. 监听webpack编译结束
 
 修改好入口配置后，又调用了`setupHooks`方法。这个方法是用来注册监听事件的，监听每次`webpack`编译完成。
-
+```javascript
     // node_modules/webpack-dev-server/lib/Server.js
     // 绑定监听事件
     setupHooks() {
@@ -118,16 +117,16 @@
             this._stats = stats;
         });
     };
-    
+```
 
 当监听到一次`webpack`编译结束，就会调用`_sendStats`方法通过`websocket`给浏览器发送通知，`ok`和`hash`事件，这样浏览器就可以拿到最新的`hash`值了，做检查更新逻辑。
-
+```javascript
     // 通过websoket给客户端发消息
     _sendStats() {
         this.sockWrite(sockets, 'hash', stats.hash);
         this.sockWrite(sockets, 'ok');
     }
-    
+```
 
 ### 4\. webpack监听文件变化
 
@@ -136,7 +135,7 @@
 这个方法主要执行了`webpack-dev-middleware`库。很多人分不清`webpack-dev-middleware`和`webpack-dev-server`的区别。其实就是因为`webpack-dev-server`只负责启动服务和前置准备工作，所有文件相关的操作都抽离到`webpack-dev-middleware`库了，主要是本地文件的**编译**和**输出**以及**监听**，无非就是职责的划分更清晰了。
 
 那我们来看下`webpack-dev-middleware`源码里做了什么事:
-
+```javascript
     // node_modules/webpack-dev-middleware/index.js
     compiler.watch(options.watchOptions, (err) => {
         if (err) { /*错误处理*/ }
@@ -144,7 +143,7 @@
     
     // 通过“memory-fs”库将打包后的文件写入内存
     setFs(context, compiler); 
-    
+```
 
 （1）调用了`compiler.watch`方法，在第 1 步中也提到过，`compiler`的强大。这个方法主要就做了 2 件事：
 
@@ -165,7 +164,7 @@
     
 
 这个文件的代码会被打包到`bundle.js`中，运行在浏览器中。来看下这个文件的核心代码吧。
-
+```javascript
     // webpack-dev-server/client/index.js
     var socket = require('./socket');
     var onSocketMessage = {
@@ -191,7 +190,7 @@
             hotEmitter.emit('webpackHotUpdate', currentHash);
         } 
     }
-    
+```
 
 `socket`方法建立了`websocket`和服务端的连接，并注册了 2 个监听事件。
 
@@ -208,7 +207,7 @@
     
 
 这个文件的代码同样会被打包到`bundle.js`中，运行在浏览器中。这个文件做了什么就显而易见了吧！先瞄一眼代码：
-
+```javascript
     // node_modules/webpack/hot/dev-server.js
     var check = function check() {
         module.hot.check(true)
@@ -234,7 +233,7 @@
         lastHash = currentHash;
         check();
     });
-    
+```
 
 这里`webpack`监听到了`webpackHotUpdate`事件，并获取最新了最新的`hash`值，然后终于进行检查更新了。检查更新呢调用的是`module.hot.check`方法。那么问题又来了，`module.hot.check`又是哪里冒出来了的！答案是`HotModuleReplacementPlugin`搞得鬼。这里留个疑问，继续往下看。
 
@@ -259,8 +258,6 @@
 经过对比打包后的文件，`__webpack_require__`中的`moudle`以及代码行数的不同。我们都可以发现`HotModuleReplacementPlugin`原来也是默默的塞了很多代码到`bundle.js`中呀。这和第 2 步骤很是相似哦！为什么，因为检查更新是在浏览器中操作呀。这些代码必须在运行时的环境。
 
 你也可以直接看浏览器`Sources`下的代码，会发现`webpack`和`plugin`偷偷加的代码都在哦。在这里调试也很方便。
-
-![](data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="848" height="471"></svg>)
 
 `HotModuleReplacementPlugin`如何做到的？这里我就不讲了，因为这需要你对`tapable`以及`plugin`机制有一定了解，可以看下我写的文章[Webpack插件机制之Tapable-源码解析](https://juejin.im/post/6844904004435050503)。当然你也可以选择跳过，只关心热更新机制即可，毕竟信息量太大。
 
@@ -289,16 +286,14 @@
 
 这个函数体为什么要单独拿出来，因为这里要解释下为什么使用`JSONP`获取最新代码？主要是因为`JSONP`获取的代码可以直接执行。为什么要直接执行？我们来回忆下`/hash.hot-update.js`的代码格式是怎么样的。
 
-![](data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="789" height="243"></svg>)
-
-可以发现，新编译后的代码是在一个`webpackHotUpdate`函数体内部的。也就是要立即执行`webpackHotUpdate`这个方法。
+新编译后的代码是在一个`webpackHotUpdate`函数体内部的。也就是要立即执行`webpackHotUpdate`这个方法。
 
 再看下`webpackHotUpdate`这个方法。
-
+```javascript
     window["webpackHotUpdate"] = function (chunkId, moreModules) {
         hotAddUpdateChunk(chunkId, moreModules);
     } ;
-    
+```
 
 *   `hotAddUpdateChunk`方法会把更新的模块`moreModules`赋值给全局全量`hotUpdate`。
 *   `hotUpdateDownloaded`方法会调用`hotApply`进行代码的替换。
@@ -317,39 +312,39 @@
 
 ### 8\. hotApply 热更新模块替换
 
-热更新的核心逻辑就在`hotApply`方法了。 `hotApply`代码有将近 400 行，还是挑重点讲了，看哭😭
+热更新的核心逻辑就在`hotApply`方法了。 `hotApply`代码有将近 400 行，还是挑重点讲了
 
 #### ①删除过期的模块，就是需要替换的模块
 
 通过`hotUpdate`可以找到旧模块
-
-    var queue = outdatedModules.slice();
-    while (queue.length > 0) {
-        moduleId = queue.pop();
-        // 从缓存中删除过期的模块
-        module = installedModules[moduleId];
-        // 删除过期的依赖
-        delete outdatedDependencies[moduleId];
-        
-        // 存储了被删掉的模块id，便于更新代码
-        outdatedSelfAcceptedModules.push({
-            module: moduleId
-        });
-    }
+```javascript
+var queue = outdatedModules.slice();
+while (queue.length > 0) {
+    moduleId = queue.pop();
+    // 从缓存中删除过期的模块
+    module = installedModules[moduleId];
+    // 删除过期的依赖
+    delete outdatedDependencies[moduleId];
     
+    // 存储了被删掉的模块id，便于更新代码
+    outdatedSelfAcceptedModules.push({
+        module: moduleId
+    });
+}
+```
 
 #### ②将新的模块添加到 modules 中
-
-    appliedUpdate[moduleId] = hotUpdate[moduleId];
-    for (moduleId in appliedUpdate) {
-        if (Object.prototype.hasOwnProperty.call(appliedUpdate, moduleId)) {
-            modules[moduleId] = appliedUpdate[moduleId];
-        }
+```javascript
+appliedUpdate[moduleId] = hotUpdate[moduleId];
+for (moduleId in appliedUpdate) {
+    if (Object.prototype.hasOwnProperty.call(appliedUpdate, moduleId)) {
+        modules[moduleId] = appliedUpdate[moduleId];
     }
-    
+}
+```
 
 #### ③通过\_\_webpack\_require__执行相关模块的代码
-
+```javascript
     for (i = 0; i < outdatedSelfAcceptedModules.length; i++) {
         var item = outdatedSelfAcceptedModules[i];
         moduleId = item.module;
@@ -360,20 +355,18 @@
             // ...容错处理
         }
     }
-    
+```
     
 
 `hotApply`的确比较复杂，知道大概流程就好了，这一小节，要求你对webpack打包后的文件如何执行的有一些了解，大家可以自去看下。
 
-四、总结
-----
+## 总结
 
 还是以阅读源码的形式画的图，①-④的小标记，是文件发生变化的一个流程。
 
 ![](https://user-gold-cdn.xitu.io/2019/12/1/16ec13499800dfce?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
-写在最后
-----
+## 写在最后
 
 本次是以阅读源码的方式讲解原理，是因为觉得热更新这块涉及的知识量比较多。所以知识把关键性代码拿出来，因为每一个块细节说起来都能写一篇文章了，大家可以自己对着源码再理解下。
 
