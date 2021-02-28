@@ -364,6 +364,20 @@ for (moduleId in appliedUpdate) {
 
 ## 总结
 
+**webpack热更新原理概述**
+
+分为两大步骤来实现
+
+第一步：启动一个本地服务运行webpack。
+
+第二步：增加打包入口配置，打包bundle文件并在浏览器上运行。
+
+1. webpack通过compiler.watch方法监听文件改动，并用compiler实例编译相关文件
+2. webpack同时会监听编译完成的钩子，在回调中通过websocket发送消息到浏览器，通知浏览器更新资源。
+3. 浏览器收到消息后发起请求获取新资源，删除旧的资源，将新资源添加到modules上，最后利用__webpack_require__执行新资源代码
+
+**具体实现步骤**
+
 - 一、使用webpack-dev-server启动本地服务
     1. 启动webpack生成compiler实例，compiler主要用于监听本地文件变化和编译工作
     2. 启动本地服务，让浏览器可访问本地静态资源，主要依赖express库
