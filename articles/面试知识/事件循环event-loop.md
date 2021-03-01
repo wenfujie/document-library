@@ -26,7 +26,7 @@ queue）的任务，只有"任务队列"通知主线程，某个异步任务可�
 
 除了广义的同步任务和异步任务，js 对任务还有更精细的定义：
 - macro-task(宏任务)：包括整体代码script，setTimeout，setInterval
-- micro-task(微任务)：Promise.then、Promise.catch、finally
+- micro-task(微任务)：Promise.then、Promise.catch、Promise.finally
 
 **注意**
 
@@ -34,7 +34,7 @@ setTimeout、setInterval宏任务会在下一次宏任务时执行。
 
 **执行规则**
 
-js会先执行整体的同步代码（宏任务），执行过程中，遇到宏任务将宏任务添加到下一个宏任务队列，遇到微任务将微任务添加到微任务队列，直到同步代码执行完。同步代码执行完后，会优先执行微任务队列中的任务，再执行宏任务队列的任务，如此循环。
+js会先执行整体的同步代码（宏任务），执行过程中，遇到宏任务将宏任务添加到宏任务队列，遇到微任务将微任务添加到微任务队列，直到同步代码执行完。同步代码执行完后，会优先执行微任务队列中的所有任务，完成后再执行下一个宏任务，如此循环。
 
 主线程从"任务队列"中读取事件，这个过程是循环不断的，所以整个的这种运行机制又称为Event Loop（事件循环）。
 
@@ -42,7 +42,15 @@ js会先执行整体的同步代码（宏任务），执行过程中，遇到宏
 
 ## 练习题
 
-习题一
+做题前友情提示
+
+```javascript
+new Promise(fn1).then(fn2)
+```
+
+以上代码中 `new Promise(fn1)` 部分为宏任务，`fn1` 函数会立即执行，而 `.then(fn2)` 部分为微任务，会添加到微任务队列。
+
+**习题一**
 
 ```javascript
 const first = () => new Promise((resolve, reject) => {
@@ -68,7 +76,7 @@ console.log(4)
 // 3 7 4 1 2 5
 ```
 
-习题二
+**习题二**
 
 ```javascript
 setTimeout(()=>{
@@ -99,6 +107,36 @@ new Promise((resolve,reject)=>{
 }) 
 
 // 1 7 2 3 8 4 6 5 0
- 
-// 关键点:每次.then() 都会new Promise()
 ```
+该题考点：每次.then() 都会new Promise()
+
+**习题三**
+
+```javascript
+function f1() {
+  setTimeout(console.log.bind(null,1), 0)
+}
+
+function f2() {
+  Promise.resolve().then(console.log.bind(null,2))
+}
+
+function f3() {
+  setTimeout(() => {
+    console.log(3)
+    f2()
+  }, 0)
+}
+
+function f4() {
+  Promise.resolve().then(() => {
+    console.log(4)
+    f1()
+  })
+}
+
+f3()
+f4()
+// 依次打印4，3，2，1
+```
+该题考点：setTimeout是一个新的宏任务
