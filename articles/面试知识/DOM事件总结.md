@@ -158,8 +158,6 @@ PS2：JS中涉及到DOM对象时，有两个对象最常用：window、doucument
 用户做的是什么操作（比如，是敲键盘了，还是点击鼠标了），这些事件基本都是通过Event对象拿到的。这些都比较简单，我们就不讲了。我们来看看下面这几个方法：
 
 ### 方法一
-
-    
     
         event.preventDefault();
 
@@ -167,7 +165,7 @@ PS2：JS中涉及到DOM对象时，有两个对象最常用：window、doucument
 
 比如，已知`<a>`标签绑定了click事件，此时，如果给`<a>`设置了这个方法，就阻止了链接的默认跳转。
 
-### 方法二：阻止冒泡
+### 方法二：阻止冒泡、阻止捕获
 
 这个在业务中很常见。
 
@@ -175,18 +173,14 @@ PS2：JS中涉及到DOM对象时，有两个对象最常用：window、doucument
 
 w3c的方法：（火狐、谷歌、IE11）
 
-    
-    
         event.stopPropagation();
 
 IE10以下则是：
-
     
     
     	event.cancelBubble = true;
 
 兼容代码如下：
-
     
     
        box3.onclick = function (event) {
@@ -206,7 +200,6 @@ IE10以下则是：
 上方代码中，我们对box3进行了阻止冒泡，产生的效果是：事件不会继续传递到 father、grandfather、body了。
 
 ### 方法三：设置事件优先级
-
     
     
         event.stopImmediatePropagation();
@@ -262,5 +255,28 @@ IE10以下则是：
 举例：当需要监听多个 li 的点击事件，可以将事件绑定在 ul 上，通过 `event.target` 拿到被点击的 li。
 
 作用：事件委托是利用了冒泡机制，减少了事件绑定的次数，减少内存消耗，提高性能。
+
+```html
+  <!-- html -->
+  <ul>
+    <li>点击测试1</li>
+    <li>点击测试2</li>
+    <li>点击测试3</li>
+    <li>点击测试4</li>
+  </ul>
+```
+
+```javascript
+  // js
+  const ul = document.getElementsByTagName('ul')[0]
+  const liList = document.getElementsByTagName('li')
+
+  ul.addEventListener('click', function (e) {
+    // 获取点击的 li 元素
+    const target = e.target
+    // 获取点击的 li 索引
+    const index = Array.prototype.indexOf.call(liList, target)
+  })
+```
 
 **原文：** https://github.com/qianguyihao/Web/blob/master/04-JavaScript%E5%9F%BA%E7%A1%80/47-%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98.md
