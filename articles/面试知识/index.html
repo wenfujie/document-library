@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+
+  // 解法一：toString
+  let a = {
+    value: 0,
+    toString: function () {
+      return ++this.value
+    }
+  }
+
+  // 解法二：数据劫持
+  // var i = 0
+  // Object.defineProperty(window, 'a', {
+  //   get() {
+  //     return ++i;
+  //   }
+  // })
+
+  if (a == 1 && a == 2 && a == 3) {
+    console.log('判断成立');
+  }
+</script>
