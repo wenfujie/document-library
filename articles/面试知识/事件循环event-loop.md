@@ -1,61 +1,104 @@
 
-## 任务队列和Event Loop（事件循环）
-javascript 是单线程的，处理异步场景时，不可能让进程阻塞在那等待，所以就引出了用来存放异步任务的 `任务队列` 和 `事件循环` 的概念。
+## 前言
+面试常会问，**为什么js是单线程？为什么需要异步？**
+
+1. 假设js是多线程，我们让process1删除元素a，同时让process2编辑元素a，下达两个矛盾的命令，浏览器不知该如何执行，所以js是单线程。
+
+2. 如果没有异步，代码是自上而下执行，如果上一行解析用时很长，就会造成阻塞，导致用户体验很差；使用异步，也可以做一些延时任务。
+
+## 任务队列和事件循环 （Event Loop）
+**js内部是如何实现异步的？**
+
+主要是以 `任务队列` 和 `事件循环` 的概念来实现异步。
 
 ### 任务队列
 
-所有任务可以分成两种，一种是同步任务（synchronous），另一种是异步任务（asynchronous）。同步任务指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务。异步任务指的是，不进入主线程、而进入"任务队列"（task
+广义上划分，所有任务可以分成两种，一种是**同步任务（synchronous）**，另一种是**异步任务（asynchronous）**。
+
+>同步任务指的是，在主线程上排队执行的任务，只有前一个任务执行完毕，才能执行后一个任务。
+
+>异步任务指的是，不进入主线程、而进入"任务队列"（task
 queue）的任务，只有"任务队列"通知主线程，某个异步任务可以执行了，该任务才会进入主线程执行。
 
-总结： **只要主线程空了，就会去读取"任务队列"，这就是JavaScript的运行机制** 。【重要】
+总结： **只要主线程空了，就会去读取"任务队列"，这就是JavaScript的运行机制** 。
 
-### Event Loop
+### 事件循环 Event Loop
+
+除了广义的同步任务和异步任务，js 对任务还有更精细的定义：
+- macro-task(宏任务)：包括整体代码script，setTimeout，setInterval
+- micro-task(微任务)：Promise.then、Promise.catch、finally
+
+**注意**
+
+setTimeout、setInterval宏任务会在下一次宏任务时执行。
+
+**执行规则**
+
+js会先执行整体的同步代码（宏任务），执行过程中，遇到宏任务将宏任务添加到下一个宏任务队列，遇到微任务将微任务添加到微任务队列，直到同步代码执行完。同步代码执行完后，会优先执行微任务队列中的任务，再执行宏任务队列的任务，如此循环。
 
 主线程从"任务队列"中读取事件，这个过程是循环不断的，所以整个的这种运行机制又称为Event Loop（事件循环）。
 
-[![](https://camo.githubusercontent.com/70c3b08db1c47192ffbeb0313be06f99596827f217a431aff27a97a38d48387b/687474703a2f2f696d672e736d79687661652e636f6d2f32303138303331305f313834302e706e67)](https://camo.githubusercontent.com/70c3b08db1c47192ffbeb0313be06f99596827f217a431aff27a97a38d48387b/687474703a2f2f696d672e736d79687661652e636f6d2f32303138303331305f313834302e706e67)
+![](images/事件循环机制.png)
 
-在理解Event Loop时，要理解两句话：
+## 练习题
 
-  * 理解哪些语句会放入异步任务队列
+习题一
 
-  * 理解语句放入异步任务队列的 **时机**
+```javascript
+const first = () => new Promise((resolve, reject) => {
+    console.log(3)
+    let p = new Promise((resolve, reject) => {
+        console.log(7)
+        setTimeout(() => {
+            console.log(5)
+        })
+        resolve(1)
+    })
+    resolve(2)
+    p.then((arg) => {
+        console.log(arg)
+    })
+})
+ 
+first().then((arg) => {
+    console.log(arg)
+})
+console.log(4) 
 
-### 容易答错的题目
+// 3 7 4 1 2 5
+```
 
-    
-    
-        for (var i = 0; i < 3; i++) {
-            setTimeout(function () {
-                console.log(i);
-            }, 1000);
-        }
+习题二
 
-很多人以为上面的题目，答案是`0,1,2,3`。其实，正确的答案是：`3,3,3,3`。
+```javascript
+setTimeout(()=>{
+    console.log("0")
+})
+new Promise((resolve,reject)=>{
+    console.log("1")
+    resolve();
+}).then(()=>{
+    console.log("2")
+    new Promise((resolve,reject)=>{
+        console.log("3")
+        resolve()
+    }).then(()=>{
+        console.log("4")
+    }).then(()=>{
+        console.log("5")
+    })
+}).then(()=>{
+    console.log("6")
+})
 
-分析：for
-循环是同步任务，setTimeout是异步任务。for循环每次遍历的时候，遇到settimeout，就先暂留着，等同步任务全部执行完毕（此时，i已经等于3了），再执行异步任务。
+new Promise((resolve,reject)=>{
+    console.log("7")
+    resolve()
+}).then(()=>{
+    console.log("8")
+}) 
 
-我们把上面的题目再加一行代码。最终代码如下：
-
-    
-    
-        for (var i = 0; i < 3; i++) {
-            setTimeout(function () {
-                console.log(i);
-            }, 1000);
-        }
-        console.log(i);
-
-如果我们约定，用箭头表示其前后的两次输出之间有 1
-秒的时间间隔，而逗号表示其前后的两次输出之间的时间间隔可以忽略，代码实际运行的结果该如何描述？可能会有两种答案：
-
-  * A. 60% 的人会描述为：`3 -> 3 -> 3 -> 3`，即每个 3 之间都有 1 秒的时间间隔；
-
-  * B. 40% 的人会描述为：`3 -> 3,3,3`，即第 1 个 3 直接输出，1 秒之后，连续输出 3 个 3。
-
-循环执行过程中，几乎同时设置了 3 个定时器，这些定时器都会在 1 秒之后触发，而循环完的输出是立即执行的，显而易见，正确的描述是 B。
-
-**参考**
-
-https://github.com/qianguyihao/Web/blob/master/13-%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/01-%E9%9D%A2%E8%AF%95%E5%BF%85%E7%9C%8B/10-js%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%82%E6%AD%A5%E5%92%8C%E5%8D%95%E7%BA%BF%E7%A8%8B.md
+// 1 7 2 3 8 4 6 5 0
+ 
+// 关键点:每次.then() 都会new Promise()
+```
