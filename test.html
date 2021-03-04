@@ -75,86 +75,24 @@
 
 </html>
 <script>
-  function deepCopy(obj) {
-    let result = Array.isArray(obj) ? [] : {}
-    for (const key in obj) {
-      if (Object.hasOwnProperty.call(obj, key)) {
-        const item = obj[key];
-        if (item && typeof item === 'object') {
-          result[key] = deepCopy(item)
+  var maxProfit = function (prices) {
+    const maxArr = prices.reduce((arr, item, index) => {
+      for (let i = index + 1; i < prices.length; i++) {
+        const arrItem = arr[index];
+        const priceItem = prices[i];
+        let differ = prices[i] - item;
+        if (arrItem) {
+          if (differ > arrItem) {
+            arr[index] = differ;
+          }
         } else {
-          result[key] = item
+          arr[index] = differ > 0 ? differ : 0;
         }
       }
-    }
-    return result
-  }
+      return arr;
+    }, [])
+    return Math.max(...maxArr);
+  };
 
-  // console.log(deepCopy({
-  //   a: {
-  //     b: [], c: {
-  //       b: 1,
-  //       c: function () { },
-  //       d: null,
-  //       e: undefined,
-  //       f: false,
-  //       g: 'aa',
-  //       h: []
-  //     }
-  //   },
-  //   b: 1,
-  //   c: function () { },
-  //   d: null,
-  //   e: undefined,
-  //   f: false,
-  //   g: 'aa',
-  //   h: []
-  // }))
-
-  // 原型链继承
-  function Parent() {
-    this.sex = '男'
-  }
-  Parent.prototype.say = function () {
-    console.log('hello');
-  }
-
-  function Child(age) {
-    Parent.call(this)
-    this.age = age
-  }
-  Child.prototype = new Parent()
-  Child.prototype.sayAge = function () {
-    console.log(this.age);
-  }
-
-  let c = new Child(10)
-  console.log(c.sex); // 男
-  console.log(c.age); // 10
-  c.say() // hello
-  c.sayAge() // 10
-
-  // function createAnother(obj) {
-  //   function F() { }
-  //   F.prototype = obj
-  //   return new F()
-  // }
-
-  // let c = createAnother(new Parent())
-  // console.log(c.sex);
-  // console.log(c.say());
-
-  // function Child() {
-  //   Parent.call(this)
-  // }
-  // Child.prototype = new Parent()
-
-  // let c = new Child()
-  // console.log(c.sex);
-  // console.log(c.say());
-  // console.log(Child.prototype.constructor);
-
-
-  // let p = new Parent()
-  // console.log(p instanceof Parent); // true
+  console.log(maxProfit([7, 1, 5, 3, 6, 4]))
 </script>
