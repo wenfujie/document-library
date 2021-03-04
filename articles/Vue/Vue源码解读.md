@@ -6,9 +6,10 @@
   - [Watcher](#watcher)
   - [开始依赖收集](#开始依赖收集)
 - [虚拟节点VNode](#虚拟节点vnode)
-- [新、旧VNode比对过程](#新旧vnode比对过程)
+- [diff算法](#diff算法)
   - [sameVnode实现](#samevnode实现)
   - [patch VNode](#patch-vnode)
+  - [updateChildren方法](#updatechildren方法)
 ## vue内部机制流程图
 
 ![image](https://s1.ax1x.com/2020/08/05/asdyWR.png)
@@ -291,15 +292,20 @@ export default class VNode {
 </div>
 ```
 
-## 新、旧VNode比对过程
+## diff算法
+
+**diff算法用于比对新、旧VNode**
+
+以下是diff算法的整个过程
+
+![](images/diff算法流程图.jpg)
 
 **`patch函数`主要实现将虚拟节点转化为真实DOM渲染的过程**
 
 patch中比对新、旧VNode差异过程：
 1. 从最深层从左往右比较新旧VNode节点
-2. 比对节点前，先判断oldVNode和VNode是否是sameVNode，如果不是则创建新dom移除旧dom，如果是则继续以下步骤
-3. 则使用diff算法计算差异
-4. 得到差异后，仅需更新差异视图
+2. 比对节点前，先判断oldVNode和VNode是否是sameVNode，如果不是则创建新dom移除旧dom，如果是则使用diff算法计算差异
+3. 得到差异后，以打补丁形式更新视图
 
 ![](./images/domThen.png)
 
@@ -420,6 +426,66 @@ function sameInputType (a, b) {
     }
   }
 ```
+
+### updateChildren方法
+前面有提到，当新旧Vnode都存在子节点时，就会调用updateChildren方法进行比较。
+
+**updateChildren做了什么**
+
+- 将新、旧Vnode的子节newChild、oldChild提取出来
+- 定义startIdx、endIdx表示newChild、oldChild的头尾元素，将他们互相比较，共有4种比较方式。如果4种比较方式都不匹配则使用key比较。
+- 比较过程中，变量会往中间靠，一旦startIdx > endIdx 表明新Vnode或旧Vnode已遍历完成，结束比较。
+
+**结合图片来理解**
+
+如下图，粉红色球表示oldVnode的children，黄色球表示新Vnode的children。
+
+![](images/diff算法1.jpg)
+
+将子节点都取出来，用oldS和oldE表示oldVnode子节点的起始和结束，用S和E表示新Vnode子节点的起始和结束。
+
+![](images/diff算法2.jpg)
+
+分别对oldS、oldE、S、E两两进行比较，有四种比较方式：
+
+- oldS 和 S
+- oldS 和 E
+- oldE 和 S
+- oldE 和 E
+
+如果其中两个配对成功，那真实dom中的相应节点会移到新Vnode对应的位置，打个比方
+
+- 如果是oldS和E匹配上，真实dom的第一个节点会移到最后
+- 如果是oldE和s匹配上，真实dom的最后一个节点会移到最前
+- 匹配上的两个指针往中间移动，准备下一次匹配
+- 如果四种匹配都没配对成功，那就遍历oldChild逐个与S匹配，匹配成功就将对应的真实dom移动到最前面，如果还是没配对，就将S对应的节点插入到oldS对应的真实dom的位置上，oldS和S指针向中间移动。
+
+![](images/diff算法3.jpg)
+
+**步骤分解**
+
+1. oldS和S匹配，则将dom中的a节点放到第一个，已经是第一个了就不管了，此时dom的位置为：a b d
+    ```javascript
+    oldS = a, oldE = d；
+    S = a, E = b;
+    ```
+2. oldS和E匹配，就将原本的b节点移动到最后，此时dom的位置为：a d b
+    ```javascript
+    oldS = b, oldE = d；
+    S = c, E = b;
+    ```
+3. oldE和E匹配，位置不变此时dom的位置为：a d b
+    ```javascript
+    oldS = d, oldE = d；
+    S = c, E = d;
+    ```
+4. 由于oldS 大于 oldE，说明是oldChild先遍历完，结束遍历，将剩余的newChild根据自己的index插入到真实dom中去，最后dom结果：a c b d
+
+一次diff算法计算完成。
+
+匹配过程的结束条件有两个：
+1. oldS > oldE 表示oldChild先遍历完，需将剩余的newChild根据index插入到真实dom中
+2. S > E 表示newChild先遍历完，需将[oldS, oldE]范围的多余节点删除
 
 **参考文档**
 

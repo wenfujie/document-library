@@ -94,5 +94,39 @@
     return Math.max(...maxArr);
   };
 
-  console.log(maxProfit([7, 1, 5, 3, 6, 4]))
+  var singleNumber = function (nums) {
+    let map = new Map();
+    let item;
+    for (let i = 0; i < nums.length; i++) {
+      item = nums[i];
+      if (map.has(item)) {
+        map.delete(item)
+      } else {
+        map.set(item, item)
+      }
+    }
+    return [...map.keys()][0];
+  };
+
+  console.log(singleNumber([2, 2, 1]));
+
+  // 主要
+  // 语音播报规则、插播规则
+  // 应用于声连万象、智能音箱
+
+
+  // 流程
+
+  // 创建广告推送任务（包含：播放规则、播放素材、播放时间、播放点位）
+
+  // 分发到喇叭的过程
+
+  // 喇叭根据播放规则播放
+
+  // 1.是否冲突
+  // 是=>2.
+  // 否=>直接播放
+  // 2.比较优先级
+  // 高=>根据插播规则播放
+  // 低=>不执行
 </script>
