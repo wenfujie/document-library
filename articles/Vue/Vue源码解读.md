@@ -489,4 +489,6 @@ function sameInputType (a, b) {
 
 **参考文档**
 
-https://github.com/answershuto/learnVue/blob/master/docs/VirtualDOM%E4%B8%8Ediff(Vue%E5%AE%9E%E7%8E%B0).MarkDown
+1. https://github.com/answershuto/learnVue/blob/master/docs/VirtualDOM%E4%B8%8Ediff(Vue%E5%AE%9E%E7%8E%B0).MarkDown
+
+2. https://www.cnblogs.com/wind-lanyan/p/9061684.html
