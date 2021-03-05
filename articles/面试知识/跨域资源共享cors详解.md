@@ -1,4 +1,14 @@
-
+- [一、简介](#一简介)
+- [二、两种请求](#二两种请求)
+- [三、简单请求](#三简单请求)
+  - [3.1 基本流程](#31-基本流程)
+  - [3.2 withCredentials 属性](#32-withcredentials-属性)
+- [四、非简单请求](#四非简单请求)
+  - [4.1 预检请求](#41-预检请求)
+  - [4.2 预检请求的回应](#42-预检请求的回应)
+  - [4.3 浏览器的正常请求和回应](#43-浏览器的正常请求和回应)
+- [五、与JSONP的比较](#五与jsonp的比较)
+- [总结](#总结)
 
 CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin resource sharing）。
 
@@ -262,7 +272,59 @@ CORS与JSONP的使用目的相同，但是比JSONP更强大。
 
 JSONP只支持`GET`请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。
 
-（完）
+## 总结
+这边只针对复杂请求来说
+
+**浏览器的处理**
+
+发送请求跨域时，浏览器会先发送一个预请求，并在请求头中加入以下信息：
+
+```
+OPTIONS /cors HTTP/1.1
+Origin: http://api.bob.com
+Access-Control-Request-Method: PUT
+Access-Control-Request-Headers: X-Custom-Header
+Host: api.alice.com
+Accept-Language: en-US
+Connection: keep-alive
+User-Agent: Mozilla/5.0...
+```
+
+预请求用的请求方法是 OPTIONS ，表示该请求用来询问。其中里头有三个比较关键的字段：
+1. Origin：表示请求来自哪个源
+2. Access-Control-Request-Method：该字段是必须得，用来列出在浏览器cors请求中允许使用的方法
+3. Access-Control-Request-Headers：该字段是一个逗号分隔的字符串，指定浏览器cors请求会额外发送的头信息字段
+
+**服务器的处理**
+服务器收到预请求后，检查Origin、Access-Control-Request-Method和Access-Control- Request-Headers字段，确认是否允许跨源请求。
+
+**如果允许跨域**
+
+服务器会在预请求的响应头中添加Access-Control-Allow-Origin来表示允许跨域的源
+
+```
+// * 表示所有源都支持跨域
+Access-Control-Allow-Origin: *
+// 或指定特定源
+Access-Control-Allow-Origin: http://api.bob.com
+```
+
+服务器通过预请求后，之后浏览器就能正常发起cors请求。
+
+服务器响应预请求的其他cors字段
+1. Access-Control-Allow-Methods：逗号分隔字符串，表示服务器支持跨域的请求方法
+2. Access-Control-Allow-Headers：逗号分隔字符串，表示服务器支持的所有头字段信息
+3. Access-Control-Allow-Credentials：允许客户端发送cookie
+4. Access-Control-Max-Age：可选字段，指定本次预请求有效期
+
+**如果拒绝跨域**
+
+服务器拒绝跨域请求，会返回一个正常的http响应，但头部中没有任何cors相关字段信息。浏览器接收到后会认定预请求已被拒绝，然后触发一个错误
+
+```
+XMLHttpRequest cannot load http://api.alice.com.
+Origin http://api.bob.com is not allowed by Access-Control-Allow-Origin.
+```
 
 **原文：**
 
