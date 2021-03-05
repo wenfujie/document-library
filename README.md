@@ -48,7 +48,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 开发相关知识
 1. [安全问题：csrf和xss](https://github.com/wenfujie/document-library/blob/master/articles/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9ACSRF%E5%92%8CXSS.md)
-2. [面试题汇总](https://github.com/wenfujie/document-library/blob/master/articles/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E6%80%BB.md)
+2. [面试资源汇总](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB.md)
 3. [DOM事件总结](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/DOM%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BB%93.md)
 4. [盒模型及BFC](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8F%8ABFC.md)
 5. [http协议](https://github.com/wenfujie/document-library/blob/master/articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/http%E5%8D%8F%E8%AE%AE.md)
