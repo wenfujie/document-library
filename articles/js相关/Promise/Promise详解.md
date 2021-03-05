@@ -152,7 +152,10 @@ MyPromise.prototype.then = function (onResolved) {
     });
   });
 };
+```
 
+使用
+```javascript
 // 使用案例：500ms后打印1，再500ms后打印2
 new MyPromise((resolve) => {
   setTimeout(() => {
