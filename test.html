@@ -75,6 +75,7 @@
 
 </html>
 <script>
+
   var maxProfit = function (prices) {
     const maxArr = prices.reduce((arr, item, index) => {
       for (let i = index + 1; i < prices.length; i++) {
@@ -108,7 +109,7 @@
     return [...map.keys()][0];
   };
 
-  console.log(singleNumber([2, 2, 1]));
+  // console.log(singleNumber([2, 2, 1]));
 
   // 主要
   // 语音播报规则、插播规则
