@@ -1,5 +1,7 @@
 - [vue内部机制流程图](#vue内部机制流程图)
 - [生命周期](#生命周期)
+  - [vue2生命周期](#vue2生命周期)
+  - [vue3生命周期](#vue3生命周期)
 - [双向绑定实现](#双向绑定实现)
   - [Vue2和Vue3双向绑定对比](#vue2和vue3双向绑定对比)
 - [依赖收集](#依赖收集)
@@ -17,7 +19,7 @@
 ![image](https://s1.ax1x.com/2020/08/05/asdyWR.png)
 
 ## 生命周期
-
+### vue2生命周期
 vue生命周期先后执行顺序分为
 
 - beforeCreate
@@ -57,6 +59,90 @@ export function mountComponent {
 
 最后是销毁组件会触发的钩子，比如 v-if 或切换路由就会触发组件销毁。销毁前会触发 beforeDestroy 钩子，然后进行一系列销毁操作，子组件一并递归销毁，所有组件销毁完毕才会执行根组件的 destroyed 钩子
 
+### vue3生命周期
+
+Vue3 Composition API 附带了一个 setup() 方法。此方法封装了我们的大多数组件代码，并处理了响应式，生命周期钩子函数等。
+
+setup 方法会在 beforeCreate 钩子之后，created 钩子之前调用，因此不再需要这两个钩子，将这两个钩子的代码写到 setup 方法即可。
+
+除去 beforeCreate 和 created 钩子，在setup 方法中有9个旧的生命周期钩子可以使用
+
+- onBeforeMount
+- onMounted
+- onBeforeUpdate
+- onUpdated
+- onBeforeUnmount
+- onUnmounted
+- onActivated
+- onDeactivated
+- onErrorCaptured
+
+**vue3生命周期使用方法**
+
+将需要用的钩子函数引入组件，并在setup方法中调用，钩子函数都接收一个回调函数作为参数
+```javascript
+import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted, onActivated, onDeactivated, onErrorCaptured } from 'vue'
+
+export default {
+  setup() {
+    onBeforeMount(() => {
+      // ... 
+    })
+    onMounted(() => {
+      // ... 
+    })
+    onBeforeUpdate(() => {
+      // ... 
+    })
+    onUpdated(() => {
+      // ... 
+    })
+    onBeforeUnmount(() => {
+      // ... 
+    })
+    onUnmounted(() => {
+      // ... 
+    })
+    onActivated(() => {
+      // ... 
+    })
+    onDeactivated(() => {
+      // ... 
+    })
+    onErrorCaptured(() => {
+      // ... 
+    })
+  }
+}
+```
+**从vue2转换到vue3**
+
+- beforeCreate -> use setup()
+- created -> use setup()
+- beforeMount -> onBeforeMount
+- mounted -> onMounted
+- beforeUpdate -> onBeforeUpdate
+- updated -> onUpdated
+- beforeDestroy -> onBeforeUnmount
+- destroyed -> onUnmounted
+- errorCaptured -> onErrorCaptured
+
+**vue3添加新的钩子函数**
+
+vue3添加了两个新的钩子函数用于调试
+
+- onRenderTracked
+- onRenderTriggered
+
+两个钩子都带有一个DebuggerEvent，能让我们知道是什么导致Vue实例的重新渲染
+```javascript
+export default {
+  onRenderTriggered(e) {
+    debugger
+    // 检查哪个依赖项导致组件重新呈现
+  }
+}
+```
 ## 双向绑定实现
 
 首先通过一次渲染操作触发Data的getter（这里保证只有视图中需要被用到的data才会触发getter）进行依赖收集，这时候其实Watcher与data可以看成一种被绑定的状态（实际上是data的闭包中有一个 `Deps` 订阅者，在修改的时候会通知所有的Watcher观察者），在data发生变化的时候会触发它的setter，setter通知 `Watcher` ，Watcher进行回调通知组件重新渲染的函数，之后根据 `diff算法` 来决定是否发生视图的更新。
