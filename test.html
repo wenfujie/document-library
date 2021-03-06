@@ -6,6 +6,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .test {
+      background-color: red;
+      width: 100px;
+      height: 100px;
+      /* position: absolute; */
+      /* bottom: 0; */
+      /* left: 0; */
+    }
+
+    .test2 {
+      /* background-color: black; */
+      transform: translateY(-100px);
+    }
+  </style>
 </head>
 
 <body>
@@ -69,12 +84,20 @@
 
   《构造函数和类》
 
-
+  <div class="test" onclick="clickDom()">测试</div>
 
 </body>
 
 </html>
 <script>
+
+  // 使用translate代替css的top
+  function clickDom() {
+    const dom = document.getElementsByClassName('test')[0]
+    let classVal = dom.getAttribute('class').concat(' test2')
+    dom.setAttribute('class', classVal)
+    // dom.style.bottom = '100px'
+  }
 
   var maxProfit = function (prices) {
     const maxArr = prices.reduce((arr, item, index) => {
