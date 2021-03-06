@@ -91,6 +91,29 @@
 </html>
 <script>
 
+  // Proxy
+  let obj = [{
+    a: 'aaa'
+  }]
+
+  let proxy = new Proxy(obj, {
+    get(target, key) {
+      if (key === '0') {
+        return 'bbb'
+      }
+      return target[key]
+    },
+    set(target, key, value) {
+      if (key === '1') {
+        target[key] = { b: 'bbb' }
+      }
+    }
+  })
+
+  console.log(proxy[0]); // bbb
+  proxy[1] = 'aaa'
+  console.log(proxy[1]); // {b: 'bbb'}
+
   // 使用translate代替css的top
   function clickDom() {
     const dom = document.getElementsByClassName('test')[0]

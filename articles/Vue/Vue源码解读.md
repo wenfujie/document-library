@@ -1,5 +1,7 @@
 - [vue内部机制流程图](#vue内部机制流程图)
+- [生命周期](#生命周期)
 - [双向绑定实现](#双向绑定实现)
+  - [Vue2和Vue3双向绑定对比](#vue2和vue3双向绑定对比)
 - [依赖收集](#依赖收集)
   - [为什么要依赖收集？](#为什么要依赖收集)
   - [Dep类](#dep类)
@@ -13,6 +15,47 @@
 ## vue内部机制流程图
 
 ![image](https://s1.ax1x.com/2020/08/05/asdyWR.png)
+
+## 生命周期
+
+vue生命周期先后执行顺序分为
+
+- beforeCreate
+- created
+- beforeMount
+- mounted
+- beforeUpdate
+- updated
+- beforeDestroy
+- destroyed
+
+由于 initState 在 beforeCreate 钩子之后，所以在 beforeCreate 时无法获取props和data数据。
+
+created 钩子在 initState 之后，所以可以获取data、props 数据
+
+```javascript
+Vue.prototype._init = function(options) {
+  ...
+  callHook(vm, 'beforeCreate') // 拿不到 props data
+  ...
+  initState(vm)
+  callHook(vm, 'created')
+}
+```
+
+接下来执行挂载函数，beforeMount 钩子在挂载前执行，然后创建Vnode并替换成真实dom，最后执行 mounted 钩子
+
+```javascript
+export function mountComponent {
+    callHook(vm, 'beforeMount')
+    // 创建Vnode，渲染真实dom...
+    callHook(vm, 'mounted')
+}
+```
+
+再接下来是数据更新时会触发的钩子，beforeUpdate 钩子在数据更新前触发，然后比对视图差异打补丁更新视图，视图更新完成触发 updated 钩子
+
+最后是销毁组件会触发的钩子，比如 v-if 或切换路由就会触发组件销毁。销毁前会触发 beforeDestroy 钩子，然后进行一系列销毁操作，子组件一并递归销毁，所有组件销毁完毕才会执行根组件的 destroyed 钩子
 
 ## 双向绑定实现
 
@@ -51,17 +94,46 @@
       }
       
       new Vue({
-          el: '#app',
-          data: {
-              name: 'wfj',
-              gender: 'boy'
-          },
-          render() {
-              console.log('执行渲染逻辑');
-          }
+        ...
       });
   </script>
 ```
+
+### Vue2和Vue3双向绑定对比
+Vue2的双向绑定基于 Object.defineProperty ，实现上存在缺陷
+
+- 只能对属性进行数据劫持，所以要深度遍历整个对象
+- 无法监听到数组的变化
+
+虽然Vue2对数组的部分操作方法进行改写，使得在调这些方法操作数组时能更新视图，但还是不够灵活。
+
+而Vue3是基于 es6 的 Proxy ，它原生支持监听数组变化，并可对整个对象进行拦截
+
+看一下简单用法
+```javascript
+  let obj = [{
+    a: 'aaa'
+  }]
+  let proxy = new Proxy(obj, {
+    get(target, key) {
+      if (key === '0') {
+        return 'bbb'
+      }
+      return target[key]
+    },
+    set(target, key, value) {
+      if (key === '1') {
+        target[key] = { b: 'bbb' }
+      }
+    }
+  })
+
+  console.log(proxy[0]); // bbb
+  proxy[1] = 'aaa'
+  console.log(proxy[1]); // {b: 'bbb'}
+```
+
+所以相对Vue2来说，Vue3的双向绑定性能更好，也更灵活。
 
 ## 依赖收集
 ### 为什么要依赖收集？
