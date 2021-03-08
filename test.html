@@ -133,29 +133,15 @@
 
 </html>
 <script>
+  const ws = new WebSocket('ws://localhost:3000');
 
-  // Proxy
-  let obj = [{
-    a: 'aaa'
-  }]
+  ws.onopen = () => {
+    ws.send('wfj')
+  }
 
-  let proxy = new Proxy(obj, {
-    get(target, key) {
-      if (key === '0') {
-        return 'bbb'
-      }
-      return target[key]
-    },
-    set(target, key, value) {
-      if (key === '1') {
-        target[key] = { b: 'bbb' }
-      }
-    }
-  })
-
-  console.log(proxy[0]); // bbb
-  proxy[1] = 'aaa'
-  console.log(proxy[1]); // {b: 'bbb'}
+  ws.onmessage = (e) => {
+    console.log('h5接收到的数据' + e.data);
+  }
 
   // 使用translate代替css的top
   function clickDom() {
