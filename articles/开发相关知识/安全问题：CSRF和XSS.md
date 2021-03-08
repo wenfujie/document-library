@@ -1,35 +1,21 @@
-
-## 前言
-
-面试中的安全问题，明确来说，就两个方面：
-
-  * CSRF：基本概念、攻击方式、防御措施
-
-  * XSS：基本概念、攻击方式、防御措施
-
-这两个问题，一般不会问太难。
-
-有人问：SQL注入算吗？答案：这个其实跟前端的关系不是很大。
-
+- [CSRF](#csrf)
+  - [CSRF的基本概念](#csrf的基本概念)
+  - [CSRF的攻击原理](#csrf的攻击原理)
+  - [CSRF如何防御](#csrf如何防御)
+- [XSS](#xss)
+  - [XSS的基本概念](#xss的基本概念)
+  - [XSS如何攻击](#xss如何攻击)
+  - [XSS如何防御](#xss如何防御)
+- [CSRF 和 XSS 的区别](#csrf-和-xss-的区别)
 ## CSRF
 
-问的不难，一般问：
-
-  * CSRF的基本概念、缩写、全称
-
-  * 攻击原理
-
-  * 防御措施
-
-如果把 **攻击原理** 和 **防御措施** 掌握好，基本没什么问题。
-
-### 1、CSRF的基本概念、缩写、全称
+### CSRF的基本概念
 
 CSRF（Cross-site request forgery）： **跨站请求伪造** 。
 
-PS：中文名一定要记住。英文全称，如果记不住也拉倒。
+简答来说，CSRF就是利用用户的登录状态发起恶意请求
 
-### 2、CSRF的攻击原理
+### CSRF的攻击原理
 
 ![](./images/csrf和xss共计.png)
 
@@ -45,23 +31,22 @@ PS：中文名一定要记住。英文全称，如果记不住也拉倒。
 
 温馨提示一下，cookie保证了用户可以处于登录状态，但网站B其实拿不到 cookie。
 
-举个例子，前段时间里，微博网站有个api接口有漏洞，导致很多用户的粉丝暴增。
-
-### 3、CSRF如何防御
+### CSRF如何防御
 
 **方法一、Token 验证：** （用的最多）
 
 （1）服务器发送给客户端一个token；
 
-（2）客户端提交的表单中带着这个token。
+（2）客户端提交表单时，头部带上token。
 
-（3）如果这个 token 不合法，那么服务器拒绝这个请求。
+（3）服务器验证token有效性来决定是否响应请求
 
-**方法二：隐藏令牌：**
+**方法二、SameSite：**
+有三个可选值
 
-把 token 隐藏在 http 的 head头中。
-
-方法二和方法一有点像，本质上没有太大区别，只是使用方式上有区别。
+- Strict：最为严格，完全禁止第三方 Cookie，跨站点时，任何情况下都不会发送 Cookie
+- Lax：仅get请求发送cookie
+- None：不发送cookie
 
 **方法三、Referer 验证：**
 
@@ -69,80 +54,92 @@ Referer 指的是页面请求来源。意思是， **只接受本站的请求，
 
 ## XSS
 
-### 1、XSS的基本概念
+### XSS的基本概念
 
-XSS（Cross Site Scripting）： **跨域脚本攻击** 。
+XSS（Cross Site Scripting）： **跨站脚本攻击** 。
 
-接下来，我们详细讲一下 XSS 的内容。
+>是一种网站应用程式的安全漏洞攻击，是代码注入的一种。它允许恶意使用者将程式码注入到网页上，其他使用者在观看网页时就会受到影响。
 
-> 预备知识：HTTP、Cookie、Ajax。
+### XSS如何攻击
 
-### XSS的攻击原理
+攻击类型有
 
-XSS攻击的核心原理是：不需要你做任何的登录认证，它会通过合法的操作（比如在url中输入、在评论框中输入），向你的页面注入脚本（可能是js、hmtl代码块等）。
-
-最后导致的结果可能是：
-
-  * 盗用Cookie
-
-  * 破坏页面的正常结构，插入广告等恶意内容
-
-  * D-doss攻击
-
-### XSS的攻击方式
-
-  * 1、反射型
+1、反射型
 
 发出请求时，XSS代码出现在url中，作为输入提交到服务器端，服务器端解析后响应，XSS代码随响应内容一起传回给浏览器，最后浏览器解析执行XSS代码。这个过程像一次反射，所以叫反射型XSS。
 
-  * 2、存储型
+场景：修改url参数篡改html
+
+```html
+<!-- http://www.domain.com?name=<script>alert(1)</script> -->
+<div>{{name}}</div>
+```
+上述 URL 输入可能会将 HTML 改为 `<div><script>alert(1)</script></div>` ，这样页面中就凭空多了一段可执行脚本。这种攻击类型是反射型攻击。
+
+2、存储型
 
 存储型XSS和反射型XSS的差别在于，提交的代码会存储在服务器端（数据库、内存、文件系统等），下次请求时目标页面时不用再提交XSS代码。
 
-### XSS的防范措施（encode + 过滤）
+场景：富文本编写文档时增加恶意代码
 
-XSS的防范措施主要有三个：
+假如站内有富文本编辑文章功能，用户编写了一篇包含攻击代码`<script>alert(1)</script>` 的文章，文章发布后，所有访问者都会被攻击到，这种属于存储型攻击。
 
-**1、编码** ：
+### XSS如何防御
 
-对用户输入的数据进行`HTML Entity`编码。
+1. 转义输入输出内容
 
-如上图所示，把字符转换成 转义字符。
+```javascript
+function escape(str) {
+  str = str.replace(/&/g, '&amp;')
+  str = str.replace(/</g, '&lt;')
+  str = str.replace(/>/g, '&gt;')
+  str = str.replace(/"/g, '&quto;')
+  str = str.replace(/'/g, '&#39;')
+  str = str.replace(/`/g, '&#96;')
+  str = str.replace(/\//g, '&#x2F;')
+  return str
+}
+```
 
-Encode的作用是将`$var`等一些字符进行转化，使得浏览器在最终输出结果上是一样的。
+`<script>alert(1)</script>` 转义后
 
-比如说这段代码：
+```javascript
+escape('<script>alert(1)</script>') // &lt;script&gt;alert(1)&lt;&#x2F;script&gt;
+```
 
-    
-    
-    <script>alert(1)</script>
-    
+2. 富文本添加白名单
+对显示富文本来说，不能向上面一样转义所有字符，因为会把需要的格式也过滤掉。所以通过白名单的方式，仅对白名单的标签进行解析
 
-若不进行任何处理，则浏览器会执行alert的js操作，实现XSS注入。
+```javascript
+var xss = require('xss')
+var html = xss('<h1 id="title">XSS Demo</h1><script>alert("xss");</script>')
 
-进行编码处理之后，L在浏览器中的显示结果就是`<script>alert(1)</script>`，实现了将$var作为纯文本进行输出，且不引起JavaScript的执行。
+console.log(html) // <h1>XSS Demo</h1>&lt;script&gt;alert("xss");&lt;/script&gt;
+```
 
-参考链接：[4类防御XSS的有效方法](https://www.jianshu.com/p/599fcd03fd3b)
+以上示例使用了js-xss实现，可以看到在输出中保留了h1标签，过滤掉script标签
 
-**2、过滤：**
+3. CSP
+>内容安全策略 (CSP) 是一个额外的安全层，用于检测并削弱某些特定类型的攻击，包括跨站脚本 (XSS) 和数据注入攻击等。无论是数据盗取、网站内容污染还是散发恶意软件，这些攻击都是主要的手段。
 
-  * 移除用户输入的和事件相关的属性。如onerror可以自动触发攻击，还有onclick等。（总而言之，过滤掉一些不安全的内容）
+我们可以通过 CSP 来尽量减少 XSS 攻击。CSP 本质上也是建立白名单，规定了浏览器只能够执行特定来源的代码。
 
-  * 移除用户输入的Style节点、Script节点、Iframe节点。（尤其是Script节点，它可是支持跨域的呀，一定要移除）。
+通过 HTTP Header 中的 `Content-Security-Policy` 来开启 CSP
 
-**3、校正**
+- 只允许加载本站资源
+```javascript
+Content-Security-Policy: default-src ‘self’
+```
 
-  * 避免直接对`HTML Entity`进行解码。
+- 只允许加载 HTTPS 协议图片
+```javascript
+Content-Security-Policy: img-src https://*
+```
 
-  * 使用`DOM Parse`转换，校正不配对的DOM标签。
-
-备注：我们应该去了解一下`DOM Parse`这个概念，它的作用是把文本解析成DOM结构。
-
-比较常用的做法是，通过第一步的编码转成文本，然后第三步转成DOM对象，然后经过第二步的过滤。
-
-**还有一种简洁的答案：**
-
-首先是encode，如果是富文本，就白名单。
+- 允许加载任何来源框架
+```javascript
+Content-Security-Policy: child-src 'none'
+```
 
 ## CSRF 和 XSS 的区别
 
@@ -160,19 +157,6 @@ Encode的作用是将`$var`等一些字符进行转化，使得浏览器在最�
 
   * XSS：是向网站 A 注入 JS代码，然后执行 JS 里的代码，篡改网站A的内容。
 
-## 其他
-
-### XSS
-
-关于XSS，推荐几个网站：
-
-  * <http://html5sec.org/>
-
-里面列出了很多XSS的例子，可以长见识。如果你专门研究XSS，可以看看。
-
-  * [FreeBuf网站上的专栏作者：Black-Hole](http://www.freebuf.com/author/black-hole)
-
-比如，他的第一篇文章就讲到了[XSS的原理分析与解剖](http://www.freebuf.com/articles/web/40520.html)。有句话摘抄如下：弹窗只是测试xss的存在性和使用性。
 
 **本文转发自：**
 
