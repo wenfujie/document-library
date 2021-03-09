@@ -65,11 +65,38 @@
         background-color: cadetblue;
       }
     }
+
+    .overflow {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      word-break: break-all;
+    }
+
+    .sticky {
+      background-color: chartreuse;
+      position: sticky;
+      top: 0;
+    }
   </style>
 </head>
 
 <body>
-  <ul id='ul'></ul>
+  <div class="overflow">
+    asdasdasdasdsadasdasasdasdasasdasdsadasdasd
+    asdasdasdasdsadasdasasdasdasasdasdsadasdasd
+    asdasdasdasdsadasdasasdasdasasdasdsadasdasd
+    asdasdasdasdsadasdasasdasdasasdasdsadasdasd
+    asdasdasdasdsadasdasasdasdasasdasdsadasdasd
+    asdasdasdasdsadasdasasdasdasasdasdsadasdasd
+    asdasdasdasdsadasdasasdasdasasdasdsadasdasd
+    asdasdasdasdsadasdasasdasdasasdasdsadasdasd
+    asdasdasdasdsadasdasasdasdasasdasdsadasdasd
+    asdasdasdasdsadasdasasdasdasasdasdsadasdasd
+  </div>
+  <div class="sticky">测试position:sticky;</div>
 
   3.2
   《闭包》
@@ -131,7 +158,6 @@
 
   《构造函数和类》
 
-  <div class="test" onclick="clickDom()">测试</div>
 
 </body>
 

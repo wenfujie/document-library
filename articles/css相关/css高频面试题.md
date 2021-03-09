@@ -12,7 +12,14 @@
 - [12.display:none和visibility:hidden区别](#12displaynone和visibilityhidden区别)
 - [13.常用伪类、伪元素](#13常用伪类伪元素)
 - [14.选择器的优先级](#14选择器的优先级)
-- [15.移动端单位rem、vw、vh、em](#15移动端单位remvwvhem)
+- [15.css中行内元素和行内块元素空白间隙的问题](#15css中行内元素和行内块元素空白间隙的问题)
+- [16.单行省略跟多行省略怎么写？](#16单行省略跟多行省略怎么写)
+- [17.web开发中动画效果的实现方法](#17web开发中动画效果的实现方法)
+- [18.获取元素的样式信息](#18获取元素的样式信息)
+- [19.margin-top 百分比是相对于](#19margin-top-百分比是相对于)
+- [20.背景图像百分之百显示](#20背景图像百分之百显示)
+- [21.css 性能优化](#21css-性能优化)
+- [22.css3吸顶效果](#22css3吸顶效果)
 
 ## 1.BFC机制
 
@@ -544,3 +551,185 @@ css有7种基础选择器
 7. 通配符选择器，*{}
 
 css优先规则：行内样式 > id选择器 > 类选择器 = 伪类选择器 = 属性选择器 > 标签选择器 = 伪元素选择器 > 通配符选择器
+
+
+## 15.css中行内元素和行内块元素空白间隙的问题
+
+在html代码中，如果把行内元素或者行内块元素写成下面这样的话，会出现空格的问题：
+```html
+<div class="wrapper">
+  <span>我是行内元素</span>
+  <span>我是行内元素</span>
+  <span>我是行内元素</span>
+</div>
+.wrapper span {
+  /*display: inline-block;*//* 这句代码加不加效果都一致 */
+  font-size: 16px;
+  background-color: lime;
+  color: #fff;
+}
+```
+
+我们代码里面的这几个`span`标签都有换行，这些换行也叫作空文本节点，会被保留为一个空格，所以我们要去掉这个空文本节点带来的问题。
+
+1.给他们的父级元素加上`font-size: 0;`这个属性，就可以解决。
+
+原理是：空文本节点也是文本，自然可以被`font-size: 0;`作用到，那么空文本节点自然就没了。ie7级ie版本中不兼容
+```css
+.wrapper {
+  font-size:0;
+  letter-spaceing:-4px;/* 去掉空文本节点 */
+}
+```
+
+2.取消代码换行
+
+这种方法非常直观，但是代码并不美观了。。。而且维护起来也不方便。但是兼容性好。
+
+```html
+<div class="wrapper">
+  <span>我是行内元素</span><span>我是行内元素</span><span>我是行内元素</span>
+</div>
+```
+
+3.还有其他的一些方法都类似于第二种方法，就是变相的取消换行（在这里我只说一个吧）：
+
+```html
+<div class="wrapper">
+  <span>我是行内元素</span
+  ><span>我是行内元素</span
+  ><span>我是行内元素</span>
+</div>
+```
+
+## 16.单行省略跟多行省略怎么写？
+
+```css
+/*单行省略*/
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap
+
+/*多行省略*/
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+```
+
+## 17.web开发中动画效果的实现方法
+
+1. animation+keyframes 、transition
+2. canvas、2D、3D webgl
+3. setInterval()、requestAnimationFrame
+4. svg
+5. GIF
+6. web API animation // 兼容性不好
+
+```javascript
+const element = document.getElementById('some-element-you-want-to-animate');
+let start;
+
+function step(timestamp) {
+  if (start === undefined)
+    start = timestamp;
+  const elapsed = timestamp - start;
+
+  //这里使用`Math.min()`确保元素刚好停在200px的位置。
+  element.style.transform = 'translateX(' + Math.min(0.1 * elapsed, 200) + 'px)';
+
+  if (elapsed < 2000) { // 在两秒后停止动画
+    window.requestAnimationFrame(step);
+  }
+}
+
+window.requestAnimationFrame(step);
+```
+
+## 18.获取元素的样式信息
+
+获取元素的样式信息，通过elem.style\[’属性’\] ,只能获取元素内嵌style属性上的生命的css属性，
+
+而不包括来自其他地方声明的样式，如部分的内嵌样式表，或外部样式表；
+
+要获取一个元素的所有css 属性，使用 `window.getComputedStyle();`
+
+```javascript
+let para = document.querySelector('p');
+let compStyles = window.getComputedStyle(para);
+para.textContent = 'My computed font-size is ' +
+    compStyles.getPropertyValue('font-size') +
+    ',\\nand my computed line-height is ' +
+    compStyles.getPropertyValue('line-height') +
+    '.';
+```
+
+```html
+<style>
+  h3::after {
+    content: ' rocks!';
+  }
+</style>
+
+<h3>Generated content</h3>
+
+<script>
+  var h3 = document.querySelector('h3');
+  var result = getComputedStyle(h3, ':after').content;
+
+  console.log('the generated content is: ', result); // returns ' rocks!'
+</script>
+```
+
+## 19.margin-top 百分比是相对于
+
+父元素的width来参考的
+
+## 20.背景图像百分之百显示
+
+`background-size:100% 100%`
+
+## 21.css 性能优化
+
+[https://www.cnblogs.com/heroljy/p/9412704.html](https://www.cnblogs.com/heroljy/p/9412704.html)
+
+## 22.css3吸顶效果
+
+`position: sticky`
+
+基本上，可以看出是position:relative和position:fixed的结合体——当元素在屏幕内，表现为relative，就要滚出显示器屏幕的时候，表现为fixed。通常结合 `top: 0;` 使用，就会有吸顶效果。
+
+```html
+<style>
+  .header {
+    width:100%;
+    height:160px;
+    background:#87CEEB;
+  }
+  nav {
+    width:100%;
+    height:100px;
+    position:sticky;
+    top:0px;
+    background:#F98202;
+  }
+  .content {
+    width:100%;
+    background:blue;
+    height:1000px;
+  }
+  footer {
+    background:#87CEEB;
+  }
+</style>
+
+<div class="header"></div>
+<nav>用于显示粘性定位的头</nav>
+<div class="content"></div>
+<footer>底部</footer>
+```
+
+**参考**
+
+https://github.com/wbbhacker/bbNote/blob/master/%E9%9D%A2%E8%AF%95%E9%A2%98/css%E9%9D%A2%E8%AF%95%E9%A2%98.md
