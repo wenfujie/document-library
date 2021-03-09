@@ -59,14 +59,18 @@
     .flex>div:nth-child(2) {
       align-self: flex-end;
     }
+
+    @media screen and (min-width: 300px) and (max-width: 600px) {
+      body {
+        background-color: cadetblue;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <div class="flex">
-    <div>1</div>
-    <div>2</div>
-  </div>
+  <ul id='ul'></ul>
+
   3.2
   《闭包》
   含义：
@@ -133,15 +137,45 @@
 
 </html>
 <script>
-  const ws = new WebSocket('ws://localhost:3000');
+  /** createDocumentFragment **/
+  const num = 10000; // 总渲染条数
+  const once = 20; // 一次渲染条数
+  const needCount = num / once; // 需渲染几次
+  let renderCount = 0; // 目前渲染几次
+  const ul = document.getElementById('ul');
 
-  ws.onopen = () => {
-    ws.send('wfj')
+
+  function onceRender() {
+    console.log('hahah');
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < num; i++) {
+      let li = document.createElement('li')
+      li.innerText = i;
+      fragment.appendChild(li);
+    }
+    ul.appendChild(fragment);
+    renderCount++;
+    main()
   }
 
-  ws.onmessage = (e) => {
-    console.log('h5接收到的数据' + e.data);
+  function main() {
+    if (needCount > renderCount) {
+      window.requestAnimationFrame(onceRender)
+    }
   }
+
+  // main()
+
+
+  // const ws = new WebSocket('ws://localhost:3000');
+
+  // ws.onopen = () => {
+  //   ws.send('wfj')
+  // }
+
+  // ws.onmessage = (e) => {
+  //   console.log('h5接收到的数据' + e.data);
+  // }
 
   // 使用translate代替css的top
   function clickDom() {
