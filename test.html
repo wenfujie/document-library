@@ -97,7 +97,22 @@
     asdasdasdasdsadasdasasdasdasasdasdsadasdasd
   </div>
   <div class="sticky">测试position:sticky;</div>
-
+  <div id="root">
+    <ul>
+      <li>
+        <a href="">
+          <img src="" alt="">
+        </a>
+      </li>
+      <li>
+        <span></span>
+      </li>
+      <li>
+      </li>
+    </ul>
+    <p></p>
+    <button></button>
+  </div>
   3.2
   《闭包》
   含义：
@@ -163,6 +178,36 @@
 
 </html>
 <script>
+  const root = document.getElementById('root')
+  console.log(getEachNode(root, []));
+
+  // 深度优先遍历收集所有节点
+  function getEachNode(node, list) {
+    if (node) {
+      list.push(node)
+      if (node.children) {
+        for (let i = 0; i < node.children.length; i++) {
+          const item = node.children[i];
+          getEachNode(item, list)
+        }
+      }
+    }
+    return list;
+  }
+
+  // 广度优先遍历
+  function getEachNodeByBFS(node, list) {
+    if (node) {
+      // list.push(node)
+      if (node.children) {
+        for (let i = 0; i < node.children.length; i++) {
+          const item = node.children[i];
+          list.push(item);
+        }
+      }
+    }
+  }
+
   /** createDocumentFragment **/
   const num = 10000; // 总渲染条数
   const once = 20; // 一次渲染条数
