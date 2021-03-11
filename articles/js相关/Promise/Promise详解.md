@@ -3,7 +3,7 @@
   - [Promise.all](#promiseall)
   - [Promise.allSettled](#promiseallsettled)
   - [Promise.race](#promiserace)
-- [20行代码实现简版Promise](#20行代码实现简版promise)
+- [傻瓜式分解实现简版Promise](#傻瓜式分解实现简版promise)
 
 ## 优缺点
 
@@ -115,46 +115,80 @@ race用于 **监听多个Promise中，最先完成的Promise，不管执行结�
   })
 ```
 
-## 20行代码实现简版Promise
+## 傻瓜式分解实现简版Promise
+
+该分解教程仅考虑 then 方法，catch、finally方法的实现不考虑，主要让大家快速了解实现原理，所以一些边界情况也不考虑。
+
+ **分析**
+ 1. new Promise((resolve)=>{}), Promise是构造函数，接收一个回调函数，该函数会接收一个叫 resolve 的函数做为参数。
+ 2. 执行new Promise(fn)时, 函数 fn 会马上执行
 
 ```javascript
-/**
- * 两个函数为核心：
-    new Primise(fn) 中的fn
-    .then(fn) 中的fn
- */
-
 function MyPromise(fn) {
-  // 存储回调集合
-  this.cbs = [];
+  const resolve = () => {}
 
-  // 该方法为new Promise(fn)时，fn的第一个参数 resolve ，主要用于触发回调方法
-  const resolve = (value) => {
-    setTimeout(() => {
-      this.data = value;
-      this.cbs.forEach((cb) => cb(value));
-    });
-  };
-
-  fn(resolve.bind(this));
+  fn(resolve)
 }
-
-// 实现链式调用
-MyPromise.prototype.then = function (onResolved) {
-  return new MyPromise((resolve) => {
-    this.cbs.push(() => {
-      const res = onResolved(this.data);
-      if (res instanceof MyPromise) {
-        res.then(resolve);
-      } else {
-        resolve(res);
-      }
-    });
-  });
-};
 ```
 
-使用
+**继续分析**
+1. 构造函数Promise的实例支持调用then方法，如 p.then(fn) ，then方法接收一个回调函数fn
+2. fn会接收一个回调参数，回调参数值为实例 p 中执行 resolve(val) 时的 val 。
+
+```javascript
+function MyPromise(fn) {
+  this.cbs = []
+  const resolve = (res) => {
+    this.cbs.forEach((fun) => fun(res))
+  }
+
+  fn(resolve)
+}
+
+MyPromise.prototype.then = function (fn) {
+  this.cbs.push(fn)
+}
+```
+
+到这里，已经能执行创建 MyPromise 实例，以及支持使用 then 回调了
+
+```javascript
+new MyPromise((resolve) => {
+  setTimeout(resolve, 1000)
+}).then((res) => {
+  console.log('test')
+})
+
+// 1秒后打印 'test'
+```
+
+**继续分析**
+前面虽然支持 then 回调，但并不支持类似 `.then(fn).then(fn)` 链式调用
+1. 只有 Promise 的实例能调用 then，要想支持链式调用，then 方法必须返回 Promise 的实例
+
+```javascript
+function MyPromise(fn) {
+  this.cbs = []
+  const resolve = (res) => {
+    this.cbs.forEach((fun) => {
+      fun(res)
+    })
+  }
+
+  fn(resolve)
+}
+MyPromise.prototype.then = function (fn) {
+  return new MyPromise((resolve) => {
+    this.cbs.push((res) => {
+      let result = fn(res)
+      result instanceof MyPromise ? result.then(resolve) : resolve(result)
+    })
+  })
+}
+```
+
+**测试**
+
 ```javascript
 // 使用案例：500ms后打印1，再500ms后打印2
 new MyPromise((resolve) => {

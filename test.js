@@ -75,10 +75,10 @@ function mergePromise(promiseList) {
   })
 }
 
-mergePromise([ajax1, ajax2, ajax3]).then((data) => {
-  console.log('done')
-  console.log(data) // data 为 [1, 2, 3]
-})
+// mergePromise([ajax1, ajax2, ajax3]).then((data) => {
+//   console.log('done')
+//   console.log(data) // data 为 [1, 2, 3]
+// })
 
 // 要求分别输出
 // 1
@@ -105,3 +105,39 @@ mergePromise([ajax1, ajax2, ajax3]).then((data) => {
 // loadImg(
 //   'https://c-ssl.duitang.com/uploads/item/201502/22/20150222104908_fN4va.jpeg'
 // )
+
+// ---- 实现Promise -----
+
+function MyPromise(fn) {
+  this.cbs = []
+  const resolve = (res) => {
+    this.cbs.forEach((fun) => {
+      fun(res)
+    })
+  }
+
+  fn(resolve)
+}
+MyPromise.prototype.then = function (fn) {
+  return new MyPromise((resolve) => {
+    this.cbs.push((res) => {
+      let result = fn(res)
+      result instanceof MyPromise ? result.then(resolve) : resolve(result)
+    })
+  })
+}
+
+// new MyPromise((resolve) => {
+//   setTimeout(() => {
+//     resolve(1)
+//   }, 500)
+// })
+//   .then((res) => {
+//     console.log(res)
+//     return new MyPromise((resolve) => {
+//       setTimeout(() => {
+//         resolve(2)
+//       }, 500)
+//     })
+//   })
+//   .then(console.log)
