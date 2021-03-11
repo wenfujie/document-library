@@ -60,7 +60,7 @@ const ajax3 = () =>
     return 3
   })
 
-function mergePromise(arr) {
+function mergePromise(promiseList) {
   return new Promise((resolve) => {
     let result = []
     const loop = (arr) => {
@@ -71,7 +71,7 @@ function mergePromise(arr) {
           arr.length ? loop(arr) : resolve(result)
         })
     }
-    loop(arr)
+    loop(promiseList.concat())
   })
 }
 
