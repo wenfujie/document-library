@@ -162,7 +162,7 @@ new MyPromise((resolve) => {
 // 1秒后打印 'test'
 ```
 
-**继续分析**
+**最终版分析**
 
 前面虽然支持 then 回调，但并不支持类似 `.then(fn).then(fn)` 链式调用
 1. 只有 Promise 的实例能调用 then，要想支持链式调用，then 方法必须返回 Promise 的实例
