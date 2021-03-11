@@ -178,8 +178,82 @@
 
 </html>
 <script>
+  // ------ 尽可能让图片快的加载完成 ------
+
+  var urls = [
+    'https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting1.png',
+    'https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting2.png',
+    'https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting3.png',
+    'https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting4.png',
+    'https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/AboutMe-painting5.png',
+    'https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn6.png',
+    'https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn7.png',
+    'https://hexo-blog-1256114407.cos.ap-shenzhen-fsi.myqcloud.com/bpmn8.png'
+  ]
+  function loadImg(url) {
+    return new Promise((resolve, reject) => {
+      const img = new Image()
+      img.onload = function () {
+        console.log('一张图片加载完成')
+        resolve(img)
+      }
+      img.onerror = function () {
+        reject(new Error('Could not load image at' + url))
+      }
+      img.src = url
+    })
+  }
+
+  function limitLoad(urls, limit = 3) {
+    return new Promise((resolve, reject) => {
+      let result = []
+      const copyUrls = urls.concat()
+      const createImgPromise = (imgs) => {
+        loadImg(imgs.shift()).then(res => {
+          result.push(res)
+          if (imgs.length) {
+            createImgPromise(imgs);
+          }
+          if (result.length === urls.length) {
+            resolve(result)
+          }
+        })
+      }
+
+      while (limit > 0) {
+        limit -= 1
+        createImgPromise(copyUrls)
+      }
+    })
+  }
+
+  limitLoad(urls, 3).then(res => {
+    console.log(res);
+  })
+
+
+
+  // function loadImg(url) {
+  //   return new Promise((resolve, reject) => {
+  //     const img = new Image()
+  //     img.onload = () => {
+  //       resolve(img)
+  //     }
+  //     img.onerror = err => {
+  //       reject(err)
+  //     }
+  //     img.src = url
+  //   })
+  // }
+
+  // loadImg(
+  //   'https://c-ssl.duitang.com/uploads/item/201502/22/20150222104908_fN4va.jpeg')
+  //   .then(res => {
+  //     console.log('加载成功');
+  //   })
+
   const root = document.getElementById('root')
-  console.log(getEachNode(root, []));
+  // console.log(getEachNode(root, []));
 
   // 深度优先遍历收集所有节点
   function getEachNode(node, list) {
