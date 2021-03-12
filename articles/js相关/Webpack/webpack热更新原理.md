@@ -1,3 +1,20 @@
+- [前言](#前言)
+- [热更新实现原理](#热更新实现原理)
+  - [1\. webpack-dev-server启动本地服务](#1-webpack-dev-server启动本地服务)
+  - [2\. 修改webpack.config.js的entry配置](#2-修改webpackconfigjs的entry配置)
+  - [3\. 监听webpack编译结束](#3-监听webpack编译结束)
+  - [4\. webpack监听文件变化](#4-webpack监听文件变化)
+  - [5\. 浏览器接收到热更新的通知](#5-浏览器接收到热更新的通知)
+  - [6\. HotModuleReplacementPlugin](#6-hotmodulereplacementplugin)
+  - [7\. moudle.hot.check 开始热更新](#7-moudlehotcheck-开始热更新)
+  - [8\. hotApply 热更新模块替换](#8-hotapply-热更新模块替换)
+    - [①删除过期的模块，就是需要替换的模块](#删除过期的模块就是需要替换的模块)
+    - [②将新的模块添加到 modules 中](#将新的模块添加到-modules-中)
+    - [③通过\_\_webpack\_require__执行相关模块的代码](#通过__webpack_require__执行相关模块的代码)
+- [总结](#总结)
+- [写在最后](#写在最后)
+- [参考链接](#参考链接)
+- [原文](#原文)
 
 ## 前言
 
