@@ -14,6 +14,7 @@
   - [optimize优化类](#optimize优化类)
     - [uglifyjs-webpack-plugin](#uglifyjs-webpack-plugin)
     - [commonsChunkPlugin](#commonschunkplugin)
+- [常用loader](#常用loader)
 - [拓展](#拓展)
   - [模拟实现一个loader](#模拟实现一个loader)
 
@@ -360,6 +361,16 @@ new webpack.optimize.CommonsChunkPlugin({
 
 我们可以将这一类的webpack运行时代码打包到manifest模块中，这样就不会影响到vendor模块的缓存了。
 
+## 常用loader
+- file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件
+- url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去
+- source-map-loader：加载额外的 Source Map 文件，以方便断点调试
+- image-loader：加载并且压缩图片文件
+- babel-loader：把 ES6 转换成 ES5
+- css-loader：加载 CSS，支持模块化、压缩、文件导入等特性
+- style-loader：把 CSS 代码注入到 JavaScript 中，通过 DOM 操作去加载 CSS。
+- eslint-loader：通过 ESLint 检查 JavaScript 代码
+
 ## 拓展
 ### 模拟实现一个loader
 loader 也是一个 node 模块，它导出一个函数，该函数的参数是 require 的源模块，处理 source 后把返回值交给下一个 loader。所以它的 “模版” 应该是这样的：
@@ -380,7 +391,7 @@ module.exports = function (source) {
 }
 ```
 
-**模拟写一个脚本**
+**实现一个loader**
 
 ```bash
 # 安装所需依赖

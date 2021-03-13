@@ -14,7 +14,6 @@
 - [总结](#总结)
 - [写在最后](#写在最后)
 - [参考链接](#参考链接)
-- [原文](#原文)
 
 ## 前言
 
@@ -434,8 +433,3 @@ for (moduleId in appliedUpdate) {
 
 *   [Webpack Hot Module Replacement 的原理解析](https://github.com/Jocs/jocs.github.io/issues/15)
 *   [看完这篇，面试再也不怕被问 Webpack 热更新](https://juejin.im/post/6844903953092591630)
-
-原文
-----
-
-https://juejin.cn/post/6844904008432222215#heading-0
