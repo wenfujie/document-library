@@ -141,3 +141,7 @@ MyPromise.prototype.then = function (fn) {
 //     })
 //   })
 //   .then(console.log)
+
+console.log(222)
+if (22 == '22') {
+}

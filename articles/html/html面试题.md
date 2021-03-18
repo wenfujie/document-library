@@ -1,3 +1,36 @@
+- [<!DOCTYPE html>作用](#doctype-html作用)
+- [html严格模式、混杂模式](#html严格模式混杂模式)
+- [标签语义化](#标签语义化)
+- [H5新特性](#h5新特性)
+- [常见的浏览器内核，对内核的理解](#常见的浏览器内核对内核的理解)
+
+## <!DOCTYPE html>作用
+<!DOCTYPE> 声明位于文档中的最前面的位置，处于 <html> 标签之前。
+
+<!DOCTYPE> 声明不是一个 HTML 标签；它是用来告知 Web 浏览器页面使用了哪种 HTML 版本。
+
+```html
+<!-- html标准 -->
+<!DOCTYPE html>
+```
+
+## html严格模式、混杂模式
+- 严格模式：严格模式的排版和JS运作模式是以该浏览器支持的最高标准运行。
+- 混杂模式：混杂模式的页面以宽松的向后兼容的方式显示；模拟老的浏览器的行为以防止站点无法工作。
+
+当html文档首行有定义<!DOCTYPE> 时，会以该行定义的规则来以严格模式解析
+
+当未定义 <!DOCTYPE> 时，以混杂模式解析
+
+**判断当前页面处于什么模式**
+
+```js
+if(document.compatMode === 'BackCompat'){
+  console.log('混杂模式')
+}else if(document.compatMode === 'CSS1Compat'){
+  console.log('严格模式')
+}
+```
 
 ## 标签语义化
 什么是标签语义化？
