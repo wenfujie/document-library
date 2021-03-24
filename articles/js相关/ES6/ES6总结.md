@@ -1,8 +1,16 @@
 - [let、const](#letconst)
 - [变量结构赋值](#变量结构赋值)
 - [字符串的扩展](#字符串的扩展)
+  - [能被 `for of` 遍历](#能被-for-of-遍历)
+  - [\`\` 字符串模板](#-字符串模板)
+  - [新增方法includes、startsWith、endsWith](#新增方法includesstartswithendswith)
 - [数值的扩展](#数值的扩展)
+  - [Number上新增方法isFinite、isNaN、parseInt, parseFloat](#number上新增方法isfiniteisnanparseint-parsefloat)
+  - [Math对象新增方法：trunc()去除小数部分，sign()判断是正数还是负数，cbrt()计算立方根](#math对象新增方法trunc去除小数部分sign判断是正数还是负数cbrt计算立方根)
 - [函数扩展](#函数扩展)
+  - [默认参数](#默认参数)
+  - [rest参数](#rest参数)
+  - [箭头函数](#箭头函数)
 - [数组的扩展](#数组的扩展)
   - [...扩展运算符](#扩展运算符)
   - [Array.from()](#arrayfrom)
@@ -27,7 +35,7 @@
 - [Generator](#generator)
 - [async await](#async-await)
 - [Class](#class)
-- [ES6入门教程](#es6入门教程)
+- [阮一峰的ES6入门教程](#阮一峰的es6入门教程)
 ## let、const
 
 **`let`**
@@ -65,7 +73,7 @@ let [x, y = 'b'] = ['a']; // x='a', y='b'
 
 ## 字符串的扩展
 
-1. 能被 `for of` 遍历
+### 能被 `for of` 遍历
 ```js
 for (let codePoint of 'foo') {
   console.log(codePoint)
@@ -75,9 +83,9 @@ for (let codePoint of 'foo') {
 // "o"
 ```
 
-2. \`\` 字符串模板
+### \`\` 字符串模板
 
-3. 新增方法
+### 新增方法includes、startsWith、endsWith
    - includes()：返回布尔值，表示是否找到了参数字符串。
    - startsWith()：返回布尔值，表示参数字符串是否在原字符串的头部。
    - endsWith()：返回布尔值，表示参数字符串是否在原字符串的尾部。
@@ -119,6 +127,7 @@ for (let codePoint of 'foo') {
       ```
 
 ## 数值的扩展
+### Number上新增方法isFinite、isNaN、parseInt, parseFloat
 1. isFinite、isNaN
 ```js
 /**
@@ -151,7 +160,7 @@ Number.isInteger(25) // true
 Number.isInteger(25.0) // true
 ```
 
-4. Math对象的扩展
+### Math对象新增方法：trunc()去除小数部分，sign()判断是正数还是负数，cbrt()计算立方根
 
 ```js
 // 去除一个数的小数部分，返回整数部分。
@@ -173,7 +182,7 @@ Math.cbrt(2)  // 1.2599210498948732
 
 ## 函数扩展
 
-**默认参数**
+### 默认参数
 
 ```js
 function log(x, y = 'World') {
@@ -184,7 +193,7 @@ function log(x, y = 'World') {
 log.length // 1
 ```
 
-**rest参数**
+### rest参数
 
 ```js
 /**
@@ -195,7 +204,7 @@ log.length // 1
 function push(array, ...items) {}
 ```
 
-**箭头函数**
+### 箭头函数
 
 ```js
 var f = v => v;
@@ -420,5 +429,5 @@ for (let [key, value] of entries(obj)) {
 
 ## Class
 
-## ES6入门教程
+## 阮一峰的ES6入门教程
 参考：[ES6入门教程](https://es6.ruanyifeng.com/)，作者阮一峰
