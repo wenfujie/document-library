@@ -97,7 +97,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 其他
 1. [MarkDown语法](articles/MarkDown/MarkDown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95.md#%E5%88%86%E5%89%B2%E7%BA%BF)
-2. [Mac终端指令](articles/Mac/mac%E7%BB%88%E7%AB%AF%E6%8C%87%E4%BB%A4.md)
+2. [Mac终端指令](articles/Mac/mac系统及软件快捷键.md)
 
 ## License
 所有文章采用[知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议](http://creativecommons.org/licenses/by-nc-sa/3.0/cn/)进行许可。
