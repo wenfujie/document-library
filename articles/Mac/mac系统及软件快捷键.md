@@ -27,3 +27,4 @@
 |  | shift+tab | 选择范围文字往左退一格 |
 | crtl + p | command + p | 根据文件名搜索文件 |
 |  | command + j | 显示或隐藏终端 |
+|  | control + - 或 + | 回到光标上次位置 |
