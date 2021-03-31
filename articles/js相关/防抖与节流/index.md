@@ -1,6 +1,4 @@
 
-# 实现防抖和节流
-
 ## 防抖
 
 短时间多次触发函数，仅取最后一次触发执行。
@@ -8,21 +6,17 @@
 例子：输入框模糊查询、监听滚动条滚动结束事件
 
 ```javascript
-  const debounce = (function () {
-    let interval;
+// 实现防抖函数
+function debounce(fn, await) {
+  let timer
+  return function (...arg) {
+    clearTimeout(timer)
+    timer = setTimeout(_=>fn(...arg), await)
+  }
+}
 
-    return (fn, time) => {
-      if (interval) {
-        clearInterval(interval);
-      }
-      interval = setTimeout(() => {
-        fn();
-      }, time);
-    };
-  })();
-
-  // 使用
-  debounce(() => console.log("test"), 500);
+let test = debounce((msg)=>console.log(msg), 3000)
+test('hello') // 3s 后打印 'hello'
 ```
 
 ## 节流
@@ -32,18 +26,17 @@
 例子：快速且多次点击按钮，3s内仅触发一次函数
 
 ```javascript
-  const throttle = (function () {
-    let touchTimestamp = 0;
-
-    return (fn, time) => {
-      let nowTimestamp = Date.now();
-      if (touchTimestamp + time < nowTimestamp) {
-        touchTimestamp = nowTimestamp;
-        fn();
-      }
-    };
-  })();
-
-  // 使用
-  throttle(() => console.log("test throttle"), 3000);
+// 实现节流函数
+function throttle(f, wait) {
+  let timer
+  return (...args) => {
+    if (timer) return
+    f(...args)
+    timer = setTimeout(() => {
+      timer = null
+    }, wait)
+  }
+}
 ```
+
+以上实现方式，首次调用目标函数会立即触发，若要延迟触发仅需将 `f(...args)` 移入 `setTimeout` 中。
