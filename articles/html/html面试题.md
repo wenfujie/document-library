@@ -1,13 +1,13 @@
-- [<!DOCTYPE html>作用](#doctype-html作用)
+- [\<!DOCTYPE html>作用](#doctype-html作用)
 - [html严格模式、混杂模式](#html严格模式混杂模式)
 - [标签语义化](#标签语义化)
 - [H5新特性](#h5新特性)
 - [常见的浏览器内核，对内核的理解](#常见的浏览器内核对内核的理解)
 
-## <!DOCTYPE html>作用
-<!DOCTYPE> 声明位于文档中的最前面的位置，处于 <html> 标签之前。
+## \<!DOCTYPE html>作用
+\<!DOCTYPE> 声明位于文档中的最前面的位置，处于 \<html> 标签之前。
 
-<!DOCTYPE> 声明不是一个 HTML 标签；它是用来告知 Web 浏览器页面使用了哪种 HTML 版本。
+\<!DOCTYPE> 声明不是一个 HTML 标签；它是用来告知 Web 浏览器页面使用了哪种 HTML 版本。
 
 ```html
 <!-- html标准 -->

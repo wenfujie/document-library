@@ -1,4 +1,10 @@
-
+- [操作DOM](#操作dom)
+- [Watcher队列](#watcher队列)
+- [nextTick](#nexttick)
+- [flushSchedulerQueue](#flushschedulerqueue)
+- [为什么要异步更新视图](#为什么要异步更新视图)
+- [访问真实DOM节点更新后的数据](#访问真实dom节点更新后的数据)
+- [总结](#总结)
 ## 操作DOM
 
 在使用vue.js的时候，有时候因为一些特定的业务场景，不得不去操作DOM，比如这样：
@@ -393,6 +399,14 @@ flushSchedulerQueue是下一个tick时的回调函数，主要目的是执行Wat
 ```
 使用Vue.js的global API的$nextTick方法，即可在回调中获取已经更新好的DOM实例了。
 
-**原文**
+## 总结
+nextTick原理：
+1. vue用异步队列的方式来控制DOM更新和nextTick回调先后执行
+2. microtask因为其高优先级特性，能确保队列中的微任务在一次事件循环前被执行完毕
+3. 因为兼容性问题，vue不得不做了microtask向macrotask的降级方案
+
+降级方案：Promise => setImmediate => MessageChannel => setTimeout
+
+**参考**
 
 https://github.com/answershuto/learnVue/blob/master/docs/Vue.js%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0DOM%E7%AD%96%E7%95%A5%E5%8F%8AnextTick.MarkDown

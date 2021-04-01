@@ -17,6 +17,12 @@
 - [常用loader](#常用loader)
 - [拓展](#拓展)
   - [模拟实现一个loader](#模拟实现一个loader)
+- [如何加快打包速度](#如何加快打包速度)
+  - [thread-loader（webpack4 官方推荐）](#thread-loaderwebpack4-官方推荐)
+  - [happypack（不再维护，推荐使用thread-loader）](#happypack不再维护推荐使用thread-loader)
+  - [cache-loader](#cache-loader)
+- [webpack4优化](#webpack4优化)
+  - [tree-shaking](#tree-shaking)
 
 ## Webpack 主要功能
 - `打包` 将多文件打包成一个文件，减少请求次数和下载带宽，起到降低服务器压力的作用。
@@ -437,3 +443,89 @@ module.exports = {
 ```bash
 npx webpack --config webpack.config.js
 ```
+
+## 如何加快打包速度
+### thread-loader（webpack4 官方推荐）
+
+只要把 thread-loader 放置在其他 loader 之前， 那 thread-loader 之后的 loader 就会在一个单独的 worker 池(worker pool)中运行。
+
+请仅在耗时的 loader 上使用。
+
+```js
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        // 创建一个 js worker 池
+        use: [ 
+          'thread-loader',
+          'babel-loader'
+        ] 
+      }
+    ]
+  }
+}
+```
+
+### happypack（不再维护，推荐使用thread-loader）
+
+开启多进程模式来打包
+```js
+const HappyPack = require('happypack');
+
+module.exports = {
+    ...
+    module: {
+        rules: [
+            test: /\.js$/,
+            // use: ['babel-loader?cacheDirectory'] 之前是使用这种方式直接使用 loader
+            // 现在用下面的方式替换成 happypack/loader，并使用 id 指定创建的 HappyPack 插件
+            use: ['happypack/loader?id=babel'],
+            // 排除 node_modules 目录下的文件
+            exclude: /node_modules/
+        ]
+    },
+    plugins: [
+        ...,
+        new HappyPack({
+            // id 标识符，要和 rules 中指定的 id 对应起来
+            id: 'babel',
+            // 需要使用的 loader，用法和 rules 中 Loader 配置一样
+            // 可以直接是字符串，也可以是对象形式
+            loaders: ['babel-loader?cacheDirectory']
+        })
+    ]
+}
+```
+
+### cache-loader
+
+在一些性能开销较大的 loader 之前添加 cache-loader，将结果缓存中磁盘中。默认保存在 node_modueles/.cache/cache-loader 目录下。以便下次打包可直接读取缓存。
+
+**使用**
+```bash
+npm install cache-loader -D
+```
+```js
+module.exports = {
+    //...
+    module: {
+        //我的项目中,babel-loader耗时比较长，所以我给它配置了`cache-loader`
+        rules: [
+            {
+                test: /\.jsx?$/,
+                use: ['cache-loader','babel-loader']
+            }
+        ]
+    }
+}
+```
+
+## webpack4优化
+### tree-shaking
+如果使用ES6的import 语法，那么在生产环境下，会自动移除没有使用到的代码。
+
+使用：该功能仅在生产环境会开启，设置 `mode=production`

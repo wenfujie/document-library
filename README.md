@@ -38,6 +38,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 7.  [原型以及原型链](articles/js%E7%9B%B8%E5%85%B3/%E5%9F%BA%E7%A1%80/%E5%8E%9F%E5%9E%8B%E4%BB%A5%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
 8.  [构造函数和类](articles/js%E7%9B%B8%E5%85%B3/%E7%B1%BB/%E6%90%9E%E6%87%82js%E4%B8%AD%E7%9A%84%E7%B1%BB.md)
 9.  [ES6入门教程](articles/js相关/ES6/ES6总结.md)
+10. [Promise详细介绍](articles/js%E7%9B%B8%E5%85%B3/Promise/Promise%E8%AF%A6%E8%A7%A3.md)
 
 ## Vue
 1. [Vue源码解读](articles/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.md)
@@ -57,8 +58,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 ## 工具
 1. [npm详细使用说明](articles/%E5%B7%A5%E5%85%B7/npm%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)
 2. [Webpack上手](articles/js%E7%9B%B8%E5%85%B3/Webpack/webpack%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%8F%8A%E4%B8%8A%E6%89%8B.md)
-3. [Promise详细介绍](articles/js%E7%9B%B8%E5%85%B3/Promise/Promise%E8%AF%A6%E8%A7%A3.md)
-4. [搭建脚手架](articles/%E5%B7%A5%E5%85%B7/%E6%90%AD%E5%BB%BA%E8%84%9A%E6%89%8B%E6%9E%B6/%E6%90%AD%E5%BB%BA%E8%84%9A%E6%89%8B%E6%9E%B6.md)
+3. [搭建脚手架](articles/%E5%B7%A5%E5%85%B7/%E6%90%AD%E5%BB%BA%E8%84%9A%E6%89%8B%E6%9E%B6/%E6%90%AD%E5%BB%BA%E8%84%9A%E6%89%8B%E6%9E%B6.md)
 
 ## 测试
 1. [手摸手带你用js实现端到端自动化测试](articles/%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%89%8B%E6%91%B8%E6%89%8B%E5%B8%A6%E4%BD%A0%E7%94%A8js%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95.md)
