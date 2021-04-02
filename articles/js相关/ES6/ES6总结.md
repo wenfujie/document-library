@@ -35,6 +35,7 @@
 - [Generator](#generator)
 - [async await](#async-await)
 - [Class](#class)
+- [总结](#总结)
 - [阮一峰的ES6入门教程](#阮一峰的es6入门教程)
 ## let、const
 
@@ -428,6 +429,39 @@ for (let [key, value] of entries(obj)) {
 ## async await
 
 ## Class
+
+## 总结
+面试时，记住以下特性，并能说出对应的作用就好
+
+**新增Api**
+- Proxy
+- Promise
+- async await
+- Class
+- Generator
+
+**新增数据类型**
+- Symbol
+- Map、WeakMap
+- Set、WeakSet
+
+**变量**
+
+- let、const
+- 变量结构赋值
+- ...数组扩展运算符
+
+**对象**
+- 属性简写
+- 链式判断运算符?.
+
+**函数**
+
+- 默认参数
+- rest参数
+- 箭头函数
+
+Object、String、Number、Array等扩展了一些方法
 
 ## 阮一峰的ES6入门教程
 参考：[ES6入门教程](https://es6.ruanyifeng.com/)，作者阮一峰
