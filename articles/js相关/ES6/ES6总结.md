@@ -91,41 +91,43 @@ for (let codePoint of 'foo') {
    - startsWith()：返回布尔值，表示参数字符串是否在原字符串的头部。
    - endsWith()：返回布尔值，表示参数字符串是否在原字符串的尾部。
 
-    ```js
-    let s = 'Hello world!';
+```js
+let s = 'Hello world!';
 
-    s.startsWith('Hello') // true
-    s.endsWith('!') // true
-    s.includes('o') // true
-    ```
-    三个方法都支持第二个参数，endsWith表示从0-n，其他两个方法表示开始搜索的位置。
+s.startsWith('Hello') // true
+s.endsWith('!') // true
+s.includes('o') // true
 
-   - repeat方法返回一个新字符串，表示将原字符串重复n次。
-      ```js
-      'x'.repeat(3) // "xxx"
-      'hello'.repeat(2) // "hellohello"
-      'na'.repeat(0) // ""
-      ```
+// 三个方法都支持第二个参数，endsWith表示从0-n，其他两个方法表示开始搜索的位置。
+```
 
-    - padStart、padEnd。补全字符串
-      ```js
-      'x'.padStart(5, 'ab') // 'ababx'
-      'x'.padEnd(5, 'ab') // 'xabab'
-      ```
-    - trimStart、trimEnd。消除收或尾空格
-      ```js
-      const s = '  abc  ';
+repeat方法返回一个新字符串，表示将原字符串重复n次。
+```js
+'x'.repeat(3) // "xxx"
+'hello'.repeat(2) // "hellohello"
+'na'.repeat(0) // ""
+```
 
-      s.trim() // "abc"
-      s.trimStart() // "abc  "
-      s.trimEnd() // "  abc"
-      ```
-    - replaceAll。替换所有匹配
-      ```js
-      'aabbcc'.replaceAll('b', '_') // 'aa__cc'
-      // 类似
-      'aabbcc'.replace(/b/g, '_')
-      ```
+padStart、padEnd。补全字符串
+  
+```js
+'x'.padStart(5, 'ab') // 'ababx'
+'x'.padEnd(5, 'ab') // 'xabab'
+```
+trimStart、trimEnd。消除收或尾空格
+```js
+const s = '  abc  ';
+
+s.trim() // "abc"
+s.trimStart() // "abc  "
+s.trimEnd() // "  abc"
+```
+replaceAll。替换所有匹配
+```js
+'aabbcc'.replaceAll('b', '_') // 'aa__cc'
+// 类似
+'aabbcc'.replace(/b/g, '_')
+```
 
 ## 数值的扩展
 ### Number上新增方法isFinite、isNaN、parseInt, parseFloat
@@ -418,7 +420,47 @@ for (let [key, value] of entries(obj)) {
 ## Module
 
 ## 新增数据类型Symbol、Map、Set
+**Symbol**
+基础数据类型，独一无二的值
 
+使用场景
+
+1. 消除魔法字符串
+假如有一个tabs切换功能
+```js
+if (type === 'basic') {
+    return <div>basic tab</div>
+}
+
+if (type === 'super') {
+    return <div>super tab</div>
+}
+```
+
+使用Symbol改造
+```js
+const tabTypes = {
+    basic: Symbol(),
+    super: Symbol()
+}
+
+if (type === tabTypes.basic) {
+    return <div>basic tab</div>
+}
+
+if (type === tabTypes.super) {
+    return <div>super tab</div>
+}
+```
+
+2. 当做对象属性
+当一个复杂对象中含有多个属性的时候，很容易将某个属性名覆盖掉，利用 Symbol 值作为属性名可以很好的避免这一现象。
+```js
+const name = Symbol('name');
+const obj = {
+    [name]: 'ClickPaas',
+}
+```
 ## proxy数据劫持
 
 ## Promise
