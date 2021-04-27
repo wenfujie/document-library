@@ -29,3 +29,4 @@
 |  | command + j | 显示或隐藏终端 |
 |  | control + - 或 + | 回到光标上次位置 |
 |  | shift + enter | command + f搜索时，向上文搜索 |
+|  | command + shift + （+或-） | 展开/折叠所有代码 |
