@@ -1,3 +1,9 @@
+<!--
+ * @Date: 2021-06-16 17:22:48
+ * @LastEditors: wenfujie
+ * @LastEditTime: 2021-07-22 17:59:54
+ * @FilePath: /document-library/articles/Mac/mac系统及软件快捷键.md
+-->
 - [Mac 常用终端指令](#mac-常用终端指令)
 - [Mac vscode快捷键](#mac-vscode快捷键)
 
@@ -16,7 +22,7 @@
 
 ## Mac vscode快捷键
 
-先安装 `IntelliJ IDEA Keybindings` 插件，用来在vscode中使用idea的快捷键。
+安装 `IntelliJ IDEA Keybindings` 插件，用来在vscode中使用idea的快捷键。
 
 | windows | mac | 功能 |
 | :- | :- | :- |
@@ -30,3 +36,12 @@
 |  | control + - 或 + | 回到光标上次位置 |
 |  | shift + enter | command + f搜索时，向上文搜索 |
 |  | command + shift + （+或-） | 展开/折叠所有代码 |
+
+安装 `koroFileHeader` 插件，用来在vscode中增加文件头备注和方法备注快捷键。
+
+| windows | mac | 功能 |
+| :- | :- | :- |
+|  | ctrl + command + i | 自动生成头部 |
+|  | ctrl + command + t | 自动生成方法备注 |
+
+可配置自动更新头部，可参考：[相关配置项](https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE%E5%AD%97%E6%AE%B5)
