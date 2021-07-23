@@ -65,9 +65,12 @@ function Person() {
 ```
 
 ### 静态方法和静态属性
+静态方法将不在实例化对象的方法中，因此里面不能有this
+
 ES6 中：
 ```javascript
 class Person {
+  // 静态方法
   static sayHello() {
     console.log('hello')
   }
