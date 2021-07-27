@@ -48,6 +48,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## html
 1. [html面试题](articles/html/html%E9%9D%A2%E8%AF%95%E9%A2%98.md)
+2. [H5开发FAQ](articles/html/H5开发FAQ.md)
 
 ## Css
 1. [css动画](articles/css相关/animation动画/animation.md)
