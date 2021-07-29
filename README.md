@@ -39,6 +39,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 8.  [构造函数和类](articles/js%E7%9B%B8%E5%85%B3/%E7%B1%BB/%E6%90%9E%E6%87%82js%E4%B8%AD%E7%9A%84%E7%B1%BB.md)
 9.  [ES6入门教程](articles/js相关/ES6/ES6总结.md)
 10. [Promise详细介绍](articles/js%E7%9B%B8%E5%85%B3/Promise/Promise%E8%AF%A6%E8%A7%A3.md)
+11. [开发常用js代码片段](articles/js相关/开发常用js代码片段.md)
 
 ## Vue
 1. [Vue源码解读](articles/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.md)
