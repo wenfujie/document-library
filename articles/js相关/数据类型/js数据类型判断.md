@@ -193,7 +193,7 @@ function isEmptyObject( obj ) {
   return true;
 }
 
-// 可以看出，判断的并不仅仅是空对象
+// use
 console.log(isEmptyObject({})); // true
 console.log(isEmptyObject([])); // true
 console.log(isEmptyObject(null)); // true
@@ -202,17 +202,27 @@ console.log(isEmptyObject(1)); // true
 console.log(isEmptyObject('')); // true
 console.log(isEmptyObject(true)); // true
 ```
+根据上面示例的结果可以看出，判断的并不仅仅是空对象
 
-所以可以根据场景，结合使用 `type` 方法判断.
+所以可以根据场景，结合使用 `Object.prototype.toString` 来判断.
 ```javascript
 function isEmptyObject( obj ) {
-  if(type(obj) !== 'object') return false;
+  if(Object.prototype.toString.call(obj) !== '[object Object]') return false;
   var name;
   for ( name in obj ) {
     return false;
   }
   return true;
 }
+
+// use
+console.log(isEmptyObject({})); // true
+console.log(isEmptyObject([])); // false
+console.log(isEmptyObject(null)); // false
+console.log(isEmptyObject(undefined)); // false
+console.log(isEmptyObject(1)); // false
+console.log(isEmptyObject('')); // false
+console.log(isEmptyObject(true)); // false
 ```
 
 ## 拓展：判断 window 对象
