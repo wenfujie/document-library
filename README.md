@@ -46,6 +46,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 2. [异步更新和nextTick](articles/Vue/%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E5%92%8CnextTick.md)
 3. [Vue和React横向对比](articles/Vue/Vue%E5%92%8CReact%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94.md)
 4. [Vue中key的作用](articles/Vue/Vue%E4%B8%ADkey%E7%9A%84%E4%BD%9C%E7%94%A8.md)
+5. [extend实现全局调用Dialog](articles/Vue/extend实现全局调用Dialog.md)
 
 ## html
 1. [html面试题](articles/html/html%E9%9D%A2%E8%AF%95%E9%A2%98.md)
