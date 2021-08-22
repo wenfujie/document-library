@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-07-28 10:38:55
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-08-22 09:07:57
+ * @LastEditTime: 2021-08-22 17:38:37
  * @FilePath: /document-library/articles/js相关/开发常用js代码片段.md
 -->
 
@@ -27,6 +27,7 @@
     - [封装原生 GET、POST 请求](#封装原生-getpost-请求)
     - [优雅的处理图片加载异常](#优雅的处理图片加载异常)
     - [获取页面视口大小](#获取页面视口大小)
+    - [动态加载脚本、样式](#动态加载脚本样式)
   - [DOM 操作](#dom-操作)
     - [元素添加、移除、切换类](#元素添加移除切换类)
     - [移除一个元素](#移除一个元素)
@@ -479,6 +480,33 @@ function getViewPortSize() {
   }
   return { pageWidth, pageHeight };
 }
+```
+
+### 动态加载脚本、样式
+
+**动态加载脚本**
+```js
+function loadScript(url) {
+  const element = document.createElement("script");
+  element.src = url;
+  document.body.appendChild(element);
+}
+// Examples
+loadScript("./index.js");
+```
+
+**动态加载样式**
+```js
+function loadStyle(url) {
+  const element = document.createElement("link");
+  element.href = url;
+  element.rel = 'stylesheet';
+  element.type = 'text/css';
+  const head = document.getElementByTagName('head')[0]
+  head.appendChild(element)
+}
+// Examples
+loadStyle("./styles.css");
 ```
 
 ## DOM 操作
