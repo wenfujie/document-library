@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-07-28 10:38:55
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-08-01 16:40:51
+ * @LastEditTime: 2021-08-22 09:07:57
  * @FilePath: /document-library/articles/js相关/开发常用js代码片段.md
 -->
 
@@ -26,6 +26,7 @@
     - [控制浏览器全屏、退出全屏](#控制浏览器全屏退出全屏)
     - [封装原生 GET、POST 请求](#封装原生-getpost-请求)
     - [优雅的处理图片加载异常](#优雅的处理图片加载异常)
+    - [获取页面视口大小](#获取页面视口大小)
   - [DOM 操作](#dom-操作)
     - [元素添加、移除、切换类](#元素添加移除切换类)
     - [移除一个元素](#移除一个元素)
@@ -430,11 +431,12 @@ Logs: {
 ```
 
 ### 优雅的处理图片加载异常
+
 **设计**
 
 - 利用事件捕获监听所有`img`标签加载异常
-- 为了防止网路波动，失败3次以内，加载默认图片
-- 失败3次以上，使用兜底方案，加载base64图片
+- 为了防止网路波动，失败 3 次以内，加载默认图片
+- 失败 3 次以上，使用兜底方案，加载 base64 图片
 
 ```js
 window.addEventListener(
@@ -457,6 +459,26 @@ window.addEventListener(
   },
   true
 );
+```
+
+### 获取页面视口大小
+
+```js
+function getViewPortSize() {
+  let pageWidth = window.innerWidth;
+  let pageHeight = window.pageHeight;
+
+  if (typeof pageWidth !== "number") {
+    if (document.compatMode === "CSS1Compat") {
+      pageWidth = document.documentElement.clientWidth;
+      pageHeight = document.documentElement.clientHeight;
+    } else {
+      pageWidth = document.body.clientWidth;
+      pageHeight = document.body.clientHeight;
+    }
+  }
+  return { pageWidth, pageHeight };
+}
 ```
 
 ## DOM 操作
