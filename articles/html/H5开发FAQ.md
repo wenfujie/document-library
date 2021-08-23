@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-07-27 11:07:26
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-07-27 14:49:03
+ * @LastEditTime: 2021-08-23 15:27:23
  * @FilePath: /document-library/articles/html/H5开发FAQ.md
 -->
 
@@ -51,7 +51,31 @@
 
 ### 自定义字体仅加载部分文字
 
-使用字体生成器提取页面会出现的字，减小加载字体大小。工具：Fontmin
+使用字体生成器提取页面会出现的字，减小加载字体大小。npm包：Fontmin
+
+```js
+const Fontmin = require('fontmin')
+const fontmin = new Fontmin()
+  .src('./汉仪大宋繁.ttf') // 字体包路径
+  .dest('public/') // 提取后存放路径
+  .use(
+    Fontmin.glyph({
+      text:
+        '已召集成员數1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', // 要提取的文字
+      hinting: false
+    })
+  )
+  .use(
+    Fontmin.ttf2woff({
+      deflate: true
+    })
+  )
+fontmin.run(err => {
+  if (err) {
+    throw err
+  }
+})
+```
 
 ## CSS
 
