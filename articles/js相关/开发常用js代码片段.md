@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-07-28 10:38:55
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-08-22 17:38:37
+ * @LastEditTime: 2021-08-26 11:00:10
  * @FilePath: /document-library/articles/js相关/开发常用js代码片段.md
 -->
 
@@ -45,6 +45,7 @@
     - [判断给定年份是否是闰年](#判断给定年份是否是闰年)
     - [判断给定日期是否是周末](#判断给定日期是否是周末)
     - [返回给指定日期添加增量时间后的时间](#返回给指定日期添加增量时间后的时间)
+    - [返回北京时间（不论本地是哪个时区）](#返回北京时间不论本地是哪个时区)
   - [算法](#算法)
     - [快速排序](#快速排序)
     - [选择排序](#选择排序)
@@ -485,6 +486,7 @@ function getViewPortSize() {
 ### 动态加载脚本、样式
 
 **动态加载脚本**
+
 ```js
 function loadScript(url) {
   const element = document.createElement("script");
@@ -496,14 +498,15 @@ loadScript("./index.js");
 ```
 
 **动态加载样式**
+
 ```js
 function loadStyle(url) {
   const element = document.createElement("link");
   element.href = url;
-  element.rel = 'stylesheet';
-  element.type = 'text/css';
-  const head = document.getElementByTagName('head')[0]
-  head.appendChild(element)
+  element.rel = "stylesheet";
+  element.type = "text/css";
+  const head = document.getElementByTagName("head")[0];
+  head.appendChild(element);
 }
 // Examples
 loadStyle("./styles.css");
@@ -712,6 +715,17 @@ const addDaysToDate = (date, n) => {
 // Examples
 addDaysToDate("2020-10-15", 10); // '2020-10-25'
 addDaysToDate("2020-10-15", -10); // '2020-10-05'
+```
+
+### 返回北京时间（不论本地是哪个时区）
+
+```js
+function BJDate() {
+  return new Date(
+    new Date().getTime() +
+      (parseInt(new Date().getTimezoneOffset() / 60) + 8) * 3600 * 1000
+  );
+}
 ```
 
 ## 算法
