@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-06-16 17:22:48
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-07-22 17:59:54
+ * @LastEditTime: 2021-08-28 13:44:04
  * @FilePath: /document-library/articles/Mac/mac系统及软件快捷键.md
 -->
 - [Mac 常用终端指令](#mac-常用终端指令)
@@ -19,6 +19,12 @@
 | open | 打开并编辑文件 | open -e test.txt |
 | cat | 在终端显示文件内容 | cat test.txt |
 | rm | 删除文件 | rm test.txt |
+| lsof -i :8080 | 查看什么进程在使用端口 | lsof -i :8080 |
+| kill 进程id | 杀死进程 | kill 22908 |
+
+解决进程被占用：
+- lsof -i :8080 查看被什么进程使用（PID为进程id）
+- kill PID
 
 ## Mac vscode快捷键
 
