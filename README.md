@@ -31,16 +31,17 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## javascript
 1. [闭包](articles/js%E7%9B%B8%E5%85%B3/%E9%97%AD%E5%8C%85%EF%BC%8C%E6%88%91%E5%90%83%E5%AE%9A%E4%BA%86%E8%80%B6%E7%A8%A3%E9%83%BD%E6%8C%A1%E4%B8%8D%E4%BD%8F%EF%BC%8C%E6%88%91%E8%AF%B4%E7%9A%84.md)
-2. [函数式编程](articles/js%E7%9B%B8%E5%85%B3/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.md)
-3. [防抖与节流](articles/js%E7%9B%B8%E5%85%B3/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/index.md)
-4. [数据类型判断](articles/js%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD.md)
-5. [数组扁平化](articles/js%E7%9B%B8%E5%85%B3/Array%E7%9B%B8%E5%85%B3/%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96.md)
-6. [对象的拷贝](articles/js%E7%9B%B8%E5%85%B3/Object%E7%9B%B8%E5%85%B3/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D.md)
-7.  [原型以及原型链](articles/js%E7%9B%B8%E5%85%B3/%E5%9F%BA%E7%A1%80/%E5%8E%9F%E5%9E%8B%E4%BB%A5%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
-8.  [构造函数和类](articles/js%E7%9B%B8%E5%85%B3/%E7%B1%BB/%E6%90%9E%E6%87%82js%E4%B8%AD%E7%9A%84%E7%B1%BB.md)
-9.  [ES6入门教程](articles/js相关/ES6/ES6总结.md)
-10. [Promise详细介绍](articles/js%E7%9B%B8%E5%85%B3/Promise/Promise%E8%AF%A6%E8%A7%A3.md)
-11. [开发常用js代码片段](articles/js相关/开发常用js代码片段.md)
+2. [JS中的几种循环](articles/js相关/基础/JS的循环.md)
+3. [函数式编程](articles/js%E7%9B%B8%E5%85%B3/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.md)
+4. [防抖与节流](articles/js%E7%9B%B8%E5%85%B3/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/index.md)
+5. [数据类型判断](articles/js%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD.md)
+6. [数组扁平化](articles/js%E7%9B%B8%E5%85%B3/Array%E7%9B%B8%E5%85%B3/%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96.md)
+7. [对象的拷贝](articles/js%E7%9B%B8%E5%85%B3/Object%E7%9B%B8%E5%85%B3/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D.md)
+8.  [原型以及原型链](articles/js%E7%9B%B8%E5%85%B3/%E5%9F%BA%E7%A1%80/%E5%8E%9F%E5%9E%8B%E4%BB%A5%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
+9.  [构造函数和类](articles/js%E7%9B%B8%E5%85%B3/%E7%B1%BB/%E6%90%9E%E6%87%82js%E4%B8%AD%E7%9A%84%E7%B1%BB.md)
+10. [ES6入门教程](articles/js相关/ES6/ES6总结.md)
+11. [Promise详细介绍](articles/js%E7%9B%B8%E5%85%B3/Promise/Promise%E8%AF%A6%E8%A7%A3.md)
+12. [开发常用js代码片段](articles/js相关/开发常用js代码片段.md)
 
 ## Vue
 1. [Vue源码解读](articles/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.md)
