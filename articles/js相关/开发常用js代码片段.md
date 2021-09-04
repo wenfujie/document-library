@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-07-28 10:38:55
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-08-26 11:00:10
+ * @LastEditTime: 2021-09-04 16:38:13
  * @FilePath: /document-library/articles/js相关/开发常用js代码片段.md
 -->
 
@@ -11,6 +11,7 @@
     - [生成 UUID](#生成-uuid)
     - [解析 cookie](#解析-cookie)
     - [获取网址参数](#获取网址参数)
+    - [清空页面url上的参数](#清空页面url上的参数)
     - [复制到剪切板](#复制到剪切板)
     - [简版 jquery 选择器](#简版-jquery-选择器)
     - [多线程执行函数](#多线程执行函数)
@@ -128,6 +129,15 @@ const getURLParameters = (url) =>
 getURLParameters("google.com"); // {}
 getURLParameters("http://url.com/page?name=Adam&surname=Smith");
 // {name: 'Adam', surname: 'Smith'}
+```
+
+### 清空页面url上的参数
+将地址上的参数去除，该方法不会触发页面重新加载。
+```js
+  var url = window.location.href
+  var valiable = url.split('?')[0]
+  // 第二个参数表示title，0不改变title
+  window.history.replaceState({}, 0, valiable)
 ```
 
 ### 复制到剪切板
