@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-07-28 10:38:55
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-09-04 16:38:13
+ * @LastEditTime: 2021-09-05 17:35:01
  * @FilePath: /document-library/articles/js相关/开发常用js代码片段.md
 -->
 
@@ -56,6 +56,7 @@
     - [桶排序](#桶排序)
     - [二分搜索](#二分搜索)
     - [打乱数组](#打乱数组)
+    - [获取范围随机数](#获取范围随机数)
   - [有趣的 JS](#有趣的-js)
     - [如何在 JS 实现睡眠功能](#如何在-js-实现睡眠功能)
       - [同步版本](#同步版本)
@@ -906,6 +907,14 @@ const shuffle = ([...arr]) => {
 
 // Examples
 shuffle([1, 2, 3]); // [2, 3, 1]
+```
+
+### 获取范围随机数
+
+```js
+function getRandomInt(min, max){
+  return Math.floor(Math.random() * (max - min ) + min)
+}
 ```
 
 ## 有趣的 JS
