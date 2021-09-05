@@ -63,7 +63,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## Animation
 1. [css动画](articles/Animation/animation动画/animation.md)
-2. [[砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）](articles/Animation/animation动画/砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）/index.html)
+2. [砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）](articles/Animation/animation动画/砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）/index.html)
 3. [Flip-Animation:随机移动小姐姐图片](https://gitee.com/mozhata/Animation/tree/main/flip-animation)
 
 
