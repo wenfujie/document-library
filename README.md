@@ -66,7 +66,6 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 2. [砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）](articles/Animation/animation动画/砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）/index.html)
 3. [Flip-Animation:随机移动小姐姐图片](https://gitee.com/mozhata/Animation/tree/main/flip-animation)
 
-
 ## 工具
 1. [npm详细使用说明](articles/%E5%B7%A5%E5%85%B7/npm%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)
 2. [Webpack上手](articles/js%E7%9B%B8%E5%85%B3/Webpack/webpack%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%8F%8A%E4%B8%8A%E6%89%8B.md)
@@ -77,10 +76,11 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 1. [手摸手带你用js实现端到端自动化测试](articles/%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%89%8B%E6%91%B8%E6%89%8B%E5%B8%A6%E4%BD%A0%E7%94%A8js%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95.md)
 
 ## 业务Demo
-1. [Node自动化部署](articles/js%E7%9B%B8%E5%85%B3/node%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2.md)
-9. [打开系统选择文件弹窗](articles/js%E7%9B%B8%E5%85%B3/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97.md)
-2. [h5拖拽介绍](articles/js%E7%9B%B8%E5%85%B3/h5%E6%8B%96%E6%8B%BD/drag-drop.md)
-3. [js实现浏览器下打包压缩多个文件并下载](articles/js%E7%9B%B8%E5%85%B3/js%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85.md)
+1. [各种业务解决方案](README.解决方案.md)
+2. [Node自动化部署](articles/js%E7%9B%B8%E5%85%B3/node%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2.md)
+3. [打开系统选择文件弹窗](articles/js%E7%9B%B8%E5%85%B3/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97.md)
+4. [h5拖拽介绍](articles/js%E7%9B%B8%E5%85%B3/h5%E6%8B%96%E6%8B%BD/drag-drop.md)
+5. [js实现浏览器下打包压缩多个文件并下载](articles/js%E7%9B%B8%E5%85%B3/js%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85.md)
 
 ## 开发相关知识
 1. [安全问题：csrf和xss](articles/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9ACSRF%E5%92%8CXSS.md)
