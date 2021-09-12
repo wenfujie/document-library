@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-08-29 15:47:03
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-08-29 17:08:20
+ * @LastEditTime: 2021-09-12 09:12:25
  * @FilePath: /document-library/articles/js相关/基础/JS的循环.md
 -->
 
@@ -79,9 +79,20 @@ for (const key in array) {
 
 ## for-of
 
+ES6的语法。
+
 `for-of` 遍历的是value
 
-它可以用来遍历 `数组/字符串/map/set` 等拥有迭代器对象（iterator）的集合，因此不能遍历对象。
+它可以用来遍历 `数组/类数组/字符串/map/set/arguments` 等拥有迭代器对象（Symbol.iterator）的集合。
+
+对象不拥有迭代器属性
+
+```js
+Object.prototype[Symbol.iterator] // undefined
+```
+因此 `for-of` 不能遍历对象。
+
+`for-of` 简单的使用：
 
 ```js
 for(const val of [1,2]){

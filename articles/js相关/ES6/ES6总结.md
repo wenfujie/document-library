@@ -28,6 +28,7 @@
   - [Object.is](#objectis)
   - [Object.assign](#objectassign)
   - [keys() values() entries()](#keys-values-entries)
+- [iterator和for of循环](#iterator和for-of循环)
 - [Module](#module)
 - [新增数据类型 Symbol、Map、Set](#新增数据类型-symbolmapset)
   - [何时用 Object？何时用 Map？](#何时用-object何时用-map)
@@ -450,6 +451,52 @@ for (let [key, value] of entries(obj)) {
   console.log([key, value]); // ['a', 1], ['b', 2], ['c', 3]
 }
 ```
+
+## iterator和for of循环
+ES6实现iterator接口的目的是为了所有的数据结构提供统一的遍历机制：`for of` 循环。
+
+iterator接口的内部实现：
+```js
+function makeIterator(data) {
+  let index = 0;
+  return {
+    next() {
+      return index >= data.length
+        ? { value: data[index++], done: true }
+        : { value: data[index++], done: false };
+    },
+  };
+}
+
+const iterator = makeIterator([1, 2]);
+
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+```
+
+iterator接口默认部署在 `Symbol.iterator` 上，而 `Array/TypedArray/String/Map/Set/arguments/NodeList` 等数据结构都拥有该接口属性，只要拥有 `Symbol.iterator` 属性的数据接口都能被for of 遍历。
+
+```js
+let str = '123'
+let arr = ['a','b','c']
+let map = new Map([['name','jack ma'], ['job', 'drink tea']])
+
+for (const iterator of str) {
+  console.log(iterator);
+}
+// 1 2 3
+for (const iterator of arr) {
+  console.log(iterator);
+}
+// a b c
+for (const iterator of map) {
+  console.log(iterator);
+}
+// [ 'name', 'jack ma' ]  [ 'job', 'drink tea' ]
+```
+
+运行for of时，默认会去找数据的 `Symbol.iterator` 属性，该属性对应一个函数，执行后返回当前数据的遍历器对象。
 
 ## Module
 
