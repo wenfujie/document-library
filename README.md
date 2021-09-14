@@ -59,8 +59,8 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 2. [异步更新和nextTick](articles/Vue/%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E5%92%8CnextTick.md)
 3. [Vue和React横向对比](articles/Vue/Vue%E5%92%8CReact%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94.md)
 4. [Vue中key的作用](articles/Vue/Vue%E4%B8%ADkey%E7%9A%84%E4%BD%9C%E7%94%A8.md)
-5. [extend实现全局调用Dialog](articles/Vue/extend实现全局调用Dialog.md)
-6. [nuxt.js服务端渲染](articles/解决方案/nuxt.js服务端渲染.md)
+5. [nuxt.js服务端渲染](articles/解决方案/nuxt.js服务端渲染.md)
+6. [Vue高级特性](articles/Vue/Vue高级特性.md)
 
 ## Animation
 1. [css动画](articles/Animation/animation动画/animation.md)
