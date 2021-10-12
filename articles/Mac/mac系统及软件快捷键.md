@@ -1,11 +1,12 @@
 <!--
  * @Date: 2021-06-16 17:22:48
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-08-28 13:44:04
+ * @LastEditTime: 2021-10-12 17:23:50
  * @FilePath: /document-library/articles/Mac/mac系统及软件快捷键.md
 -->
 - [Mac 常用终端指令](#mac-常用终端指令)
 - [Mac vscode快捷键](#mac-vscode快捷键)
+- [Mac自带快捷键](#mac自带快捷键)
 
 ## Mac 常用终端指令
 | 命令名 | 功能描述 | 使用举例 |
@@ -51,3 +52,9 @@
 |  | ctrl + command + t | 自动生成方法备注 |
 
 可配置自动更新头部，可参考：[相关配置项](https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE%E5%AD%97%E6%AE%B5)
+
+## Mac自带快捷键
+
+**使用 shift 快速选中一段文字**
+
+在要复制的文字起始位置点击左键，按住 `shift` 键并在要复制的文字结束位置点击左键
