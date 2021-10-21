@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-10-12 15:35:59
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-10-12 17:56:28
+ * @LastEditTime: 2021-10-21 16:26:44
  * @FilePath: /document-library/articles/Vue/Vue组件.md
 -->
 
@@ -11,6 +11,9 @@
 - [slot](#slot)
 - [组件通讯](#组件通讯)
   - [provide / inject](#provide--inject)
+  - [手写 find component api](#手写-find-component-api)
+
+<!-- TODO:练习：1.实现form和form-item组件（第五节） -->
 
 ## props
 
@@ -108,6 +111,7 @@ props 使用数组写法不够严谨，更推荐使用对象的写法，对象�
 
 `provide / inject` 是 Vue.js 2.2.0 版本后新增的 API。
 
+>特性：实现跨级组件通讯。
 
 使用：
 ```js
@@ -127,7 +131,7 @@ export default {
 }
 ```
 
->注意：provide 和 inject 绑定并不是可响应的。
+>注意：provide 和 inject 绑定并不是可响应的。并且内部不允许存在与 `inject` 下的值同名的变量。官网建议不要在业务组件中使用，但如果是UI组件库可以使用。
 
 尝试用 `provide / inject` 来替代 Vuex：
 
@@ -172,4 +176,115 @@ export default {
     inject: ['app']
   }
 </script>
+```
+
+### 手写 find component api
+
+- 向上查找最近的一个组件
+- 向上查找多个组件
+- 向下查找最近的一个组件
+- 向下查找多个组件
+- 查找兄弟组件
+
+```js
+
+/**
+ * 向上查找组件，返回最近的一个组件实例
+ * @param {obj} context 调用的组件实例
+ * @param {str} comName 要找的组件名称
+ * @return {obj} 组件实例 或 null
+ */
+function findComponentUpward(context, comName) {
+  let parent = context.$parent;
+
+  while (parent) {
+    if (parent.$options.name === comName) {
+      return parent;
+    } else {
+      parent = parent.$parent;
+    }
+  }
+
+  return null;
+}
+
+/**
+ * 向上查找组件，返回所有匹配的实例
+ * @param {obj} context 调用的组件实例
+ * @param {str} comName 要找的组件名称
+ * @return {arr} 组件实例集合 或 []
+ */
+function findComponentsUpward(context, comName) {
+  let parent = context.$parent;
+  let components = [];
+
+  if (parent) {
+    if (parent.$options.name === comName) {
+      components.push(parent);
+    }
+    return components.concat(findComponentsUpward(parent, comName));
+  } else {
+    return [];
+  }
+}
+
+/**
+ * 向下查找组件，返回最近的一个组件实例
+ * @param {obj} context 调用的组件实例
+ * @param {str} comName 要找的组件名称
+ * @return {obj} 组件实例 或 null
+ */
+function findComponentDownward(context, comName) {
+  let childrens = context.$children;
+  let target = null;
+  if (!childrens || !childrens.length) return target;
+
+  for (let i = 0; i < childrens.length; i++) {
+    let child = childrens[i];
+    if (child.$options.name === comName) {
+      return child;
+    } else {
+      target = findComponentDownward(child, comName);
+      if (target) return target;
+    }
+  }
+  return target;
+}
+
+/**
+ * 向下查找组件，返回所有匹配的实例
+ * @param {obj} context 调用的组件实例
+ * @param {str} comName 要找的组件名称
+ * @return {arr} 组件实例集合 或 []
+ */
+function findComponentsDownward(context, comName) {
+  let childrens = context.$children;
+  let targets = [];
+  if (!childrens || !childrens.length) return targets;
+
+  for (let i = 0; i < childrens.length; i++) {
+    let child = childrens[i];
+    if (child.$options.name === comName) {
+      targets.push(child);
+    }
+    targets = targets.concat(findComponentsDownward(child, comName));
+  }
+  return targets;
+}
+
+/**
+ * 查找兄弟组件，返回所有匹配的实例
+ * @param {obj} context 调用的组件实例
+ * @param {str} comName 要找的组件名称
+ * @param {boolean} exceptSelf true表示剔除自身
+ * @return {arr} 组件实例集合 或 []
+ */
+function findBrothersComponents(context, comName, exceptSelf = true) {
+  let parent = context.$parent;
+  return parent.$children.filter((child) => {
+    if (child.$options.name === comName) {
+      return exceptSelf ? child._uid !== context._uid : true;
+    }
+  });
+}
 ```
