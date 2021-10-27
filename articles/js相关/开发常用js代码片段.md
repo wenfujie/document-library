@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-07-28 10:38:55
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-10-27 15:28:11
+ * @LastEditTime: 2021-10-27 15:30:16
  * @FilePath: /document-library/articles/js相关/开发常用js代码片段.md
 -->
 
@@ -913,6 +913,7 @@ shuffle([1, 2, 3]); // [2, 3, 1]
 
 ```js
 function getRandomInt(min, max){
+  此处 + 1 则会包含 max , 否则不包含
   return Math.floor(Math.random() * (max + 1 - min ) + min)
 }
 ```
