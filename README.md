@@ -61,6 +61,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 4. [Vue中key的作用](articles/Vue/Vue%E4%B8%ADkey%E7%9A%84%E4%BD%9C%E7%94%A8.md)
 5. [nuxt.js服务端渲染](articles/解决方案/nuxt.js服务端渲染.md)
 6. [Vue高级特性](articles/Vue/Vue高级特性.md)
+7. [Vue-Cli使用说明](articles/Vue/Vue-Cli使用说明.md)
 
 ## Animation
 1. [css动画](articles/Animation/animation动画/animation.md)
