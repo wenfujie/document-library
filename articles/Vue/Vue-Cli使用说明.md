@@ -1,19 +1,25 @@
 <!--
  * @Date: 2021-11-11 09:59:12
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-11-11 17:36:44
+ * @LastEditTime: 2021-11-12 11:17:33
  * @FilePath: /document-library/articles/Vue/Vue-Cli使用说明.md
 -->
 
-- [关闭 eslint 校验](#关闭-eslint-校验)
-- [使用 optimization.splitChunks 分包](#使用-optimizationsplitchunks-分包)
-  - [理解 chunks](#理解-chunks)
-  - [理解 maxInitialRequests](#理解-maxinitialrequests)
-  - [理解 maxAsyncRequests](#理解-maxasyncrequests)
-  - [理解 minChunks](#理解-minchunks)
-  - [理解 minSize](#理解-minsize)
-  - [理解 cache groups](#理解-cache-groups)
-  - [将组件库 element-ui 分割](#将组件库-element-ui-分割)
+- [前言](#前言)
+  - [关闭 eslint 校验](#关闭-eslint-校验)
+  - [打包多页面](#打包多页面)
+  - [devServer.proxy 解决本地开发跨域](#devserverproxy-解决本地开发跨域)
+  - [使用 optimization.splitChunks 分包](#使用-optimizationsplitchunks-分包)
+    - [理解 chunks](#理解-chunks)
+    - [理解 maxInitialRequests](#理解-maxinitialrequests)
+    - [理解 maxAsyncRequests](#理解-maxasyncrequests)
+    - [理解 minChunks](#理解-minchunks)
+    - [理解 minSize](#理解-minsize)
+    - [理解 cache groups](#理解-cache-groups)
+    - [将组件库 element-ui 分割](#将组件库-element-ui-分割)
+
+# 前言
+[Vue Cli 官方文档](https://cli.vuejs.org/zh/)写的很好了，本文仅提取比较重要的一些配置进行详细些的说明。
 
 ## 关闭 eslint 校验
 
@@ -22,6 +28,45 @@
 module.exports = {
   lintOnSave: false
 }
+```
+
+## 打包多页面
+```js
+// vue.config.js
+
+module.exports = {
+	...
+  pages: {
+    index: {
+      entry: "src/main.js",
+      template: "public/index.html",
+      filename: "index.html"
+    },
+    // 增加英文页面打包
+    en: {
+      entry: "public/common.js",
+      template: "public/en.html",
+      filename: "en.html"
+    }
+  }
+  ...
+};
+```
+
+## devServer.proxy 解决本地开发跨域
+
+```js
+module.exports = {
+  devServer: {
+    proxy: {
+      // 请求地址匹配到 "/activity/v1/" 时，替换host为 target
+      // 修改请求头的 host 为 target（仅服务器才能看到）
+      "/activity/v1/": {
+        target: "http://192.168.5.200:31282/",
+        changeOrigin: true
+      }
+    }
+  }
 ```
 
 ## 使用 optimization.splitChunks 分包
