@@ -78,6 +78,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 3. [搭建脚手架](articles/%E5%B7%A5%E5%85%B7/%E6%90%AD%E5%BB%BA%E8%84%9A%E6%89%8B%E6%9E%B6/%E6%90%AD%E5%BB%BA%E8%84%9A%E6%89%8B%E6%9E%B6.md)
 4. [git使用手册](articles/工具/git使用手册.md)
 5. [常用vscode插件](articles/工具/常用vscode插件.md)
+6. [上手 typescribe](https://github.com/wenfujie/play-ts)
 
 ## 测试
 1. [手摸手带你用js实现端到端自动化测试](articles/%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%89%8B%E6%91%B8%E6%89%8B%E5%B8%A6%E4%BD%A0%E7%94%A8js%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95.md)
