@@ -21,7 +21,7 @@
 将 markdown 语法的文件，解析为 html 文件，浏览器直接渲染 html 。
 
 
-> **markdown-it：**目前使用最广泛的markdown解析器工具
+> markdown-it：目前使用最广泛的markdown解析器工具
 
 ​
 
@@ -125,7 +125,7 @@ __rules__ ，用来放所有的 rule 对象，它的结构：
   alt: [ name2, name3 ] // 所属的职责链名称
 }]
 ```
-__cache__** ，**用来存放 rule chain （规则链路） 的信息，以此确定规则的调用顺序，它的结构：
+__cache__，用来存放 rule chain （规则链路） 的信息，以此确定规则的调用顺序，它的结构：
 ```javascript
 {
   职责链名称: [rule1.fn, rule2.fn, ...]
@@ -437,7 +437,7 @@ Renderer.prototype.renderToken = function renderToken(tokens, idx, options) {
   return result;
 };
 ```
-type 为 heading_open 和 heading_close 的 token 经过 renderToken 方法处理后得到：<h1></h1> 。
+type 为 heading_open 和 heading_close 的 token 经过 renderToken 方法处理后得到：\<h1>\</h1> 。
 ​
 
  inline token 下的 text token 会被内置 9 个规则中的 default_rules.text 去处理，得到文案 test​
@@ -506,7 +506,7 @@ MarkdownIt.prototype.use = function (plugin /*, params, ... */) {
 **看个为跳转链接添加 target="_blank" 属性的例子**
 ​
 
-**实现一：**修改 renderer 规则方式实现：
+**实现一：** 修改 renderer 规则方式实现：
 ```javascript
 // 如果覆盖，或者是对默认渲染器的代理，则记住老的渲染器。
 var defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
@@ -529,7 +529,7 @@ md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
 ```
 ​
 
-**实现二：**修改 parsing 规则
+**实现二：** 修改 parsing 规则
 ```javascript
 /** 
 	markdown-it-for-inline 包（为特定类型的 inline token 添加解析规则）
@@ -651,10 +651,12 @@ export const headerLink = makePermalink((slug, opts, anchorOpts, state, idx) => 
 
 ## 9. 总结
 
+本文通过一个简单的例子 `# test 转换 <h1>test</h1>` 并结合 `markdown-it` 的源码来讲解了 markdown 语法是怎么被一步步转换为 html 的标记语言的，并了解了如何通过插件去修改 `markdown-it` 的转换步骤，从而定制化最终得到的 html 标签。
 
-- 遇到问题多思考
-- 多了解内部实现原理，拓宽解决问题的思路
+如果对你有帮助，帮忙点个👍🏻喔！
 
-## 后语
+[markdown-it 使用 demo](https://github.com/wenfujie/document-library/blob/master/articles/MarkDown/demo/index.js)
 
-[markdown-it 使用demo](/articles/MarkDown/demo/index.js)
+参考：
+
+[markdown-it源码分析](https://juejin.cn/post/6844903921555619847) 系列文章
