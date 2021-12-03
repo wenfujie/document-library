@@ -39,7 +39,7 @@ const htmlStr = md.render('# test')
 [markdown-it 官网](https://github.com/markdown-it/markdown-it)
 
 
-下面来看看 markdown-it 是如何完成从 # test 到 <h1>test</h1> 的转换。
+下面来看看 markdown-it 是如何完成从 # test 到 \<h1>test\</h1> 的转换。
 ​
 
 ## 2. markdown-it 转换原理
@@ -447,7 +447,7 @@ default_rules.text = function (tokens, idx /*, options, env */) {
   return escapeHtml(tokens[idx].content);
 };
 ```
-token 流经过渲染规则处理后就变成了最终的HTML代码片段 <h1>test</h1>，至此 Markdown-It 工作任务就结束了。
+token 流经过渲染规则处理后就变成了最终的HTML代码片段 \<h1>test\</h1>，至此 Markdown-It 工作任务就结束了。
 ​
 
 ### 2.4 小结
