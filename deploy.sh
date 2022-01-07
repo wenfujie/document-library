@@ -2,7 +2,7 @@
 ###
  # @Date: 2022-01-07 16:15:13
  # @LastEditors: wenfujie
- # @LastEditTime: 2022-01-07 16:19:12
+ # @LastEditTime: 2022-01-07 16:21:12
  # @FilePath: /document-library/deploy.sh
 ### 
 
@@ -13,7 +13,7 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:wenfujie/document-library.git master:gh-pages
-git push -f git@gitee.com:mozhata/document-library.git master:gh-pages
+git push -f git@github.com:wenfujie/document-library.git master
+git push -f git@gitee.com:mozhata/document-library.git master
 
 cd -
