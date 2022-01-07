@@ -80,6 +80,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 5. [常用vscode插件](articles/工具/常用vscode插件.md)
 6. [上手 typescribe](https://github.com/wenfujie/play-ts)
 7. [Docker使用说明](articles/工具/Docker使用说明.md)
+7. [Github正则教程](articles/工具/Github正则教程.md)
 
 ## 测试
 1. [手摸手带你用js实现端到端自动化测试](articles/%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%89%8B%E6%91%B8%E6%89%8B%E5%B8%A6%E4%BD%A0%E7%94%A8js%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95.md)
