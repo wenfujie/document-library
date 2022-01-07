@@ -4,6 +4,7 @@
   "description": "wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` 的经验文档。",
   "main": "index.js",
   "scripts": {
+    "push-code": "sh deploy.sh",
     "build": "cd ./articles/js相关/Webpack/code && npx webpack --config webpack.config.js",
     "syncToGhpageBranch": "git push origin master:gh-pages"
   },
