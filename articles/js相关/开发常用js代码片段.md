@@ -523,6 +523,22 @@ function loadStyle(url) {
 loadStyle("./styles.css");
 ```
 
+### 金额千分位分割
+
+```js
+function numFormat(num){
+  var res=num.toString().replace(/\d+/, function(n){ // 先提取整数部分
+       return n.replace(/(\d)(?=(\d{3})+$)/g,function($1){
+          return $1+",";
+        });
+  })
+  return res;
+}
+numFormat(32131.232) // '32,131.232'
+```
+
+
+
 ## DOM 操作
 
 ### 元素添加、移除、切换类
