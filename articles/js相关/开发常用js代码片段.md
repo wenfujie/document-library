@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-07-28 10:38:55
  * @LastEditors: wenfujie
- * @LastEditTime: 2021-10-27 15:30:16
+ * @LastEditTime: 2022-01-13 16:51:00
  * @FilePath: /document-library/articles/js相关/开发常用js代码片段.md
 -->
 
@@ -11,7 +11,7 @@
     - [生成 UUID](#生成-uuid)
     - [解析 cookie](#解析-cookie)
     - [获取网址参数](#获取网址参数)
-    - [清空页面url上的参数](#清空页面url上的参数)
+    - [清空页面 url 上的参数](#清空页面-url-上的参数)
     - [复制到剪切板](#复制到剪切板)
     - [简版 jquery 选择器](#简版-jquery-选择器)
     - [多线程执行函数](#多线程执行函数)
@@ -29,6 +29,7 @@
     - [优雅的处理图片加载异常](#优雅的处理图片加载异常)
     - [获取页面视口大小](#获取页面视口大小)
     - [动态加载脚本、样式](#动态加载脚本样式)
+    - [金额千分位分割](#金额千分位分割)
   - [DOM 操作](#dom-操作)
     - [元素添加、移除、切换类](#元素添加移除切换类)
     - [移除一个元素](#移除一个元素)
@@ -36,6 +37,7 @@
     - [获取一个元素下所有图片地址](#获取一个元素下所有图片地址)
     - [创建字符串片段的元素](#创建字符串片段的元素)
     - [主动触发 dom 事件](#主动触发-dom-事件)
+    - [判断元素是否处于首屏](#判断元素是否处于首屏)
   - [Date](#date)
     - [获取月份的总天数](#获取月份的总天数)
     - [将日期转换为 yyyy-MM-dd](#将日期转换为-yyyy-mm-dd)
@@ -132,13 +134,15 @@ getURLParameters("http://url.com/page?name=Adam&surname=Smith");
 // {name: 'Adam', surname: 'Smith'}
 ```
 
-### 清空页面url上的参数
+### 清空页面 url 上的参数
+
 将地址上的参数去除，该方法不会触发页面重新加载。
+
 ```js
-  var url = window.location.href
-  var valiable = url.split('?')[0]
-  // 第二个参数表示title，0不改变title
-  window.history.replaceState({}, 0, valiable)
+var url = window.location.href;
+var valiable = url.split("?")[0];
+// 第二个参数表示title，0不改变title
+window.history.replaceState({}, 0, valiable);
 ```
 
 ### 复制到剪切板
@@ -526,18 +530,17 @@ loadStyle("./styles.css");
 ### 金额千分位分割
 
 ```js
-function numFormat(num){
-  var res=num.toString().replace(/\d+/, function(n){ // 先提取整数部分
-       return n.replace(/(\d)(?=(\d{3})+$)/g,function($1){
-          return $1+",";
-        });
-  })
+function numFormat(num) {
+  var res = num.toString().replace(/\d+/, function (n) {
+    // 先提取整数部分
+    return n.replace(/(\d)(?=(\d{3})+$)/g, function ($1) {
+      return $1 + ",";
+    });
+  });
   return res;
 }
-numFormat(32131.232) // '32,131.232'
+numFormat(32131.232); // '32,131.232'
 ```
-
-
 
 ## DOM 操作
 
@@ -615,6 +618,21 @@ const triggerEvent = (el, eventType, detail) =>
 // Examples
 triggerEvent(document.getElementById("myId"), "click");
 triggerEvent(document.getElementById("myId"), "click", { username: "bob" });
+```
+
+### 判断元素是否处于首屏
+
+```js
+const inViewport = (el) => {
+  const rect = el.getBoundingClientRect();
+
+  return (
+    rect.top > 0 &&
+    rect.bottom < window.innerHeight &&
+    rect.left > 0 &&
+    rect.right < window.innerWidth
+  );
+};
 ```
 
 ## Date
