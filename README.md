@@ -99,6 +99,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 ## 浏览器
 1. [Chrome开发者工具你不知道的操作](articles/浏览器/谷歌浏览器开发者工具.md)
 2. [BOM](articles/浏览器/BOM.md)
+3. [V8引擎的垃圾回收](articles/浏览器/V8引擎的垃圾回收.md)
 
 ## 前端面试知识点
 1. [安全问题：csrf和xss](articles/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9ACSRF%E5%92%8CXSS.md)
