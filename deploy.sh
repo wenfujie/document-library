@@ -2,7 +2,7 @@
 ###
  # @Date: 2022-01-07 16:15:13
  # @LastEditors: wenfujie
- # @LastEditTime: 2022-01-13 16:52:42
+ # @LastEditTime: 2022-01-14 15:23:46
  # @FilePath: /document-library/deploy.sh
  # @describe: 该脚本用于将代码同时推送到 github、gitee
  # @use: 运行指令 sh deploy.sh
@@ -13,7 +13,7 @@ set -e
 
 git init
 git add -A
-git commit -m '编辑文章【articles/js相关/开发常用js代码片段.md】'
+git commit -m '新增文章【articles/开发相关知识/内容安全策略(CSP).md】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
