@@ -36,36 +36,36 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## HTML
 
-1. [html 面试题](articles/html/html%E9%9D%A2%E8%AF%95%E9%A2%98.md)
+1. [html 面试题](articles/html/html面试题.md)
 2. [H5 开发 FAQ](articles/html/H5开发FAQ.md)
 
 ## Css
 
-1. [css 高频面试题](articles/css%E7%9B%B8%E5%85%B3/css%E9%AB%98%E9%A2%91%E9%9D%A2%E8%AF%95%E9%A2%98.md)
-2. [自适应和响应式布局方案](articles/css%E7%9B%B8%E5%85%B3/%E8%87%AA%E9%80%82%E5%BA%94%E5%92%8C%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80.md)
+1. [css 高频面试题](articles/css相关/css高频面试题.md)
+2. [自适应和响应式布局方案](articles/css相关/自适应和响应式布局.md)
 3. [有趣的 css](articles/css相关/有趣的css.md)
 
 ## JS
 
-1. [闭包](articles/js%E7%9B%B8%E5%85%B3/%E9%97%AD%E5%8C%85%EF%BC%8C%E6%88%91%E5%90%83%E5%AE%9A%E4%BA%86%E8%80%B6%E7%A8%A3%E9%83%BD%E6%8C%A1%E4%B8%8D%E4%BD%8F%EF%BC%8C%E6%88%91%E8%AF%B4%E7%9A%84.md)
+1. [闭包](articles/js相关/闭包，我吃定了耶稣都挡不住，我说的.md)
 2. [JS 中的几种循环](articles/js相关/基础/JS的循环.md)
-3. [函数式编程](articles/js%E7%9B%B8%E5%85%B3/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.md)
-4. [防抖与节流](articles/js%E7%9B%B8%E5%85%B3/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/index.md)
-5. [数据类型判断](articles/js%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD.md)
-6. [数组扁平化](articles/js%E7%9B%B8%E5%85%B3/Array%E7%9B%B8%E5%85%B3/%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96.md)
-7. [对象的拷贝](articles/js%E7%9B%B8%E5%85%B3/Object%E7%9B%B8%E5%85%B3/%E5%AF%B9%E8%B1%A1%E6%8B%B7%E8%B4%9D.md)
-8. [原型以及原型链](articles/js%E7%9B%B8%E5%85%B3/%E5%9F%BA%E7%A1%80/%E5%8E%9F%E5%9E%8B%E4%BB%A5%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
-9. [构造函数和类](articles/js%E7%9B%B8%E5%85%B3/%E7%B1%BB/%E6%90%9E%E6%87%82js%E4%B8%AD%E7%9A%84%E7%B1%BB.md)
+3. [函数式编程](articles/js相关/函数式编程/函数式编程.md)
+4. [防抖与节流](articles/js相关/防抖与节流/index.md)
+5. [数据类型判断](articles/js相关/数据类型/js数据类型判断.md)
+6. [数组扁平化](articles/js相关/Array相关/数组扁平化.md)
+7. [对象的拷贝](articles/js相关/Object相关/对象拷贝.md)
+8. [原型以及原型链](articles/js相关/基础/原型以及原型链.md)
+9. [构造函数和类](articles/js相关/类/搞懂js中的类.md)
 10. [ES6 入门教程](articles/js相关/ES6/ES6总结.md)
-11. [Promise 详细介绍](articles/js%E7%9B%B8%E5%85%B3/Promise/Promise%E8%AF%A6%E8%A7%A3.md)
+11. [Promise 详细介绍](articles/js相关/Promise/Promise详解.md)
 12. [开发常用 js 代码片段](articles/js相关/开发常用js代码片段.md)
 
 ## Vue
 
-1. [Vue 源码解读](articles/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.md)
-2. [异步更新和 nextTick](articles/Vue/%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E5%92%8CnextTick.md)
-3. [Vue 和 React 横向对比](articles/Vue/Vue%E5%92%8CReact%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94.md)
-4. [Vue 中 key 的作用](articles/Vue/Vue%E4%B8%ADkey%E7%9A%84%E4%BD%9C%E7%94%A8.md)
+1. [Vue 源码解读](articles/Vue/Vue源码解读.md)
+2. [异步更新和 nextTick](articles/Vue/异步更新和nextTick.md)
+3. [Vue 和 React 横向对比](articles/Vue/Vue和React横向对比.md)
+4. [Vue 中 key 的作用](articles/Vue/Vue中key的作用.md)
 5. [nuxt.js 服务端渲染](articles/解决方案/nuxt.js服务端渲染.md)
 6. [Vue 高级特性](articles/Vue/Vue高级特性.md)
 7. [Vue-Cli 使用说明](articles/Vue/Vue-Cli使用说明.md)
@@ -88,9 +88,9 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 工具
 
-1. [npm 详细使用说明](articles/%E5%B7%A5%E5%85%B7/npm%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)
-2. [Webpack 上手](articles/js%E7%9B%B8%E5%85%B3/Webpack/webpack%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%8F%8A%E4%B8%8A%E6%89%8B.md)
-3. [搭建脚手架](articles/%E5%B7%A5%E5%85%B7/%E6%90%AD%E5%BB%BA%E8%84%9A%E6%89%8B%E6%9E%B6/%E6%90%AD%E5%BB%BA%E8%84%9A%E6%89%8B%E6%9E%B6.md)
+1. [npm 详细使用说明](articles/工具/npm详细使用说明.md)
+2. [Webpack 上手](articles/js相关/Webpack/webpack核心原理及上手.md)
+3. [搭建脚手架](articles/工具/搭建脚手架/搭建脚手架.md)
 4. [git 使用手册](articles/工具/git使用手册.md)
 5. [常用 vscode 插件](articles/工具/常用vscode插件.md)
 6. [上手 typescribe](https://github.com/wenfujie/play-ts)
@@ -99,15 +99,15 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 测试
 
-1. [手摸手带你用 js 实现端到端自动化测试](articles/%E6%B5%8B%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%89%8B%E6%91%B8%E6%89%8B%E5%B8%A6%E4%BD%A0%E7%94%A8js%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95.md)
+1. [手摸手带你用 js 实现端到端自动化测试](articles/测试相关/手摸手带你用js实现端到端自动化测试.md)
 
 ## 业务 Demo
 
 1. [各种业务解决方案](README.解决方案.md)
-2. [Node 自动化部署](articles/js%E7%9B%B8%E5%85%B3/node%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2.md)
-3. [打开系统选择文件弹窗](articles/js%E7%9B%B8%E5%85%B3/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97/%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%BC%B9%E7%AA%97.md)
-4. [h5 拖拽介绍](articles/js%E7%9B%B8%E5%85%B3/h5%E6%8B%96%E6%8B%BD/drag-drop.md)
-5. [js 实现浏览器下打包压缩多个文件并下载](articles/js%E7%9B%B8%E5%85%B3/js%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85.md)
+2. [Node 自动化部署](articles/js相关/node自动化部署.md)
+3. [打开系统选择文件弹窗](articles/js相关/打开系统选择文件弹窗/打开系统选择文件弹窗.md)
+4. [h5 拖拽介绍](articles/js相关/h5拖拽/drag-drop.md)
+5. [js 实现浏览器下打包压缩多个文件并下载](articles/js相关/js浏览器自动打包.md)
 
 ## 浏览器
 
@@ -117,20 +117,20 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 前端面试知识点
 
-1. [安全问题：csrf 和 xss](articles/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9ACSRF%E5%92%8CXSS.md)
-2. [面试资源汇总](articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB.md)
-3. [DOM 事件总结](articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/DOM%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BB%93.md)
-4. [盒模型及 BFC](articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8F%8ABFC.md)
-5. [http 协议](articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/http%E5%8D%8F%E8%AE%AE.md)
-6. [跨域资源共享 cors 详解](articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%ABcors%E8%AF%A6%E8%A7%A3.md)
+1. [安全问题：csrf 和 xss](articles/开发相关知识/安全问题：CSRF和XSS.md)
+2. [面试资源汇总](articles/面试知识/前端面试资源汇总.md)
+3. [DOM 事件总结](articles/面试知识/DOM事件总结.md)
+4. [盒模型及 BFC](articles/面试知识/盒模型及BFC.md)
+5. [http 协议](articles/面试知识/http协议.md)
+6. [跨域资源共享 cors 详解](articles/面试知识/跨域资源共享cors详解.md)
 7. [算法深入](articles/开发相关知识/算法深入.md)
-8. [浏览器渲染机制](articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6.md)
-9. [性能优化](articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
-10. [前端权限管理](articles/%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%89%8D%E7%AB%AF%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6.md)
-11. [事件循环 event-loop](articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AFevent-loop.md)
-12. [webpack 热更新原理](articles/js%E7%9B%B8%E5%85%B3/Webpack/webpack%E7%83%AD%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86.md)
-13. [跨域解决方案](articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.md)
-14. [跨平台解决方案](articles/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.md)
+8. [浏览器渲染机制](articles/面试知识/浏览器渲染机制.md)
+9. [性能优化](articles/面试知识/性能优化.md)
+10. [前端权限管理](articles/开发相关知识/前端权限控制.md)
+11. [事件循环 event-loop](articles/面试知识/事件循环event-loop.md)
+12. [webpack 热更新原理](articles/js相关/Webpack/webpack热更新原理.md)
+13. [跨域解决方案](articles/面试知识/跨域解决方案.md)
+14. [跨平台解决方案](articles/面试知识/跨平台解决方案.md)
 15. [设计模式](articles/开发相关知识/设计模式.md)
 16. [为什么 0.1 + 0.2 !== 0.3](articles/面试知识/0.1+0.2!==0.3.md)
 
@@ -147,11 +147,11 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 书籍
 
-1. [刻意练习](articles/%E4%B9%A6%E7%B1%8D/%E5%88%BB%E6%84%8F%E7%BB%83%E4%B9%A0.md)
+1. [刻意练习](articles/书籍/刻意练习.md)
 
 ## 其他
 
-1. [MarkDown 语法](articles/MarkDown/MarkDown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95.md#%E5%88%86%E5%89%B2%E7%BA%BF)
+1. [MarkDown 语法](articles/MarkDown/MarkDown常用语法.md)
 2. [浅谈 Markdown 转换 html](articles/MarkDown/浅谈Markdown转换html.md)
 3. [Mac 终端指令](articles/Mac/mac系统及软件快捷键.md)
 
