@@ -9,7 +9,7 @@
     - [getCurrentInstance 获取实例](#getcurrentinstance-获取实例)
     - [provide / inject](#provide--inject)
   - [JSX](#jsx)
- 
+
 
 ## 语法
 
@@ -370,6 +370,81 @@ export default {
 
 
 注意：**建议尽可能将对响应式 property 的所有修改限制在定义 provide 的组件内部，父组件可暴露方法以供子组件修改属性。**
+
+
+
+#### props
+
+```js
+<script>
+export default {
+  props: {
+    title: String,
+    likes: Number,
+    isPublished: Boolean,
+    commentIds: Array,
+    author: Object,
+    callback: Function,
+    contactsPromise: Promise // 或任何其他构造函数
+	},
+    setup(props){
+      console.log(props.title)
+    }
+}
+</script>
+
+```
+
+
+
+#### emits
+
+```js
+<template>
+  <div>
+    <p>{{ text }}</p>
+		// 全局api $emit 触发
+    <button v-on:click="$emit('accepted')">OK</button>
+  </div>
+</template>
+<script>
+  export default {
+    props: ['text'],
+    emits: ['accepted'],
+    setup(props, { emit }){
+      emit('accepted')
+    }
+  }
+</script>
+```
+
+
+
+#### 过滤器
+
+已移除，建议使用 computed。
+
+
+
+全局过滤器已被全局属性取而代之：
+
+```js
+// main.js
+const app = createApp(App)
+
+app.config.globalProperties.$filters = {
+  currencyUSD(value) {
+    return '$' + value
+  }
+}
+```
+
+```js
+<template>
+  <h1>Bank Account Balance</h1>
+  <p>{{ $filters.currencyUSD(accountBalance) }}</p>
+</template>
+```
 
 
 
