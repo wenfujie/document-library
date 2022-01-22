@@ -21,7 +21,7 @@
   - [其他](#其他)
     - [JSX](#jsx)
 
- 
+
 ## 语法
 
 ### 组合式API
@@ -48,6 +48,35 @@ export default {
   }
 }
 ```
+
+使用 `expose`暴露属性：
+
+使用渲染函数无法暴露属性时，可以用 `expose`来暴露属性
+
+```js
+// MyBook.vue
+
+import { h } from 'vue'
+
+export default {
+  setup(props, { expose }) {
+    const reset = () => {
+      // 某些重置逻辑
+    }
+
+    // expose 只能被调用一次。
+    // 如果需要暴露多个 property，则它们
+    // 必须全部包含在传递给 expose 的对象中。
+    expose({
+      reset
+    })
+
+    return () => h('div')
+  }
+}
+```
+
+
 
 #### 响应式
 
