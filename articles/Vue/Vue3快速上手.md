@@ -8,9 +8,20 @@
     - [computed](#computed)
     - [getCurrentInstance 获取实例](#getcurrentinstance-获取实例)
     - [provide / inject](#provide--inject)
-  - [JSX](#jsx)
+    - [props](#props)
+    - [emits](#emits)
+    - [$refs](#refs)
+    - [$nextTick](#nexttick)
+    - [directive](#directive)
+    - [v-model](#v-model)
+  - [已移除](#已移除)
+    - [过滤器](#过滤器)
+    - [$children](#children)
+    - [$listeners](#listeners)
+  - [其他](#其他)
+    - [JSX](#jsx)
 
-
+ 
 ## 语法
 
 ### 组合式API
@@ -420,6 +431,164 @@ export default {
 
 
 
+#### $refs
+
+```js
+<template>
+    <div ref="cptRef">...</div>
+</template>
+<script>
+import { ref, onMounted } from 'vue';
+export default {
+    setup() {
+        const cptRef = ref(null);
+
+      	onMounted(()=>{
+          // 可通过cptRef.value获取组件上的属性或方法
+          console.log(cptRef.value)
+        })
+        return {
+            cptRef
+        }
+    }
+}
+</script>
+```
+
+V-for 时
+
+```js
+<div v-for="item in list" :ref="setItemRef"></div>
+
+import { onBeforeUpdate, onUpdated } from 'vue'
+
+export default {
+  setup() {
+    let itemRefs = []
+    const setItemRef = el => {
+      if (el) {
+        itemRefs.push(el)
+      }
+    }
+    onBeforeUpdate(() => {
+      itemRefs = []
+    })
+    onUpdated(() => {
+      console.log(itemRefs)
+    })
+    return {
+      setItemRef
+    }
+  }
+}
+```
+
+
+
+#### $nextTick
+
+```js
+import { nextTick } from 'vue'
+
+nextTick(() => {
+  // 一些和 DOM 有关的东西
+})
+```
+
+或
+
+```js
+const fn = async ()=>{
+  await nextTick()
+  // 一些和 DOM 有关的东西
+}
+```
+
+
+
+#### directive
+
+新 api
+
+```js
+const MyDirective = {
+  created(el, binding, vnode, prevVnode) {}, // 新增
+  beforeMount() {},
+  mounted() {},
+  beforeUpdate() {}, // 新增
+  updated() {},
+  beforeUnmount() {}, // 新增
+  unmounted() {}
+}
+```
+
+使用
+
+```html
+<p v-highlight="'yellow'">以亮黄色高亮显示此文本</p>
+```
+
+```js
+const app = Vue.createApp({})
+
+app.directive('highlight', {
+  beforeMount(el, binding, vnode) {
+    el.style.background = binding.value
+  }
+})
+```
+
+如何获取组件实例？
+
+```js
+mounted(el, binding, vnode) {
+  const vm = binding.instance
+}
+```
+
+
+
+#### v-model
+
+`v-model` prop 和事件默认名称已更改：
+
+- prop：`value` -> `modelValue`；
+- 事件：`input` -> `update:modelValue`；
+
+```js
+<ChildComponent v-model="pageTitle" />
+
+<!-- 是以下的简写: -->
+
+<ChildComponent
+  :modelValue="pageTitle"
+  @update:modelValue="pageTitle = $event"
+/>
+```
+
+
+
+- **新增**：现在可以在同一个组件上使用多个 `v-model` 绑定；
+- **新增**：现在可以自定义 `v-model` 修饰符。
+
+```js
+<ChildComponent v-model:title="pageTitle" v-model:content="pageContent" />
+
+<!-- 是以下的简写： -->
+
+<ChildComponent
+  :title="pageTitle"
+  @update:title="pageTitle = $event"
+  :content="pageContent"
+  @update:content="pageContent = $event"
+/>
+```
+
+
+
+
+### 已移除
+
 #### 过滤器
 
 已移除，建议使用 computed。
@@ -446,8 +615,39 @@ app.config.globalProperties.$filters = {
 </template>
 ```
 
+#### $children
+
+已移除，建议使用 $refs 替代。
+
+#### $listeners
+
+已移除。
+
+在 Vue 3 的虚拟 DOM 中，事件监听器现在只是以 `on` 为前缀的 attribute，这样它就成为了 `$attrs` 对象的一部分，因此 `$listeners` 被移除了。
 
 
-### JSX
+
+所以 Vue3 中 `v-bind="$attrs"` 即 Vue2 的 `v-bind="$attrs" v-on="$listeners"`效果。
+
+```js
+<template>
+  <label>
+    <input type="text" v-bind="$attrs" />
+  </label>
+</template>
+<script>
+export default {
+  inheritAttrs: false
+}
+</script>
+```
+
+
+
+### 其他
+
+#### JSX
+
+Vue3 与 JSX 更配喔 😯 。
 
 [JSX babel -  github](https://github.com/vuejs/babel-plugin-jsx#installation)
