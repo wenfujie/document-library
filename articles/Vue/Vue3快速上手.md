@@ -21,6 +21,7 @@
   - [其他](#其他)
     - [资源](#资源)
     - [JSX](#jsx)
+    - [注意事项](#注意事项)
 
  
 ## 语法
@@ -698,3 +699,9 @@ export default {
 Vue3 与 JSX 更配喔 😯 。
 
 [JSX babel -  github](https://github.com/vuejs/babel-plugin-jsx#installation)
+
+
+
+#### 注意事项
+
+1. `<script setup></script>` 语法糖中不能使用 `render函数` 。
