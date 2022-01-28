@@ -23,7 +23,7 @@
     - [JSX](#jsx)
     - [注意事项](#注意事项)
 
- 
+
 ## 语法
 
 ### 组合式API
@@ -696,9 +696,82 @@ export default {
 
 #### JSX
 
-Vue3 与 JSX 更配喔 😯 。
+[JSX github 官网](https://github.com/vuejs/babel-plugin-jsx#installation)
 
-[JSX babel -  github](https://github.com/vuejs/babel-plugin-jsx#installation)
+**v-if、v-for**
+
+```js
+    const data = [{ id: 1, content: '静夜诗' }]
+    return () => {
+      if (data.length) {
+        const liVnode = data.map((item) => <li>{item.content}</li>)
+        return <ul>{liVnode}</ul>
+      } else {
+        return <p>暂无数据</p>
+      }
+    }
+```
+
+**css**
+
+```js
+    const isLoading = ref(true)
+    return () => (
+      <div class={{ selected: isLoading.value }} style={{ color: 'red' }}>
+        css
+      </div>
+    )
+```
+
+**v-show**
+
+```js
+    const isShow = ref(true)
+    return () => <div v-show={isShow.value}>v-show</div>
+```
+
+**v-model**
+
+```js
+    const val = ref('hello')
+    return () => <input v-model={val} />
+    return () => <input v-model:argument={val} />
+```
+
+**插槽**
+
+```js
+    return () => (
+      <div>
+        <div>{slots.default() /* 默认插槽 */}</div>
+        <div>{slots.title() /* 具名插槽 */}</div>
+      </div>
+    )
+```
+
+```js
+    // use
+		const slotObj = {
+      default: () => <div>A</div>,
+      title: () => <span>B</span>
+    }
+    return () => (
+      <Demo v-slots={slotObj}>
+        // 默认插槽亦可写在此处 <div>A</div>
+      </Demo>
+    )
+```
+
+接收 **emit**
+
+```js
+    const fn = () => {}
+    return <demo onCustomEvent={fn}></demo>
+```
+
+```js
+		emit('customEvent')
+```
 
 
 
