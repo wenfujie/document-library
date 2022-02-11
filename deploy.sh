@@ -13,7 +13,7 @@ set -e
 
 git init
 git add -A
-git commit -m '编辑文章【articles/Vue/Vue3快速上手.md】，丰富【jsx】模块'
+git commit -m '编辑文章【articles/js相关/ES6/ES6总结.md】，添加文章【articles/书籍/亲密关系.md】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
