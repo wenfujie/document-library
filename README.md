@@ -94,7 +94,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 3. [搭建脚手架](articles/工具/搭建脚手架/搭建脚手架.md)
 4. [git 使用手册](articles/工具/git使用手册.md)
 5. [常用 vscode 插件](articles/工具/常用vscode插件.md)
-6. [上手 typescribe](https://github.com/wenfujie/play-ts)
+6. [上手 typescribe](https://github.com/wenfujie/study/tree/main/play-ts)
 7. [Docker 使用说明](articles/工具/Docker使用说明.md)
 8. [Github 正则教程](https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md)
 
