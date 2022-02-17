@@ -100,6 +100,17 @@ const UUIDGeneratorBrowser = () =>
 UUIDGeneratorBrowser(); // '7982fcfe-5721-4632-bede-6000885be57d'
 ```
 
+
+
+其他实现方式：使用npm包 [uuid](https://github.com/uuidjs/uuid) 
+
+```js
+import { v4 as uuidv4 } from 'uuid';
+uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
+```
+
+
+
 ### 解析 cookie
 
 ```js
