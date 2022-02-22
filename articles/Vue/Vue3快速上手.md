@@ -1,5 +1,5 @@
 - [语法](#语法)
-  - [组合式API](#组合式api)
+  - [组合式 API](#组合式-api)
     - [setup](#setup)
     - [响应式](#响应式)
     - [生命周期](#生命周期)
@@ -23,32 +23,31 @@
     - [JSX](#jsx)
     - [注意事项](#注意事项)
 
-
 ## 语法
 
-### 组合式API
+### 组合式 API
 
 #### setup
 
-`setup` 的调用发生在 `data` 、`computed`  或 `methods` 被解析之前，所以它们无法在 `setup` 中被获取。
+`setup` 的调用发生在 `data` 、`computed` 或 `methods` 被解析之前，所以它们无法在 `setup` 中被获取。
 
 ```js
-import { fetchUserRepositories } from '@/api/repositories'
-import { ref } from 'vue'
+import { fetchUserRepositories } from "@/api/repositories";
+import { ref } from "vue";
 
 export default {
-  setup (props) {
-    const repositories = ref([])
+  setup(props) {
+    const repositories = ref([]);
     const getUserRepositories = async () => {
-      repositories.value = await fetchUserRepositories(props.user)
-    }
+      repositories.value = await fetchUserRepositories(props.user);
+    };
 
     return {
       repositories,
       getUserRepositories // 返回的函数与方法的行为相同
-    }
+    };
   }
-}
+};
 ```
 
 使用 `expose`暴露属性：
@@ -58,47 +57,46 @@ export default {
 ```js
 // MyBook.vue
 
-import { h } from 'vue'
+import { h } from "vue";
 
 export default {
   setup(props, { expose }) {
     const reset = () => {
       // 某些重置逻辑
-    }
+    };
 
     // expose 只能被调用一次。
     // 如果需要暴露多个 property，则它们
     // 必须全部包含在传递给 expose 的对象中。
     expose({
       reset
-    })
+    });
 
-    return () => h('div')
+    return () => h("div");
   }
-}
+};
 ```
-
-
 
 #### 响应式
 
-`ref` 处理简单属性
+`ref` 处理简单属性和数组
 
 ```js
-const count = ref(0)
-console.log(count.value) // 0
+const count = ref(0);
+console.log(count.value); // 0
+
+const arr = ref([]);
+arr.value = [1, 2, 3];
 ```
 
-``reactive``处理引用属性
+`reactive` 处理对象
 
 ```js
-const obj = reactive({ count: 0 })
+const obj = reactive({ count: 0 });
 
-obj.count++
-console.log(obj.count) // 3
+obj.count++;
+console.log(obj.count); // 3
 ```
-
-
 
 #### 生命周期
 
@@ -128,44 +126,42 @@ setup (props) {
 }
 ```
 
-
-
 #### watch
 
 ```js
-import { ref, watch } from 'vue'
+import { ref, watch } from "vue";
 
-const counter = ref(0)
+const counter = ref(0);
 watch(counter, (newValue, oldValue) => {
-  console.log('The new counter value is: ' + counter.value)
-})
+  console.log("The new counter value is: " + counter.value);
+});
 ```
 
-**监听getter**
+**监听 getter**
 
 ```js
 // 侦听一个 getter
-const state = reactive({ count: 0 })
+const state = reactive({ count: 0 });
 watch(
   () => state.count,
   (count, prevCount) => {
     /* ... */
   }
-)
+);
 ```
 
 **监听多个数据**
 
 ```js
-const firstName = ref('')
-const lastName = ref('')
+const firstName = ref("");
+const lastName = ref("");
 
 watch([firstName, lastName], (newValues, prevValues) => {
-  console.log(newValues, prevValues)
-})
+  console.log(newValues, prevValues);
+});
 
-firstName.value = 'John' // logs: ["John", ""] ["", ""]
-lastName.value = 'Smith' // logs: ["John", "Smith"] ["John", ""]
+firstName.value = "John"; // logs: ["John", ""] ["", ""]
+lastName.value = "Smith"; // logs: ["John", "Smith"] ["John", ""]
 ```
 
 **监听数组、对象**
@@ -173,36 +169,34 @@ lastName.value = 'Smith' // logs: ["John", "Smith"] ["John", ""]
 数组
 
 ```js
-const numbers = reactive([1, 2, 3, 4])
+const numbers = reactive([1, 2, 3, 4]);
 
 watch(
   () => [...numbers],
   (numbers, prevNumbers) => {
-    console.log(numbers, prevNumbers)
+    console.log(numbers, prevNumbers);
   }
-)
+);
 
-numbers.push(5) // logs: [1,2,3,4,5] [1,2,3,4]
+numbers.push(5); // logs: [1,2,3,4,5] [1,2,3,4]
 ```
 
 对象
 
 ```js
-const state = reactive({ 
+const state = reactive({
   id: 1,
-  attributes: { 
-    name: '',
+  attributes: {
+    name: ""
   }
-})
+});
 
 watch(
   () => state,
-  (state, prevState) => {
-		
-  }
-)
+  (state, prevState) => {}
+);
 
-state.id = 'Alex'
+state.id = "Alex";
 ```
 
 深度监听 deep
@@ -211,13 +205,11 @@ state.id = 'Alex'
 watch(
   () => state,
   (state, prevState) => {
-    console.log('deep', state.attributes.name, prevState.attributes.name)
+    console.log("deep", state.attributes.name, prevState.attributes.name);
   },
   { deep: true }
-)
+);
 ```
-
-
 
 #### watchEffect
 
@@ -231,38 +223,38 @@ watch(
 **注册**
 
 ```js
-const count = ref(0)
+const count = ref(0);
 
-watchEffect(() => console.log(count.value))
+watchEffect(() => console.log(count.value));
 // -> logs 0
 
 setTimeout(() => {
-  count.value++
+  count.value++;
   // -> logs 1
-}, 100)
+}, 100);
 ```
 
 **销毁**
 
 ```js
-const stop = watchEffect(() => {})
+const stop = watchEffect(() => {});
 
 // later
-stop()
+stop();
 ```
 
 **销毁回调**
 
 ```js
-const data = ref(null)
-watchEffect(async onInvalidate => {
+const data = ref(null);
+watchEffect(async (onInvalidate) => {
   // 我们在Promise解析之前注册清除函数
   onInvalidate(() => {
-		data.value = null
-  }) 
+    data.value = null;
+  });
 
-  data.value = await fetchData(props.id)
-})
+  data.value = await fetchData(props.id);
+});
 ```
 
 **触发时机**
@@ -277,72 +269,64 @@ watchEffect(
     /* ... */
   },
   {
-    flush: 'post'
+    flush: "post"
   }
-)
+);
 ```
-
-
 
 #### computed
 
 ```js
-import { ref, computed } from 'vue'
+import { ref, computed } from "vue";
 
-const counter = ref(0)
-const twiceTheCounter = computed(() => counter.value * 2)
+const counter = ref(0);
+const twiceTheCounter = computed(() => counter.value * 2);
 
-counter.value++
-console.log(counter.value) // 1
-console.log(twiceTheCounter.value) // 2
+counter.value++;
+console.log(counter.value); // 1
+console.log(twiceTheCounter.value); // 2
 ```
-
-
 
 #### getCurrentInstance 获取实例
 
 > `getCurrentInstance` 只暴露给高阶使用场景，典型的比如在库中。强烈反对在应用的代码中使用 `getCurrentInstance`。请**不要**把它当作在组合式 API 中获取 `this` 的替代方案来使用。
-
-
 
 `getCurrentInstance` **只能**在 [setup](https://v3.cn.vuejs.org/api/composition-api.html#setup) 或[生命周期钩子](https://v3.cn.vuejs.org/api/composition-api.html#生命周期钩子)中调用。
 
 ```js
 const MyComponent = {
   setup() {
-    const internalInstance = getCurrentInstance() // 有效
+    const internalInstance = getCurrentInstance(); // 有效
 
-    const id = useComponentId() // 有效
+    const id = useComponentId(); // 有效
 
     const handleClick = () => {
-      getCurrentInstance() // 无效
-      useComponentId() // 无效
+      getCurrentInstance(); // 无效
+      useComponentId(); // 无效
 
-      internalInstance // 有效
-    }
+      internalInstance; // 有效
+    };
 
     onMounted(() => {
-      getCurrentInstance() // 有效
-    })
+      getCurrentInstance(); // 有效
+    });
 
     return () =>
       h(
-        'button',
+        "button",
         {
           onClick: handleClick
         },
         `uid: ${id}`
-      )
+      );
   }
-}
+};
 
 // 在组合式函数中调用也可以正常执行
 function useComponentId() {
-  return getCurrentInstance().uid
+  return getCurrentInstance().uid;
 }
 ```
-
-
 
 #### provide / inject
 
@@ -366,8 +350,6 @@ export default {
 </script>
 ```
 
-
-
 inject
 
 `inject` 函数有两个参数：
@@ -390,8 +372,6 @@ export default {
 </script>
 ```
 
-
-
 添加响应性
 
 ```js
@@ -409,11 +389,7 @@ export default {
   }
 ```
 
-
-
 注意：**建议尽可能将对响应式 property 的所有修改限制在定义 provide 的组件内部，父组件可暴露方法以供子组件修改属性。**
-
-
 
 #### props
 
@@ -437,8 +413,6 @@ export default {
 
 ```
 
-
-
 #### emits
 
 ```js
@@ -459,8 +433,6 @@ export default {
   }
 </script>
 ```
-
-
 
 #### $refs
 
@@ -514,28 +486,24 @@ export default {
 }
 ```
 
-
-
 #### $nextTick
 
 ```js
-import { nextTick } from 'vue'
+import { nextTick } from "vue";
 
 nextTick(() => {
   // 一些和 DOM 有关的东西
-})
+});
 ```
 
 或
 
 ```js
-const fn = async ()=>{
-  await nextTick()
+const fn = async () => {
+  await nextTick();
   // 一些和 DOM 有关的东西
-}
+};
 ```
-
-
 
 #### directive
 
@@ -550,7 +518,7 @@ const MyDirective = {
   updated() {},
   beforeUnmount() {}, // 新增
   unmounted() {}
-}
+};
 ```
 
 使用
@@ -560,13 +528,13 @@ const MyDirective = {
 ```
 
 ```js
-const app = Vue.createApp({})
+const app = Vue.createApp({});
 
-app.directive('highlight', {
+app.directive("highlight", {
   beforeMount(el, binding, vnode) {
-    el.style.background = binding.value
+    el.style.background = binding.value;
   }
-})
+});
 ```
 
 如何获取组件实例？
@@ -576,8 +544,6 @@ mounted(el, binding, vnode) {
   const vm = binding.instance
 }
 ```
-
-
 
 #### v-model
 
@@ -597,8 +563,6 @@ mounted(el, binding, vnode) {
 />
 ```
 
-
-
 - **新增**：现在可以在同一个组件上使用多个 `v-model` 绑定；
 - **新增**：现在可以自定义 `v-model` 修饰符。
 
@@ -615,28 +579,23 @@ mounted(el, binding, vnode) {
 />
 ```
 
-
-
-
 ### 已移除
 
 #### 过滤器
 
 已移除，建议使用 computed。
 
-
-
 全局过滤器已被全局属性取而代之：
 
 ```js
 // main.js
-const app = createApp(App)
+const app = createApp(App);
 
 app.config.globalProperties.$filters = {
   currencyUSD(value) {
-    return '$' + value
+    return "$" + value;
   }
-}
+};
 ```
 
 ```js
@@ -656,8 +615,6 @@ app.config.globalProperties.$filters = {
 
 在 Vue 3 的虚拟 DOM 中，事件监听器现在只是以 `on` 为前缀的 attribute，这样它就成为了 `$attrs` 对象的一部分，因此 `$listeners` 被移除了。
 
-
-
 所以 Vue3 中 `v-bind="$attrs"` 即 Vue2 的 `v-bind="$attrs" v-on="$listeners"`效果。
 
 ```js
@@ -673,26 +630,22 @@ export default {
 </script>
 ```
 
-
-
 ### 其他
 
 #### 资源
 
-| **相关库名称**         | **在线地址 🔗**                                               |
-| ---------------------- | ------------------------------------------------------------ |
-| Vue 3.0 官方文档(英文) | [在线地址](https://link.juejin.cn?target=https%3A%2F%2Fv3.vuejs.org%2F) |
+| **相关库名称**         | **在线地址 🔗**                                                                                                                                               |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Vue 3.0 官方文档(英文) | [在线地址](https://link.juejin.cn?target=https%3A%2F%2Fv3.vuejs.org%2F)                                                                                       |
 | Vue 3.0 中文文档       | [在线地址](https://link.juejin.cn?target=https%3A%2F%2Fv3.cn.vuejs.org%2F) [国内加速版](https://link.juejin.cn?target=https%3A%2F%2Fvue3js.cn%2Fdocs%2Fzh%2F) |
-| Composition-API手册    | [在线地址](https://link.juejin.cn?target=https%3A%2F%2Fvue3js.cn%2Fvue-composition-api%2F) |
-| Vue 3.0 源码学习       | [在线地址](https://link.juejin.cn?target=https%3A%2F%2Fvue3js.cn%2Fstart%2F) |
-| Vue-Router 官方文档    | [在线地址](https://link.juejin.cn?target=https%3A%2F%2Fnext.router.vuejs.org%2F) |
-| Vuex 4.0               | [Github](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fvuejs%2Fvuex%2Ftree%2F4.0) |
-| vue-devtools           | [Github](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fvuejs%2Fvue-devtools%2Freleases)(Vue3.0 需要使用最新版本) |
-| Vite 源码学习          | [线上地址](https://link.juejin.cn?target=https%3A%2F%2Fvite-design.surge.sh%2Fguide%2F) |
-| Vite 2.0 中文文档      | [线上地址](https://link.juejin.cn?target=https%3A%2F%2Fcn.vitejs.dev%2F) |
-| Vue3 新动态            | [线上地址](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fvue3%2Fvue3-News) |
-
-
+| Composition-API 手册   | [在线地址](https://link.juejin.cn?target=https%3A%2F%2Fvue3js.cn%2Fvue-composition-api%2F)                                                                    |
+| Vue 3.0 源码学习       | [在线地址](https://link.juejin.cn?target=https%3A%2F%2Fvue3js.cn%2Fstart%2F)                                                                                  |
+| Vue-Router 官方文档    | [在线地址](https://link.juejin.cn?target=https%3A%2F%2Fnext.router.vuejs.org%2F)                                                                              |
+| Vuex 4.0               | [Github](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fvuejs%2Fvuex%2Ftree%2F4.0)                                                                  |
+| vue-devtools           | [Github](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fvuejs%2Fvue-devtools%2Freleases)(Vue3.0 需要使用最新版本)                                   |
+| Vite 源码学习          | [线上地址](https://link.juejin.cn?target=https%3A%2F%2Fvite-design.surge.sh%2Fguide%2F)                                                                       |
+| Vite 2.0 中文文档      | [线上地址](https://link.juejin.cn?target=https%3A%2F%2Fcn.vitejs.dev%2F)                                                                                      |
+| Vue3 新动态            | [线上地址](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fvue3%2Fvue3-News)                                                                         |
 
 #### JSX
 
@@ -701,79 +654,77 @@ export default {
 **v-if、v-for**
 
 ```js
-    const data = [{ id: 1, content: '静夜诗' }]
-    return () => {
-      if (data.length) {
-        const liVnode = data.map((item) => <li>{item.content}</li>)
-        return <ul>{liVnode}</ul>
-      } else {
-        return <p>暂无数据</p>
-      }
-    }
+const data = [{ id: 1, content: "静夜诗" }];
+return () => {
+  if (data.length) {
+    const liVnode = data.map((item) => <li>{item.content}</li>);
+    return <ul>{liVnode}</ul>;
+  } else {
+    return <p>暂无数据</p>;
+  }
+};
 ```
 
 **css**
 
 ```js
-    const isLoading = ref(true)
-    return () => (
-      <div class={{ selected: isLoading.value }} style={{ color: 'red' }}>
-        css
-      </div>
-    )
+const isLoading = ref(true);
+return () => (
+  <div class={{ selected: isLoading.value }} style={{ color: "red" }}>
+    css
+  </div>
+);
 ```
 
 **v-show**
 
 ```js
-    const isShow = ref(true)
-    return () => <div v-show={isShow.value}>v-show</div>
+const isShow = ref(true);
+return () => <div v-show={isShow.value}>v-show</div>;
 ```
 
 **v-model**
 
 ```js
-    const val = ref('hello')
-    return () => <input v-model={val} />
-    return () => <input v-model:argument={val} />
+const val = ref("hello");
+return () => <input v-model={val} />;
+return () => <input v-model:argument={val} />;
 ```
 
 **插槽**
 
 ```js
-    return () => (
-      <div>
-        <div>{slots.default() /* 默认插槽 */}</div>
-        <div>{slots.title() /* 具名插槽 */}</div>
-      </div>
-    )
+return () => (
+  <div>
+    <div>{slots.default() /* 默认插槽 */}</div>
+    <div>{slots.title() /* 具名插槽 */}</div>
+  </div>
+);
 ```
 
 ```js
-    // use
-		const slotObj = {
-      default: () => <div>A</div>,
-      title: () => <span>B</span>
-    }
-    return () => (
-      <Demo v-slots={slotObj}>
-        // 默认插槽亦可写在此处 <div>A</div>
-      </Demo>
-    )
+// use
+const slotObj = {
+  default: () => <div>A</div>,
+  title: () => <span>B</span>
+};
+return () => (
+  <Demo v-slots={slotObj}>
+    // 默认插槽亦可写在此处 <div>A</div>
+  </Demo>
+);
 ```
 
 接收 **emit**
 
 ```js
-    const fn = () => {}
-    return <demo onCustomEvent={fn}></demo>
+const fn = () => {};
+return <demo onCustomEvent={fn}></demo>;
 ```
 
 ```js
-		emit('customEvent')
+emit("customEvent");
 ```
-
-
 
 #### 注意事项
 
