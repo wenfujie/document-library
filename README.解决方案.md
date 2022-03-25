@@ -11,6 +11,7 @@
   - [服务端渲染 Nuxt.js](#服务端渲染-nuxtjs)
   - [Excel 文件和 json 的相互转换](#excel-文件和-json-的相互转换)
   - [在线查看 Excel 文件](#在线查看-excel-文件)
+  - [模糊查询匹配文字高亮](#模糊查询匹配文字高亮)
 
 # 技术解决方案
 
@@ -42,4 +43,10 @@
   height="900px"
   frameborder="1"
 ></iframe>
+```
+
+## 模糊查询匹配文字高亮
+
+```js
+'12345'.replace(/123/, `<span style="color:red">${/123/.exec('12345')}</span>`)
 ```
