@@ -1,7 +1,7 @@
 <!--
  * @Date: 2022-01-06 15:57:52
  * @LastEditors: wenfujie
- * @LastEditTime: 2022-04-03 15:16:31
+ * @LastEditTime: 2022-04-03 15:25:57
  * @FilePath: /document-library/articles/工具/Docker使用说明.md
 -->
 
@@ -59,10 +59,10 @@ docker build -t 镜像名:镜像版本 ./
 # 删除一个镜像
 docker rmi -f [image_id]
 
-# 删除所有本地镜像
+# 删除所有不使用镜像
 # -a, --all: 删除所有没有用的镜像，而不仅仅是临时文件；
 # -f, --force：强制删除镜像文件，无需弹出提示确认；
-docker image prune
+docker image prune -f -a
 ```
 
 **容器**
