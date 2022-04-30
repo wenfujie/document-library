@@ -1,3 +1,9 @@
+<!--
+ * @Date: 2021-06-16 17:11:17
+ * @LastEditors: wenfujie
+ * @LastEditTime: 2022-04-30 23:01:50
+ * @FilePath: /document-library/articles/工具/git使用手册.md
+-->
 
 ## git基本操作
 
@@ -43,4 +49,34 @@ git branch -a
 git branch -D <branch-nane>
 # 重新命名分支
 git branch -m <old-branch-name> <new-branch-name>
+```
+
+### git stash
+
+`git stash ` 能把所有未提交的代码都保存起来，并把当前工作目录恢复至未修改的干净状态。
+
+```bash
+# 储存代码指令 "test-cmd-stash" 用于记录版本
+$ git stash save "test-cmd-stash"
+
+# 查看储存记录
+git stash list
+# 打印结果
+# stash@{0}: WIP on master: 049d078 added the index file
+# stash@{1}: WIP on master: c264051 Revert "added file_size"
+
+# 恢复最新存储代码
+git stash apply
+
+# 恢复最新存储代码，并将该存储记录删除
+git stash pop
+
+# 删除最新的stash
+git stash drop
+
+# 删除指定的stash
+git stash drop stash@{0}
+
+# 删除所有stash
+git stash clear
 ```
