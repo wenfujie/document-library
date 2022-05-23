@@ -69,12 +69,12 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 5. [nuxt.js 服务端渲染](articles/解决方案/nuxt.js服务端渲染.md)
 6. [Vue 高级特性](articles/Vue/Vue高级特性.md)
 7. [Vue-Cli 使用说明](articles/Vue/Vue-Cli使用说明.md)
-8. [Vue3快速上手](articles/Vue/Vue3快速上手.md)
+8. [Vue3 快速上手](articles/Vue/Vue3快速上手.md)
 
 ## 开发知识储备
 
 1. [学习正则表达式](articles/开发相关知识/学习正则表达式.md)
-2. [内容安全策略(CSP)](articles/开发相关知识/内容安全策略(CSP).md)
+2. [内容安全策略(CSP)](<articles/开发相关知识/内容安全策略(CSP).md>)
 3. [加密和签名](articles/开发相关知识/加密和签名.md)
 4. [域名相关](articles/开发相关知识/域名相关.md)
 
@@ -96,7 +96,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 3. [搭建脚手架](articles/工具/搭建脚手架/搭建脚手架.md)
 4. [git 使用手册](articles/工具/git使用手册.md)
 5. [常用 vscode 插件](articles/工具/常用vscode插件.md)
-6. [上手 typescribe](https://github.com/wenfujie/study/tree/main/play-ts)
+6. [上手 typescript](https://github.com/wenfujie/study/tree/main/play-ts)
 7. [Docker 使用说明](articles/工具/Docker使用说明.md)
 8. [Github 正则教程](https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md)
 
