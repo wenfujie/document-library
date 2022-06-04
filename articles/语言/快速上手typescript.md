@@ -1,57 +1,37 @@
-- [学习 typescript](#学习-typescript)
-  - [指令](#指令)
-  - [语法](#语法)
-    - [基础语法](#基础语法)
-    - [函数类型](#函数类型)
-    - [类型推断、字面量类型](#类型推断字面量类型)
-    - [类型断言](#类型断言)
-    - [interface 接口类型](#interface-接口类型)
-    - [type 类型别名](#type-类型别名)
-    - [keyof 类型索引](#keyof-类型索引)
-    - [| & 高级类型：联合、交叉、合并接口类型](#--高级类型联合交叉合并接口类型)
-    - [枚举类型](#枚举类型)
-    - [泛型](#泛型)
-      - [语法](#语法-1)
-      - [多种类型泛型的使用](#多种类型泛型的使用)
-      - [泛型工具](#泛型工具)
-      - [泛型约束](#泛型约束)
-      - [默认类型](#默认类型)
-  - [Vue 项目中使用 ts](#vue-项目中使用-ts)
-    - [配置 Vue.prototype.xxx 属性](#配置-vueprototypexxx-属性)
-    - [使用 ts 后 vue2 组件的写法](#使用-ts-后-vue2-组件的写法)
+- [前言](#前言)
+- [类型介绍](#类型介绍)
+  - [基础类型](#基础类型)
+  - [为函数指定类型](#为函数指定类型)
+  - [接口类型(interface)](#接口类型interface)
+    - [`?:` 可缺省](#-可缺省)
+    - [`readonly` 只读](#readonly-只读)
+    - [函数类型接口](#函数类型接口)
+    - [任意属性](#任意属性)
+  - [枚举类型(enum)](#枚举类型enum)
+  - [泛型](#泛型)
+    - [语法](#语法)
+    - [多种类型泛型的使用](#多种类型泛型的使用)
+    - [泛型工具](#泛型工具)
+    - [泛型约束](#泛型约束)
+    - [默认类型](#默认类型)
+- [类型进阶](#类型进阶)
+  - [类型推断、字面量类型](#类型推断字面量类型)
+  - [类型断言](#类型断言)
+  - [type 类型别名](#type-类型别名)
+  - [keyof 类型索引](#keyof-类型索引)
+  - [| & 高级类型：联合、交叉、合并接口类型](#--高级类型联合交叉合并接口类型)
+- [其他](#其他)
   - [declare](#declare)
-    - [语法： declare (var|let|const) 变量名称: 变量类型](#语法-declare-varletconst-变量名称-变量类型)
-    - [declare namespace](#declare-namespace)
+- [后语](#后语)
+  - [更多 ts 学习资料](#更多-ts-学习资料)
 
-# 学习 typescript
+## 前言
 
-学习资料
+推荐一个在线写 `ts` 代码的网站：[TypeScript 演练场](https://www.typescriptlang.org/zh/play)，上车出发 😎。
 
-[TypeScript 入门实战笔记](https://kaiwu.lagou.com/course/courseInfo.htm?courseId=885#/content)
+## 类型介绍
 
-[TypeScript 速成教程](https://github.com/joye61/typescript-tutorial)
-
-## 指令
-
-```bash
-
-# 安装
-npm i -g typescript@3.9
-
-# 初始化配置文件 tsconfig.json
-tsc --init
-
-# 将 ts 文件解析为 js
-tsc core.ts
-
-# 监听代码变动，实时转换
-tsc core.ts --strict --alwaysStrict false --watch
-
-```
-
-## 语法
-
-### 基础语法
+### 基础类型
 
 ```ts
 /** 原始类型包含：number、string、boolean、null、undefined、symbol */
@@ -99,7 +79,7 @@ const greaterThan2: number = arrayNumber.find((num) => num > 2); // 提示 ts(23
 const greaterThan3: number = arrayNumber.find((num) => num > 2) as number;
 ```
 
-### 函数类型
+### 为函数指定类型
 
 指定函数的参数类型和返回值类型：
 
@@ -145,105 +125,9 @@ sum(1, 2, 3); // => 6
 sum(1, "2"); // ts(2345) Argument of type 'string' is not assignable to parameter of type 'number'
 ```
 
-### 类型推断、字面量类型
+### 接口类型(interface)
 
-啥是类型推断？ts 会自动判断变量或返回值的类型。
-
-```js
-let num: number = 1;
-// 等价于
-let num = 1;
-```
-
-初始化变量值、函数参数默认值、函数返回值等都会自动类型推断。
-
-```js
-/** 推断参数 num 的类型是数字或者 undefined，返回值的类型也是数字 */
-function getNum(num = 1) {
-  return num;
-}
-```
-
-**字面量类型**
-ts 支持 `字符串、数字、布尔值` 三种字面量类型，来看个例子：
-
-```js
-{
-  let specifiedStr: "this is string" = "this is string";
-  let specifiedNum: 1 = 1;
-  let specifiedBoolean: true = true;
-}
-```
-
-字面量类型时集合类型的子集。
-
-字面量类型能赋值给集合类型，但是反之是不可行的：
-
-```js
-let hello: "hello" = "hello";
-let hello2: string = hello; // ok
-hello = "hi"; // ts(2322) Type '"hi"' is not assignable to type '"hello"'
-```
-
-通常会结合联合类型使用：
-
-```js
-type Direction = "up" | "down";
-function move(dir: Direction) {
-  // ...
-}
-
-move("up"); // ok
-move("right"); // ts(2345) Argument of type '"right"' is not assignable to parameter of type 'Direction'
-```
-
-数字字面量和布尔值字面量也是类似用法：
-
-```js
-interface config {
-  size: "small" | "big";
-  margin: 0 | 10;
-  isEnable: false | true;
-}
-```
-
-**let、const 定义变量值相同但类型不一致问题**
-
-```js
-let str = "hello"; // str: string
-const str2 = "hello"; // str2: 'hello'
-```
-
-这是由于 const 定义变量值不会改变，这样就缩小了变量的类型范围。
-
-### 类型断言
-
-语法
-
-```ts
-// 1、尖括号语法
-<类型表达式>值;
-
-// 2、as语法
-值 as 类型表达式;
-```
-
-为了避免和 `JSX` 语法产生冲突，尖括号语法只能在 `tsx` 文件中使用
-
-```ts
-let someValue: any = "this is a string";
-
-// 1、尖括号语法
-let strLength: number = (<string>someValue).length;
-// 2、as语法
-let strLength: number = (someValue as string).length;
-```
-
-### interface 接口类型
-
-`interface` 通常用来定义对象类型和函数类型。
-
-**使用 `interface` 约束变量、函数入参结构**
+`interface` 用来定义对象类型和函数类型，通常以大写字母开头。
 
 ```js
 interface ProgramLanguage {
@@ -264,7 +148,7 @@ function NewStudy(language: ProgramLanguage) {
 }
 ```
 
-**使用 `?:` 定义可缺省属性**
+#### `?:` 可缺省
 
 ```js
 /** 关键字 接口名称 */
@@ -279,7 +163,7 @@ let OptionalTypeScript: OptionalProgramLanguage = {
 }; // ok
 ```
 
-**使用 `readonly` 定义只读属性**
+#### `readonly` 只读
 
 ```js
 interface data {
@@ -292,7 +176,7 @@ let obj: data = {
 data.name = "李四";
 ```
 
-**定义函数类型接口**
+#### 函数类型接口
 
 ```js
 interface StudyLanguage {
@@ -304,137 +188,65 @@ let StudyInterface: StudyLanguage = (language) =>
   console.log(`${language.name} ${language.age()}`);
 ```
 
-**索引签名**
+#### 任意属性
 
-`索引签名` 就是为对象 key 约束类型（支持 number 和 string）。
+`任意属性` 就是允许接口有任意的属性。
 
-```js
-interface LanguageRankInterface {
-  [rank: number]: string;
-}
-interface LanguageYearInterface {
-  [name: string]: number;
-}
-
-{
-  let LanguageRankMap: LanguageRankInterface = {
-    1: "TypeScript", // ok
-    2: "JavaScript", // ok
-    WrongINdex: "2012" // ts(2322) 不存在的属性名
-  };
-
-  let LanguageMap: LanguageYearInterface = {
-    TypeScript: 2012, // ok
-    JavaScript: 1995, // ok
-    1: 1970 // ok
-  };
-}
-```
-
-### type 类型别名
-
-别名不会创建一个新的类型，它只是原类型的一个引用，和原类型**完全等价**，它的定义方式有点类似 let 。
-
-语法： `type 别名 = 类型` 。
-
-合法的类型别名声明：
-
-```ts
-// 数字类型别名
-type myNumber = number;
-// 布尔类型别名
-type myBoolean = boolean;
-// 联合类型别名
-type transition = "EASE" | "EASEIN" | "EASEOUT";
-// 联合类型别名
-type StringOrNumber = string | number;
-// 联合类型别名
-type Text = string | { text: string };
-// 泛型的实际类型别名
-type NameLookup = Dictionary<string, Person>;
-// 通过类型查询定义别名
-type ObjectStatics = typeof Object;
-// 泛型函数别名
-type Callback<T> = (data: T) => void;
-// 元组泛型别名
-type Pair<T> = [T, T];
-// 泛型的实际类型别名
-type Coordinates = Pair<number>;
-// 联合类型别名
-type Tree<T> = T | { left: Tree<T>; right: Tree<T> };
-```
-
-声明了别名以后，别名就相当于是一个**类型的标识符**，可以用于注解语法中：
-
-```ts
-// 声明transition为联合类型的别名
-type transition = "EASE" | "EASEIN" | "EASEOUT";
-
-// transition此时是一个类型标识符
-const boxTransition: transition = "EASE";
-```
-
-### keyof 类型索引
-
-```ts
-interface A {
-  a: string;
-  b: number;
-}
-// 等效于 'a' | 'b'
-type customType = keyof A;
-let param: customType = "a";
-```
-
-### | & 高级类型：联合、交叉、合并接口类型
-
-`联合类型` ，`|` 表示或。
-
-`交叉类型`， `&` 表示且。
+使用 `[xxx: string]: any;` 来定义。
 
 ```js
-type test = string | number;
-// 没啥意义，一般在合并接口时才用 &
-type test = string & number;
+interface Person {
+  name: string;
+  age?: number;
+  [propName: string]: any;
+}
 
-// 具体值的联合类型
-type girlName = "张胜男" | "王建国";
-type boyName = "王建国" | "李世平";
-
-type nameGroup = girlName | boyName;
-
-let newName: nameGroup = "张胜男"; // ok , '王建国'、'李世平'也可以
-
-type nameGroup2 = girlName & boyName;
-let newName2: nameGroup2 = "王建国"; // ok , 其他值都报错
-```
-
-**联合、交叉组合**
-
-`联合操作符 | 的优先级低于交叉操作符 &` 。
-
-```js
-type UnionIntersectionA =
-  | ({ id: number } & { name: string })
-  | ({ id: string } & { name: number }); // 交叉操作符优先级高于联合操作符
-
-type UnionIntersectionB =
-  | ("px" | "em" | "rem" | "%")
-  | ("vh" | "em" | "rem" | "pt"); // 调整优先级
-```
-
-**合并接口类型**
-
-```js
-type IntersectionType = { id: number, name: string } & { age: number };
-const mixed: IntersectionType = {
-  id: 1,
-  name: "name",
-  age: 18
+let tom: Person = {
+  name: "Tom",
+  gender: "male"
 };
 ```
 
-### 枚举类型
+注意
+
+1. 确定属性和可选属性的类型都必须是任意属性类型的子集
+2. 只能定义一个任意属性
+
+使用任意属性可以**定义数组类型**，但一般很少这么用
+
+```js
+interface NumberArray {
+  [index: number]: number;
+}
+let fibonacci: NumberArray = [1, 1, 2, 3, 5];
+```
+
+举个 🌰，类数组的定义：
+
+```js
+function sum() {
+  let args: number[] = arguments;
+}
+// Type 'IArguments' is missing the following properties from type 'number[]': pop, push, concat, join, and 24 more.
+```
+
+可以看到，使用普通方式定义会报错。
+
+我们使用任意属性来处理这个问题：
+
+```js
+function sum() {
+  let args: {
+    [index: number]: number,
+    length: number,
+    callee: Function
+  } = arguments;
+}
+```
+
+实际开发中，类数组都有自己的接口定义，如 IArguments, NodeList, HTMLCollection ，我们直接使用即可。
+
+### 枚举类型(enum)
 
 通常使用枚举来定义 `常量集合` 。
 
@@ -559,6 +371,10 @@ const work = (x: Day) => {
 ```
 
 ### 泛型
+
+泛型用于在定义函数、接口或类的时候不为其指定具体的类型，在使用的时候再进行指定类型。
+
+使用泛型能让定义的属性更加灵活。
 
 #### 语法
 
@@ -782,49 +598,216 @@ let x3: MyType<number> = {
 };
 ```
 
-## Vue 项目中使用 ts
+## 类型进阶
 
-生成项目方式：
+### 类型推断、字面量类型
 
-1. 使用 vue-cli 动态生成 ts + vue 项目
-2. [vue-typescript-admin (管理后台模板)](https://armour.github.io/vue-typescript-admin-docs/zh/)
-
-### 配置 Vue.prototype.xxx 属性
-
-增加 `Vue.prototype.xxx` 属性后，若直接如下使用：
+啥是类型推断？ts 会自动判断变量或返回值的类型。
 
 ```js
-// src/main.ts  添加属性
-Vue.prototype.$EventBus = new Vue();
-
-// src/components/HelloWorld.vue
-this.$EventBus.$emit("change");
+let num: number = 1;
+// 等价于
+let num = 1;
 ```
 
-`$EventBus` 会标红，这是由于 ts 类型判断导致，使用 vue 实例属性时，ts 会判断 `node_modules/vue/types/vue` 下的 vue interface 是否具有该属性，若无则标红。
-
-解决：在 `src/shims-vue.d.ts` 添加如下代码：
+初始化变量值、函数参数默认值、函数返回值等都会自动类型推断。
 
 ```js
-declare module "vue/types/vue" {
-  // 声明为 Vue 补充的东西
-  interface Vue {
-    $EventBus: any;
-  }
+/** 推断参数 num 的类型是数字或者 undefined，返回值的类型也是数字 */
+function getNum(num = 1) {
+  return num;
 }
 ```
 
-利用了重复声明的 interface 会合并的性质。
+**字面量类型**
+ts 支持 `字符串、数字、布尔值` 三种字面量类型，来看个例子：
 
-### 使用 ts 后 vue2 组件的写法
+```js
+{
+  let specifiedStr: "this is string" = "this is string";
+  let specifiedNum: 1 = 1;
+  let specifiedBoolean: true = true;
+}
+```
 
-[Vue 结合 ts 组件写法](src/components/HelloWorld.vue)
+字面量类型时集合类型的子集。
 
-## declare
+字面量类型能赋值给集合类型，但是反之是不可行的：
+
+```js
+let hello: "hello" = "hello";
+let hello2: string = hello; // ok
+hello = "hi"; // ts(2322) Type '"hi"' is not assignable to type '"hello"'
+```
+
+通常会结合联合类型使用：
+
+```js
+type Direction = "up" | "down";
+function move(dir: Direction) {
+  // ...
+}
+
+move("up"); // ok
+move("right"); // ts(2345) Argument of type '"right"' is not assignable to parameter of type 'Direction'
+```
+
+数字字面量和布尔值字面量也是类似用法：
+
+```js
+interface config {
+  size: "small" | "big";
+  margin: 0 | 10;
+  isEnable: false | true;
+}
+```
+
+**let、const 定义变量值相同但类型不一致问题**
+
+```js
+let str = "hello"; // str: string
+const str2 = "hello"; // str2: 'hello'
+```
+
+这是由于 const 定义变量值不会改变，这样就缩小了变量的类型范围。
+
+### 类型断言
+
+语法
+
+```ts
+// 1、尖括号语法
+<类型表达式>值;
+
+// 2、as语法
+值 as 类型表达式;
+```
+
+为了避免和 `JSX` 语法产生冲突，尖括号语法只能在 `tsx` 文件中使用
+
+```ts
+let someValue: any = "this is a string";
+
+// 1、尖括号语法
+let strLength: number = (<string>someValue).length;
+// 2、as语法
+let strLength: number = (someValue as string).length;
+```
+
+### type 类型别名
+
+类型别名用来给一个类型起个新名字，常用于联合类型。
+
+别名不会创建一个新的类型，它只是原类型的一个引用，和原类型**完全等价**，它的定义方式有点类似 let 。
+
+语法： `type 别名 = 类型` 。
+
+合法的类型别名声明：
+
+```ts
+// 数字类型别名
+type myNumber = number;
+// 布尔类型别名
+type myBoolean = boolean;
+// 联合类型别名
+type transition = "EASE" | "EASEIN" | "EASEOUT";
+// 联合类型别名
+type StringOrNumber = string | number;
+// 联合类型别名
+type Text = string | { text: string };
+// 泛型的实际类型别名
+type NameLookup = Dictionary<string, Person>;
+// 通过类型查询定义别名
+type ObjectStatics = typeof Object;
+// 泛型函数别名
+type Callback<T> = (data: T) => void;
+// 元组泛型别名
+type Pair<T> = [T, T];
+// 泛型的实际类型别名
+type Coordinates = Pair<number>;
+// 联合类型别名
+type Tree<T> = T | { left: Tree<T>; right: Tree<T> };
+```
+
+声明了别名以后，别名就相当于是一个**类型的标识符**，可以用于注解语法中：
+
+```ts
+// 声明transition为联合类型的别名
+type transition = "EASE" | "EASEIN" | "EASEOUT";
+
+// transition此时是一个类型标识符
+const boxTransition: transition = "EASE";
+```
+
+### keyof 类型索引
+
+```ts
+interface A {
+  a: string;
+  b: number;
+}
+// 等效于 'a' | 'b'
+type customType = keyof A;
+let param: customType = "a";
+```
+
+### | & 高级类型：联合、交叉、合并接口类型
+
+`联合类型` ，`|` 表示或。
+
+`交叉类型`， `&` 表示且。
+
+```js
+type test = string | number;
+// 没啥意义，一般在合并接口时才用 &
+type test = string & number;
+
+// 具体值的联合类型
+type girlName = "张胜男" | "王建国";
+type boyName = "王建国" | "李世平";
+
+type nameGroup = girlName | boyName;
+
+let newName: nameGroup = "张胜男"; // ok , '王建国'、'李世平'也可以
+
+type nameGroup2 = girlName & boyName;
+let newName2: nameGroup2 = "王建国"; // ok , 其他值都报错
+```
+
+**联合、交叉组合**
+
+`联合操作符 | 的优先级低于交叉操作符 &` 。
+
+```js
+type UnionIntersectionA =
+  | ({ id: number } & { name: string })
+  | ({ id: string } & { name: number }); // 交叉操作符优先级高于联合操作符
+
+type UnionIntersectionB =
+  | ("px" | "em" | "rem" | "%")
+  | ("vh" | "em" | "rem" | "pt"); // 调整优先级
+```
+
+**合并接口类型**
+
+```js
+type IntersectionType = { id: number, name: string } & { age: number };
+const mixed: IntersectionType = {
+  id: 1,
+  name: "name",
+  age: 18
+};
+```
+
+## 其他
+
+### declare
 
 在 ts 中使用 js 的 npm 库，ts 校验会不通过。可以使用 `declare` 关键字声明全局的变量、方法、类、对象。
 
-### 语法： declare (var|let|const) 变量名称: 变量类型
+**语法：**
+
+`declare (var|let|const) 变量名称: 变量类型`
 
 ```js
 // 变量
@@ -859,7 +842,7 @@ declare function toString(x: number) {
 };
 ```
 
-### declare namespace
+**declare namespace**
 
 命名空间用于描述复杂的全局对象。
 
@@ -875,3 +858,17 @@ $.ajax();
 ```
 
 该例子声明了全局导入的 JQuery 变量 `$` 。
+
+## 后语
+
+### 更多 ts 学习资料
+
+[typescript-tutorial (Star 8.9k)](https://github.com/xcatliu/typescript-tutorial)
+
+[深入理解 TypeScript (Star 5.5k)](https://github.com/jkchao/typescript-book-chinese)
+
+ts 规范，看到 clean-code ，dddd（懂的都懂）：[clean-code-typescript (Star 6.1k)](https://github.com/labs42io/clean-code-typescript)
+
+[TypeScript 官网翻译 （出自冴羽）](https://ts.yayujs.com/)
+
+[TypeScript 速成教程 (Star 0.4k)](https://github.com/joye61/typescript-tutorial)
