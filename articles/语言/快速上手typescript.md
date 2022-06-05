@@ -22,6 +22,7 @@
   - [| & 高级类型：联合、交叉、合并接口类型](#--高级类型联合交叉合并接口类型)
 - [其他](#其他)
   - [declare](#declare)
+  - [@types](#types)
 - [后语](#后语)
   - [更多 ts 学习资料](#更多-ts-学习资料)
 
@@ -858,6 +859,38 @@ $.ajax();
 ```
 
 该例子声明了全局导入的 JQuery 变量 `$` 。
+
+### @types
+
+我们在使用第三方库的时候，如 `jQuery` ，引入后直接使用
+
+```js
+$.get(URL, callback);
+```
+
+这会让 ts 一头雾水而导致报错，因为 ts 不知道何为 `$` ，更不知道 `$` 有哪些属性方法，[`声明文件`](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html) 的作用就是让 ts 识别到第三方的特性。
+
+一般做法是定义好三方暴露的对象的特性，然后集成到 ts 类型系统，开发过程中 ts 能非常友好的提醒你第三方有哪些属性可供使用。目前社区已拥有非常丰富的三方类型定义的库。
+
+[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/README.zh.md) 是一个高质量的 TypeScript 类型定义的仓库。
+
+一般通过 npm 来安装使用 `@types` ，例如为 jquery 添加声明文件：
+
+```js
+npm install @types/jquery --save-dev
+```
+
+全局 @types
+
+默认情况下，TypeScript 会自动包含支持全局使用的任何声明定义。例如，对于 jquery，你应该能够在项目中开始全局使用 $。
+
+模块 @types
+
+```js
+import * as $ from "jquery";
+
+// 现在你可以此模块中使用$
+```
 
 ## 后语
 
