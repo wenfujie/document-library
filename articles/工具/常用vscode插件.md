@@ -1,11 +1,18 @@
-<!--
- * @Date: 2021-11-02 09:26:39
- * @LastEditors: wenfujie
- * @LastEditTime: 2021-11-02 09:30:56
- * @FilePath: /document-library/articles/工具/常用vscode插件.md
--->
 
-## SCode Counter 统计代码行数
+
+### 代码书签（bookMarks）
+
+| 快捷键       | 作用             | 备注 |
+| ------------ | ---------------- | ---- |
+| cmd+option+k | 创建或消除书签   |      |
+| cmd+option+j | 跳转到前一个书签 |      |
+| cmd+option+l | 跳转到下一个书签 |      |
+
+使用 cmd+shift+enter 显示命令面板后，输入bookmarks即可查看更多功能。
+
+
+
+### 统计代码行数（SCode Counter）
 
 使用插件 **SCode Counter**
 

@@ -99,6 +99,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 6. [快速上手 typescript](articles/语言/快速上手typescript.md)
 7. [Docker 使用说明](articles/工具/Docker使用说明.md)
 8. [Github 正则教程](https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md)
+9. [vscode 快捷键和终端指令](articles/工具/vscode快捷键和终端指令.md)
 
 ## 测试
 
@@ -157,8 +158,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 1. [MarkDown 语法](articles/MarkDown/MarkDown常用语法.md)
 2. [浅谈 Markdown 转换 html](articles/MarkDown/浅谈Markdown转换html.md)
-3. [vscode 快捷键和终端指令](articles/Mac/vscode快捷键和终端指令.md)
-4. [良句](articles/其他/良句.md)
+3. [良句](articles/其他/良句.md)
 
 ## License
 

@@ -10,6 +10,7 @@
     - [9、搜索相关](#9搜索相关)
     - [10、方法和文件头注释](#10方法和文件头注释)
 - [Mac 常用终端指令](#mac-常用终端指令)
+- [后语](#后语)
 
 # vscode 快捷键
 
@@ -132,3 +133,9 @@ vscode 用得熟不熟，就看你是否会用快捷键。
 
 - lsof -i :8080 查看被什么进程使用（PID 为进程 id）
 - kill PID
+
+# 后语
+
+参考文章
+
+[vscode 的使用（star 20K）](https://github.com/qianguyihao/Web/blob/master/00-%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/01-VS%20Code%E7%9A%84%E4%BD%BF%E7%94%A8.md)
