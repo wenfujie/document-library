@@ -157,7 +157,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 1. [MarkDown 语法](articles/MarkDown/MarkDown常用语法.md)
 2. [浅谈 Markdown 转换 html](articles/MarkDown/浅谈Markdown转换html.md)
-3. [Mac 终端指令](articles/Mac/mac系统及软件快捷键.md)
+3. [vscode 快捷键和终端指令](articles/Mac/vscode快捷键和终端指令.md)
 4. [良句](articles/其他/良句.md)
 
 ## License
