@@ -1,13 +1,14 @@
 <!--
  * @Date: 2021-06-16 17:11:17
  * @LastEditors: wenfujie
- * @LastEditTime: 2022-04-30 23:01:50
+ * @LastEditTime: 2022-07-20 10:52:17
  * @FilePath: /document-library/articles/工具/git使用手册.md
 -->
 
-## git基本操作
+## git 基本操作
 
 ### git add
+
 ```bash
   # 添加某个文件到暂存区，后面可以跟多个文件，以空格区分
   git add xxx
@@ -16,9 +17,10 @@
 ```
 
 ### git commit
+
 ```bash
 # 提交暂存的更改，会新开编辑器进行编辑
-git commit 
+git commit
 # 提交暂存的更改，并记录下备注
 git commit -m "you message"
 # 等同于 git add . && git commit -m
@@ -38,7 +40,7 @@ git pull
 
 ```bash
 # 新建本地分支，但不切换
-git branch <branch-name> 
+git branch <branch-name>
 # 查看本地分支
 git branch
 # 查看远程分支
@@ -49,6 +51,8 @@ git branch -a
 git branch -D <branch-nane>
 # 重新命名分支
 git branch -m <old-branch-name> <new-branch-name>
+# 更新远程分支列表
+git remote update origin -p
 ```
 
 ### git stash
