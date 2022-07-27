@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-06-16 17:11:17
  * @LastEditors: wenfujie
- * @LastEditTime: 2022-07-20 10:52:17
+ * @LastEditTime: 2022-07-27 11:08:46
  * @FilePath: /document-library/articles/工具/git使用手册.md
 -->
 
@@ -49,6 +49,8 @@ git branch -r
 git branch -a
 # 删除本地分支
 git branch -D <branch-nane>
+# 删除远程分支
+git push origin :<branch-nane>
 # 重新命名分支
 git branch -m <old-branch-name> <new-branch-name>
 # 更新远程分支列表
