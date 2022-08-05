@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-07-28 10:38:55
  * @LastEditors: wenfujie
- * @LastEditTime: 2022-01-13 16:51:00
+ * @LastEditTime: 2022-08-05 16:09:26
  * @FilePath: /document-library/articles/js相关/开发常用js代码片段.md
 -->
 
@@ -30,6 +30,7 @@
     - [获取页面视口大小](#获取页面视口大小)
     - [动态加载脚本、样式](#动态加载脚本样式)
     - [金额千分位分割](#金额千分位分割)
+    - [接口重试](#接口重试)
   - [DOM 操作](#dom-操作)
     - [元素添加、移除、切换类](#元素添加移除切换类)
     - [移除一个元素](#移除一个元素)
@@ -100,16 +101,12 @@ const UUIDGeneratorBrowser = () =>
 UUIDGeneratorBrowser(); // '7982fcfe-5721-4632-bede-6000885be57d'
 ```
 
-
-
-其他实现方式：使用npm包 [uuid](https://github.com/uuidjs/uuid) 
+其他实现方式：使用 npm 包 [uuid](https://github.com/uuidjs/uuid)
 
 ```js
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
 ```
-
-
 
 ### 解析 cookie
 
@@ -203,7 +200,7 @@ const externalLinks = $$('a[target="_blank"]');
 const runAsync = (fn) => {
   const worker = new Worker(
     URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
-      type: "application/javascript; charset=utf-8",
+      type: "application/javascript; charset=utf-8"
     })
   );
   return new Promise((res, rej) => {
@@ -310,7 +307,7 @@ function userAgent() {
     iPad: u.indexOf("iPad") > -1, // 是否iPad
     webApp: u.indexOf("Safari") === -1, // 是否web应该程序，没有头部与底部,
     isiOS: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端
-    isAndroid: u.indexOf("Android") > -1 || u.indexOf("Adr") > -1,
+    isAndroid: u.indexOf("Android") > -1 || u.indexOf("Adr") > -1
   };
 }
 
@@ -348,7 +345,7 @@ scrollToTop();
 ```js
 const smoothScroll = (element) =>
   document.querySelector(element).scrollIntoView({
-    behavior: "smooth",
+    behavior: "smooth"
   });
 
 // Examples
@@ -553,6 +550,38 @@ function numFormat(num) {
 numFormat(32131.232); // '32,131.232'
 ```
 
+### 接口重试
+
+```js
+/**
+ * @description: 重试方法
+ * @param {function} fn 目标函数（需返回promise）
+ * @param {number} times 重试次数
+ * @param {number} delay 重试时间间隔，单位ms
+ * @return {promise}
+ */
+export function retryFn(fn, times, delay) {
+  return new Promise(function (resolve, reject) {
+    function attempt() {
+      fn()
+        .then(resolve)
+        .catch(function (err) {
+          if (times === 0) {
+            reject(err);
+          } else {
+            times--;
+            setTimeout(attempt, delay);
+          }
+        });
+    }
+    attempt();
+  });
+}
+
+// Examples
+retryFn(() => Promise.reject(), 10, 3000);
+```
+
 ## DOM 操作
 
 ### 元素添加、移除、切换类
@@ -688,7 +717,7 @@ const formatDuration = (ms) => {
     hour: Math.floor(ms / 3600000) % 24,
     minute: Math.floor(ms / 60000) % 60,
     second: Math.floor(ms / 1000) % 60,
-    millisecond: Math.floor(ms) % 1000,
+    millisecond: Math.floor(ms) % 1000
   };
   return Object.entries(time)
     .filter((val) => val[1] !== 0)
