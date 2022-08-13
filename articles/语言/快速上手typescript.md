@@ -20,9 +20,11 @@
   - [type 类型别名](#type-类型别名)
   - [keyof 类型索引](#keyof-类型索引)
   - [| & 高级类型：联合、交叉、合并接口类型](#--高级类型联合交叉合并接口类型)
-- [其他](#其他)
-  - [declare](#declare)
-  - [@types](#types)
+- [声明文件](#声明文件)
+  - [包已存在声明文件](#包已存在声明文件)
+  - [书写声明文件](#书写声明文件)
+    - [\<script\> 标签引入的声明](#script-标签引入的声明)
+    - [npm 包的声明](#npm-包的声明)
 - [后语](#后语)
   - [更多 ts 学习资料](#更多-ts-学习资料)
 
@@ -835,97 +837,49 @@ const mixed: IntersectionType = {
 };
 ```
 
-## 其他
+## 声明文件
 
-### declare
+当使用第三方库时，我们需要引用它的声明文件，才能获得对应的代码补全、接口提示等功能。
 
-在 ts 中使用 js 的 npm 库，ts 校验会不通过。可以使用 `declare` 关键字声明全局的变量、方法、类、对象。
+如 `jQuery` ，引入后直接使用如 `$.get(URL, callback)` 时，ts 会报错，因为 ts 不知道何为 `$` ，更不知道 `$` 有哪些属性方法。所以需要 [`声明文件`](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html) 让 ts 识别到第三方的特性。
 
-**语法：**
+声明文件是以 xxx.d.ts 的格式命名。
 
-`declare (var|let|const) 变量名称: 变量类型`
+### 包已存在声明文件
 
-```js
-// 变量
-declare let amount: number;
-// 函数
-declare function toString(x: number): string;
-// 类
-declare class Person {
-  public name: string;
-  private age: number;
-  constructor(name: string);
-  getAge(): number;
-}
-// 枚举
-declare enum Direction {
-  Up,
-  Down,
-  Left,
-  Right,
-}
+根据以下两种方式来判断一个包是否存在声明文件：
 
-amount = 1
-```
+1. 包的 package.json 中有 types 字段，或者有一个 index.d.ts 声明文件。这种模式不需要额外安装其他包。
+2. 发布到 @types 里。我们只需要在 [社区声明文件网站](https://www.typescriptlang.org/dt/search) 上即可查询是否存在已维护的声明文件。这种模式一般是由于 npm 包的维护者没有提供声明文件，所以只能由其他人将声明文件发布到 @types 里了。
 
-**注意**：使用 declare 关键字时，我们不需要编写声明的变量、函数、类的具体实现（因为变量、函数、类在其他库中已经实现了），只需要声明其类型即可
+其中 方式 2 直接 `npm i @types/xxx -D` 下载即可无需额外配置。
 
-```js
-// TS1183: An implementation cannot be declared in ambient contexts.
-
-declare function toString(x: number) {
-  return String(x);
-};
-```
-
-**declare namespace**
-
-命名空间用于描述复杂的全局对象。
-
-```js
-declare namespace $ {
-  const version: number;
-
-  function ajax(settings?: any): void;
-}
-
-$.version; // => number
-$.ajax();
-```
-
-该例子声明了全局导入的 JQuery 变量 `$` 。
-
-### @types
-
-我们在使用第三方库的时候，如 `jQuery` ，引入后直接使用
-
-```js
-$.get(URL, callback);
-```
-
-这会让 ts 一头雾水而导致报错，因为 ts 不知道何为 `$` ，更不知道 `$` 有哪些属性方法，[`声明文件`](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html) 的作用就是让 ts 识别到第三方的特性。
-
-一般做法是定义好三方暴露的对象的特性，然后集成到 ts 类型系统，开发过程中 ts 能非常友好的提醒你第三方有哪些属性可供使用。目前社区已拥有非常丰富的三方类型定义的库。
-
-[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/README.zh.md) 是一个高质量的 TypeScript 类型定义的仓库。
-
-一般通过 npm 来安装使用 `@types` ，例如为 jquery 添加声明文件：
+例如为 jQuery 添加声明文件：
 
 ```js
 npm install @types/jquery --save-dev
 ```
 
-全局 @types
+### 书写声明文件
 
-默认情况下，TypeScript 会自动包含支持全局使用的任何声明定义。例如，对于 jquery，你应该能够在项目中开始全局使用 $。
+当一个第三方库没有提供声明文件时，我们就需要自己书写声明文件了。
 
-模块 @types
+#### \<script\> 标签引入的包
+
+当通过 \<script\> 标签引入第三方库，需注入全局变量
 
 ```js
-import * as $ from "jquery";
-
-// 现在你可以此模块中使用$
+// src/jQuery.d.ts
+declare let $: (selector: string) => any;
 ```
+
+```js
+$("#foo");
+```
+
+#### npm 包
+
+如何为 npm 包写声明文件：[前往查看](https://ts.xcatliu.com/basics/declaration-files.html#npm-%E5%8C%85)
 
 ## 后语
 
