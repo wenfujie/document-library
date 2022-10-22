@@ -1,11 +1,31 @@
 <!--
  * @Date: 2021-06-16 17:11:17
- * @LastEditors: wenfujie
- * @LastEditTime: 2022-07-27 11:08:46
+ * @LastEditors: wfj
+ * @LastEditTime: 2022-10
  * @FilePath: /document-library/articles/工具/git使用手册.md
 -->
 
 ## git 基本操作
+
+### code revert
+
+```bash
+# 查看 commit 记录
+git log
+
+# 撤回某次 commit（若非当前分支的commit需加 -m）
+git revert commit_id
+
+# 撤回几个连续的 commit（..语法，左开右闭即：不含commit_id1包含commit_id2）
+git revert --no-commit commit_id1..commit_id2
+
+# 撤回某次 commit 及其后的所有 commit 提交
+# 指令执行后要反悔，使用最新的 commit_id 再执行一次该指令即可
+git reset --hard commit_id
+
+```
+
+> HEAD 可指代当前分支最新的 commit_id，撤回最新的提交：git revert HEAD
 
 ### git add
 
