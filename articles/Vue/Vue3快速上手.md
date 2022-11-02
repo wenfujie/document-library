@@ -79,9 +79,15 @@ export default {
 
 #### 响应式
 
-`ref` 处理简单属性和数组
+基础数据和数组
+
+使用 `ref`,在 js 中获取和设置值需 `xxx.value`,模板中不用。
 
 ```js
+// html
+<div>{{count}}</div>
+
+// js
 const count = ref(0);
 console.log(count.value); // 0
 
@@ -89,14 +95,44 @@ const arr = ref([]);
 arr.value = [1, 2, 3];
 ```
 
-`reactive` 处理对象
+
+
+对象
+
+使用`reactive` 
 
 ```js
+// html
+<div>{{obj.count}}</div>
+
+// js
 const obj = reactive({ count: 0 });
 
 obj.count++;
 console.log(obj.count); // 3
 ```
+
+
+
+toRef、toRefs
+
+对对象进行解构，如果是响应式对象解构后保持响应式，如果不是响应式对象解构后无响应式。
+
+toRef针对单个属性，toRefs针对整个对象
+
+```js
+const obj = reactive({ count: 0, name: 'lisa' });
+
+// toRef
+const count = toRef(obj, 'count')
+console.log(count.value) // 0
+
+// toRefs
+const { name } = toRefs(obj)
+console.log(name.value) // lisa
+```
+
+
 
 #### 生命周期
 
