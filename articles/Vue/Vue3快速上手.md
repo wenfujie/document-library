@@ -109,7 +109,7 @@ arr.value = [1, 2, 3];
 const obj = reactive({ count: 0 });
 
 obj.count++;
-console.log(obj.count); // 3
+console.log(obj.count); // 2
 ```
 
 
