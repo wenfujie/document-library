@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-07-28 10:38:55
- * @LastEditors: wenfujie
- * @LastEditTime: 2022-08-05 16:09:26
+ * @LastEditors: wfj
+ * @LastEditTime: 2022-11
  * @FilePath: /document-library/articles/js相关/开发常用js代码片段.md
 -->
 
@@ -29,7 +29,6 @@
     - [优雅的处理图片加载异常](#优雅的处理图片加载异常)
     - [获取页面视口大小](#获取页面视口大小)
     - [动态加载脚本、样式](#动态加载脚本样式)
-    - [金额千分位分割](#金额千分位分割)
     - [接口重试](#接口重试)
   - [DOM 操作](#dom-操作)
     - [元素添加、移除、切换类](#元素添加移除切换类)
@@ -39,6 +38,9 @@
     - [创建字符串片段的元素](#创建字符串片段的元素)
     - [主动触发 dom 事件](#主动触发-dom-事件)
     - [判断元素是否处于首屏](#判断元素是否处于首屏)
+  - [数字](#数字)
+    - [前端精度问题](#前端精度问题)
+    - [金额千分位分割](#金额千分位分割)
   - [Date](#date)
     - [获取月份的总天数](#获取月份的总天数)
     - [将日期转换为 yyyy-MM-dd](#将日期转换为-yyyy-mm-dd)
@@ -200,7 +202,7 @@ const externalLinks = $$('a[target="_blank"]');
 const runAsync = (fn) => {
   const worker = new Worker(
     URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
-      type: "application/javascript; charset=utf-8"
+      type: "application/javascript; charset=utf-8",
     })
   );
   return new Promise((res, rej) => {
@@ -307,7 +309,7 @@ function userAgent() {
     iPad: u.indexOf("iPad") > -1, // 是否iPad
     webApp: u.indexOf("Safari") === -1, // 是否web应该程序，没有头部与底部,
     isiOS: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端
-    isAndroid: u.indexOf("Android") > -1 || u.indexOf("Adr") > -1
+    isAndroid: u.indexOf("Android") > -1 || u.indexOf("Adr") > -1,
   };
 }
 
@@ -345,7 +347,7 @@ scrollToTop();
 ```js
 const smoothScroll = (element) =>
   document.querySelector(element).scrollIntoView({
-    behavior: "smooth"
+    behavior: "smooth",
   });
 
 // Examples
@@ -535,21 +537,6 @@ function loadStyle(url) {
 loadStyle("./styles.css");
 ```
 
-### 金额千分位分割
-
-```js
-function numFormat(num) {
-  var res = num.toString().replace(/\d+/, function (n) {
-    // 先提取整数部分
-    return n.replace(/(\d)(?=(\d{3})+$)/g, function ($1) {
-      return $1 + ",";
-    });
-  });
-  return res;
-}
-numFormat(32131.232); // '32,131.232'
-```
-
 ### 接口重试
 
 ```js
@@ -675,6 +662,44 @@ const inViewport = (el) => {
 };
 ```
 
+## 数字
+
+### 前端精度问题
+
+前端存在精度问题
+
+```js
+console.log(1 - 0.8); // 0.19999999999999996
+```
+
+处理
+
+```js
+function parseFloatNum(num, decimalPlace = 2) {
+  if (typeof num === "number") {
+    return parseFloat(num.toFixed(decimalPlace));
+  }
+  return num;
+}
+
+parseFloatNum(1 - 0.8) // 0.2
+```
+
+### 金额千分位分割
+
+```js
+function numFormat(num) {
+  var res = num.toString().replace(/\d+/, function (n) {
+    // 先提取整数部分
+    return n.replace(/(\d)(?=(\d{3})+$)/g, function ($1) {
+      return $1 + ",";
+    });
+  });
+  return res;
+}
+numFormat(32131.232); // '32,131.232'
+```
+
 ## Date
 
 ### 获取月份的总天数
@@ -717,7 +742,7 @@ const formatDuration = (ms) => {
     hour: Math.floor(ms / 3600000) % 24,
     minute: Math.floor(ms / 60000) % 60,
     second: Math.floor(ms / 1000) % 60,
-    millisecond: Math.floor(ms) % 1000
+    millisecond: Math.floor(ms) % 1000,
   };
   return Object.entries(time)
     .filter((val) => val[1] !== 0)
