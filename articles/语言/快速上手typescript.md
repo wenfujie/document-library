@@ -19,7 +19,7 @@
   - [类型断言](#类型断言)
   - [type 类型别名](#type-类型别名)
   - [keyof 类型索引](#keyof-类型索引)
-  - [| & 高级类型：联合、交叉、合并接口类型](#--高级类型联合交叉合并接口类型)
+  - [| \& 高级类型：联合、交叉、合并接口类型](#--高级类型联合交叉合并接口类型)
 - [声明文件](#声明文件)
   - [包已存在声明文件](#包已存在声明文件)
   - [书写声明文件](#书写声明文件)
@@ -28,6 +28,14 @@
 - [常用配置](#常用配置)
   - [检索文件的路径](#检索文件的路径)
   - [路径别名智能提示、跟踪](#路径别名智能提示跟踪)
+- [实战](#实战)
+  - [类型工具常用语法](#类型工具常用语法)
+    - [使用泛型](#使用泛型)
+    - [联合类型传入泛型的坑](#联合类型传入泛型的坑)
+    - [类型推断 infer 获取类型入参的组成部分](#类型推断-infer-获取类型入参的组成部分)
+    - [根据索引获取子类型](#根据索引获取子类型)
+    - [typeof 获取变量、属性类型](#typeof-获取变量属性类型)
+    - [映射类型 in](#映射类型-in)
 - [后语](#后语)
   - [更多 ts 学习资料](#更多-ts-学习资料)
 
@@ -191,7 +199,7 @@ interface OptionalProgramLanguage {
   age?: () => number;
 }
 let OptionalTypeScript: OptionalProgramLanguage = {
-  name: "TypeScript"
+  name: "TypeScript",
 }; // ok
 ```
 
@@ -235,7 +243,7 @@ interface Person {
 
 let tom: Person = {
   name: "Tom",
-  gender: "male"
+  gender: "male",
 };
 ```
 
@@ -271,7 +279,7 @@ function sum() {
   let args: {
     [index: number]: number,
     length: number,
-    callee: Function
+    callee: Function,
   } = arguments;
 }
 ```
@@ -285,7 +293,7 @@ function sum() {
 ```js
 const CAR_MAP = {
   bmw: new Symbol("bmw"),
-  byd: new Symbol("byd")
+  byd: new Symbol("byd"),
 };
 ```
 
@@ -540,7 +548,7 @@ let c: Identity<boolean> = { attr: 10 };
 // 一个复杂点的例子
 function fn() {}
 let c: Identity<typeof fn> = {
-  attr() {}
+  attr() {},
 };
 ```
 
@@ -552,7 +560,7 @@ let c: Identity<typeof fn> = {
 type Person = {
   id: string,
   age: number,
-  name: string
+  name: string,
 };
 // 等价{ id?:string, age?:number, name?:string }
 type NewPerson = Partial<Person>;
@@ -621,21 +629,21 @@ interface MyType<T = string> {
 
 // 正确，在类型参数没有显示指定的情况下，采用了默认类型 string
 let x1: MyType = {
-  value: "hello world"
+  value: "hello world",
 };
 // 等价于
 let x1: MyType<string> = {
-  value: "hello world"
+  value: "hello world",
 };
 
 // 错误， error TS2322: Type 'number' is not assignable to type 'string'
 let x2: MyType = {
-  value: 123
+  value: 123,
 };
 
 // 正确，覆盖默认的 string 类型
 let x3: MyType<number> = {
-  value: 123
+  value: 123,
 };
 ```
 
@@ -836,7 +844,7 @@ type IntersectionType = { id: number, name: string } & { age: number };
 const mixed: IntersectionType = {
   id: 1,
   name: "name",
-  age: 18
+  age: 18,
 };
 ```
 
@@ -912,7 +920,7 @@ ts 的配置文件一般位于根目录 `tsconfig.json`
 
 要解决该问题，需增加如下 ts 配置，让 ts 识别到路径别名。
 
-```js
+```ts
 {
   "compilerOptions": {
     "paths": {
@@ -922,6 +930,127 @@ ts 的配置文件一般位于根目录 `tsconfig.json`
   }
 }
 
+```
+
+## 实战
+
+### 类型工具常用语法
+
+#### 使用泛型
+
+```ts
+{
+  // bad
+  type isX = 1 extends number ? true : false;
+
+  // good
+  type isXX<Child, Parent> = Child extends Parent ? true : false;
+  // 扩展
+  type isStr = isXX<"str", string>; // true
+  type isNum = isXX<1, number>; // true
+}
+```
+
+#### 联合类型传入泛型的坑
+
+```ts
+{
+  type BoolOrStr = boolean | string;
+  type BoolOrNumArray<E> = E extends boolean | number ? E[] : E;
+  // 联合类型传入泛型，会拆解为单个并逐个执行
+  type WhatIsIt = BoolOrNumArray<BoolOrStr>; // string | false[] | true[]
+  // 非泛型中则是当做整体对待
+  type WhatIsIt2 = BoolOrStr extends boolean | number ? BoolOrStr[] : BoolOrStr; // string | boolean
+
+  // 强制联合类型为一个整体（使用[]）
+  type BoolOrNumArray2<E> = [E] extends boolean | number ? E[] : E;
+  type WhatIsIt3 = BoolOrNumArray2<BoolOrStr>; // boolean | string
+}
+```
+
+#### 类型推断 infer 获取类型入参的组成部分
+
+```ts
+{
+  type isExtendObj<T> = T extends { a: infer X; b: infer Y } ? [X, Y] : never;
+  type WhatIsIt = isExtendObj<{ a: string; b: 1 }>; // [string, 1]
+}
+```
+
+#### 根据索引获取子类型
+
+```ts
+{
+  interface MixedObj {
+    animal: {
+      type: "fish" | "dog";
+    };
+    [propName: string]: {
+      type: string;
+    };
+  }
+  type Animal = MixedObj["animal"]; // { type: "fish" | "dog"; }
+  type Str = MixedObj["str"]; // { type: string; }
+  type Str2 = MixedObj[string]; // { type: string; }
+}
+```
+
+#### typeof 获取变量、属性类型
+
+```ts
+{
+  let str: string = "str";
+  let someStr: typeof str = "someStr"; // let someStr: string
+  type WhatType = typeof str; // string
+
+  let animal = {
+    name: "fish",
+  };
+  type Animal = typeof animal; // { name: string; }
+}
+```
+
+#### 映射类型 in
+
+in 仅可在类型别名中使用，在 interface 中会报错
+
+```ts
+{
+  // 拷贝类型
+  type CopyType<S> = {
+    [key in keyof S]: S[key];
+  };
+  interface Animal {
+    readonly name: string;
+    age?: number;
+  }
+  type Animal2 = CopyType<Animal>; // { readonly name: string; age?: number | undefined; }
+
+  // 所有属性只读且可选
+  type CopyTypeReadonly<S> = {
+    readonly [key in keyof S]?: S[key];
+  };
+  // 所有属性取消只读和可选
+  type CopyTypeNotReadonly<S> = {
+    -readonly [key in keyof S]-?: S[key];
+  };
+  type Animal3 = CopyTypeReadonly<Animal>; // { readonly name?: string; readonly age?: number | undefined; }
+  type Animal4 = CopyTypeNotReadonly<Animal>; // { name: string; age: number; }
+
+  // 内置工具类型Pick实现
+  type CustomPick<O, K extends keyof O> = {
+    [key in K]: O[key];
+  };
+  // 内置工具类型Omit实现
+  type CustomOmit<O, K extends keyof O> = CustomPick<O, Exclude<keyof O, K>>;
+
+  interface Person {
+    name: string;
+    age: number;
+  }
+  type OnlyName = CustomPick<Person, "name">; // { name: string; }
+  type OmitName = CustomOmit<Person, "name">; // { age: number; }
+}
 ```
 
 ## 后语
