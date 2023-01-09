@@ -11,7 +11,6 @@
   - [泛型](#泛型)
     - [语法](#语法)
     - [多种类型泛型的使用](#多种类型泛型的使用)
-    - [泛型工具](#泛型工具)
     - [泛型约束](#泛型约束)
     - [默认类型](#默认类型)
 - [类型进阶](#类型进阶)
@@ -20,6 +19,17 @@
   - [type 类型别名](#type-类型别名)
   - [keyof 类型索引](#keyof-类型索引)
   - [| \& 高级类型：联合、交叉、合并接口类型](#--高级类型联合交叉合并接口类型)
+- [内置类型工具](#内置类型工具)
+  - [操作接口](#操作接口)
+    - [Partial 和 Required](#partial-和-required)
+    - [Pick 和 Omit](#pick-和-omit)
+  - [操作联合类型](#操作联合类型)
+    - [Exclude 和 Extract](#exclude-和-extract)
+    - [NonNullable](#nonnullable)
+    - [Record](#record)
+  - [操作函数](#操作函数)
+    - [Parameters](#parameters)
+    - [ReturnType](#returntype)
 - [声明文件](#声明文件)
   - [包已存在声明文件](#包已存在声明文件)
   - [书写声明文件](#书写声明文件)
@@ -29,7 +39,7 @@
   - [检索文件的路径](#检索文件的路径)
   - [路径别名智能提示、跟踪](#路径别名智能提示跟踪)
 - [实战](#实战)
-  - [类型工具常用语法](#类型工具常用语法)
+  - [编写类型工具常用语法](#编写类型工具常用语法)
     - [使用泛型](#使用泛型)
     - [联合类型传入泛型的坑](#联合类型传入泛型的坑)
     - [类型推断 infer 获取类型入参的组成部分](#类型推断-infer-获取类型入参的组成部分)
@@ -552,27 +562,6 @@ let c: Identity<typeof fn> = {
 };
 ```
 
-#### 泛型工具
-
-`Partial` 用于将一个接口的所有属性设置为可选状态，反之，`Required` 则是将所有属性改为必须状态。
-
-```js
-type Person = {
-  id: string,
-  age: number,
-  name: string,
-};
-// 等价{ id?:string, age?:number, name?:string }
-type NewPerson = Partial<Person>;
-```
-
-`Pick` 主要用于提取接口的某几个属性，反之，`Omit` 用于剔除部分属性。
-
-```typescript
-// 等价 {id: string, age: number }
-type NewPickPerson = Pick<Person, "id" | "age">;
-```
-
 #### 泛型约束
 
 **使用未知属性报错问题**
@@ -848,6 +837,164 @@ const mixed: IntersectionType = {
 };
 ```
 
+## 内置类型工具
+
+### 操作接口
+
+#### Partial 和 Required
+
+`Partial` 用于将一个接口的所有属性设置为可选状态，反之，`Required` 则是将所有属性改为必须状态。
+
+```ts
+type Person = {
+  id: string;
+  age: number;
+  name: string;
+};
+// 等价{ id?:string, age?:number, name?:string }
+type NewPerson = Partial<Person>;
+```
+
+#### Pick 和 Omit
+
+`Pick` 主要用于提取接口的某几个属性，反之，`Omit` 用于剔除部分属性。
+
+```ts
+// 等价 {id: string, age: number }
+type NewPickPerson = Pick<Person, "id" | "age">;
+```
+
+### 操作联合类型
+
+#### Exclude 和 Extract
+
+`Exclude` 用于从联合类型中剔除类型。
+
+```ts
+// 实现代码
+type Exclude<T, U> = T extends U ? never : T;
+```
+
+```ts
+// 简单使用
+type T = Exclude<"a" | "b" | "c", "a">; // => 'b' | 'c'
+```
+
+```ts
+// 实现 Omit
+type CustomOmit<T, U extends keyof T> = {
+  [key in Exclude<keyof T, U>]: T[key];
+};
+
+interface Animal {
+  name: string;
+  age: number;
+}
+type OmitAge = CustomOmit<Animal, "age">; // { name: string; }
+```
+
+`Extract` 用于从联合类型中提取类型。
+
+```ts
+// 实现代码
+type Extract<T, U> = T extends U ? T : never;
+```
+
+```ts
+// 简单使用
+type T = Extract<"a" | "b" | "c", "a">; // => 'a'
+```
+
+```ts
+// 实现工具类型【获取两个接口类型的交集】
+type intersect<T, U> = {
+  [key in Extract<keyof T, keyof U>]: T[key];
+};
+
+interface Animal {
+  name: string;
+  age: number;
+}
+interface Animal2 {
+  name: string;
+  sex: number;
+}
+type intersectAnimal = intersect<Animal, Animal2>; // { name: string; }
+```
+
+#### NonNullable
+
+从联合类型中将 null 和 undefined 剔除
+
+```js
+// 实现代码
+type NonNullable<T> = T & {};
+```
+
+```ts
+// use
+type test = NonNullable<"a" | null | undefined>; // "a"
+```
+
+#### Record
+
+用于生成接口类型，接收两个参数，第一个是联合类型用于指定接口的 key，第二个是接口类型用于指定子 key 的值的类型。
+
+```ts
+// 代码实现
+type Record<K extends keyof any, T> = {
+  [P in K]: T;
+};
+```
+
+```ts
+type MenuKey = "home" | "about";
+type Menus = Record<
+  MenuKey,
+  {
+    path: string;
+  }
+>; // { home: { path: string; }; about: { path: string; }; }
+```
+
+### 操作函数
+
+#### Parameters
+
+获取函数类型的入参类型
+
+```ts
+// 实现
+type Parameters<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never;
+```
+
+```ts
+// use
+type Fun = (name: string, age: number) => void
+const func = (name: string) => {}
+
+type Params1 = Parameters<Fun> //  [name: string, age: number]
+type Params2 = Parameters<typeof func> // [name: string]
+```
+
+#### ReturnType
+
+获取函数类型的返回值类型
+
+```ts
+// 实现
+type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
+```
+
+```ts
+// use
+type Fun = () => void
+const func = (): string => ''
+
+type return1 = ReturnType<Fun> //  void
+type return2 = ReturnType<typeof func> // string
+```
+
 ## 声明文件
 
 当使用第三方库时，我们需要引用它的声明文件，才能获得对应的代码补全、接口提示等功能。
@@ -934,7 +1081,7 @@ ts 的配置文件一般位于根目录 `tsconfig.json`
 
 ## 实战
 
-### 类型工具常用语法
+### 编写类型工具常用语法
 
 #### 使用泛型
 
