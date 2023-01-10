@@ -30,6 +30,8 @@
   - [操作函数](#操作函数)
     - [Parameters](#parameters)
     - [ReturnType](#returntype)
+  - [操作字符串](#操作字符串)
+    - [Uppercase、Lowercase、Capitalize、Uncapitalize](#uppercaselowercasecapitalizeuncapitalize)
 - [声明文件](#声明文件)
   - [包已存在声明文件](#包已存在声明文件)
   - [书写声明文件](#书写声明文件)
@@ -993,6 +995,33 @@ const func = (): string => ''
 
 type return1 = ReturnType<Fun> //  void
 type return2 = ReturnType<typeof func> // string
+```
+
+### 操作字符串
+
+#### Uppercase、Lowercase、Capitalize、Uncapitalize
+
+ts 在4.1版本起增加了 `Uppercase、Lowercase、Capitalize、Uncapitalize` 内置类型用于操作字符串类型。
+
+```ts
+// 代码实现
+
+// 转换字符串字面量到大写字母
+type Uppercase<S extends string> = intrinsic;
+// 转换字符串字面量到小写字母
+type Lowercase<S extends string> = intrinsic;
+// 转换字符串字面量的第一个字母为大写字母
+type Capitalize<S extends string> = intrinsic;
+// 转换字符串字面量的第一个字母为小写字母
+type Uncapitalize<S extends string> = intrinsic;
+```
+
+```ts
+// use
+type T0 = Uppercase<'Hello'>; // => 'HELLO'
+type T1 = Lowercase<T0>; // => 'hello'
+type T2 = Capitalize<T1>; // => 'Hello'
+type T3 = Uncapitalize<T2>; // => 'hello'
 ```
 
 ## 声明文件
