@@ -48,6 +48,13 @@
     - [根据索引获取子类型](#根据索引获取子类型)
     - [typeof 获取变量、属性类型](#typeof-获取变量属性类型)
     - [映射类型 in](#映射类型-in)
+  - [Vue 中应用](#vue-中应用)
+    - [props](#props)
+    - [emits](#emits)
+    - [ref](#ref)
+    - [reactive](#reactive)
+    - [computed](#computed)
+    - [ref 获取元素、Vue 组件](#ref-获取元素vue-组件)
 - [后语](#后语)
   - [更多 ts 学习资料](#更多-ts-学习资料)
 
@@ -967,16 +974,20 @@ type Menus = Record<
 
 ```ts
 // 实现
-type Parameters<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never;
+type Parameters<T extends (...args: any) => any> = T extends (
+  ...args: infer P
+) => any
+  ? P
+  : never;
 ```
 
 ```ts
 // use
-type Fun = (name: string, age: number) => void
-const func = (name: string) => {}
+type Fun = (name: string, age: number) => void;
+const func = (name: string) => {};
 
-type Params1 = Parameters<Fun> //  [name: string, age: number]
-type Params2 = Parameters<typeof func> // [name: string]
+type Params1 = Parameters<Fun>; //  [name: string, age: number]
+type Params2 = Parameters<typeof func>; // [name: string]
 ```
 
 #### ReturnType
@@ -985,23 +996,27 @@ type Params2 = Parameters<typeof func> // [name: string]
 
 ```ts
 // 实现
-type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
+type ReturnType<T extends (...args: any) => any> = T extends (
+  ...args: any
+) => infer R
+  ? R
+  : any;
 ```
 
 ```ts
 // use
-type Fun = () => void
-const func = (): string => ''
+type Fun = () => void;
+const func = (): string => "";
 
-type return1 = ReturnType<Fun> //  void
-type return2 = ReturnType<typeof func> // string
+type return1 = ReturnType<Fun>; //  void
+type return2 = ReturnType<typeof func>; // string
 ```
 
 ### 操作字符串
 
 #### Uppercase、Lowercase、Capitalize、Uncapitalize
 
-ts 在4.1版本起增加了 `Uppercase、Lowercase、Capitalize、Uncapitalize` 内置类型用于操作字符串类型。
+ts 在 4.1 版本起增加了 `Uppercase、Lowercase、Capitalize、Uncapitalize` 内置类型用于操作字符串类型。
 
 ```ts
 // 代码实现
@@ -1018,7 +1033,7 @@ type Uncapitalize<S extends string> = intrinsic;
 
 ```ts
 // use
-type T0 = Uppercase<'Hello'>; // => 'HELLO'
+type T0 = Uppercase<"Hello">; // => 'HELLO'
 type T1 = Lowercase<T0>; // => 'hello'
 type T2 = Capitalize<T1>; // => 'Hello'
 type T3 = Uncapitalize<T2>; // => 'hello'
@@ -1227,6 +1242,128 @@ in 仅可在类型别名中使用，在 interface 中会报错
   type OnlyName = CustomPick<Person, "name">; // { name: string; }
   type OmitName = CustomOmit<Person, "name">; // { age: number; }
 }
+```
+
+### Vue 中应用
+
+该节基于 `<script setup>` 语法糖。
+
+要想了解选项式 API 中 ts 的使用可以[点击此处](https://cn.vuejs.org/guide/typescript/options-api.html)。
+
+#### props
+
+传给 defineProps() 的泛型参数必须是以下之一
+
+```ts
+// 类型字面量
+defineProps<{
+  /*... */
+}>();
+
+// 同一个文件中的一个接口或对象类型字面量的引用
+interface Props {
+  /* ... */
+}
+defineProps<Props>();
+```
+
+传递给 defineProps 的泛型参数不能是一个导入的类型
+
+```ts
+import { Props } from "./other-file";
+// 不支持！
+defineProps<Props>();
+```
+
+使用示例
+
+```ts
+const props = defineProps<{
+  foo: string;
+  bar?: number;
+}>();
+```
+
+Props 解构默认值
+
+使用 withDefaults 编译器宏
+
+```ts
+interface Props {
+  msg?: string;
+  labels?: string[];
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  msg: "hello",
+  labels: () => ["one", "two"],
+});
+```
+
+#### emits
+
+```ts
+const emit = defineEmits<{
+  (e: "change", id: number): void;
+  (e: "update", value: string): void;
+}>();
+```
+
+#### ref
+
+```ts
+const year = ref<string | number>("2020");
+```
+
+#### reactive
+
+> 不推荐使用 reactive() 的泛型参数，因为处理了深层次 ref 解包的返回值与泛型参数的类型不同。
+
+直接显式地标注一个 reactive 变量的类型即可。
+
+```ts
+interface Book {
+  title: string;
+  year?: number;
+}
+const book: Book = reactive({ title: "Vue 3 指引" });
+```
+
+#### computed
+
+```ts
+const double = computed<number>(() => {
+  // 若返回值不是 number 类型则会报错
+});
+```
+
+#### ref 获取元素、Vue 组件
+
+获取原生元素
+
+```ts
+<template>
+  <input ref="el" />
+</template>;
+
+const el = ref<HTMLInputElement | null>(null);
+
+onMounted(() => {
+  el.value?.focus();
+});
+```
+
+获取 Vue 组件
+
+```ts
+import MyModal from "./MyModal.vue";
+
+// 通过InstanceType指定组件类型
+const modal = ref<InstanceType<typeof MyModal> | null>(null);
+
+const openModal = () => {
+  modal.value?.open();
+};
 ```
 
 ## 后语
