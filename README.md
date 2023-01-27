@@ -15,6 +15,7 @@
   - [前端面试知识点](#前端面试知识点)
   - [面试技巧](#面试技巧)
   - [个人随想](#个人随想)
+  - [心理学](#心理学)
   - [书籍](#书籍)
   - [其他](#其他)
   - [License](#license)
@@ -49,7 +50,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 1. [闭包](articles/js相关/闭包，我吃定了耶稣都挡不住，我说的.md)
 2. [JS 中的几种循环](articles/js相关/基础/JS的循环.md)
-3. [js小技巧](articles/js相关/js小技巧.md)
+3. [js 小技巧](articles/js相关/js小技巧.md)
 4. [函数式编程](articles/js相关/函数式编程/函数式编程.md)
 5. [防抖与节流](articles/js相关/防抖与节流/index.md)
 6. [数据类型判断](articles/js相关/数据类型/js数据类型判断.md)
@@ -81,7 +82,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 6. [Vue 高级特性](articles/Vue/Vue高级特性.md)
 7. [Vue-Cli 使用说明](articles/Vue/Vue-Cli使用说明.md)
 8. [Vue3 快速上手](articles/Vue/Vue3快速上手.md)
-9. [VueUse快速上手](articles/Vue/VueUse快速上手.md)
+9. [VueUse 快速上手](articles/Vue/VueUse快速上手.md)
 
 ## 开发知识储备
 
@@ -152,8 +153,12 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 个人随想
 
-1. [谈谈对 BFF 的理解](./articles/开发相关知识/谈谈对BFF的理解.md)
+1. [谈谈对 BFF 的理解](articles/开发相关知识/谈谈对BFF的理解.md)
 2. [那些外向的小事儿](articles/个人随想/那些外向的小事儿.md)
+
+## 心理学
+
+1. [需求层次理论](articles/心理学/需求层次理论.md)
 
 ## 书籍
 
