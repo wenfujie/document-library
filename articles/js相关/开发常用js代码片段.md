@@ -1017,6 +1017,35 @@ function getRandomInt(min, max){
 }
 ```
 
+
+
+## 兼容问题
+
+### 新窗口打开链接
+
+window.open 在一些 App （如Facebook）中会有兼容问题。
+
+```js
+function openLinkOnNewWindow (url) {
+  const id = 'superLabel'
+  const el = document.getElementById(id)
+  if (el) {
+    el.setAttribute('href', url)
+  } else {
+    const a = document.createElement('a')
+    a.setAttribute('href', url)
+    a.setAttribute('target', '_blank')
+    a.setAttribute('id', id)
+    document.body.appendChild(a)
+  }
+  el.click()
+}
+
+openLinkOnNewWindow('https://www.baidu.com')
+```
+
+
+
 ## 有趣的 JS
 
 ### 如何在 JS 实现睡眠功能
