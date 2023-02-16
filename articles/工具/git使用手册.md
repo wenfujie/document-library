@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-06-16 17:11:17
  * @LastEditors: wfj
- * @LastEditTime: 2022-10
+ * @LastEditTime: 2023-02
  * @FilePath: /document-library/articles/工具/git使用手册.md
 -->
 
@@ -19,9 +19,9 @@ git revert commit_id
 # 撤回几个连续的 commit（..语法，左开右闭即：不含commit_id1包含commit_id2）
 git revert --no-commit commit_id1..commit_id2
 
-# 撤回某次 commit 及其后的所有 commit 提交
-# 指令执行后要反悔，使用最新的 commit_id 再执行一次该指令即可
-git reset --hard commit_id
+# 回滚到指定 commit 代码
+git reset --hard commit_id # HEAD 就会指向该 commit_id（若要取消，直接拉取远程即可）
+git push origin HEAD --force
 
 ```
 
