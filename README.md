@@ -71,6 +71,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 4. [Docker 使用说明](articles/工具/Docker使用说明.md)
 5. [手摸手带你用 js 实现端到端自动化测试](articles/测试相关/手摸手带你用js实现端到端自动化测试.md)
 6. [Node 自动化部署](articles/js相关/node自动化部署.md)
+7. [nginx指南](articles/前端工程化/nginx指南.md)
 
 ## Vue
 
