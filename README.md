@@ -112,6 +112,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 4. [快速上手 typescript](articles/语言/快速上手typescript.md)
 5. [Github 正则教程](https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md)
 6. [vscode 快捷键和终端指令](articles/工具/vscode快捷键和终端指令.md)
+7. [pnpm介绍](articles/工具/pnpm介绍.md)
 
 ## 业务 Demo
 
