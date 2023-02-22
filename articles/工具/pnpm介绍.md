@@ -50,10 +50,14 @@ pnpm 实现原理：将包及包的相关依赖平铺地安装到一个全局仓
 
 ## pnpm 简单使用
 
+安装
+
 ```bash
 # 安装 pnpm
 npm i -g pnpm
 ```
+
+包管理
 
 ```bash
 # 安装包
@@ -69,4 +73,14 @@ pnpm uninstall eslint
 
 # 移除不需要的包
 pnpm prune
+```
+
+运行指令
+
+```bash
+# npm
+npm run serve
+
+# pnpm (少敲个run)
+pnpm serve
 ```
