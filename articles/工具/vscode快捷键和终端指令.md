@@ -1,18 +1,58 @@
+- [vscode 代码片段](#vscode-代码片段)
+  - [Import and export](#import-and-export)
+  - [Various methods](#various-methods)
+  - [Console methods](#console-methods)
 - [vscode 快捷键](#vscode-快捷键)
-    - [1、工作区快捷键](#1工作区快捷键)
-    - [2、跳转操作](#2跳转操作)
-    - [3、移动光标](#3移动光标)
-    - [4、编辑操作](#4编辑操作)
-    - [5、删除操作](#5删除操作)
-    - [6、多光标选择/多光标编辑](#6多光标选择多光标编辑)
-    - [7、多列选择/多列编辑](#7多列选择多列编辑)
-    - [8、编程语言相关](#8编程语言相关)
-    - [9、搜索相关](#9搜索相关)
-    - [10、方法和文件头注释](#10方法和文件头注释)
+  - [1、工作区快捷键](#1工作区快捷键)
+  - [2、跳转操作](#2跳转操作)
+  - [3、移动光标](#3移动光标)
+  - [4、编辑操作](#4编辑操作)
+  - [5、删除操作](#5删除操作)
+  - [6、多光标选择/多光标编辑](#6多光标选择多光标编辑)
+  - [7、多列选择/多列编辑](#7多列选择多列编辑)
+  - [8、编程语言相关](#8编程语言相关)
+  - [9、搜索相关](#9搜索相关)
+  - [10、方法和文件头注释](#10方法和文件头注释)
 - [Mac 常用终端指令](#mac-常用终端指令)
 - [后语](#后语)
+ 
+## vscode 代码片段
 
-# vscode 快捷键
+### Import and export
+
+| Trigger | Content                                                      |
+| ------: | ------------------------------------------------------------ |
+|  `imp→` | imports entire module `import fs from 'fs';`                 |
+|  `imn→` | imports entire module without module name `import 'animate.css'` |
+|  `imd→` | imports only a portion of the module using destructing `import {rename} from 'fs';` |
+|  `env→` | exports name variable `export const nameVariable = localVariable;` |
+
+
+
+### Various methods
+
+|  Trigger | Content                                                      |
+| -------: | ------------------------------------------------------------ |
+|   `fre→` | forEach loop in ES6 syntax `array.forEach(currentItem => {})` |
+|   `fof→` | for ... of loop `for(const item of object) {}`               |
+|   `fin→` | for ... in loop `for(const item in object) {}`               |
+|  `anfn→` | creates an anonymous function `(params) => {}`               |
+|   `nfn→` | creates a named function `const add = (params) => {}`        |
+|   `dob→` | destructing object syntax `const {rename} = fs`              |
+|   `dar→` | destructing array syntax `const [first, second] = [1,2]`     |
+| `thenc→` | adds then and catch declaration to a promise `.then((res) => {}).catch((err) => {});` |
+|   `met→` | creates a method inside a class `add() {}`                   |
+
+
+
+### Console methods
+
+| Trigger | Content                                                      |
+| ------: | ------------------------------------------------------------ |
+|  `clg→` | console log `console.log(object)`                            |
+|  `clo→` | console log object with name `console.log('object :>> ', object);` |
+
+## vscode 快捷键
 
 vscode 用得熟不熟，就看你是否会用快捷键。
 
@@ -116,7 +156,7 @@ vscode 用得熟不熟，就看你是否会用快捷键。
 
 可配置自动更新头部，可参考：[相关配置项](https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE%E5%AD%97%E6%AE%B5)
 
-# Mac 常用终端指令
+## Mac 常用终端指令
 
 |    命令名     |        功能描述        |           使用举例           |
 | :-----------: | :--------------------: | :--------------------------: |
@@ -137,7 +177,7 @@ vscode 用得熟不熟，就看你是否会用快捷键。
 - lsof -i :8080 查看被什么进程使用（PID 为进程 id）
 - kill PID
 
-# 后语
+## 后语
 
 参考文章
 
