@@ -13,9 +13,9 @@ set -e
 
 git init
 git add -A
-git commit -m '发布文章【前端需储备开发语言】'
+git commit -m '发布文章【前端需储备开发语言】1'
 
-https://github.com/wenfujie/document-library.git
+# https://github.com/wenfujie/document-library.git
 # git push -f git@github.com/wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
 
