@@ -13,7 +13,7 @@ set -e
 
 git init
 git add -A
-git commit -m '修改ssh后，测试github是否正常更新'
+git commit -m '调整文章【前端需储备开发语言.md】位置'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master

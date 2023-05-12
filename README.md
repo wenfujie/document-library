@@ -13,6 +13,7 @@
   - [业务 Demo](#业务-demo)
   - [浏览器](#浏览器)
   - [前端面试知识点](#前端面试知识点)
+  - [开发语言](#开发语言)
   - [面试技巧](#面试技巧)
   - [个人随想](#个人随想)
   - [心理学](#心理学)
@@ -91,7 +92,6 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 2. [内容安全策略(CSP)](<articles/开发相关知识/内容安全策略(CSP).md>)
 3. [加密和签名](articles/开发相关知识/加密和签名.md)
 4. [域名相关](articles/开发相关知识/域名相关.md)
-5. [前端需储备开发语言](articles/开发相关知识/前端需储备开发语言.md)
 
 ## Animation
 
@@ -110,10 +110,9 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 1. [npm 详细使用说明](articles/工具/npm详细使用说明.md)
 2. [git 使用手册](articles/工具/git使用手册.md)
 3. [常用 vscode 插件](articles/工具/常用vscode插件.md)
-4. [快速上手 typescript](articles/语言/快速上手typescript.md)
-5. [Github 正则教程](https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md)
-6. [vscode 快捷键和终端指令](articles/工具/vscode快捷键和终端指令.md)
-7. [pnpm介绍](articles/工具/pnpm介绍.md)
+4. [Github 正则教程](https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md)
+5. [vscode 快捷键和终端指令](articles/工具/vscode快捷键和终端指令.md)
+6. [pnpm介绍](articles/工具/pnpm介绍.md)
 
 ## 业务 Demo
 
@@ -146,6 +145,10 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 14. [跨平台解决方案](articles/面试知识/跨平台解决方案.md)
 15. [设计模式](articles/开发相关知识/设计模式.md)
 16. [为什么 0.1 + 0.2 !== 0.3](articles/面试知识/0.1+0.2!==0.3.md)
+
+## 开发语言
+1. [快速上手 typescript](articles/语言/快速上手typescript.md)
+2. [前端需储备开发语言](articles/语言/前端需储备开发语言.md)
 
 ## 面试技巧
 
