@@ -83,8 +83,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 5. [nuxt.js 服务端渲染](articles/解决方案/nuxt.js服务端渲染.md)
 6. [Vue 高级特性](articles/Vue/Vue高级特性.md)
 7. [Vue-Cli 使用说明](articles/Vue/Vue-Cli使用说明.md)
-8. [Vue3 快速上手](articles/Vue/Vue3快速上手.md)
-9. [VueUse 快速上手](articles/Vue/VueUse快速上手.md)
+8. [Vue3资源集合](articles/Vue/Vue3资源集合.md)
 
 ## 开发知识储备
 

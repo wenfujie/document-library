@@ -13,7 +13,7 @@ set -e
 
 git init
 git add -A
-git commit -m '新增文章【函数式编程new】'
+git commit -m '新增文章【Vue3资源集合】，将vue3归类到该篇下'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
