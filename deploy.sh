@@ -13,7 +13,7 @@ set -e
 
 git init
 git add -A
-git commit -m '新增文章【Vue3资源集合】，将vue3归类到该篇下'
+git commit -m '新建Vue3目录，并将原本相关文章整合到该目录'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
