@@ -13,7 +13,7 @@ set -e
 
 git init
 git add -A
-git commit -m '新建Vue3目录，并将原本相关文章整合到该目录'
+git commit -m '新增文章【Vue3开发注意事项】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
