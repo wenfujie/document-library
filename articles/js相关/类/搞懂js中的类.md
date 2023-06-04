@@ -274,11 +274,11 @@ class Parent {
 class Child extends Parent {
   name = "sam";
   call() {
-    console.log(this.name);
+    console.log("i am " + this.name);
   }
 }
 
-const c = new Child() // sam
+const c = new Child(); // i am sam
 ```
 
 ## new 关键字做了什么
