@@ -6,6 +6,7 @@
   - [new 调用](#new-调用)
   - [getter 和 setter](#getter-和-setter)
   - [继承](#继承)
+  - [重写](#重写)
 - [new 关键字做了什么](#new-关键字做了什么)
   - [模拟实现 new 方法](#模拟实现-new-方法)
 
@@ -136,6 +137,7 @@ p.useHello(); // Yes
 **其他方式实现私有属性**
 
 利用立即执行函数和闭包实现
+
 ```js
 const Person = (function () {
   const name = "jay";
@@ -254,6 +256,29 @@ function Child(name, age) {
 Child.prototype = Object.create(Parent.prototype);
 
 var child1 = new Child("kevin", "18");
+```
+
+### 重写
+
+部分场景下，子类的属性和功能函数与父类并不相同，这时候会用到重写。
+
+类重写：直接在子类定义与父类相同的属性或函数即可覆盖父类。
+
+```js
+class Parent {
+  name = "lily";
+  call() {
+    console.log(this.name);
+  }
+}
+class Child extends Parent {
+  name = "sam";
+  call() {
+    console.log(this.name);
+  }
+}
+
+const c = new Child() // sam
 ```
 
 ## new 关键字做了什么
