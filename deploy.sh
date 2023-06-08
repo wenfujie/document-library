@@ -13,7 +13,7 @@ set -e
 
 git init
 git add -A
-git commit -m '编辑文章[git使用手册.md]'
+git commit -m '编辑文章[MarkDown常用语法.md]'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master

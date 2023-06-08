@@ -1,20 +1,11 @@
-- [标记关键词](#标记关键词)
-- [文字字体、颜色、大小](#文字字体颜色大小)
-- [文字底色](#文字底色)
-- [常用颜色](#常用颜色)
-- [分割线](#分割线)
-- [斜体、加粗](#斜体加粗)
-- [代码块](#代码块)
-- [超链接](#超链接)
-- [图片](#图片)
-- [引用](#引用)
-- [表格](#表格)
 ### 标记关键词
+
 使用 `` 将关键词包裹
 
 可以用 `Infinity` 关键字作为参数。
 
 ### 文字字体、颜色、大小
+
 ```
 <font face="黑体">黑体字</font>
 <font face="微软雅黑">微软雅黑</font>
@@ -24,6 +15,7 @@
 <font color=Red>红色</font>
 <font size=5>尺寸</font>
 ```
+
 <font face="黑体">黑体字</font>
 <font face="微软雅黑">微软雅黑</font>
 <font face="STCAIYUN">华文彩云</font>
@@ -33,6 +25,7 @@
 <font size=5>尺寸</font>
 
 ### 文字底色
+
 ```
 <table><tr><td bgcolor=DarkSeaGreen>这里的背景色是：DarkSeaGreen，此处输入任意想输入的内容</td></tr></table>
 
@@ -41,6 +34,7 @@
 <table><tr><td bgcolor=DarkSeaGreen>这里的背景色是：DarkSeaGreen，此处输入任意想输入的内容</td></tr></table>
 
 ### 常用颜色
+
 <font color=NavajoWhite>NavajoWhite</font>
 <font color=Feldspar>Feldspar</font>
 <font color=SandyBrown>SandyBrown</font>
@@ -71,11 +65,15 @@
 ***
 ___
 ```
+
 ---
-***
-___
+
+---
+
+---
 
 ### 斜体、加粗
+
 ```
 **凡有所学，皆成性格。**
 __凡有所学，皆成性格。__
@@ -86,9 +84,9 @@ _凡有所学，皆成性格。_
 
 **凡有所学，皆成性格。**
 
-__凡有所学，皆成性格。__
+**凡有所学，皆成性格。**
 
-*凡有所学，皆成性格。*
+_凡有所学，皆成性格。_
 
 _凡有所学，皆成性格。_
 
@@ -97,10 +95,11 @@ _凡有所学，皆成性格。_
 使用 ` ```javascript ` 为首行，` ``` ` 为尾行，中间内容缩进。
 
 ```javascript
-  console.log('hello world')
+console.log("hello world");
 ```
 
 ### 超链接
+
 ```
 [百度](https://www.baidu.com)
 ```
@@ -108,6 +107,7 @@ _凡有所学，皆成性格。_
 [百度](https://www.baidu.com)
 
 ### 图片
+
 ```
 ![鼠标放上去图片描述](图片地址)
 ```
@@ -115,7 +115,9 @@ _凡有所学，皆成性格。_
 ![鼠标放上去图片描述](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimages.enet.com.cn%2F2014%2F0718%2F23%2F6743905.jpg&refer=http%3A%2F%2Fimages.enet.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614068421&t=4cb4ab8617f18f19c5fa8fdf8720d266)
 
 ### 引用
+
 使用 `>` 字符，即可添加引用，在行尾添加 `<br>` 即可换行
+
 ```
 >1. If the this value is undefined, return "[object Undefined]".
 >2. If the this value is null, return "[object Null]".
@@ -134,18 +136,30 @@ _凡有所学，皆成性格。_
 - [表格](#表格)
 ```
 
->1. If the this value is undefined, return "[object Undefined]".
->2. If the this value is null, return "[object Null]".
+> 1.  If the this value is undefined, return "[object Undefined]".
+> 2.  If the this value is null, return "[object Null]".
 
->你好<br>
-今天天气不错
+> 你好<br>
+> 今天天气不错
 
 ### 表格
+
 ```
 | 左对齐 | 右对齐 | 居中对齐 |
 | :-----| ----: | :----: |
 | 单元格 | 单元格 | 单元格 |
 ```
-| 左对齐 | 右对齐 | 居中对齐 |
-| :- | -: | :-: |
-| 单元格111 | 单元格111 | 单元格111 |
+
+| 左对齐     |     右对齐 |  居中对齐  |
+| :--------- | ---------: | :--------: |
+| 单元格 111 | 单元格 111 | 单元格 111 |
+
+### checkbox
+
+```md
+- [x] 跑步
+- [ ] 举铁
+```
+
+- [x] 跑步
+- [ ] 举铁
