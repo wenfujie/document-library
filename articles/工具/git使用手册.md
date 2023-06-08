@@ -1,31 +1,49 @@
 <!--
  * @Date: 2021-06-16 17:11:17
  * @LastEditors: wfj
- * @LastEditTime: 2023-02
+ * @LastEditTime: 2023-06
  * @FilePath: /document-library/articles/工具/git使用手册.md
 -->
 
 ## git 基本操作
 
-### code revert
+### 代码回退
+
+> HEAD 指代当前分支最新的 commit_id
+
+#### git revert
+
+git revert 是用一次新的 commit 来回滚之前的 commit ，旧的提交记录仍会保留。
 
 ```bash
 # 查看 commit 记录
 git log
+
+# 撤回最新的提交
+git revert HEAD
 
 # 撤回某次 commit（若非当前分支的commit需加 -m）
 git revert commit_id
 
 # 撤回几个连续的 commit（..语法，左开右闭即：不含commit_id1包含commit_id2）
 git revert --no-commit commit_id1..commit_id2
-
-# 回滚到指定 commit 代码
-git reset --hard commit_id # HEAD 就会指向该 commit_id（若要取消，直接拉取远程即可）
-git push origin HEAD --force
-
 ```
 
-> HEAD 可指代当前分支最新的 commit_id，撤回最新的提交：git revert HEAD
+#### git reset
+
+git reset 会直接删除指定的 commit ，旧记录不会保留。
+
+```bash
+
+# 回滚到指定 commit 代码
+# 执行后，HEAD 会指向该 commit_id，commit 仓库会保留被回退的代码
+git reset --hard commit_id
+# 清空 commit 仓库，完成回退
+git push origin HEAD --force
+# or 取消回退，master意为当前分支
+git push origin master 
+
+```
 
 ### git add
 
