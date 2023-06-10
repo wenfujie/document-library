@@ -30,9 +30,11 @@ Monorepo 相对 vue2 的管理
 
 ### 2.2 数据劫持优化
 
-Vue3 用的 proxy 代替 Object.defineProperty 进行数据劫持
+Vue2 中使用 Object.defineProperty 进行数据劫持，由于它只能对具体的key进行劫持，vue2深度遍历了data中的所有属性并对他们进行劫持，存在性能浪费。
 
-// TODO: 具体优势
+Vue3 用 proxy 代替 Object.defineProperty 来实现数据劫持，proxy 支持对整个对象进行劫持，提升了性能。
+
+
 
 ### 2.3 编译优化
 
