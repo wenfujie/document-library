@@ -33,16 +33,24 @@ git revert --no-commit commit_id1..commit_id2
 
 git reset 会直接删除指定的 commit ，旧记录不会保留。
 
-```bash
+回滚到指定版本，保留期间代码
 
-# 回滚到指定 commit 代码
-# 执行后，HEAD 会指向该 commit_id，commit 仓库会保留被回退的代码
+```bash
+# 执行后，HEAD 会指向该 commit_id，期间改动代码恢复到暂存区
+git reset --soft commit_id
+
+# 重新修改和提交代码 or 删除暂存区代码
+```
+
+回滚到指定版本，删除期间代码
+
+```bash
+# 执行后，HEAD 会指向该 commit_id，commit 仓库存在期间commit记录
 git reset --hard commit_id
 # 清空 commit 仓库，完成回退
 git push origin HEAD --force
 # or 取消回退，master意为当前分支
-git push origin master 
-
+git push origin master
 ```
 
 ### git add
