@@ -13,7 +13,7 @@ set -e
 
 git init
 git add -A
-git commit -m 'docs: 新增文章[computed实现.md]'
+git commit -m 'docs: 更新[Vue3源码解析]目录'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
