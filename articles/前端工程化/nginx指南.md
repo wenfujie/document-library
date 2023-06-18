@@ -1,14 +1,127 @@
-- [location 匹配地址](#location-匹配地址)
-- [反向代理 proxy\_pass 的坑](#反向代理-proxy_pass-的坑)
-  - [纯域名](#纯域名)
-  - [非纯域名](#非纯域名)
-  - [使用正则](#使用正则)
-  - [重写代理链接](#重写代理链接)
-- [相关指令](#相关指令)
+## 安装
 
-## location 匹配地址
+```bash
+brew install nginx
 
-语法
+nginx -v
+```
+
+配置文件位置 `/usr/local/etc/nginx/nginx.conf`
+
+> 若 mac m1 电脑安装异常： Cannot install in Homebrew on ARM processor in Intel default prefix (/usr/local)!
+> 解决：1.右键终端图标，显示简介，将【使用 Rosetta 打开】勾上；2.重启终端即可。
+
+## 指令
+
+```bash
+#启动
+brew services start nginx
+
+##停止
+brew services stop nginx
+
+#重启nginx
+brew services restart nginx
+
+#重新加载配置文件
+nginx -s reload
+
+#验证nginx配置文件是否正确
+nginx -t
+```
+
+## 如果打印调试
+
+1. 安装 echo-nginx-module ，安装步骤有点复杂，[安装说明](https://blog.csdn.net/qq_38874734/article/details/105551618)
+2. 使用 return 200 "request_method: ${request_method}";
+
+## 语法
+
+### if
+
+#### 单个判断
+
+```bash
+# 判断相等
+if ($arg_paramName = "0") {}
+
+# 判断不相等
+if ($arg_paramName != "0") {}
+
+```
+
+注意：if 后必须要有空格，若写 `if($arg_paramName)` 会报错。
+
+#### 且、或判断
+
+nginx 不支持 `&&` 和 `||` 语法，只能用变量的方式来实现且和或
+
+```bash
+# 且逻辑
+set $flag "";
+if ($request_method = "POST") {
+  set $flag "${flag}0";
+}
+if ($arg_myCardData) {
+  set $flag "${flag}1";
+}
+if ($flag = "01") {
+  rewrite ^/(.*)$ $scheme://$host$request_uri redirect;
+}
+```
+
+```bash
+# 或逻辑
+set $flag "";
+if ($request_method = "POST") {
+  set $flag "1";
+}
+if ($arg_myCardData) {
+  set $flag "1";
+}
+if ($flag = "1") {
+  rewrite ^/(.*)$ $scheme://$host$request_uri redirect;
+}
+```
+
+#### 结合正则判断
+
+```bash
+# 获取地址上某个参数
+if ($query_string ~ ".*(?:^|\?|&)key=(.+?)(?:(?:&.*)|$)") {
+  set $key "$1";
+}
+if ($uid != $key) {
+  return 301 "https://www.baidu.com"
+}
+```
+
+### rewrite 请求重写或重定向
+
+rewrite 只能放在 server{}, location{}, if{}中。
+
+语法：`rewrite regex replacement [flag];`
+
+flag 标志位
+
+1. last : 相当于 Apache 的[L]标记，表示完成 rewrite
+2. break : 停止执行当前虚拟主机的后续 rewrite 指令集
+3. redirect : 返回 302 临时重定向，地址栏会显示跳转后的地址
+4. permanent : 返回 301 永久重定向，地址栏会显示跳转后的地址
+
+#### 修改入参并重定向
+
+```bash
+if ($key) {
+  # 对当前请求地址新增code参数，并重定向
+  rewrite ^/(.*)$ $scheme://$host$request_uri&code=1? redirect;
+}
+```
+
+注意：replacement 末尾加 `?` 地址不会去拼接原本的query，若不加则会拼接。
+
+
+### location
 
 ```js
 location [ = | ~ | ~* | ^~ ] /URI { … }
@@ -24,9 +137,7 @@ location 匹配命令解释
 | **`~`**   | 用于**正则 URI** 前，表示 URI 包含正则表达式， **区分**大小写                                       |
 | **`~\*`** | 用于**正则 URI** 前， 表示 URI 包含正则表达式， **不区分**大小写                                    |
 
-
-
-location匹配顺序，以下序号越小优先级越高
+location 匹配顺序，以下序号越小优先级越高
 
 ```bash
 1. location =    # 精准匹配
@@ -41,8 +152,6 @@ location匹配顺序，以下序号越小优先级越高
 
 - 前缀匹配下，返回最长匹配的 location，与 location 的位置先后顺序无关
 - 正则匹配下，按照 location 的位置先后顺序，优先返回前面的
-
-
 
 ## 反向代理 proxy_pass 的坑
 
@@ -177,31 +286,3 @@ location / {
     proxy_pass http://node:8080/node/;
 }
 ```
-
-## 相关指令
-
-```bash
-#安装
-brew install nginx
-
-#启动
-brew services start nginx
-
-##停止
-brew services stop nginx
-
-#重启nginx
-brew services restart nginx
-
-#重新加载配置文件
-nginx -s reload
-
-#验证nginx配置文件是否正确
-nginx -t
-
-#配置文件位置
-/usr/local/etc/nginx/nginx.conf
-```
-
-> 若 mac m1 电脑安装异常： Cannot install in Homebrew on ARM processor in Intel default prefix (/usr/local)!
-> 解决：1.右键终端图标，显示简介，将【使用 Rosetta 打开】勾上；2.重启终端即可。

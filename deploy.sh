@@ -13,7 +13,7 @@ set -e
 
 git init
 git add -A
-git commit -m 'docs: 更新[Vue3源码解析]目录'
+git commit -m 'docs: 更新[nginx指南]、[Docker使用说明]'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
