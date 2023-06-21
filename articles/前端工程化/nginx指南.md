@@ -1,3 +1,4 @@
+
 ## 安装
 
 ```bash
@@ -30,16 +31,31 @@ nginx -s reload
 nginx -t
 ```
 
-## 如果打印调试
+## 内置变量
 
-1. 安装 echo-nginx-module ，安装步骤有点复杂，[安装说明](https://blog.csdn.net/qq_38874734/article/details/105551618)
-2. 使用 return 200 "request_method: ${request_method}";
+
+
+| 变量名          | 作用                                                        |
+| --------------- | ----------------------------------------------------------- |
+| $scheme         | http 或 https                                               |
+| $host           | 域名                                                        |
+| $uri            | 请求uri，不带参数如：/getUser                               |
+| $request_uri    | 请求uri，带参数如：/getUser?id=123                          |
+| $args           | 请求地址上的参数：id=123&name=xxx                           |
+| $arg_xxx        | 取到 `$args` 中具体某个参数值，xxx为key名，如：$arg_id 返回 123 |
+| $query_string   | 与$args相同                                                 |
+| $request_method | 请求类型，GET、POST                                         |
+| $server_name    | 服务器名，如 www.cnphp.info                                 |
+| $server_port    | 服务器端口                                                  |
+
+获取请求完整地址：`$scheme://$host$request_uri` 
+
 
 ## 语法
 
 ### if
 
-#### 单个判断
+**单个判断**
 
 ```bash
 # 判断相等
@@ -52,7 +68,7 @@ if ($arg_paramName != "0") {}
 
 注意：if 后必须要有空格，若写 `if($arg_paramName)` 会报错。
 
-#### 且、或判断
+**且、或判断**
 
 nginx 不支持 `&&` 和 `||` 语法，只能用变量的方式来实现且和或
 
@@ -84,7 +100,7 @@ if ($flag = "1") {
 }
 ```
 
-#### 结合正则判断
+**结合正则判断**
 
 ```bash
 # 获取地址上某个参数
@@ -109,7 +125,7 @@ flag 标志位
 3. redirect : 返回 302 临时重定向，地址栏会显示跳转后的地址
 4. permanent : 返回 301 永久重定向，地址栏会显示跳转后的地址
 
-#### 修改入参并重定向
+**修改入参并重定向**
 
 ```bash
 if ($key) {
@@ -286,3 +302,8 @@ location / {
     proxy_pass http://node:8080/node/;
 }
 ```
+
+## 如何打印调试
+
+1. 安装 echo-nginx-module ，安装步骤有点复杂，[安装说明](https://blog.csdn.net/qq_38874734/article/details/105551618)
+2. 使用 return 200 "request_method: ${request_method}";
