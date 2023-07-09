@@ -32,6 +32,11 @@
     - [根据精度四舍五入 —— round(number, \[precision=0\])](#根据精度四舍五入--roundnumber-precision0)
     - [查找对象数组指定 key 值最大的项 —— maxBy(array, \[iteratee=\_.identity\])](#查找对象数组指定-key-值最大的项--maxbyarray-iteratee_identity)
     - [计算对象数组指定 key 值的和 —— sumBy(array, \[iteratee=\_.identity\])](#计算对象数组指定-key-值的和--sumbyarray-iteratee_identity)
+    - [返回指定范围随机数 —— random(\[lower=0\], \[upper=1\], \[floating\])](#返回指定范围随机数--randomlower0-upper1-floating)
+- [字符串](#字符串)
+    - [转驼峰写法 —— camelCase(\[string=''\])](#转驼峰写法--camelcasestring)
+    - [用正则拆分字符串 —— words(\[string=''\], \[pattern\])](#用正则拆分字符串--wordsstring-pattern)
+    - [截断字符串，类似溢出隐藏 —— truncate(\[string=''\], \[options=\])](#截断字符串类似溢出隐藏--truncatestring-options)
 
 [lodash 官网](https://www.lodashjs.com/)
 
@@ -546,4 +551,75 @@ _.sumBy(objects, function (o) {
 // The `_.property` iteratee shorthand.
 _.sumBy(objects, "n");
 // => 20
+```
+
+### 返回指定范围随机数 —— random([lower=0], [upper=1], [floating])
+
+```js
+_.random(0, 5);
+// => an integer between 0 and 5
+
+_.random(5);
+// => also an integer between 0 and 5
+
+_.random(5, true);
+// => a floating-point number between 0 and 5
+
+_.random(1.2, 5.2);
+// => a floating-point number between 1.2 and 5.2
+```
+
+# 字符串
+
+### 转驼峰写法 —— camelCase([string=''])
+
+```js
+_.camelCase("Foo Bar");
+// => 'fooBar'
+
+_.camelCase("--foo-bar--");
+// => 'fooBar'
+
+_.camelCase("__FOO_BAR__");
+// => 'fooBar'
+```
+
+### 用正则拆分字符串 —— words([string=''], [pattern])
+
+```js
+_.words("fred, barney, & pebbles");
+// => ['fred', 'barney', 'pebbles']
+
+_.words("fred, barney, & pebbles", /[^, ]+/g);
+// => ['fred', 'barney', '&', 'pebbles']
+```
+
+### 截断字符串，类似溢出隐藏 —— truncate([string=''], [options=])
+
+1. `[string='']` _(string)_: 要截断的字符串。
+2. `[options=]` _(Object)_: 选项对象。
+3. `[options.length=30]` _(number)_: 允许的最大长度。
+4. `[options.omission='...']` _(string)_: 超出后的代替字符。
+5. `[options.separator]` _(RegExp|string)_: 截断点。
+
+```js
+_.truncate("hi-diddly-ho there, neighborino");
+// => 'hi-diddly-ho there, neighbo...'
+
+_.truncate("hi-diddly-ho there, neighborino", {
+  length: 24,
+  separator: " ",
+});
+// => 'hi-diddly-ho there,...'
+
+_.truncate("hi-diddly-ho there, neighborino", {
+  length: 24,
+  separator: /,? +/,
+});
+// => 'hi-diddly-ho there...'
+
+_.truncate("hi-diddly-ho there, neighborino", {
+  omission: " [...]",
+});
+// => 'hi-diddly-ho there, neig [...]'
 ```
