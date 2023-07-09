@@ -38,9 +38,13 @@
     - [用正则拆分字符串 —— words(\[string=''\], \[pattern\])](#用正则拆分字符串--wordsstring-pattern)
     - [截断字符串，类似溢出隐藏 —— truncate(\[string=''\], \[options=\])](#截断字符串类似溢出隐藏--truncatestring-options)
 
-[lodash 官网](https://www.lodashjs.com/)
+> Lodash 是一个一致性、模块化、高性能的 JavaScript 实用工具库。
 
-本文意旨用通俗的语言概括 `lodash api` 的含义，让刚接触 `lodash` 的开发者快速找到适用的函数。
+由于 Lodash 官网 api 描述文字艰深晦涩，本文意旨用通俗的语言概括 `lodash api` 的含义，让刚接触 `lodash` 的开发者快速找到适用的函数（只要看目录就知道如何使用了😎）。
+
+该篇所罗列 api 是经过笔者筛选平日使用频率较高，并剔除 ES6 已实现的函数。
+
+[Lodash 官网](https://www.lodashjs.com/)
 
 # Array
 
