@@ -17,6 +17,21 @@
   - [转换](#转换)
     - [按指定长度拆分数组 —— chunk(array, \[size=1\])](#按指定长度拆分数组--chunkarray-size1)
     - [将键值对二维数组转为对象 —— fromPairs(pairs)](#将键值对二维数组转为对象--frompairspairs)
+- [函数](#函数)
+    - [防抖 —— debounce(func, \[wait=0\], \[options=\])](#防抖--debouncefunc-wait0-options)
+    - [节流 throttle(func, \[wait=0\], \[options=\])](#节流-throttlefunc-wait0-options)
+    - [限制调用次数 —— before(n, func)](#限制调用次数--beforen-func)
+    - [函数柯里化 —— curry(func, \[arity=func.length\])](#函数柯里化--curryfunc-arityfunclength)
+    - [限制只能调用一次 —— once(func)](#限制只能调用一次--oncefunc)
+- [语言类方法](#语言类方法)
+    - [深拷贝 —— cloneDeep(value)](#深拷贝--clonedeepvalue)
+    - [深度比较值 —— isEqual(value, other)](#深度比较值--isequalvalue-other)
+    - [判断是函数 —— isFunction(value)](#判断是函数--isfunctionvalue)
+- [数学](#数学)
+    - [根据精度向下、向上舍入 —— floor(number, \[precision=0\])](#根据精度向下向上舍入--floornumber-precision0)
+    - [根据精度四舍五入 —— round(number, \[precision=0\])](#根据精度四舍五入--roundnumber-precision0)
+    - [查找对象数组指定 key 值最大的项 —— maxBy(array, \[iteratee=\_.identity\])](#查找对象数组指定-key-值最大的项--maxbyarray-iteratee_identity)
+    - [计算对象数组指定 key 值的和 —— sumBy(array, \[iteratee=\_.identity\])](#计算对象数组指定-key-值的和--sumbyarray-iteratee_identity)
 
 [lodash 官网](https://www.lodashjs.com/)
 
@@ -44,8 +59,6 @@ _.sampleSize([1, 2, 3], 2);
 _.sampleSize([1, 2, 3], 4);
 // => [2, 3, 1]
 ```
-
-
 
 ### 查找并返回索引 —— findIndex(array, [predicate=_.identity], [fromIndex=0])
 
@@ -182,7 +195,6 @@ console.log(evens);
 // => [10, 20]
 ```
 
-
 ## 过滤
 
 ### 过滤数组 —— filter(collection, [predicate=_.identity])
@@ -283,7 +295,6 @@ without(array, array[0]);
 // => [{ c: 6, x: 3 }]
 ```
 
-
 ### 去重 —— uniqBy(array, [iteratee=_.identity])
 
 指定对象中的 key 去重
@@ -332,7 +343,6 @@ _.intersectionBy([{ x: 1 }], [{ x: 2 }, { x: 1 }], "x");
 // => [{ 'x': 1 }]
 ```
 
-
 ## 排序
 
 ### 排序 —— orderBy(collection, [iteratees=[_.identity]], [orders])
@@ -361,9 +371,6 @@ _.shuffle([1, 2, 3, 4]);
 
 ### 按指定长度拆分数组 —— chunk(array, [size=1])
 
-
-
-
 ### 将键值对二维数组转为对象 —— fromPairs(pairs)
 
 ```js
@@ -374,5 +381,169 @@ _.fromPairs([
 // => { 'fred': 30, 'barney': 40 }
 ```
 
+# 函数
 
+### 防抖 —— debounce(func, [wait=0], [options=])
 
+延迟 `wait` 毫秒后调用 `func` 方法，若延迟期间函数被调用则按 `wait` 重置延迟时间。
+
+1. `func` _(Function)_: 要防抖动的函数。
+2. `[wait=0]` _(number)_: 需要延迟的毫秒数。
+3. `[options=]` _(Object)_: 选项对象。
+4. `[options.leading=false]` _(boolean)_: 指定在延迟开始前调用。
+5. `[options.maxWait]` _(number)_: 设置 `func` 允许被延迟的最大值。
+6. `[options.trailing=true]` _(boolean)_: 指定在延迟结束后调用。
+
+```js
+// 避免窗口在变动时出现昂贵的计算开销。
+jQuery(window).on("resize", _.debounce(calculateLayout, 150));
+
+// 当点击时 `sendMail` 随后就被调用。
+jQuery(element).on(
+  "click",
+  _.debounce(sendMail, 300, {
+    leading: true,
+    trailing: false,
+  })
+);
+
+// 确保 `batchLog` 调用1次之后，1秒内会被触发。
+var debounced = _.debounce(batchLog, 250, { maxWait: 1000 });
+var source = new EventSource("/stream");
+jQuery(source).on("message", debounced);
+
+// 取消一个 trailing 的防抖动调用
+jQuery(window).on("popstate", debounced.cancel);
+```
+
+### 节流 throttle(func, [wait=0], [options=])
+
+在 wait 秒内最多执行 `func` 一次的函数。
+
+1. `func` _(Function)_: 要节流的函数。
+2. `[wait=0]` _(number)_: 需要节流的毫秒。
+3. `[options=]` _(Object)_: 选项对象。
+4. `[options.leading=true]` _(boolean)_: 指定调用在节流开始前。
+5. `[options.trailing=true]` _(boolean)_: 指定调用在节流结束后。
+
+```js
+// 避免在滚动时过分的更新定位
+jQuery(window).on("scroll", _.throttle(updatePosition, 100));
+
+// 点击后就调用 `renewToken`，但5分钟内超过1次。
+var throttled = _.throttle(renewToken, 300000, { trailing: false });
+jQuery(element).on("click", throttled);
+
+// 取消一个 trailing 的节流调用。
+jQuery(window).on("popstate", throttled.cancel);
+```
+
+### 限制调用次数 —— before(n, func)
+
+创建一个调用`func`的函数，限制调用次数 < n 次。 之后再调用这个函数，将返回一次最后调用`func`的结果。
+
+```js
+const fn = before(2, (val) => {
+  console.log("called");
+  return val;
+});
+console.log(fn(1));
+console.log(fn(2));
+
+// => called, 1, 1
+```
+
+### 函数柯里化 —— curry(func, [arity=func.length])
+
+```js
+var abc = function (a, b, c) {
+  return [a, b, c];
+};
+
+var curried = _.curry(abc);
+
+curried(1)(2)(3);
+// => [1, 2, 3]
+
+curried(1, 2)(3);
+// => [1, 2, 3]
+
+curried(1, 2, 3);
+// => [1, 2, 3]
+
+// Curried with placeholders.
+curried(1)(_, 3)(2);
+// => [1, 2, 3]
+```
+
+### 限制只能调用一次 —— once(func)
+
+# 语言类方法
+
+### 深拷贝 —— cloneDeep(value)
+
+### 深度比较值 —— isEqual(value, other)
+
+```js
+var object = { a: 1 };
+var other = { a: 1 };
+
+_.isEqual(object, other);
+// => true
+
+object === other;
+// => false
+```
+
+### 判断是函数 —— isFunction(value)
+
+# 数学
+
+### 根据精度向下、向上舍入 —— floor(number, [precision=0])
+
+向下舍入 `floor(number, [precision=0])`
+
+```js
+_.floor(4.006);
+// => 4
+
+_.floor(0.046, 2);
+// => 0.04
+
+_.floor(4060, -2);
+// => 4000
+```
+
+向上舍入 `ceil(number, [precision=0])`
+
+### 根据精度四舍五入 —— round(number, [precision=0])
+
+### 查找对象数组指定 key 值最大的项 —— maxBy(array, [iteratee=_.identity])
+
+```js
+var objects = [{ n: 1 }, { n: 2 }];
+
+_.maxBy(objects, function (o) {
+  return o.n;
+});
+// => { 'n': 2 }
+
+// The `_.property` iteratee shorthand.
+_.maxBy(objects, "n");
+// => { 'n': 2 }
+```
+
+### 计算对象数组指定 key 值的和 —— sumBy(array, [iteratee=_.identity])
+
+```js
+var objects = [{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }];
+
+_.sumBy(objects, function (o) {
+  return o.n;
+});
+// => 20
+
+// The `_.property` iteratee shorthand.
+_.sumBy(objects, "n");
+// => 20
+```
