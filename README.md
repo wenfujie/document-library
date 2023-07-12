@@ -7,6 +7,7 @@
   - [前端工程化](#前端工程化)
   - [Vue](#vue)
   - [开发知识储备](#开发知识储备)
+  - [前端优化](#前端优化)
   - [Animation](#animation)
   - [手写代码](#手写代码)
   - [工具](#工具)
@@ -92,6 +93,11 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 3. [加密和签名](articles/开发相关知识/加密和签名.md)
 4. [域名相关](articles/开发相关知识/域名相关.md)
 
+## 前端优化
+
+1. [性能优化](articles/解决方案/性能优化.md)
+2. [webpack 打包优化](articles/解决方案/webpack打包优化.md)
+
 ## Animation
 
 1. [css 动画](articles/Animation/animation动画/animation.md)
@@ -137,14 +143,13 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 6. [跨域资源共享 cors 详解](articles/面试知识/跨域资源共享cors详解.md)
 7. [算法深入](articles/开发相关知识/算法深入.md)
 8. [浏览器渲染机制](articles/面试知识/浏览器渲染机制.md)
-9. [性能优化](articles/面试知识/性能优化.md)
-10. [前端权限管理](articles/开发相关知识/前端权限控制.md)
-11. [事件循环 event-loop](articles/面试知识/事件循环event-loop.md)
-12. [webpack 热更新原理](articles/js相关/Webpack/webpack热更新原理.md)
-13. [跨域解决方案](articles/面试知识/跨域解决方案.md)
-14. [跨平台解决方案](articles/面试知识/跨平台解决方案.md)
-15. [设计模式](articles/开发相关知识/设计模式.md)
-16. [为什么 0.1 + 0.2 !== 0.3](articles/面试知识/0.1+0.2!==0.3.md)
+9. [前端权限管理](articles/开发相关知识/前端权限控制.md)
+10. [事件循环 event-loop](articles/面试知识/事件循环event-loop.md)
+11. [webpack 热更新原理](articles/js相关/Webpack/webpack热更新原理.md)
+12. [跨域解决方案](articles/面试知识/跨域解决方案.md)
+13. [跨平台解决方案](articles/面试知识/跨平台解决方案.md)
+14. [设计模式](articles/开发相关知识/设计模式.md)
+15. [为什么 0.1 + 0.2 !== 0.3](articles/面试知识/0.1+0.2!==0.3.md)
 
 ## 开发语言
 

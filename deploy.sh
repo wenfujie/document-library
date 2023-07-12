@@ -13,7 +13,7 @@ set -e
 
 git init
 git add -A
-git commit -m 'docs: 更新文章【概括lodash常用函数】'
+git commit -m 'docs: 调整readme，增加二级目录【前端优化】，增加文章【webpack打包优化】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
