@@ -1,23 +1,30 @@
-- [善用 import() 分包](#善用-import-分包)
-  - [依赖分包](#依赖分包)
-  - [Vue 组件分包](#vue-组件分包)
-- [分包 optimization.splitChunks](#分包-optimizationsplitchunks)
-  - [splitChunks 的默认配置](#splitchunks-的默认配置)
-  - [chunks](#chunks)
-  - [maxInitialRequests](#maxinitialrequests)
-  - [maxAsyncRequests](#maxasyncrequests)
-  - [minChunks](#minchunks)
-  - [cacheGroups](#cachegroups)
-    - [name](#name)
-    - [priority](#priority)
-  - [实际应用](#实际应用)
-- [externals](#externals)
+- [分包](#分包)
+  - [import() 分包](#import-分包)
+    - [分割依赖](#分割依赖)
+    - [动态组件](#动态组件)
+  - [optimization.splitChunks 分包](#optimizationsplitchunks-分包)
+    - [splitChunks 的默认配置](#splitchunks-的默认配置)
+    - [chunks](#chunks)
+    - [maxInitialRequests](#maxinitialrequests)
+    - [maxAsyncRequests](#maxasyncrequests)
+    - [minChunks](#minchunks)
+    - [cacheGroups](#cachegroups)
+    - [实际应用](#实际应用)
+  - [externals](#externals)
 
-## 善用 import() 分包
+# 分包
+
+**辅助工具**
+
+[speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin) 可以协助开发人员定位打包耗时瓶颈。
+
+[webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 插件会以树状图展示项目包大小及 chunk 分布情况，协助分析是否需要分包。
+
+## import() 分包
 
 使用 `import()` 动态导入模块时， webpack 会自动把该模块打包为独立的 chunk。
 
-### 依赖分包
+### 分割依赖
 
 在遇到体积较大并且非页面初始加载所需模块时，可以使用 `import()` 对该模块分包，避免将模块打包在初始依赖 chunk 中，导致首屏加载慢。
 
@@ -44,13 +51,54 @@ function onSubmit () {
 }
 ```
 
-**分析：** 由于页面初始渲染时，并不依赖 `@adyen/adyen-web` 包，而在用户经过一系列操作提交订单时才需唤起支付，所以调整为点击提交按钮时调用 `onSubmit` 函数并用 `import()` 进行动态导入，这样包不会打入 `chunk-vendors` ，而是生成一个独立chunk `adyen.js` 。
+**分析：** 由于页面初始渲染时，并不依赖 `@adyen/adyen-web` 包，而在用户经过一系列操作提交订单时才需唤起支付，所以调整为点击提交按钮时调用 `onSubmit` 函数并用 `import()` 进行动态导入，这样包不会打入 `chunk-vendors` ，而是生成一个独立 chunk `adyen.js` 。
 
-### Vue 组件分包
+### 动态组件
 
-<!-- TODO: -->
+当组件代码量大或组件内部依赖包的体积过大，我们可以用动态组件的形式进行优化。
 
-## 分包 optimization.splitChunks
+```js
+import("../views/Payment/index.vue");
+```
+
+**配置路由时使用动态组件**
+
+```js
+const routes = [
+  {
+    path: "/payment",
+    name: "Payment",
+    component: () =>
+      import(/* webpackChunkName: "payment" */ "../views/Payment/index.vue"),
+  },
+];
+```
+
+**分析：** 若使用静态导入组件，组件内容会被打包到初始 chunk，随着迭代组件内容越来大，路由数量越来越多，初始 chunk 越发臃肿。
+
+而使用动态组件配置路由，每个组件会打包到独立 chunk，待路由命中时才会加载组件对应 chunk，初始 chunk 不受影响。
+
+**局部注册动态组件**
+
+```js
+<component :is="'Banners'" />
+
+<script>
+  export default {
+    name: 'Home',
+    components: {
+      Banners: () => import('@/views/Home/components/Banners.vue'
+        ),
+    }
+  }
+</script>
+```
+
+**分析：** Banners 组件内含 swiper 包（133kb）及其他较大的依赖，一个个得将三方依赖动态导入较为繁琐，当组件在页面中非必须存在时，可以考虑将组件动态化，组件动态化后该组件的代码及其静态依赖都会打包在一个独立的 chunk 下。
+
+注意：使用局部动态组件时，需关注组件是否存在依赖关系，以及组件异常情况。
+
+## optimization.splitChunks 分包
 
 webpack 有三种分包方式：
 
@@ -140,11 +188,11 @@ chunks 作用是限制拆分代码的范围，有效值为 `all`，`async` 和 `
 
 `cacheGroups` 有两个默认的组，一个是 `vendors`，包含所有来自 `node_modules` 目录的模块；一个 `default`，包含了由两个以上的 chunk 所共享的模块。
 
-#### name
+**name**
 
 指定当前组 chunk 文件的名称。
 
-#### priority
+**priority**
 
 指定组的优先级。若多个组都匹配分包条件，命中 `priorit` 最大的那个组
 
@@ -156,10 +204,48 @@ chunks 作用是限制拆分代码的范围，有效值为 `all`，`async` 和 `
 2. 合并较小的 js 文件；
 3. 放置模块被重复打包；
 
-由于 `chunk-vendor.js` 过大，导致首屏白屏时间长
+<!-- TODO: 待扩展 -->
 
 ## externals
 
-<!-- TODO: -->
+> externals 防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖。
 
-externals 更适合把第三方库移到 CDN 上
+```js
+import $ from "jquery";
+```
+
+以上述代码为例，通常情况下 webpack 会去 `node_modules` 找到 `jquery` 模块并打包到 chunk 里。
+
+**将 npm 包引入改为 CDN 引入**
+
+```js
+// webpack.config.js
+
+module.exports = {
+  externals: {
+    jquery: "jQuery",
+  },
+};
+```
+
+```js
+// index.html
+
+// 引入CDN 上的 jquery
+<script
+  src="https://code.jquery.com/jquery-3.1.0.js"
+  crossorigin="anonymous"
+></script>
+```
+
+如上配置 `externals` ，webpack 将不再从 `node_modules` 里打包 `jquery` 模块代码。然后并通过 script 标签引入模块。
+
+改造后，如下代码可以正常执行：
+
+```js
+import $ from "jquery";
+
+$(".my-element").animate(/* ... */);
+```
+
+当 `import $ from 'jquery'` 执行时，会从全局变量 jQuery 获取到模块，从而能正常使用模块。
