@@ -17,6 +17,8 @@
   - [转换](#转换)
     - [按指定长度拆分数组 —— chunk(array, \[size=1\])](#按指定长度拆分数组--chunkarray-size1)
     - [将键值对二维数组转为对象 —— fromPairs(pairs)](#将键值对二维数组转为对象--frompairspairs)
+- [对象](#对象)
+    - [有序遍历对象 —— Object.entries + sortBy](#有序遍历对象--objectentries--sortby)
 - [函数](#函数)
     - [防抖 —— debounce(func, \[wait=0\], \[options=\])](#防抖--debouncefunc-wait0-options)
     - [节流 throttle(func, \[wait=0\], \[options=\])](#节流-throttlefunc-wait0-options)
@@ -40,7 +42,7 @@
 
 > Lodash 是一个一致性、模块化、高性能的 JavaScript 实用工具库。
 
-由于 Lodash 官网 api 描述文字艰深晦涩，本文意旨用通俗的语言概括 `lodash api` 的含义，让刚接触 `lodash` 的开发者快速找到适用的函数（只要看目录就知道如何使用了😎）。
+由于 Lodash 官网 api 描述文字艰深晦涩，本文意旨用通俗的语言概括 `lodash api` 的含义，让刚接触 `lodash` 的开发者快速找到适用的函数（只要看目录就知道如何使用了 😎）。
 
 该篇所罗列 api 是经过笔者筛选平日使用频率较高，并剔除 ES6 已实现的函数。
 
@@ -389,6 +391,37 @@ _.fromPairs([
 ]);
 // => { 'fred': 30, 'barney': 40 }
 ```
+
+# 对象
+
+### 有序遍历对象 —— Object.entries + sortBy
+
+`Object.entries()` 是 ES6 新增方法，返回一个数组，成员是参数对象自身的（不含继承的）所有可遍历（enumerable）属性的键值对数组。
+
+```js
+const obj = { foo: "bar", baz: 42 };
+Object.entries(obj);
+// [ ["foo", "bar"], ["baz", 42] ]
+```
+
+lodahs 中的 `sortBy(collection, [iteratees=[_.identity]])` 用于对集合排序，默认升序，具体使用可查看 **集合** 目录下的 `sortBy` 方法。
+
+**有序遍历对象的实现**
+
+```js
+function forInOrder(obj, callback) {
+  const pairs = sortBy(Object.entries(obj), (item) => item[0]);
+  pairs.some(([key, val]) => {
+    return callback(key, val) === false;
+  });
+}
+
+forInOrder({ b: 2, a: 1 }, (k, v) => console.log(k, v));
+// => a 1
+// => b 2
+```
+
+**分析：** 先用 `entries` 将对象转换为键值对数组，再用 `sortBy` 对数组排序，最后对排序后数组进行遍历即可完成有序遍历对象。
 
 # 函数
 
