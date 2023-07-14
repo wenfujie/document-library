@@ -13,7 +13,7 @@ set -e
 
 # git init
 git add -A
-git commit -m 'docs: 编辑文章【概括lodash常用函数】，增加 有序遍历对象小节'
+git commit -m 'docs: 编辑文章【概括lodash常用函数】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master

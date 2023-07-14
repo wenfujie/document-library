@@ -18,6 +18,7 @@
     - [按指定长度拆分数组 —— chunk(array, \[size=1\])](#按指定长度拆分数组--chunkarray-size1)
     - [将键值对二维数组转为对象 —— fromPairs(pairs)](#将键值对二维数组转为对象--frompairspairs)
 - [对象](#对象)
+    - [选取属性组成新对象 —— pick(object, \[props\])](#选取属性组成新对象--pickobject-props)
     - [有序遍历对象 —— Object.entries + sortBy](#有序遍历对象--objectentries--sortby)
 - [函数](#函数)
     - [防抖 —— debounce(func, \[wait=0\], \[options=\])](#防抖--debouncefunc-wait0-options)
@@ -393,6 +394,34 @@ _.fromPairs([
 ```
 
 # 对象
+
+### 选取属性组成新对象 —— pick(object, [props])
+
+```js
+var object = { a: 1, b: "2", c: 3 };
+
+_.pick(object, ["a", "c"]);
+// => { 'a': 1, 'c': 3 }
+```
+
+**自定义指定属性逻辑** 用 pickBy(object, [predicate=_.identity])
+
+```js
+var object = { a: 1, b: "2", c: 3 };
+
+_.pickBy(object, _.isNumber);
+// => { 'a': 1, 'c': 3 }
+```
+
+**比较两个对象，返回不同部分所组成的对象**
+
+```js
+var oldObj = { a: 1, b: 2 };
+var newObj = { a: 1, b: 3 };
+
+pickBy(newObj, (val, key) => oldObj[key] !== val);
+// => { b: 3 }
+```
 
 ### 有序遍历对象 —— Object.entries + sortBy
 
