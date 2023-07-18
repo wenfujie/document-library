@@ -1252,7 +1252,7 @@ in 仅可在类型别名中使用，在 interface 中会报错
 
 #### props
 
-传给 defineProps() 的泛型参数必须是以下之一
+传给 `defineProps` 的泛型参数必须是以下之一
 
 ```ts
 // 类型字面量
@@ -1267,7 +1267,7 @@ interface Props {
 defineProps<Props>();
 ```
 
-传递给 defineProps 的泛型参数不能是一个导入的类型
+传递给 `defineProps` 的泛型参数不能是一个导入的类型
 
 ```ts
 import { Props } from "./other-file";
@@ -1284,7 +1284,7 @@ const props = defineProps<{
 }>();
 ```
 
-Props 解构默认值
+**Props 解构默认值**
 
 使用 withDefaults 编译器宏
 
@@ -1298,6 +1298,16 @@ const props = withDefaults(defineProps<Props>(), {
   msg: "hello",
   labels: () => ["one", "two"],
 });
+```
+
+**提取子组件props的类型**
+
+常用于父组件透传属性到子组件
+
+```js
+  import UploadExcel from './components/UploadExcel.vue';
+
+  type UploadExcelProps = InstanceType<typeof UploadExcel>['$props'];
 ```
 
 #### emits
