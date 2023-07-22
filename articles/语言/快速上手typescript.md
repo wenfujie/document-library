@@ -46,7 +46,7 @@
     - [联合类型传入泛型的坑](#联合类型传入泛型的坑)
     - [类型推断 infer 获取类型入参的组成部分](#类型推断-infer-获取类型入参的组成部分)
     - [根据索引获取子类型](#根据索引获取子类型)
-    - [typeof 获取变量、属性类型](#typeof-获取变量属性类型)
+    - [typeof 提取变量、属性类型](#typeof-提取变量属性类型)
     - [映射类型 in](#映射类型-in)
   - [Vue 中应用](#vue-中应用)
     - [props](#props)
@@ -788,14 +788,36 @@ const boxTransition: transition = "EASE";
 
 ### keyof 类型索引
 
+`keyof` 只能针对类型使用，返回对象类型所有键组成的联合类型，类似 js 的 `Object.keys` 。
+
+**基础使用**
+
 ```ts
-interface A {
-  a: string;
-  b: number;
+interface Person {
+  age: number;
+  name: string;
 }
-// 等效于 'a' | 'b'
-type customType = keyof A;
-let param: customType = "a";
+// 'age' | 'name'
+type customType = keyof Person;
+```
+
+**应用一：约束泛型参数范围**
+
+```ts
+// 类型工具Pick的实现
+
+// 限制K仅能为T的属性
+type MyPick<T, K extends keyof T> = { [P in K]: T[P] };
+```
+
+**应用二：遍历对象类型**
+
+```ts
+// 实现 Partial
+type MyPartial<T> = { [P in keyof T]?: T[P] }
+
+// 实现 Readonly
+type MyReadonly<T> = { readonly [P in keyof T]: T[P] }
 ```
 
 ### | & 高级类型：联合、交叉、合并接口类型
@@ -1186,7 +1208,7 @@ ts 的配置文件一般位于根目录 `tsconfig.json`
 }
 ```
 
-#### typeof 获取变量、属性类型
+#### typeof 提取变量、属性类型
 
 ```ts
 {
@@ -1300,14 +1322,14 @@ const props = withDefaults(defineProps<Props>(), {
 });
 ```
 
-**提取子组件props的类型**
+**提取子组件 props 的类型**
 
 常用于父组件透传属性到子组件
 
 ```js
-  import UploadExcel from './components/UploadExcel.vue';
+import UploadExcel from "./components/UploadExcel.vue";
 
-  type UploadExcelProps = InstanceType<typeof UploadExcel>['$props'];
+type UploadExcelProps = InstanceType<typeof UploadExcel>["$props"];
 ```
 
 #### emits
