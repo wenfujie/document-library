@@ -13,7 +13,7 @@ set -e
 
 # git init
 git add -A
-git commit -m 'docs: 编辑文章【快速上手typescript】'
+git commit -m 'docs: 新增文章【如何阅读一本书】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
