@@ -20,7 +20,6 @@
     - [$listeners](#listeners)
   - [其他](#其他)
     - [资源](#资源)
-    - [JSX](#jsx)
     - [注意事项](#注意事项)
 
 ## 语法
@@ -44,9 +43,9 @@ export default {
 
     return {
       repositories,
-      getUserRepositories // 返回的函数与方法的行为相同
+      getUserRepositories, // 返回的函数与方法的行为相同
     };
-  }
+  },
 };
 ```
 
@@ -69,11 +68,11 @@ export default {
     // 如果需要暴露多个 property，则它们
     // 必须全部包含在传递给 expose 的对象中。
     expose({
-      reset
+      reset,
     });
 
     return () => h("div");
-  }
+  },
 };
 ```
 
@@ -85,7 +84,7 @@ export default {
 
 ```js
 // html
-<div>{{count}}</div>
+<div>{{ count }}</div>;
 
 // js
 const count = ref(0);
@@ -95,11 +94,9 @@ const arr = ref([]);
 arr.value = [1, 2, 3];
 ```
 
-
-
 对象
 
-使用`reactive` 
+使用`reactive`
 
 ```js
 // html
@@ -112,27 +109,23 @@ obj.count++;
 console.log(obj.count); // 2
 ```
 
-
-
 toRef、toRefs
 
 对对象进行解构，如果是响应式对象解构后保持响应式，如果不是响应式对象解构后无响应式。
 
-toRef针对单个属性，toRefs针对整个对象
+toRef 针对单个属性，toRefs 针对整个对象
 
 ```js
-const obj = reactive({ count: 0, name: 'lisa' });
+const obj = reactive({ count: 0, name: "lisa" });
 
 // toRef
-const count = toRef(obj, 'count')
-console.log(count.value) // 0
+const count = toRef(obj, "count");
+console.log(count.value); // 0
 
 // toRefs
-const { name } = toRefs(obj)
-console.log(name.value) // lisa
+const { name } = toRefs(obj);
+console.log(name.value); // lisa
 ```
-
-
 
 #### 生命周期
 
@@ -223,8 +216,8 @@ numbers.push(5); // logs: [1,2,3,4,5] [1,2,3,4]
 const state = reactive({
   id: 1,
   attributes: {
-    name: ""
-  }
+    name: "",
+  },
 });
 
 watch(
@@ -305,7 +298,7 @@ watchEffect(
     /* ... */
   },
   {
-    flush: "post"
+    flush: "post",
   }
 );
 ```
@@ -351,11 +344,11 @@ const MyComponent = {
       h(
         "button",
         {
-          onClick: handleClick
+          onClick: handleClick,
         },
         `uid: ${id}`
       );
-  }
+  },
 };
 
 // 在组合式函数中调用也可以正常执行
@@ -553,7 +546,7 @@ const MyDirective = {
   beforeUpdate() {}, // 新增
   updated() {},
   beforeUnmount() {}, // 新增
-  unmounted() {}
+  unmounted() {},
 };
 ```
 
@@ -569,7 +562,7 @@ const app = Vue.createApp({});
 app.directive("highlight", {
   beforeMount(el, binding, vnode) {
     el.style.background = binding.value;
-  }
+  },
 });
 ```
 
@@ -630,7 +623,7 @@ const app = createApp(App);
 app.config.globalProperties.$filters = {
   currencyUSD(value) {
     return "$" + value;
-  }
+  },
 };
 ```
 
@@ -682,85 +675,6 @@ export default {
 | Vite 源码学习          | [线上地址](https://link.juejin.cn?target=https%3A%2F%2Fvite-design.surge.sh%2Fguide%2F)                                                                       |
 | Vite 2.0 中文文档      | [线上地址](https://link.juejin.cn?target=https%3A%2F%2Fcn.vitejs.dev%2F)                                                                                      |
 | Vue3 新动态            | [线上地址](https://link.juejin.cn?target=https%3A%2F%2Fgithub.com%2Fvue3%2Fvue3-News)                                                                         |
-
-#### JSX
-
-[JSX github 官网](https://github.com/vuejs/babel-plugin-jsx#installation)
-
-**v-if、v-for**
-
-```js
-const data = [{ id: 1, content: "静夜诗" }];
-return () => {
-  if (data.length) {
-    const liVnode = data.map((item) => <li>{item.content}</li>);
-    return <ul>{liVnode}</ul>;
-  } else {
-    return <p>暂无数据</p>;
-  }
-};
-```
-
-**css**
-
-```js
-const isLoading = ref(true);
-return () => (
-  <div class={{ selected: isLoading.value }} style={{ color: "red" }}>
-    css
-  </div>
-);
-```
-
-**v-show**
-
-```js
-const isShow = ref(true);
-return () => <div v-show={isShow.value}>v-show</div>;
-```
-
-**v-model**
-
-```js
-const val = ref("hello");
-return () => <input v-model={val} />;
-return () => <input v-model:argument={val} />;
-```
-
-**插槽**
-
-```js
-return () => (
-  <div>
-    <div>{slots.default() /* 默认插槽 */}</div>
-    <div>{slots.title() /* 具名插槽 */}</div>
-  </div>
-);
-```
-
-```js
-// use
-const slotObj = {
-  default: () => <div>A</div>,
-  title: () => <span>B</span>
-};
-return () => (
-  <Demo v-slots={slotObj}>
-    // 默认插槽亦可写在此处 <div>A</div>
-  </Demo>
-);
-```
-
-接收 **emit**
-
-```js
-const fn = () => {};
-return <demo onCustomEvent={fn}></demo>;
-```
-
-```js
-emit("customEvent");
-```
 
 #### 注意事项
 
