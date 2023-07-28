@@ -13,7 +13,7 @@ set -e
 
 # git init
 git add -A
-git commit -m 'docs: 新增文章【Vue中的渲染函数&JSX】'
+git commit -m 'docs: 新增文章【超级闲聊术】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
