@@ -2,7 +2,7 @@
 ###
  # @Date: 2022-01-07 16:15:13
  # @LastEditors: wfj
- # @LastEditTime: 2023-07
+ # @LastEditTime: 2023-08
  # @FilePath: /document-library/deploy.sh
  # @describe: 该脚本用于将代码同时推送到 github、gitee
  # @use: 运行指令 sh deploy.sh
@@ -13,7 +13,7 @@ set -e
 
 # git init
 git add -A
-git commit -m 'docs: 新增文章【超级闲聊术】'
+git commit -m 'docs: 新增文章【Vue3渲染器】；更改目录【Vue3 源码解析】为【Vue3设计和原理】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
