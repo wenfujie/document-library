@@ -13,7 +13,7 @@ set -e
 
 # git init
 git add -A
-git commit -m 'docs: 新增文章【组件实例初始化过程】；增加 Vue3目录结构'
+git commit -m 'docs: 新增文章【渲染器的设计】；'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
