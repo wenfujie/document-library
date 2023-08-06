@@ -1,4 +1,9 @@
-[TOC]
+- [组件如何渲染成DOM？](#组件如何渲染成dom)
+  - [组件对象如何被加载？](#组件对象如何被加载)
+  - [createVNode 如何创建 VNode？](#createvnode-如何创建-vnode)
+  - [render 如何将 VNode 渲染为 DOM？](#render-如何将-vnode-渲染为-dom)
+- [总结](#总结)
+
 
 ## 组件如何渲染成DOM？
 

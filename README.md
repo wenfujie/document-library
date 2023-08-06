@@ -5,7 +5,8 @@
   - [Css](#css)
   - [JS](#js)
   - [前端工程化](#前端工程化)
-  - [Vue](#vue)
+  - [Vue2](#vue2)
+  - [Vue3](#vue3)
   - [开发知识储备](#开发知识储备)
   - [前端优化](#前端优化)
   - [Animation](#animation)
@@ -75,7 +76,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 6. [Node 自动化部署](articles/js相关/node自动化部署.md)
 7. [nginx 指南](articles/前端工程化/nginx指南.md)
 
-## Vue
+## Vue2
 
 1. [vue 原理](articles/Vue/vue原理.md)
 2. [异步更新和 nextTick](articles/Vue/异步更新和nextTick.md)
@@ -84,8 +85,14 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 5. [nuxt.js 服务端渲染](articles/解决方案/nuxt.js服务端渲染.md)
 6. [Vue 高级特性](articles/Vue/Vue高级特性.md)
 7. [Vue-Cli 使用说明](articles/Vue/Vue-Cli使用说明.md)
-8. [Vue3 资源集合](articles/Vue3/Vue3资源集合.md)
-9. [Vue 中的渲染函数 & JSX](articles/Vue/Vue中的渲染函数&JSX.md)
+8. [Vue 中的渲染函数 & JSX](articles/Vue/Vue中的渲染函数&JSX.md)
+
+## Vue3
+
+1. [Vue3 快速上手](articles/Vue3/Vue3快速上手.md)
+2. [VueUse 快速上手](articles/Vue3/VueUse快速上手.md)
+3. [Vue3 开发注意事项](articles/Vue3/Vue3开发注意事项.md)
+4. [Vue3 设计和原理](articles/Vue3/Vue3设计和原理/catalog.md)
 
 ## 开发知识储备
 
