@@ -13,7 +13,7 @@ set -e
 
 # git init
 git add -A
-git commit -m 'docs: 编辑文章【渲染器的设计】；'
+git commit -m 'docs: 调整【Vue3 设计和原理】的目录结构'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master

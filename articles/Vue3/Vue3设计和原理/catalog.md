@@ -1,10 +1,10 @@
 # Vue3 设计和原理
 
-## 渲染器 renderer
+## 渲染器
 
-1. [渲染器基本概念]()
-2. [renderer 的应用——组件渲染成 DOM 过程](/articles/Vue3/Vue3设计和原理/renderer/组件渲染成DOM的过程.md)
-3. [renderer 的应用——初始化组件实例过程](/articles/Vue3/Vue3设计和原理/renderer/初始化组件实例过程.md)
+1. [渲染器的设计](/articles/Vue3/Vue3设计和原理/renderer/渲染器的设计.md)
+2. [渲染器——组件渲染成 DOM 过程](/articles/Vue3/Vue3设计和原理/renderer/组件渲染成DOM的过程.md)
+3. [渲染器——初始化组件实例过程](/articles/Vue3/Vue3设计和原理/renderer/初始化组件实例过程.md)
 
 ## 其他
 
