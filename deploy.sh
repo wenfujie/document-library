@@ -13,7 +13,7 @@ set -e
 
 # git init
 git add -A
-git commit -m 'docs: 编辑文章【响应系统的设计】'
+git commit -m 'docs: 添加文章【ref原始值的响应式】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master

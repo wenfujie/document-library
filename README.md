@@ -89,10 +89,10 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## Vue3
 
-1. [Vue3 快速上手](articles/Vue3/Vue3快速上手.md)
-2. [VueUse 快速上手](articles/Vue3/VueUse快速上手.md)
+1. [Vue3 设计和原理](articles/Vue3/Vue3设计和原理/catalog.md)
+2. [Vue3 快速上手](articles/Vue3/Vue3快速上手.md)
 3. [Vue3 开发注意事项](articles/Vue3/Vue3开发注意事项.md)
-4. [Vue3 设计和原理](articles/Vue3/Vue3设计和原理/catalog.md)
+4. [VueUse 快速上手](articles/Vue3/VueUse快速上手.md)
 
 ## 开发知识储备
 
