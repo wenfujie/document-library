@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-06-16 17:11:17
  * @LastEditors: wfj
- * @LastEditTime: 2023-06
+ * @LastEditTime: 2023-09
  * @FilePath: /document-library/articles/工具/git使用手册.md
 -->
 
@@ -36,10 +36,14 @@ git reset 会直接删除指定的 commit ，旧记录不会保留。
 回滚到指定版本，保留期间代码
 
 ```bash
-# 执行后，HEAD 会指向该 commit_id，期间改动代码恢复到暂存区
+# 执行后，HEAD 会指向该 commit_id
+# 期间代码变动恢复到暂存区
 git reset --soft commit_id
 
-# 重新修改和提交代码 or 删除暂存区代码
+# 不生效 => 重新提交暂存代码即可
+
+# 生效（暂存区代码按需求删除或提交）
+git push origin HEAD --force
 ```
 
 回滚到指定版本，删除期间代码
