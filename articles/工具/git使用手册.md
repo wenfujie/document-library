@@ -1,35 +1,38 @@
 <!--
  * @Date: 2021-06-16 17:11:17
  * @LastEditors: wfj
- * @LastEditTime: 2023-09
+ * @LastEditTime: 2023-10
  * @FilePath: /document-library/articles/工具/git使用手册.md
 -->
 
-## git 基本操作
+- [实操](#实操)
+  - [撤销 git pull](#撤销-git-pull)
+- [git 指令](#git-指令)
+  - [git reset - 恢复代码删除 commit 记录](#git-reset---恢复代码删除-commit-记录)
+  - [git revert - 提交新 commit 恢复代码](#git-revert---提交新-commit-恢复代码)
+  - [git add](#git-add)
+  - [git commit](#git-commit)
+  - [git pull](#git-pull)
+  - [git branch](#git-branch)
+  - [git stash](#git-stash)
 
-### 代码回退
+## 实操
+
+### 撤销 git pull
+
+```bash
+# 查看历史变更记录
+git reflog
+
+# 回滚到拉取前
+git reset --hard 2aee3f
+```
+
+## git 指令
 
 > HEAD 指代当前分支最新的 commit_id
 
-#### git revert
-
-git revert 是用一次新的 commit 来回滚之前的 commit ，旧的提交记录仍会保留。
-
-```bash
-# 查看 commit 记录
-git log
-
-# 撤回最新的提交
-git revert HEAD
-
-# 撤回某次 commit（若非当前分支的commit需加 -m）
-git revert commit_id
-
-# 撤回几个连续的 commit（..语法，左开右闭即：不含commit_id1包含commit_id2）
-git revert --no-commit commit_id1..commit_id2
-```
-
-#### git reset
+### git reset - 恢复代码删除 commit 记录
 
 git reset 会直接删除指定的 commit ，旧记录不会保留。
 
@@ -55,6 +58,24 @@ git reset --hard commit_id
 git push origin HEAD --force
 # or 取消回退，master意为当前分支
 git push origin master
+```
+
+### git revert - 提交新 commit 恢复代码
+
+git revert 是用一次新的 commit 来回滚之前的 commit ，旧的提交记录仍会保留。
+
+```bash
+# 查看 commit 记录
+git log
+
+# 撤回最新的提交
+git revert HEAD
+
+# 撤回某次 commit（若非当前分支的commit需加 -m）
+git revert commit_id
+
+# 撤回几个连续的 commit（..语法，左开右闭即：不含commit_id1包含commit_id2）
+git revert --no-commit commit_id1..commit_id2
 ```
 
 ### git add
