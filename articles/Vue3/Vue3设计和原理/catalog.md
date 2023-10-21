@@ -2,7 +2,7 @@
 
 ## 响应式
 
-1. [proxy 的工作原理](/articles\Vue3\Vue3设计和原理\reactive\proxy的工作原理.md)
+1. [proxy 的工作原理](/articles/Vue3/Vue3设计和原理/reactive/proxy的工作原理.md)
 2. [响应系统的设计](/articles/Vue3/Vue3设计和原理/reactive/响应系统的设计.md)
 3. [ref 原始值的响应式](/articles/Vue3/Vue3设计和原理/reactive/ref原始值的响应式.md)
 
