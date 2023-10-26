@@ -13,7 +13,7 @@ set -e
 
 # git init
 git add -A
-git commit -m 'docs: 新增文章【vite为何冷启动、热更快】；新增 vite 合集目录；'
+git commit -m 'docs: 新增文章【articles/前端工程化/vite/预构建.md】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
