@@ -7,8 +7,10 @@
     - [configureServer 扩展 dev server](#configureserver-扩展-dev-server)
     - [transformIndexHtml 转换 html](#transformindexhtml-转换-html)
     - [handleHotUpdate 扩展热更新](#handlehotupdate-扩展热更新)
-  - [插件执行顺序](#插件执行顺序)
-  - [apply 插件应用环境](#apply-插件应用环境)
+- [插件执行顺序](#插件执行顺序)
+- [apply 插件应用环境](#apply-插件应用环境)
+- [插件实战 - 虚拟模块](#插件实战---虚拟模块)
+- [插件调试](#插件调试)
 
 ## 插件示例
 
@@ -212,11 +214,11 @@ if (import.meta.hot) {
 }
 ```
 
-### 插件执行顺序
+## 插件执行顺序
 
 ![](./images/钩子执行顺序.jpg)
 
-### apply 插件应用环境
+## apply 插件应用环境
 
 为 `string` 时
 
@@ -235,3 +237,76 @@ apply(config, { command }) {
   return command === 'build' && !config.build.ssr
 }
 ```
+
+## 插件实战 - 虚拟模块
+
+> 虚拟模块：vite 在构建过程生成的模块，存在于内存而非磁盘。在 Vite（以及 Rollup）中都以 virtual: 为前缀
+
+[vite 官网对虚拟模块的介绍](https://cn.vitejs.dev/guide/api-plugin.html#virtual-modules-convention)
+
+用插件实现一个返回环境变量的虚拟模块
+
+```js
+import { Plugin, ResolvedConfig } from "vite";
+
+export default function (): Plugin {
+  let config: ResolvedConfig | null = null;
+  const virtualModuleId = "virtual:env";
+  const resolvedVirtualModuleId = "\0" + virtualModuleId;
+
+  return {
+    name: "my-plugin", // 必须的，将会在 warning 和 error 中显示
+    resolveId(id) {
+      // id 为模块路径
+      if (id === virtualModuleId) {
+        return resolvedVirtualModuleId;
+      }
+    },
+    configResolved(resolvedConfig) {
+      // 记录最终配置
+      config = resolvedConfig;
+    },
+    load(id) {
+      if (id === resolvedVirtualModuleId) {
+        return `export const env = ${JSON.stringify(config!.env)}`;
+      }
+    },
+  };
+}
+```
+
+其中 `resolveId` 钩子用于处理模块地址，第一个参数 id 即用户导包代码 `import { env } from 'virtual:env'` 中的地址部分 `'virtual:env'`
+
+使用
+
+```js
+import { env } from "virtual:env";
+
+// { BASE_URL: "/", DEV: true, MODE: "development", PROD: false };
+console.log(env);
+```
+
+## 插件调试
+
+使用 vite-plugin-inspect 插件
+
+```bash
+pnpm i vite-plugin-inspect -D
+```
+
+引入
+
+```js
+// vite.config.ts
+import inspect from 'vite-plugin-inspect';
+
+// 返回的配置
+{
+  plugins: [
+    ...,
+    inspect()
+  ]
+}
+```
+
+重启项目，可以看到多了一个 `inspect` 的服务地址，上面可以看到各个模块的编译结果。
