@@ -13,7 +13,7 @@ set -e
 
 # git init
 git add -A
-git commit -m 'docs: 更新README'
+git commit -m 'docs: 编辑文章【articles/js相关/开发常用js代码片段.md】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-07-28 10:38:55
  * @LastEditors: wfj
- * @LastEditTime: 2023-02
+ * @LastEditTime: 2023-11
  * @FilePath: /document-library/articles/js相关/开发常用js代码片段.md
 -->
 
@@ -12,6 +12,7 @@
     - [解析 cookie](#解析-cookie)
     - [获取网址参数](#获取网址参数)
     - [清空页面 url 上的参数](#清空页面-url-上的参数)
+    - [是否是有效地址](#是否是有效地址)
     - [复制到剪切板](#复制到剪切板)
     - [简版 jquery 选择器](#简版-jquery-选择器)
     - [多线程执行函数](#多线程执行函数)
@@ -155,6 +156,19 @@ var url = window.location.href;
 var valiable = url.split("?")[0];
 // 第二个参数表示title，0不改变title
 window.history.replaceState({}, 0, valiable);
+```
+
+### 是否是有效地址
+
+```js
+function isValidUrl(string) {
+  try {
+    new URL(string);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
 ```
 
 ### 复制到剪切板
