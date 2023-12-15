@@ -1,20 +1,20 @@
 <!--
  * @Date: 2021-07-28 10:38:55
  * @LastEditors: wfj
- * @LastEditTime: 2023-11
+ * @LastEditTime: 2023-12
  * @FilePath: /document-library/articles/js相关/开发常用js代码片段.md
 -->
 
 - [常用 js 代码片段](#常用-js-代码片段)
   - [前言](#前言)
-  - [工具](#工具)
-    - [生成 UUID](#生成-uuid)
-    - [解析 cookie](#解析-cookie)
+  - [url 处理](#url-处理)
+    - [对象转换为地址参数](#对象转换为地址参数)
     - [获取网址参数](#获取网址参数)
     - [清空页面 url 上的参数](#清空页面-url-上的参数)
     - [是否是有效地址](#是否是有效地址)
+  - [工具](#工具)
+    - [解析 cookie](#解析-cookie)
     - [复制到剪切板](#复制到剪切板)
-    - [简版 jquery 选择器](#简版-jquery-选择器)
     - [多线程执行函数](#多线程执行函数)
   - [业务功能](#业务功能)
     - [判断所有数据类型](#判断所有数据类型)
@@ -39,6 +39,7 @@
     - [创建字符串片段的元素](#创建字符串片段的元素)
     - [主动触发 dom 事件](#主动触发-dom-事件)
     - [判断元素是否处于首屏](#判断元素是否处于首屏)
+    - [简版 jquery 选择器](#简版-jquery-选择器)
   - [数字](#数字)
     - [前端精度问题](#前端精度问题)
     - [金额千分位分割](#金额千分位分割)
@@ -54,6 +55,7 @@
     - [返回给指定日期添加增量时间后的时间](#返回给指定日期添加增量时间后的时间)
     - [返回北京时间（不论本地是哪个时区）](#返回北京时间不论本地是哪个时区)
   - [算法](#算法)
+    - [生成 UUID](#生成-uuid)
     - [快速排序](#快速排序)
     - [选择排序](#选择排序)
     - [插入排序](#插入排序)
@@ -70,7 +72,7 @@
       - [同步版本](#同步版本)
       - [异步版本](#异步版本)
   - [后语](#后语)
- 
+
 # 常用 js 代码片段
 
 ## 前言
@@ -89,45 +91,23 @@ js 代码片段使用 `ES6` 编写，已尽量精简和考虑兼容问题，大�
 
 笔者会不定期更新哟，有问题可在评论区一起讨论，谢谢大家..
 
-## 工具
+## url 处理
 
-### 生成 UUID
+### 对象转换为地址参数
 
 ```js
-const UUIDGeneratorBrowser = () =>
-  ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
-    (
-      c ^
-      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
-    ).toString(16)
-  );
+export function objToQueryString(obj, prefix = "?") {
+  const queryStringGroup = [];
+  for (const attr in obj) {
+    queryStringGroup.push(`${attr}=${obj[attr]}`);
+  }
+  const queryString = queryStringGroup.join("&");
+  return queryString ? prefix + queryString : "";
+}
 
 // Examples
-UUIDGeneratorBrowser(); // '7982fcfe-5721-4632-bede-6000885be57d'
-```
-
-其他实现方式：使用 npm 包 [uuid](https://github.com/uuidjs/uuid)
-
-```js
-import { v4 as uuidv4 } from "uuid";
-uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
-```
-
-### 解析 cookie
-
-```js
-const parseCookie = (str) =>
-  str
-    .split(";")
-    .map((v) => v.split("="))
-    .reduce((acc, v) => {
-      acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
-      return acc;
-    }, {});
-
-// Examples
-parseCookie("foo=bar; equation=E%3Dmc%5E2");
-// { foo: 'bar', equation: 'E=mc^2' }
+objToQueryString({ a: 1, b: 2 });
+// ?a=1&b=2
 ```
 
 ### 获取网址参数
@@ -171,6 +151,25 @@ function isValidUrl(string) {
 }
 ```
 
+## 工具
+
+### 解析 cookie
+
+```js
+const parseCookie = (str) =>
+  str
+    .split(";")
+    .map((v) => v.split("="))
+    .reduce((acc, v) => {
+      acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
+      return acc;
+    }, {});
+
+// Examples
+parseCookie("foo=bar; equation=E%3Dmc%5E2");
+// { foo: 'bar', equation: 'E=mc^2' }
+```
+
 ### 复制到剪切板
 
 以下方式仅在用户执行操作时有效，如：click 事件
@@ -198,18 +197,6 @@ const copyToClipboard = (str) => {
 
 // Examples
 copyToClipboard("Lorem ipsum"); // 'Lorem ipsum' copied to clipboard.
-```
-
-### 简版 jquery 选择器
-
-```js
-// 仅选中第一个元素
-const $ = document.querySelector.bind(document);
-// 选中所有
-const $$ = document.querySelectorAll.bind(document);
-
-const mainContent = $(".main-content");
-const externalLinks = $$('a[target="_blank"]');
 ```
 
 ### 多线程执行函数
@@ -678,6 +665,18 @@ const inViewport = (el) => {
 };
 ```
 
+### 简版 jquery 选择器
+
+```js
+// 仅选中第一个元素
+const $ = document.querySelector.bind(document);
+// 选中所有
+const $$ = document.querySelectorAll.bind(document);
+
+const mainContent = $(".main-content");
+const externalLinks = $$('a[target="_blank"]');
+```
+
 ## 数字
 
 ### 前端精度问题
@@ -698,7 +697,7 @@ function parseFloatNum(num, decimalPlace = 2) {
   return num;
 }
 
-parseFloatNum(1 - 0.8) // 0.2
+parseFloatNum(1 - 0.8); // 0.2
 ```
 
 ### 金额千分位分割
@@ -855,6 +854,28 @@ function BJDate() {
 ```
 
 ## 算法
+
+### 生成 UUID
+
+```js
+const UUIDGeneratorBrowser = () =>
+  ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16)
+  );
+
+// Examples
+UUIDGeneratorBrowser(); // '7982fcfe-5721-4632-bede-6000885be57d'
+```
+
+其他实现方式：使用 npm 包 [uuid](https://github.com/uuidjs/uuid)
+
+```js
+import { v4 as uuidv4 } from "uuid";
+uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
+```
 
 ### 快速排序
 
@@ -1033,34 +1054,30 @@ function getRandomInt(min, max){
 }
 ```
 
-
-
 ## 兼容问题
 
 ### 新窗口打开链接
 
-window.open 在一些 App （如Facebook）中会有兼容问题。
+window.open 在一些 App （如 Facebook）中会有兼容问题。
 
 ```js
-function openLinkOnNewWindow (url) {
-  const id = 'superLabel'
-  const el = document.getElementById(id)
+function openLinkOnNewWindow(url) {
+  const id = "superLabel";
+  const el = document.getElementById(id);
   if (el) {
-    el.setAttribute('href', url)
+    el.setAttribute("href", url);
   } else {
-    const a = document.createElement('a')
-    a.setAttribute('href', url)
-    a.setAttribute('target', '_blank')
-    a.setAttribute('id', id)
-    document.body.appendChild(a)
+    const a = document.createElement("a");
+    a.setAttribute("href", url);
+    a.setAttribute("target", "_blank");
+    a.setAttribute("id", id);
+    document.body.appendChild(a);
   }
-  el.click()
+  el.click();
 }
 
-openLinkOnNewWindow('https://www.baidu.com')
+openLinkOnNewWindow("https://www.baidu.com");
 ```
-
-
 
 ## 有趣的 JS
 
