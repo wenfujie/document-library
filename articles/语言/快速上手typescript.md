@@ -41,6 +41,8 @@
   - [检索文件的路径](#检索文件的路径)
   - [路径别名智能提示、跟踪](#路径别名智能提示跟踪)
 - [实战](#实战)
+  - [常用类型](#常用类型)
+    - [html 标签的 style](#html-标签的-style)
   - [编写类型工具常用语法](#编写类型工具常用语法)
     - [使用泛型](#使用泛型)
     - [联合类型传入泛型的坑](#联合类型传入泛型的坑)
@@ -814,10 +816,10 @@ type MyPick<T, K extends keyof T> = { [P in K]: T[P] };
 
 ```ts
 // 实现 Partial
-type MyPartial<T> = { [P in keyof T]?: T[P] }
+type MyPartial<T> = { [P in keyof T]?: T[P] };
 
 // 实现 Readonly
-type MyReadonly<T> = { readonly [P in keyof T]: T[P] }
+type MyReadonly<T> = { readonly [P in keyof T]: T[P] };
 ```
 
 ### | & 高级类型：联合、交叉、合并接口类型
@@ -1146,6 +1148,25 @@ ts 的配置文件一般位于根目录 `tsconfig.json`
 ```
 
 ## 实战
+
+### 常用类型
+
+#### html 标签的 style
+
+**CSSStyleDeclaration**
+
+```js
+const props = withDefaults(
+  defineProps<{
+    style?: CSSStyleDeclaration | {};
+    textAlign?: CSSStyleDeclaration['textAlign'];
+  }>(),
+  {
+    style: {},
+    textAlign: 'left',
+  }
+)
+```
 
 ### 编写类型工具常用语法
 
