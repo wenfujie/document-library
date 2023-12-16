@@ -42,7 +42,7 @@
   - [路径别名智能提示、跟踪](#路径别名智能提示跟踪)
 - [实战](#实战)
   - [常用类型](#常用类型)
-    - [html 标签的 style](#html-标签的-style)
+    - [CSSStyleDeclaration —— style 对象](#cssstyledeclaration--style-对象)
   - [编写类型工具常用语法](#编写类型工具常用语法)
     - [使用泛型](#使用泛型)
     - [联合类型传入泛型的坑](#联合类型传入泛型的坑)
@@ -50,6 +50,10 @@
     - [根据索引获取子类型](#根据索引获取子类型)
     - [typeof 提取变量、属性类型](#typeof-提取变量属性类型)
     - [映射类型 in](#映射类型-in)
+  - [常用类型工具实现](#常用类型工具实现)
+    - [取两个接口类型的交集](#取两个接口类型的交集)
+    - [Nullable 可为空](#nullable-可为空)
+    - [Recordable](#recordable)
   - [Vue 中应用](#vue-中应用)
     - [props](#props)
     - [emits](#emits)
@@ -897,6 +901,20 @@ type NewPerson = Partial<Person>;
 type NewPickPerson = Pick<Person, "id" | "age">;
 ```
 
+实现 Omit
+
+```ts
+type CustomOmit<T, U extends keyof T> = {
+  [key in Exclude<keyof T, U>]: T[key];
+};
+
+interface Animal {
+  name: string;
+  age: number;
+}
+type OmitAge = CustomOmit<Animal, "age">; // { name: string; }
+```
+
 ### 操作联合类型
 
 #### Exclude 和 Extract
@@ -913,19 +931,6 @@ type Exclude<T, U> = T extends U ? never : T;
 type T = Exclude<"a" | "b" | "c", "a">; // => 'b' | 'c'
 ```
 
-```ts
-// 实现 Omit
-type CustomOmit<T, U extends keyof T> = {
-  [key in Exclude<keyof T, U>]: T[key];
-};
-
-interface Animal {
-  name: string;
-  age: number;
-}
-type OmitAge = CustomOmit<Animal, "age">; // { name: string; }
-```
-
 `Extract` 用于从联合类型中提取类型。
 
 ```ts
@@ -936,23 +941,6 @@ type Extract<T, U> = T extends U ? T : never;
 ```ts
 // 简单使用
 type T = Extract<"a" | "b" | "c", "a">; // => 'a'
-```
-
-```ts
-// 实现工具类型【获取两个接口类型的交集】
-type intersect<T, U> = {
-  [key in Extract<keyof T, keyof U>]: T[key];
-};
-
-interface Animal {
-  name: string;
-  age: number;
-}
-interface Animal2 {
-  name: string;
-  sex: number;
-}
-type intersectAnimal = intersect<Animal, Animal2>; // { name: string; }
 ```
 
 #### NonNullable
@@ -1151,9 +1139,7 @@ ts 的配置文件一般位于根目录 `tsconfig.json`
 
 ### 常用类型
 
-#### html 标签的 style
-
-**CSSStyleDeclaration**
+#### CSSStyleDeclaration —— style 对象
 
 ```js
 const props = withDefaults(
@@ -1287,6 +1273,39 @@ in 仅可在类型别名中使用，在 interface 中会报错
 }
 ```
 
+### 常用类型工具实现
+
+#### 取两个接口类型的交集
+
+```ts
+type Intersect<T, U> = {
+  [key in Extract<keyof T, keyof U>]: T[key];
+};
+
+interface Animal {
+  name: string;
+  age: number;
+}
+interface Animal2 {
+  name: string;
+  sex: number;
+}
+type intersectAnimal = Intersect<Animal, Animal2>; // { name: string; }
+```
+
+#### Nullable 可为空
+
+```js
+  type Nullable<T> = T | null;
+```
+
+#### Recordable
+
+```js
+  type Recordable<T = any> = Record<string, T>;
+
+```
+
 ### Vue 中应用
 
 该节基于 `<script setup>` 语法糖。
@@ -1327,6 +1346,16 @@ const props = defineProps<{
 }>();
 ```
 
+**提取子组件 props 的类型**
+
+常用于父组件透传属性到子组件
+
+```js
+import UploadExcel from "./components/UploadExcel.vue";
+
+type UploadExcelProps = InstanceType<typeof UploadExcel>["$props"];
+```
+
 **Props 解构默认值**
 
 使用 withDefaults 编译器宏
@@ -1341,16 +1370,6 @@ const props = withDefaults(defineProps<Props>(), {
   msg: "hello",
   labels: () => ["one", "two"],
 });
-```
-
-**提取子组件 props 的类型**
-
-常用于父组件透传属性到子组件
-
-```js
-import UploadExcel from "./components/UploadExcel.vue";
-
-type UploadExcelProps = InstanceType<typeof UploadExcel>["$props"];
 ```
 
 #### emits
