@@ -163,7 +163,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 开发语言
 
-1. [快速上手 typescript](articles/语言/快速上手typescript.md)
+1. [typescript集合](articles/语言/typescript集合.md)
 2. [前端需储备开发语言](articles/语言/前端需储备开发语言.md)
 
 ## 面试技巧
