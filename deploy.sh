@@ -13,7 +13,7 @@ set -e
 
 # git init
 git add -A
-git commit -m 'docs: 将typescript文章分割为typescript集合'
+git commit -m 'docs: 编辑【编写声明文件】【常用配置】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
