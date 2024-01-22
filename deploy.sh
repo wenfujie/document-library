@@ -2,7 +2,7 @@
 ###
  # @Date: 2022-01-07 16:15:13
  # @LastEditors: 温富杰 wenfujie@dianchu.com
- # @LastEditTime: 2023-12-29 16:44:05
+ # @LastEditTime: 2024-01-22 15:16:02
  # @FilePath: /document-library/deploy.sh
  # @describe: 该脚本用于将代码同时推送到 github、gitee
  # @use: 运行指令 sh deploy.sh

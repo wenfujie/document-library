@@ -13,7 +13,9 @@
   - [删除操作](#删除操作)
   - [编程语言相关](#编程语言相关)
   - [搜索相关](#搜索相关)
-  - [方法和文件头注释](#方法和文件头注释)
+- [vscode 插件](#vscode-插件)
+  - [koroFileHeader](#korofileheader)
+  - [Turbo Console Log](#turbo-console-log)
 - [Mac 常用终端指令](#mac-常用终端指令)
 - [后语](#后语)
 
@@ -21,36 +23,32 @@
 
 ### Import and export
 
-| Trigger | Content                                                      |
-| ------: | ------------------------------------------------------------ |
-|  `imp→` | imports entire module `import fs from 'fs';`                 |
-|  `imn→` | imports entire module without module name `import 'animate.css'` |
+| Trigger | Content                                                                             |
+| ------: | ----------------------------------------------------------------------------------- |
+|  `imp→` | imports entire module `import fs from 'fs';`                                        |
+|  `imn→` | imports entire module without module name `import 'animate.css'`                    |
 |  `imd→` | imports only a portion of the module using destructing `import {rename} from 'fs';` |
-|  `env→` | exports name variable `export const nameVariable = localVariable;` |
-
-
+|  `env→` | exports name variable `export const nameVariable = localVariable;`                  |
 
 ### Various methods
 
-|  Trigger | Content                                                      |
-| -------: | ------------------------------------------------------------ |
-|   `fre→` | forEach loop in ES6 syntax `array.forEach(currentItem => {})` |
-|   `fof→` | for ... of loop `for(const item of object) {}`               |
-|   `fin→` | for ... in loop `for(const item in object) {}`               |
-|  `anfn→` | creates an anonymous function `(params) => {}`               |
-|   `nfn→` | creates a named function `const add = (params) => {}`        |
-|   `dob→` | destructing object syntax `const {rename} = fs`              |
-|   `dar→` | destructing array syntax `const [first, second] = [1,2]`     |
+|  Trigger | Content                                                                               |
+| -------: | ------------------------------------------------------------------------------------- |
+|   `fre→` | forEach loop in ES6 syntax `array.forEach(currentItem => {})`                         |
+|   `fof→` | for ... of loop `for(const item of object) {}`                                        |
+|   `fin→` | for ... in loop `for(const item in object) {}`                                        |
+|  `anfn→` | creates an anonymous function `(params) => {}`                                        |
+|   `nfn→` | creates a named function `const add = (params) => {}`                                 |
+|   `dob→` | destructing object syntax `const {rename} = fs`                                       |
+|   `dar→` | destructing array syntax `const [first, second] = [1,2]`                              |
 | `thenc→` | adds then and catch declaration to a promise `.then((res) => {}).catch((err) => {});` |
-|   `met→` | creates a method inside a class `add() {}`                   |
-
-
+|   `met→` | creates a method inside a class `add() {}`                                            |
 
 ### Console methods
 
-| Trigger | Content                                                      |
-| ------: | ------------------------------------------------------------ |
-|  `clg→` | console log `console.log(object)`                            |
+| Trigger | Content                                                            |
+| ------: | ------------------------------------------------------------------ |
+|  `clg→` | console log `console.log(object)`                                  |
 |  `clo→` | console log object with name `console.log('object :>> ', object);` |
 
 ## vscode 快捷键
@@ -81,7 +79,7 @@ vscode 用得熟不熟，就看你是否会用快捷键。
 
 | Mac 快捷键              | Win 快捷键                                 | 作用                               | 备注           |
 | ----------------------- | ------------------------------------------ | ---------------------------------- | -------------- |
-| Cmd + k  Cmd + q        |                                            | 回到编辑位置                       | 不影响编辑内容 |
+| Cmd + k Cmd + q         |                                            | 回到编辑位置                       | 不影响编辑内容 |
 | **option + 左右方向键** | **Ctrl + 左右方向键**                      | 在**单词**之间移动光标             | 很常用         |
 | **Cmd + 左右方向键**    | **Fn + 左右方向键**（或 Win + 左右方向键） | 将光标定位到当前行的最左侧、最右侧 | 很常用         |
 | Cmd + ↑                 | Ctrl + Home                                | 将光标定位到文件的第一行           |                |
@@ -92,31 +90,31 @@ vscode 用得熟不熟，就看你是否会用快捷键。
 
 多光标选择在编程的**提效**方面可谓立下了汗马功劳。因为比较难记住，所以你要时不时回来复习这一段。
 
-| Mac 快捷键                        | Win 快捷键                     | 作用                                                         | 备注                                     |
-| --------------------------------- | ------------------------------ | ------------------------------------------------------------ | ---------------------------------------- |
-| **Option + 鼠标连续点击任意位置** | **Alt + 鼠标连续点击任意位置** | 在任意位置，同时出现多个光标                                 | 很容易记住                               |
+| Mac 快捷键                        | Win 快捷键                     | 作用                                                                                               | 备注                                     |
+| --------------------------------- | ------------------------------ | -------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| **Option + 鼠标连续点击任意位置** | **Alt + 鼠标连续点击任意位置** | 在任意位置，同时出现多个光标                                                                       | 很容易记住                               |
 | **Cmd + Shift + L**               | **Ctrl + Shift + L**           | 将光标放在某个单词的位置（或者先选中某个单词），然后按下快捷键，则所有的相同内容处，都会出现光标。 | 很常用。比如变量重命名的时候，就经常用到 |
-| **Option + Shift + i**            | **Alt + Shift + I**            | 选中一堆文本后，按下快捷键，既可在**每一行的末尾**都出现一个光标。 | 很常用                                   |
+| **Option + Shift + i**            | **Alt + Shift + I**            | 选中一堆文本后，按下快捷键，既可在**每一行的末尾**都出现一个光标。                                 | 很常用                                   |
 
 ### 光标内容选取
 
 多列选择是更高效的多光标选择，所以单独列成一小段。
 
-| Mac 快捷键                      | Win 快捷键                   | 作用                                                         | 备注                                         |
-| ------------------------------- | ---------------------------- | ------------------------------------------------------------ | -------------------------------------------- |
-| Cmd + D                         | Ctrl + D                     | 将光标放在某个单词下（无选中内容），触发快捷键会选中该单词，再次触发会查找该单词下一个出现的位置并选中。 | 较常用                                       |
-| **Option + Shift + i**          | **Alt + Shift + I**          | 选中一堆文本后，按下快捷键，既可在**每一行的末尾**都出现一个光标。 | 很常用                                       |
-| **Option + Shift + 左右方向键** | **Alt + Shift + 左右方向键** | 左右扩大/缩小选中的范围                                      | 很酷，极为高效                               |
-| ctrol + cmd + shift + →         |                              | 以光标为起点同时向左右扩大选中范围                           | →替换为←即缩小范围。选中一句字符串时很高效。 |
+| Mac 快捷键                      | Win 快捷键                   | 作用                                                                                                     | 备注                                            |
+| ------------------------------- | ---------------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| Cmd + D                         | Ctrl + D                     | 将光标放在某个单词下（无选中内容），触发快捷键会选中该单词，再次触发会查找该单词下一个出现的位置并选中。 | 较常用                                          |
+| **Option + Shift + i**          | **Alt + Shift + I**          | 选中一堆文本后，按下快捷键，既可在**每一行的末尾**都出现一个光标。                                       | 很常用                                          |
+| **Option + Shift + 左右方向键** | **Alt + Shift + 左右方向键** | 左右扩大/缩小选中的范围                                                                                  | 很酷，极为高效                                  |
+| ctrol + cmd + shift + →         |                              | 以光标为起点同时向左右扩大选中范围                                                                       | → 替换为 ← 即缩小范围。选中一句字符串时很高效。 |
 
 ### 折叠代码
 
-| Mac 快捷键         | Win 快捷键 | 作用                                                         | 备注                |
-| ------------------ | ---------- | ------------------------------------------------------------ | ------------------- |
-| cmd + option + [   |            | 折叠光标所在代码块的代码                                     | '['替换为']' 即展开 |
-| cmd + k && cmd + [ |            | 折叠光标所在代码块的代码，包含子代码块                       | '['替换为']' 即展开 |
-| cmd + k && cmd + 0 |            | 折叠代码，其中0代表等级，支持0,1,2,3,4,5 ，0折叠所有1折叠第一层 |                     |
-| cmd + k && cmd + j |            | 展开所有代码                                                 |                     |
+| Mac 快捷键         | Win 快捷键 | 作用                                                                  | 备注                |
+| ------------------ | ---------- | --------------------------------------------------------------------- | ------------------- |
+| cmd + option + [   |            | 折叠光标所在代码块的代码                                              | '['替换为']' 即展开 |
+| cmd + k && cmd + [ |            | 折叠光标所在代码块的代码，包含子代码块                                | '['替换为']' 即展开 |
+| cmd + k && cmd + 0 |            | 折叠代码，其中 0 代表等级，支持 0,1,2,3,4,5 ，0 折叠所有 1 折叠第一层 |                     |
+| cmd + k && cmd + j |            | 展开所有代码                                                          |                     |
 
 补充：
 
@@ -160,9 +158,11 @@ vscode 用得熟不熟，就看你是否会用快捷键。
 | **Cmd + P**         | **Ctrl + P**        | 在当前的项目工程里，**全局**搜索文件名     |        |
 | **Cmd + G**         | **F3**              | 在当前文件中搜索代码，光标仍停留在编辑器里 | 很巧妙 |
 
-### 方法和文件头注释
+## vscode 插件
 
-安装 `koroFileHeader` 扩展插件，用来在 vscode 中增加文件头备注和方法备注快捷键。
+### koroFileHeader
+
+用来在 vscode 中增加文件头备注和方法备注快捷键。
 
 | mac                | 作用             |
 | :----------------- | :--------------- |
@@ -170,6 +170,17 @@ vscode 用得熟不熟，就看你是否会用快捷键。
 | ctrl + command + t | 自动生成方法备注 |
 
 可配置自动更新头部，可参考：[相关配置项](https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE%E5%AD%97%E6%AE%B5)
+
+### Turbo Console Log
+
+将光标放在变量上，用快捷键生成 log 代码，并可通过快捷键统一管理 log 代码。
+
+| mac                  | 作用               |
+| :------------------- | :----------------- |
+| control + option + L | 生成 log           |
+| option + shift + c   | 注释文件下所有 log |
+| option + shift + u   | 启用文件下所有 log |
+| option + shift + d   | 删除文件下所有 log |
 
 ## Mac 常用终端指令
 
