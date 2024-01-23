@@ -2,8 +2,9 @@
 
 ## 基础
 
-1. [原生函数 trim](/articles/手写代码/code/nativeFn.js)
+1. [trim](/articles/手写代码/code/native-function/trim.js)
 2. [reduce](/articles/手写代码/code/reduce.js)
+3. [bind](/articles/手写代码/code/native-function/bind.js)
 
 ## ES6
 
