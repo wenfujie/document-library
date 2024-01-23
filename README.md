@@ -52,7 +52,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 ## JS
 
 1. [闭包](articles/js相关/闭包，我吃定了耶稣都挡不住，我说的.md)
-2. [JS 中的几种循环](articles/js相关/基础/JS的循环.md)
+2. [js中的遍历](articles/js相关/基础/js中的遍历.md)
 3. [js 小技巧](articles/js相关/js小技巧.md)
 4. [函数式编程](articles/js相关/函数式编程/函数式编程.md)
 5. [防抖与节流](articles/js相关/防抖与节流/index.md)
@@ -116,9 +116,8 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 手写代码
 
-1. [实现 EventBus](articles/手写代码/手写代码系列.md#实现EventBus)
-2. [手写简版 Generator 函数](articles/手写代码/手写代码系列.md#手写简版Generator函数)
-3. [写代码小技巧](articles/手写代码/写代码小技巧.md)
+1. [手写代码合集](articles/手写代码/index.md)
+2. [写代码小技巧](articles/手写代码/写代码小技巧.md)
 
 ## 工具
 
