@@ -1,10 +1,12 @@
 # 手撕代码
 
-## 基础
+## 原生函数
 
 1. [trim](/articles/手写代码/code/native-function/trim.js)
-2. [reduce](/articles/手写代码/code/reduce.js)
+2. [reduce](/articles/手写代码/code/native-function/reduce.js)
 3. [bind](/articles/手写代码/code/native-function/bind.js)
+4. [call](/articles/手写代码/code/native-function/call.js)
+5. [apply](/articles/手写代码/code/native-function/apply.js)
 
 ## ES6
 
@@ -15,4 +17,4 @@
 
 1. [event bus](/articles/手写代码/code/eventBus.js)
 2. [pipe（通过reduce）](/articles/手写代码/code/pipe.js)
-3. [依次执行Promise（通过reduce）](/articles/手写代码/code/runPromiseInSequence.js)
+3. [Promise依次执行（通过reduce）](/articles/手写代码/code/runPromiseInSequence.js)
