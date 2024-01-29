@@ -97,11 +97,13 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 开发知识储备
 
-1. [学习正则表达式](articles/开发相关知识/学习正则表达式.md)
-2. [内容安全策略(CSP)](<articles/开发相关知识/内容安全策略(CSP).md>)
-3. [加密和签名](articles/开发相关知识/加密和签名.md)
-4. [域名相关](articles/开发相关知识/域名相关.md)
-5. [后端开发笔记（nestJS）](https://github.com/wenfujie/study-nest/blob/main/README.md)
+1. [正则mini书笔记](articles/开发相关知识/正则mini书笔记.md)
+2. [学习正则表达式](articles/开发相关知识/学习正则表达式.md)
+3. [Github 正则教程](https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md)
+4. [内容安全策略(CSP)](<articles/开发相关知识/内容安全策略(CSP).md>)
+5. [加密和签名](articles/开发相关知识/加密和签名.md)
+6. [域名相关](articles/开发相关知识/域名相关.md)
+7. [后端开发笔记（nestJS）](https://github.com/wenfujie/study-nest/blob/main/README.md)
 
 ## 前端优化
 
@@ -124,10 +126,9 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 1. [npm 详细使用说明](articles/工具/npm详细使用说明.md)
 2. [git 使用手册](articles/工具/git使用手册.md)
 3. [常用 vscode 插件](articles/工具/常用vscode插件.md)
-4. [Github 正则教程](https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md)
-5. [vscode 快捷键和终端指令](articles/工具/vscode快捷键和终端指令.md)
-6. [pnpm 介绍](articles/工具/pnpm介绍.md)
-7. [概括 lodash 常用函数](articles/工具/概括lodash常用函数.md)
+4. [vscode 快捷键和终端指令](articles/工具/vscode快捷键和终端指令.md)
+5. [pnpm 介绍](articles/工具/pnpm介绍.md)
+6. [概括 lodash 常用函数](articles/工具/概括lodash常用函数.md)
 
 ## 业务 Demo
 
