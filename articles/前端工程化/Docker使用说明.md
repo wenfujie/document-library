@@ -1,8 +1,14 @@
 <!--
  * @Date: 2022-01-06 15:57:52
- * @LastEditors: wfj
- * @LastEditTime: 2023-06
+ * @LastEditors: 温富杰 wenfujie@dianchu.com
+ * @LastEditTime: 2024-02-26 14:44:42
 -->
+- [Docker 常用指令](#docker-常用指令)
+  - [查看容器/镜像](#查看容器镜像)
+  - [增、删容器/镜像](#增删容器镜像)
+  - [启、停容器/镜像](#启停容器镜像)
+  - [查看、修改运行中容器的 nginx 配置并生效](#查看修改运行中容器的-nginx-配置并生效)
+
 ## Docker 常用指令
 
 ### 查看容器/镜像
@@ -93,7 +99,15 @@ docker stop [container_id]
 docker stop $(docker ps -aq)
 ```
 
-### 修改运行中容器的 nginx 配置并生效
+### 查看、修改运行中容器的 nginx 配置并生效
+
+若只是查看文件使用 cat 即可，容器内自带指令
+
+```bash
+cat /etc/nginx/nginx.conf
+```
+
+修改文件需安装 vim
 
 ```bash
 # 进入容器（c0a9cf026b08为容器id）
