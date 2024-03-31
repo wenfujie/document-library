@@ -8,6 +8,7 @@
   - [Vue2](#vue2)
   - [Vue3](#vue3)
   - [开发知识储备](#开发知识储备)
+  - [开发问题汇总](#开发问题汇总)
   - [前端优化](#前端优化)
   - [Animation](#animation)
   - [手写代码](#手写代码)
@@ -104,6 +105,11 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 5. [加密和签名](articles/开发相关知识/加密和签名.md)
 6. [域名相关](articles/开发相关知识/域名相关.md)
 7. [后端开发笔记（nestJS）](https://github.com/wenfujie/study-nest/blob/main/README.md)
+
+## 开发问题汇总
+
+1. [页面适配](articles/开发问题汇总/页面适配.md)
+2. [PC适配方案](articles/解决方案/PC适配方案.md)
 
 ## 前端优化
 

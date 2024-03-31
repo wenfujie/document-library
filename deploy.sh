@@ -2,7 +2,7 @@
 ###
  # @Date: 2022-01-07 16:15:13
  # @LastEditors: 温富杰 wenfujie@dianchu.com
- # @LastEditTime: 2024-02-26 14:44:56
+ # @LastEditTime: 2024-03-31 14:22:12
  # @FilePath: /document-library/deploy.sh
  # @describe: 该脚本用于将代码同时推送到 github、gitee
  # @use: 运行指令 sh deploy.sh
@@ -13,7 +13,7 @@ set -e
 
 # git init
 git add -A
-git commit -m 'docs: 编辑文章【Docker使用说明】'
+git commit -m 'docs: add 文章【页面适配】【PC适配方案】'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
