@@ -8,3 +8,4 @@
 ## 生产环境
 
 1. [构建拆包](/articles/前端工程化/vite/构建拆包.md)
+2. [plugin-legacy插件](/articles/前端工程化/vite/plugin-legacy插件.md)
