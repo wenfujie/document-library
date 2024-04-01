@@ -77,6 +77,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 6. [手摸手带你用 js 实现端到端自动化测试](articles/测试相关/手摸手带你用js实现端到端自动化测试.md)
 7. [Node 自动化部署](articles/js相关/node自动化部署.md)
 8. [nginx 指南](articles/前端工程化/nginx指南.md)
+9. [babel+polyfill兼容旧版浏览器](articles/前端工程化/babel+polyfill兼容旧版浏览器.md)
 
 ## Vue2
 
