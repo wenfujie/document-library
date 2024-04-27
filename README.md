@@ -78,6 +78,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 7. [Node 自动化部署](articles/js相关/node自动化部署.md)
 8. [nginx 指南](articles/前端工程化/nginx指南.md)
 9. [babel+polyfill兼容旧版浏览器](articles/前端工程化/babel+polyfill兼容旧版浏览器.md)
+10. [eslint+prettier](articles/前端工程化/eslint+prettier.md)
 
 ## Vue2
 
