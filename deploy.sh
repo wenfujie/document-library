@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 ###
 # @Date: 2022-01-07 16:15:13
-# @LastEditors: 温富杰 wenfujie@dianchu.com
-# @LastEditTime: 2024-04-27 16:14:42
+# @LastEditors: wenfujie 1024402224@qq.com
+# @LastEditTime: 2024-05-09 22:56:44
 # @FilePath: /document-library/deploy.sh
 # @describe: 该脚本用于将代码同时推送到 github、gitee
 # @use: 运行指令 sh deploy.sh
@@ -13,7 +13,7 @@ set -e
 
 # git init
 git add -A
-git commit -m 'docs: add doc [eslint+prettier]'
+git commit -m 'docs: edit doc [pnpm介绍]'
 
 git push -f git@github.com:wenfujie/document-library.git master
 git push -f git@gitee.com:mozhata/document-library.git master
