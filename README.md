@@ -35,9 +35,9 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 专栏
 
-[我的博客](http://wenf.top "温富杰的博客")
+[我的博客](http://wenf.top '温富杰的博客')
 
-[掘金首页](https://juejin.cn/user/2629687546229784 "掘金个人首页")
+[掘金首页](https://juejin.cn/user/2629687546229784 '掘金个人首页')
 
 ## HTML
 
@@ -53,7 +53,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 ## JS
 
 1. [闭包](articles/js相关/闭包，我吃定了耶稣都挡不住，我说的.md)
-2. [js中的遍历](articles/js相关/基础/js中的遍历.md)
+2. [js 中的遍历](articles/js相关/基础/js中的遍历.md)
 3. [js 小技巧](articles/js相关/js小技巧.md)
 4. [函数式编程](articles/js相关/函数式编程/函数式编程.md)
 5. [防抖与节流](articles/js相关/防抖与节流/index.md)
@@ -77,8 +77,9 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 6. [手摸手带你用 js 实现端到端自动化测试](articles/测试相关/手摸手带你用js实现端到端自动化测试.md)
 7. [Node 自动化部署](articles/js相关/node自动化部署.md)
 8. [nginx 指南](articles/前端工程化/nginx指南.md)
-9. [babel+polyfill兼容旧版浏览器](articles/前端工程化/babel+polyfill兼容旧版浏览器.md)
+9. [babel+polyfill 兼容旧版浏览器](articles/前端工程化/babel+polyfill兼容旧版浏览器.md)
 10. [eslint+prettier](articles/前端工程化/eslint+prettier.md)
+11. [gitlab-ci](articles/前端工程化/gitlab-ci.md)
 
 ## Vue2
 
@@ -100,7 +101,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 开发知识储备
 
-1. [正则mini书笔记](articles/开发相关知识/正则mini书笔记.md)
+1. [正则 mini 书笔记](articles/开发相关知识/正则mini书笔记.md)
 2. [学习正则表达式](articles/开发相关知识/学习正则表达式.md)
 3. [Github 正则教程](https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md)
 4. [内容安全策略(CSP)](<articles/开发相关知识/内容安全策略(CSP).md>)
@@ -111,7 +112,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 ## 开发问题汇总
 
 1. [页面适配](articles/开发问题汇总/页面适配.md)
-2. [PC适配方案](articles/解决方案/PC适配方案.md)
+2. [PC 适配方案](articles/解决方案/PC适配方案.md)
 
 ## 前端优化
 
@@ -171,7 +172,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ## 开发语言
 
-1. [typescript集合](articles/语言/typescript集合.md)
+1. [typescript 集合](articles/语言/typescript集合.md)
 2. [前端需储备开发语言](articles/语言/前端需储备开发语言.md)
 
 ## 面试技巧
