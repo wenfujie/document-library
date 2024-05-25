@@ -56,6 +56,8 @@ build_file: # 作业名称随便取
     paths: - node_modules/
   tags: - rancher_docker # 指定 runner
   allow_failure: true # 作业失败时，流水线继续运行（默认false）
+  trigger: # 多流水线/子流水线
+    include: path/to/child-pipeline.gitlab-ci.yml # 指定作业
 
 ```
 
