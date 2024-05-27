@@ -115,6 +115,7 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 2. [PC 适配方案](articles/解决方案/PC适配方案.md)
 3. [lodash 常用函数](articles/工具/概括lodash常用函数.md)
 4. [VueUse 常用 Api](articles/Vue3/VueUse快速上手.md)
+5. [共享依赖 npm-workspace](https://github.com/wenfujie/demo/tree/main/npm-workspace)
 
 ## 前端优化
 
