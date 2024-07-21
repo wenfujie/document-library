@@ -1,31 +1,43 @@
 - [document-library](#document-library)
   - [前言](#前言)
-  - [专栏](#专栏)
   - [前端基础](#前端基础)
-    - [HTML](#html)
-    - [Css](#css)
+    - [html](#html)
+    - [css](#css)
     - [浏览器](#浏览器)
+    - [代码规范](#代码规范)
     - [适配](#适配)
   - [前端工程化](#前端工程化)
     - [开发](#开发)
-    - [代码规范](#代码规范)
+    - [代码规范](#代码规范-1)
     - [测试](#测试)
     - [构建](#构建)
     - [部署](#部署)
   - [前端框架](#前端框架)
-    - [Vue2](#vue2)
-    - [Vue3](#vue3)
+    - [vue2](#vue2)
+    - [vue3](#vue3)
+      - [设计和原理-reactive](#设计和原理-reactive)
+      - [设计和原理-renderer](#设计和原理-renderer)
+      - [设计和原理-其他](#设计和原理-其他)
     - [ts](#ts)
+    - [nuxt](#nuxt)
+    - [nest](#nest)
   - [前端性能优化](#前端性能优化)
   - [前端生态](#前端生态)
     - [库](#库)
-  - [前端 demo](#前端-demo)
+  - [前端业务](#前端业务)
   - [前端进阶](#前端进阶)
+    - [安全](#安全)
     - [动画](#动画)
     - [手写代码](#手写代码)
-  - [前端面试知识点](#前端面试知识点)
-  - [面试技巧](#面试技巧)
-  - [程序员知识储备](#程序员知识储备)
+  - [前端架构](#前端架构)
+  - [网络请求](#网络请求)
+    - [http](#http)
+  - [面试](#面试)
+  - [程序员储备](#程序员储备)
+    - [开发语言](#开发语言)
+    - [算法](#算法)
+    - [正则](#正则)
+    - [设计模式](#设计模式)
   - [生活](#生活)
     - [随想](#随想)
     - [心理学](#心理学)
@@ -42,52 +54,54 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 本文档库始建于 2019-04-14，目的是做学习笔记。
 主要记录一下 wenfujie 折腾学习新技术点的时候的操作笔记，慢慢积累，静静的进步。
 
-## 专栏
-
-[我的博客](http://wenf.top '温富杰的博客')
-
-[掘金首页](https://juejin.cn/user/2629687546229784 '掘金个人首页')
-
 ## 前端基础
 
-### HTML
+### html
 
-1. [html 面试题](articles/html/html面试题.md)
-2. [H5 开发 FAQ](articles/html/H5开发FAQ.md)
+1. [html 面试题](articles/前端基础/html/html面试题.md)
+2. [H5 开发 FAQ](articles/前端基础/html/H5开发FAQ.md)
 
-### Css
+### css
 
-1. [css 高频面试题](articles/css相关/css高频面试题.md)
-2. [自适应和响应式布局方案](articles/css相关/自适应和响应式布局.md)
-3. [有趣的 css](articles/css相关/有趣的css.md)
+1. [css 高频面试题](articles/前端基础/css/面试题.md)
+2. [自适应和响应式布局方案](articles/前端基础/css/自适应和响应式布局.md)
+3. [有趣的 css](articles/前端基础/css/有趣的css.md)
+4. [盒模型及 BFC](articles/前端基础/css/盒模型及BFC.md)
 
 ### 浏览器
 
-1. [Chrome 开发者工具你不知道的操作](articles/浏览器/谷歌浏览器开发者工具.md)
-2. [BOM](articles/浏览器/BOM.md)
-3. [V8 引擎的垃圾回收](articles/浏览器/V8引擎的垃圾回收.md)
+1. [Chrome 开发者工具你不知道的操作](articles/前端基础/浏览器/谷歌浏览器开发者工具.md)
+2. [BOM](articles/前端基础/浏览器/BOM.md)
+3. [V8 引擎的垃圾回收](articles/前端基础/浏览器/V8引擎的垃圾回收.md)
+4. [浏览器渲染机制](articles/前端基础/浏览器/浏览器渲染机制.md)
+5. [DOM 事件总结](articles/前端基础/浏览器/DOM事件总结.md)
+
+### 代码规范
+
+1. [变量命名](articles/前端基础/代码规范/变量命名.md)
 
 ### 适配
 
-1. [页面适配](articles/开发问题汇总/页面适配.md)
-2. [PC 适配方案](articles/解决方案/PC适配方案.md)
+1. [页面适配](articles/前端基础/适配/页面适配.md)
+2. [PC 适配](articles/前端基础/适配/PC适配.md)
 
 ## 前端工程化
 
 ### 开发
 
-1. [搭建脚手架](articles/工具/搭建脚手架/搭建脚手架.md)
-2. [共享依赖 npm-workspace](https://github.com/wenfujie/demo/tree/main/npm-workspace)
-3. [npm 详细使用说明](articles/工具/npm详细使用说明.md)
-4. [git 使用手册](articles/工具/git使用手册.md)
-5. [常用 vscode 插件](articles/工具/常用vscode插件.md)
-6. [vscode 快捷键和终端指令](articles/工具/vscode快捷键和终端指令.md)
-7. [pnpm 介绍](articles/工具/pnpm介绍.md)
+1. [搭建脚手架](articles/前端工程化/开发/脚手架/搭建脚手架.md)
+2. [commander 使用](articles/前端工程化/开发/脚手架/commander使用.md)
+3. [共享依赖 npm-workspace](https://github.com/wenfujie/demo/tree/main/npm-workspace)
+4. [npm 使用](articles/前端工程化/开发/npm使用.md)
+5. [git 使用](articles/前端工程化/开发/git使用.md)
+6. [常用 vscode 插件](articles/前端工程化/开发/常用vscode插件.md)
+7. [vscode 快捷键和终端指令](articles/前端工程化/开发/vscode快捷键和终端指令.md)
+8. [pnpm 介绍](articles/前端工程化/开发/pnpm介绍.md)
 
 ### 代码规范
 
-1. [husky 约束 commit 规范](articles/前端工程化/husky约束commit规范.md)
-2. [eslint+prettier](articles/前端工程化/eslint+prettier.md)
+1. [husky 约束 commit 规范](articles/前端工程化/代码规范/husky约束commit规范.md)
+2. [eslint+prettier](articles/前端工程化/代码规范/eslint+prettier.md)
 
 ### 测试
 
@@ -95,136 +109,180 @@ wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` �
 
 ### 构建
 
-1. [Vite 合集](/articles/前端工程化/vite/catalog.md)
+1. [Vite 合集](articles/前端工程化/构建/vite/catalog.md)
 2. [Webpack 介绍](articles/前端工程化/构建/webpack/介绍.md)
 3. [Webpack 热更新原理](articles/前端工程化/构建/webpack/热更新原理.md)
-4. [gitlab-ci](articles/前端工程化/gitlab-ci.md)
-5. [babel+polyfill 浏览器兼容](articles/前端工程化/babel+polyfill浏览器兼容.md)
+4. [babel+polyfill 浏览器兼容](articles/前端工程化/构建/babel+polyfill浏览器兼容.md)
+5. [babel7](articles/前端工程化/构建/babel7.md)
 
 ### 部署
 
 1. [Node 自动化部署](articles/前端工程化/部署/node自动化部署.md)
-2. [nginx 指南](articles/前端工程化/nginx指南.md)
-3. [Docker 使用说明](articles/前端工程化/Docker使用说明.md)
+2. [nginx 指南](articles/前端工程化/部署/nginx指南.md)
+3. [Docker 使用说明](articles/前端工程化/部署/Docker使用说明.md)
+4. [gitlab-ci](articles/前端工程化/部署/gitlab-ci.md)
 
 ## 前端框架
 
-### Vue2
+### vue2
 
-1. [vue 原理](articles/Vue/vue原理.md)
-2. [异步更新和 nextTick](articles/Vue/异步更新和nextTick.md)
-3. [Vue 和 React 横向对比](articles/Vue/Vue和React横向对比.md)
-4. [Vue 中 key 的作用](articles/Vue/Vue中key的作用.md)
-5. [nuxt.js 服务端渲染](articles/解决方案/nuxt.js服务端渲染.md)
-6. [Vue 高级特性](articles/Vue/Vue高级特性.md)
-7. [Vue-Cli 使用说明](articles/Vue/Vue-Cli使用说明.md)
-8. [Vue 中的渲染函数 & JSX](articles/Vue/Vue中的渲染函数&JSX.md)
+1. [vue 原理](articles/前端框架/vue2/vue原理.md)
+2. [异步更新和 nextTick](articles/前端框架/vue2/异步更新和nextTick.md)
+3. [Vue 和 React 横向对比](articles/前端框架/vue2/Vue和React横向对比.md)
+4. [Vue 中 key 的作用](articles/前端框架/vue2/Vue中key的作用.md)
+5. [Vue 高级特性](articles/前端框架/vue2/Vue高级特性.md)
+6. [Vue-Cli 使用说明](articles/前端框架/vue2/Vue-Cli使用说明.md)
+7. [Vue 中的渲染函数 & JSX](articles/前端框架/vue2/Vue中的渲染函数&JSX.md)
 
-### Vue3
+### vue3
 
-1. [Vue3 设计和原理合集](articles/Vue3/Vue3设计和原理/catalog.md)
-2. [Vue3 快速上手](articles/Vue3/Vue3快速上手.md)
-3. [Vue3 开发注意事项](articles/Vue3/Vue3开发注意事项.md)
+1. [Vue3 快速上手](articles/前端框架/vue3/Vue3快速上手.md)
+2. [Vue3 开发注意事项](articles/前端框架/vue3/Vue3开发注意事项.md)
+
+#### 设计和原理-reactive
+
+1. [proxy 的工作原理](articles/前端框架/vue3/vue3设计和原理/reactive/proxy的工作原理.md)
+2. [响应系统的设计](articles/前端框架/vue3/Vue3设计和原理/reactive/响应系统的设计.md)
+3. [ref 原始值的响应式](articles/前端框架/vue3/Vue3设计和原理/reactive/ref原始值的响应式.md)
+
+#### 设计和原理-renderer
+
+1. [渲染器的设计](articles/前端框架/vue3/Vue3设计和原理/renderer/渲染器的设计.md)
+2. [渲染器——组件渲染成 DOM 过程](articles/前端框架/vue3/Vue3设计和原理/renderer/组件渲染成DOM的过程.md)
+3. [渲染器——初始化组件实例过程](articles/前端框架/vue3/Vue3设计和原理/renderer/初始化组件实例过程.md)
+
+#### 设计和原理-其他
+
+1. [Vue3 做了哪些优化](articles/前端框架/vue3/Vue3设计和原理/Vue3做了哪些优化.md)
+2. [computed 实现](articles/前端框架/vue3/Vue3设计和原理/computed实现.md)
 
 ### ts
 
-[typescript 集合](articles/语言/typescript集合.md)
+1. [介绍](articles/前端框架/ts/介绍.md)
+2. [常用配置](articles/前端框架/ts/常用配置.md)
+3. [类型](articles/前端框架/ts/类型.md)
+4. [类型工具](articles/前端框架/ts/类型工具.md)
+5. [常用配置](articles/前端框架/ts/常用配置.md)
+6. [编写声明文件](articles/前端框架/ts/编写声明文件.md)
+
+### nuxt
+
+1. [nuxt 服务端渲染](articles/前端框架/nuxt/nuxt服务端渲染.md)
+
+### nest
+
+1. [nest 笔记](https://github.com/wenfujie/study-nest/blob/main/README.md)
 
 ## 前端性能优化
 
-1. [性能优化](articles/解决方案/性能优化.md)
-2. [webpack 打包优化](articles/解决方案/webpack打包优化.md)
+1. [性能优化](articles/前端性能优化/性能优化.md)
+2. [webpack 打包优化](articles/前端性能优化/webpack打包优化.md)
+3. [如何提升用户体验](articles/前端性能优化/如何提升用户体验.md)
 
 ## 前端生态
 
 ### 库
 
-1. [lodash 常用函数](articles/工具/概括lodash常用函数.md)
-2. [VueUse 常用 Api](articles/Vue3/VueUse快速上手.md)
+1. [lodash 常用函数](articles/前端生态/库/lodash常用函数.md)
+2. [VueUse 快速上手](articles/前端生态/库/VueUse快速上手.md)
 
-## 前端 demo
+## 前端业务
 
-1. [各种业务解决方案](articles/前端demo/各种业务解决方案.md)
-2. [系统选择文件弹窗](articles/前端demo/系统选择文件弹窗/index.md)
-3. [H5 拖拽](articles/前端demo/H5拖拽/拖拽.md)
-4. [压缩文件并下载](articles/前端demo/压缩文件并下载.md)
+1. [各种业务解决方案](articles/前端业务/各种业务解决方案.md)
+2. [系统选择文件弹窗](articles/前端业务/系统选择文件弹窗/index.md)
+3. [H5 拖拽](articles/前端业务/H5拖拽/拖拽.md)
+4. [压缩文件并下载](articles/前端业务/压缩文件并下载.md)
+5. [权限控制](articles/前端业务/权限控制.md)
 
 ## 前端进阶
 
+### 安全
+
+1. [CSRF 和 XSS](articles/前端进阶/安全/CSRF和XSS.md)
+2. [CSP 内容安全策略](articles/前端进阶/安全/CSP内容安全策略.md)
+3. [加密和签名](articles/前端进阶/安全/加密和签名.md)
+
 ### 动画
 
-1. [css 动画](articles/Animation/animation动画/animation.md)
-2. [砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）](articles/Animation/animation动画/砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）/index.html)
+1. [css 动画](articles/前端进阶/动画/css动画.md)
+2. [砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）](articles/前端进阶/动画/砸金蛋效果（steps+雪碧图解决图片快速切换不闪烁）/index.html)
 3. [Flip-Animation:随机移动小姐姐图片](https://gitee.com/mozhata/Animation/tree/main/flip-animation)
 
 ### 手写代码
 
-1. [手写代码合集](articles/手写代码/index.md)
-2. [写代码小技巧](articles/手写代码/写代码小技巧.md)
-3. [js 小技巧](articles/手写代码/js小技巧.md)
-4. [js 代码片段](articles/手写代码/js代码片段.md)
+1. [手写代码合集](articles/前端进阶/手写代码/index.md)
+2. [写代码小技巧](articles/前端进阶/手写代码/写代码小技巧.md)
+3. [js 小技巧](articles/前端进阶/手写代码/js小技巧.md)
+4. [js 代码片段](articles/前端进阶/手写代码/js代码片段.md)
 
-## 前端面试知识点
+## 前端架构
 
-1. [安全问题：csrf 和 xss](articles/开发相关知识/安全问题：CSRF和XSS.md)
-2. [面试资源汇总](articles/面试知识/前端面试资源汇总.md)
-3. [DOM 事件总结](articles/面试知识/DOM事件总结.md)
-4. [盒模型及 BFC](articles/面试知识/盒模型及BFC.md)
-5. [http 协议](articles/面试知识/http协议.md)
-6. [跨域资源共享 cors 详解](articles/面试知识/跨域资源共享cors详解.md)
-7. [算法深入](articles/开发相关知识/算法深入.md)
-8. [浏览器渲染机制](articles/面试知识/浏览器渲染机制.md)
-9. [前端权限管理](articles/开发相关知识/前端权限控制.md)
-10. [事件循环 event-loop](articles/面试知识/事件循环event-loop.md)
-11. [跨域解决方案](articles/面试知识/跨域解决方案.md)
-12. [跨平台解决方案](articles/面试知识/跨平台解决方案.md)
-13. [设计模式](articles/开发相关知识/设计模式.md)
-14. [为什么 0.1 + 0.2 !== 0.3](articles/面试知识/0.1+0.2!==0.3.md)
+1. [对 BFF 的理解](articles/前端架构/对BFF的理解.md)
+2. [lerna](articles/前端架构/大仓库/lerna.md)
+3. [跨平台方案](articles/前端架构/跨平台方案.md)
 
-## 面试技巧
+## 网络请求
 
-1. [与面试官的较量](articles/面试知识/与面试官的较量.md)
-2. [前端必备概念](articles/面试知识/前端必备概念.md)
-3. [学习规划](articles/面试知识/学习规划.md)
-4. [做好面试官](articles/面试知识/做好面试官.md)
+1. [本地域名映射](articles/网络请求/本地域名映射.md)
+2. [跨域资源共享 cors](articles/网络请求/跨域资源共享cors.md)
+3. [跨域解决方案](articles/网络请求/跨域解决方案.md)
 
-## 程序员知识储备
+### http
 
-1. [正则 mini 书笔记](articles/开发相关知识/正则mini书笔记.md)
-2. [学习正则表达式](articles/开发相关知识/学习正则表达式.md)
+1. [http 协议](articles/网络请求/http/http协议.md)
+
+## 面试
+
+1. [面试资源汇总](articles/面试/前端面试资源汇总.md)
+2. [与面试官的较量](articles/面试/与面试官的较量.md)
+3. [学习规划](articles/面试/学习规划.md)
+4. [做好面试官](articles/面试/做好面试官.md)
+
+## 程序员储备
+
+### 开发语言
+
+1. [markdown 语法](articles/程序员储备/开发语言/MarkDown/markdown语法.md)
+2. [markdown 转 html](articles/程序员储备/开发语言/MarkDown/markdown转html.md)
+3. [shell 脚本编写](articles/程序员储备/开发语言/shell脚本编写.md)
+
+### 算法
+
+1. [基础算法](articles/程序员储备/算法/基础算法.md)
+2. [算法深入](articles/程序员储备/算法/算法深入.md)
+
+### 正则
+
+1. [正则 mini 书笔记](articles/程序员储备/正则/正则mini书笔记.md)
+2. [学习正则表达式](articles/程序员储备/正则/学习正则表达式.md)
 3. [Github 正则教程](https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md)
-4. [内容安全策略(CSP)](<articles/开发相关知识/内容安全策略(CSP).md>)
-5. [加密和签名](articles/开发相关知识/加密和签名.md)
-6. [域名相关](articles/开发相关知识/域名相关.md)
-7. [后端开发笔记（nestJS）](https://github.com/wenfujie/study-nest/blob/main/README.md)
-8. [变量命名](articles/开发相关知识/变量命名.md)
-9. [前端需储备开发语言](articles/语言/开发语言储备.md)
-10. [MarkDown 语法](articles/MarkDown/MarkDown常用语法.md)
-11. [浅谈 Markdown 转换 html](articles/MarkDown/浅谈Markdown转换html.md)
+
+### 设计模式
+
+1. [设计模式](articles/程序员储备/设计模式/设计模式.md)
 
 ## 生活
 
 ### 随想
 
-1. [谈谈对 BFF 的理解](articles/开发相关知识/谈谈对BFF的理解.md)
-2. [那些外向的小事儿](articles/个人随想/那些外向的小事儿.md)
-3. [一篇催眠自己去跑步的文章](articles/个人随想/一篇催眠自己去跑步的文章.md)
-4. [零碎想法](articles/个人随想/零碎想法.md)
+1. [小事记录](articles/生活/随想/小事记录.md)
+2. [催眠自己去跑步的文章](articles/生活/随想/催眠自己去跑步的文章.md)
+3. [零碎想法](articles/生活/随想/零碎想法.md)
 
 ### 心理学
 
-1. [需求层次理论](articles/心理学/需求层次理论.md)
+1. [需求层次理论](articles/生活/心理学/需求层次理论.md)
 
 ### 书籍
 
-1. [刻意练习](articles/书籍/刻意练习.md)
-2. [金字塔原理](articles/书籍/金字塔原理.md)
-3. [如何阅读一本书](articles/书籍/如何阅读一本书.md)
-4. [超级闲聊术](articles/书籍/超级闲聊术.md)
+1. [刻意练习](articles/生活/书籍/刻意练习.md)
+2. [金字塔原理](articles/生活/书籍/金字塔原理.md)
+3. [如何阅读一本书](articles/生活/书籍/如何阅读一本书.md)
+4. [超级闲聊术](articles/生活/书籍/超级闲聊术.md)
 
 ### 积累
 
-1. [良句](articles/其他/良句.md)
+1. [良句](articles/生活/积累/良句.md)
 
 ## License
 
