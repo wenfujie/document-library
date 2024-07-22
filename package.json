@@ -6,7 +6,10 @@
   "scripts": {
     "push-code": "sh deploy.sh",
     "build": "cd ./articles/js相关/Webpack/code && npx webpack --config webpack.config.js",
-    "syncToGhpageBranch": "git push origin master:gh-pages"
+    "syncToGhpageBranch": "git push origin master:gh-pages",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-08-22 08:34:44
- * @LastEditors: wenfujie
- * @LastEditTime: 2021-08-22 13:52:34
+ * @LastEditors: 温富杰 wenfujie@dianchu.com
+ * @LastEditTime: 2024-07-22 15:47:52
  * @FilePath: /document-library/articles/浏览器/BOM.md
 -->
 
@@ -47,9 +47,9 @@ document.body.clientWidth;
 
 **两者区别**
 
-- document.documentElement.clientHeight：不包括整个文档的滚动条，但包括<html>元素的边框
+- document.documentElement.clientHeight：不包括整个文档的滚动条，但包括\<html>元素的边框
 
-- document.body.clientHeight：不包括整个文档的滚动条，也不包括<html>元素的边框，也不包括<body>的边框和滚动条
+- document.body.clientHeight：不包括整个文档的滚动条，也不包括\<html>元素的边框，也不包括\<body>的边框和滚动条
 
 ### 应用代码
 
