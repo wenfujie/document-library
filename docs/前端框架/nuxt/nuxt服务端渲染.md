@@ -1,8 +1,7 @@
 <!--
  * @Date: 2021-08-28 16:07:49
  * @LastEditors: 温富杰 wenfujie@dianchu.com
- * @LastEditTime: 2024-07-21 15:33:52
- * @FilePath: /document-library/articles/解决方案/nuxt.js服务端渲染.md
+ * @LastEditTime: 2024-07-22 17:24:13
 -->
 
 - [前言](#前言)

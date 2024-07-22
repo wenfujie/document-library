@@ -655,7 +655,7 @@ export const headerLink = makePermalink((slug, opts, anchorOpts, state, idx) => 
 
 如果对你有帮助，帮忙点个👍🏻喔！
 
-[markdown-it 使用 demo](https://github.com/wenfujie/document-library/blob/master/articles/MarkDown/demo/index.js)
+[markdown-it 使用 demo](/docs/程序员储备/开发语言/MarkDown/demo/index.js)
 
 参考：
 

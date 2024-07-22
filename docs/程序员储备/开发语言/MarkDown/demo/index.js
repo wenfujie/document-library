@@ -2,7 +2,6 @@
  * @Date: 2021-11-20 13:17:03
  * @LastEditors: wenfujie
  * @LastEditTime: 2021-11-30 16:33:40
- * @FilePath: /document-library/articles/MarkDown/demo/index.js
  */
 "use strict";
 const hljs = require("highlight.js");

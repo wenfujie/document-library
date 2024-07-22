@@ -30,7 +30,7 @@ npm v3 和 yarn 针对以上问题的解决方式：
 
 pnpm 实现原理：将包及包的相关依赖平铺地安装到一个全局仓库（node_modules/.pnpm），项目中 `package.json` 下的依赖通过硬链接引用，包与包之间的依赖则是通过软链接引用。
 
-![pnpm官方原理图](/articles/工具/images/pnpm官方原理图.jpg)
+![pnpm官方原理图](./images/pnpm官方原理图.jpg)
 
 ### 如何省磁盘空间
 

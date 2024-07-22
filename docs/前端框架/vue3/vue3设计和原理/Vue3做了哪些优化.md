@@ -4,11 +4,11 @@
 
 vue2 源码放在 src 目录下，依据功能拆分如图所示模块
 
-<img src="images/vue2-catalog.png" alt="vue2源码目录" style="zoom:30%;" />
+<img src="./images/vue2-catalog.png" alt="vue2源码目录" style="zoom:30%;" />
 
 vue3 源码通过 monorepo 管理，依据功能拆分如图所示模块
 
-<img src="images/vue3-catalog.png" alt="vue3源码目录" style="zoom:30%;" />
+<img src="./images/vue3-catalog.png" alt="vue3源码目录" style="zoom:30%;" />
 
 Monorepo 相对 vue2 的管理
 

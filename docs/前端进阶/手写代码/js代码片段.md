@@ -1,8 +1,7 @@
 <!--
  * @Date: 2021-07-28 10:38:55
  * @LastEditors: 温富杰 wenfujie@dianchu.com
- * @LastEditTime: 2024-05-30 11:41:07
- * @FilePath: /document-library/articles/js相关/开发常用js代码片段.md
+ * @LastEditTime: 2024-07-22 17:25:54
 -->
 
 - [常用 js 代码片段](#常用-js-代码片段)
@@ -1124,7 +1123,7 @@ printNums() // Logs: 1, 2, 3 (2 and 3 log after 500ms)
 **参考文章：**
 
 - [《30 seconds of code》](https://www.30secondsofcode.org/)
-- [数据类型判断](https://gitee.com/mozhata/document-library/blob/master/articles/js%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD.md)
+- [数据类型判断](https://gitee.com/mozhata/document-library/blob/master/docs/js%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD.md)
 
 该文章笔者会不定期更新，大家可以收藏一下。
 

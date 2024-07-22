@@ -2,7 +2,6 @@
  * @Date: 2021-10-12 15:35:59
  * @LastEditors: wenfujie
  * @LastEditTime: 2021-10-21 16:26:44
- * @FilePath: /document-library/articles/Vue/Vue组件.md
 -->
 
 - [props](#props)

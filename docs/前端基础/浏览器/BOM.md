@@ -2,7 +2,6 @@
  * @Date: 2021-08-22 08:34:44
  * @LastEditors: 温富杰 wenfujie@dianchu.com
  * @LastEditTime: 2024-07-22 15:47:52
- * @FilePath: /document-library/articles/浏览器/BOM.md
 -->
 
 - [window对象介绍](#window对象介绍)

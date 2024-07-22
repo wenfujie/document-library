@@ -2,7 +2,6 @@
  * @Date: 2021-08-02 10:03:31
  * @LastEditors: wenfujie
  * @LastEditTime: 2021-09-14 15:26:29
- * @FilePath: /document-library/articles/Vue/Vue高级特性.md
 -->
 
 - [Vue.extend(options)动态加载组件](#vueextendoptions动态加载组件)

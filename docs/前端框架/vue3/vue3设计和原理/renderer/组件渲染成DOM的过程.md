@@ -180,7 +180,7 @@ function createVNode(type, props = null, children = null) {
 
 ### 将 VNode 渲染为 DOM
 
-将 `VNode` 渲染为 `DOM` 用到了渲染器 `renderer` ，具体可阅读 [渲染器的设计](/articles/Vue3/Vue3设计和原理/renderer/渲染器的设计.md) ，这边不再赘述。
+将 `VNode` 渲染为 `DOM` 用到了渲染器 `renderer` ，具体可阅读 [渲染器的设计](/docs/Vue3/Vue3设计和原理/renderer/渲染器的设计.md) ，这边不再赘述。
 
 ## 总结
 
