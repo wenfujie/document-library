@@ -91,19 +91,19 @@ export default defineConfig({
               items: [
                 {
                   text: 'ESM和CommonJS',
-                  link: '/前端基础/js/ES6/ESM/ESM和CommonJS'
+                  link: '/前端基础/js/es6/esm/ESM和CommonJS'
                 },
                 {
                   text: 'Promise介绍和实现',
-                  link: '/前端基础/js/ES6/Promise/介绍和实现'
+                  link: '/前端基础/js/es6/promise/介绍和实现'
                 },
                 {
                   text: '类',
-                  link: '/前端基础/js/ES6/类'
+                  link: '/前端基础/js/es6/类'
                 },
                 {
                   text: '新特性',
-                  link: '/前端基础/js/ES6/新特性'
+                  link: '/前端基础/js/es6/新特性'
                 }
               ]
             }
@@ -174,17 +174,29 @@ export default defineConfig({
               items: [
                 { text: '插件', link: '/前端工程化/构建/vite/插件' },
                 { text: '构建拆包', link: '/前端工程化/构建/vite/构建拆包' },
-                { text: '什么是预构建', link: '/前端工程化/构建/vite/什么是预构建' },
-                { text: 'plugin-legacy插件', link: '/前端工程化/构建/vite/plugin-legacy插件' },
-                { text: '如何做到冷启动、热更快', link: '/前端工程化/构建/vite/如何做到冷启动、热更快' },
+                {
+                  text: '什么是预构建',
+                  link: '/前端工程化/构建/vite/什么是预构建'
+                },
+                {
+                  text: 'plugin-legacy插件',
+                  link: '/前端工程化/构建/vite/plugin-legacy插件'
+                },
+                {
+                  text: '如何做到冷启动、热更快',
+                  link: '/前端工程化/构建/vite/如何做到冷启动、热更快'
+                }
               ]
             },
             {
               text: 'webpack',
               items: [
                 { text: '介绍', link: '/前端工程化/构建/webpack/介绍' },
-                { text: '热更新原理', link: '/前端工程化/构建/webpack/热更新原理' },
-                { text: 'Loader', link: '/前端工程化/构建/webpack/Loader' },
+                {
+                  text: '热更新原理',
+                  link: '/前端工程化/构建/webpack/热更新原理'
+                },
+                { text: 'Loader', link: '/前端工程化/构建/webpack/Loader' }
               ]
             }
           ]
@@ -201,50 +213,57 @@ export default defineConfig({
             { text: 'nginx指南', link: '/前端工程化/部署/nginx指南' },
             { text: 'node自动化部署', link: '/前端工程化/部署/node自动化部署' }
           ]
-        },
+        }
       ],
       '/浏览器/': [
         { text: '谷歌浏览器开发者工具', link: '/浏览器/谷歌浏览器开发者工具' },
         { text: '浏览器渲染机制', link: '/浏览器/浏览器渲染机制' },
         { text: 'BOM', link: '/浏览器/BOM' },
         { text: 'DOM事件总结', link: '/浏览器/DOM事件总结' },
-        { text: 'V8引擎的垃圾回收', link: '/浏览器/V8引擎的垃圾回收' },
+        { text: 'V8引擎的垃圾回收', link: '/浏览器/V8引擎的垃圾回收' }
       ],
       '/程序员储备/': [
         // TODO: 这两篇添加后访问异常
-        // { 
-        //   text: '正则',
-        //   items: [
-        //     { text: '学习正则表达式', link: '/程序员储备/正则/学习正则表达式' },
-        //     { text: '正则mini书笔记', link: '/程序员储备/正则/正则mini书笔记' },
-        //   ]
-        // },
-        { 
-          text: '设计模式',
+        {
+          text: '正则',
           items: [
-            { text: '设计模式', link: '/程序员储备/设计模式/设计模式' },
+            { text: '学习正则表达式', link: '/程序员储备/正则/学习正则表达式' }
+            // { text: '正则mini书笔记', link: '/程序员储备/正则/正则mini书笔记' }
           ]
         },
-        { 
+        {
+          text: '设计模式',
+          items: [{ text: '设计模式', link: '/程序员储备/设计模式/设计模式' }]
+        },
+        {
           text: '算法',
           items: [
             { text: '基础算法', link: '/程序员储备/算法/基础算法' },
-            { text: '算法深入', link: '/程序员储备/算法/算法深入' },
+            { text: '算法深入', link: '/程序员储备/算法/算法深入' }
           ]
         },
-        { 
+        {
           text: '开发语言',
           items: [
-            { text: 'shell脚本编写', link: '/程序员储备/开发语言/shell脚本编写' },
-            { 
+            {
+              text: 'shell脚本编写',
+              link: '/程序员储备/开发语言/shell脚本编写'
+            },
+            {
               text: 'MarkDown',
               items: [
-                { text: 'markdown语法', link: '/程序员储备/开发语言/MarkDown/markdown语法' },
-                { text: 'markdown转html', link: '/程序员储备/开发语言/MarkDown/markdown转html' },
+                {
+                  text: 'markdown语法',
+                  link: '/程序员储备/开发语言/MarkDown/markdown语法'
+                },
+                {
+                  text: 'markdown转html',
+                  link: '/程序员储备/开发语言/MarkDown/markdown转html'
+                }
               ]
-            },
+            }
           ]
-        },
+        }
       ],
       '/面试/': [
         { text: '前端面试资源汇总', link: '/面试/前端面试资源汇总' },

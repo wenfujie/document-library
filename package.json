@@ -4,8 +4,6 @@
   "description": "wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` 的经验文档。",
   "main": "index.js",
   "scripts": {
-    "push-code": "sh deploy.sh",
-    "syncToGhpageBranch": "git push origin master:gh-pages",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
