@@ -1,7 +1,7 @@
 
 # 个人博客
 
-访问域名： xxx
+访问域名： https://wenfujie.github.io/document-library/
 
 使用 [vitepress](https://vitepress.dev/zh/) 搭建的博客。
 

@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "wfj blog"
-  text: "wfj的笔记"
-  tagline: My great project tagline
+  name: 'Blog'
+  text: 'wfj的笔记'
+  tagline: 同是寒窗苦读，怎能甘拜下风
   actions:
     - theme: brand
       text: Markdown Examples
@@ -22,4 +22,3 @@ features:
   - title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
-
