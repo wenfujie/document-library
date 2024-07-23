@@ -14,6 +14,8 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: '前端基础', link: '/前端基础/html/H5开发FAQ' },
       { text: '前端工程化', link: '/前端工程化/开发/git使用' },
+      { text: '浏览器', link: '/浏览器/谷歌浏览器开发者工具' },
+      { text: '程序员储备', link: '/程序员储备/设计模式/设计模式' },
       { text: '面试', link: '/面试/前端面试资源汇总' }
     ],
 
@@ -198,6 +200,49 @@ export default defineConfig({
             { text: 'gitlab-ci', link: '/前端工程化/部署/gitlab-ci' },
             { text: 'nginx指南', link: '/前端工程化/部署/nginx指南' },
             { text: 'node自动化部署', link: '/前端工程化/部署/node自动化部署' }
+          ]
+        },
+      ],
+      '/浏览器/': [
+        { text: '谷歌浏览器开发者工具', link: '/浏览器/谷歌浏览器开发者工具' },
+        { text: '浏览器渲染机制', link: '/浏览器/浏览器渲染机制' },
+        { text: 'BOM', link: '/浏览器/BOM' },
+        { text: 'DOM事件总结', link: '/浏览器/DOM事件总结' },
+        { text: 'V8引擎的垃圾回收', link: '/浏览器/V8引擎的垃圾回收' },
+      ],
+      '/程序员储备/': [
+        // TODO: 这两篇添加后访问异常
+        // { 
+        //   text: '正则',
+        //   items: [
+        //     { text: '学习正则表达式', link: '/程序员储备/正则/学习正则表达式' },
+        //     { text: '正则mini书笔记', link: '/程序员储备/正则/正则mini书笔记' },
+        //   ]
+        // },
+        { 
+          text: '设计模式',
+          items: [
+            { text: '设计模式', link: '/程序员储备/设计模式/设计模式' },
+          ]
+        },
+        { 
+          text: '算法',
+          items: [
+            { text: '基础算法', link: '/程序员储备/算法/基础算法' },
+            { text: '算法深入', link: '/程序员储备/算法/算法深入' },
+          ]
+        },
+        { 
+          text: '开发语言',
+          items: [
+            { text: 'shell脚本编写', link: '/程序员储备/开发语言/shell脚本编写' },
+            { 
+              text: 'MarkDown',
+              items: [
+                { text: 'markdown语法', link: '/程序员储备/开发语言/MarkDown/markdown语法' },
+                { text: 'markdown转html', link: '/程序员储备/开发语言/MarkDown/markdown转html' },
+              ]
+            },
           ]
         },
       ],
