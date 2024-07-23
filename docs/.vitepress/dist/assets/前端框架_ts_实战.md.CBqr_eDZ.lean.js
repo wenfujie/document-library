@@ -1,1 +1,0 @@
-import{_ as s,c as i,o as a,a2 as n}from"./chunks/framework.Bek_Mmwg.js";const F=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"前端框架/ts/实战.md","filePath":"前端框架/ts/实战.md"}'),h={name:"前端框架/ts/实战.md"},k=n("",57),l=[k];function t(p,e,r,E,d,g){return a(),i("div",null,l)}const o=s(h,[["render",t]]);export{F as __pageData,o as default};

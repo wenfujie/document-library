@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as n,a2 as a}from"./chunks/framework.Bek_Mmwg.js";const f=JSON.parse('{"title":"H5 拖放","description":"","frontmatter":{},"headers":[],"relativePath":"前端业务/H5拖拽/拖拽.md","filePath":"前端业务/H5拖拽/拖拽.md"}'),r={name:"前端业务/H5拖拽/拖拽.md"},o=a("",22),d=[o];function l(i,p,s,g,u,c){return n(),t("div",null,d)}const m=e(r,[["render",l]]);export{f as __pageData,m as default};

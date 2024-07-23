@@ -1,1 +1,0 @@
-import{_ as e,c as a,o as t,a2 as r}from"./chunks/framework.Bek_Mmwg.js";const b=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"生活/书籍/金字塔原理.md","filePath":"生活/书籍/金字塔原理.md"}'),o={name:"生活/书籍/金字塔原理.md"},l=r("",8),n=[l];function i(s,c,_,p,h,d){return t(),a("div",null,n)}const f=e(o,[["render",i]]);export{b as __pageData,f as default};

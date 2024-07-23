@@ -1,1 +1,0 @@
-import{_ as s,c as i,o as a,a2 as n}from"./chunks/framework.Bek_Mmwg.js";const y=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"前端基础/js/基础/遍历.md","filePath":"前端基础/js/基础/遍历.md"}'),h={name:"前端基础/js/基础/遍历.md"},l=n("",29),p=[l];function k(t,e,E,r,d,g){return a(),i("div",null,p)}const c=s(h,[["render",k]]);export{y as __pageData,c as default};

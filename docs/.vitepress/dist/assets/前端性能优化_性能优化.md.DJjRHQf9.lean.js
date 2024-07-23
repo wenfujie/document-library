@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a,a2 as i}from"./chunks/framework.Bek_Mmwg.js";const k=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"前端性能优化/性能优化.md","filePath":"前端性能优化/性能优化.md"}'),s={name:"前端性能优化/性能优化.md"},l=i("",119),n=[l];function r(d,p,o,c,h,g){return a(),t("div",null,n)}const u=e(s,[["render",r]]);export{k as __pageData,u as default};

@@ -1,1 +1,0 @@
-import{_ as e,c as a,o as s,a2 as t}from"./chunks/framework.Bek_Mmwg.js";const k=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"网络请求/本地域名映射.md","filePath":"网络请求/本地域名映射.md"}'),p={name:"网络请求/本地域名映射.md"},i=t("",13),n=[i];function o(l,c,h,d,r,_){return s(),a("div",null,n)}const u=e(p,[["render",o]]);export{k as __pageData,u as default};
