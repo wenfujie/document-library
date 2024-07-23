@@ -1,0 +1,1 @@
+import{_ as a,c as e,o as t,a2 as l}from"./chunks/framework.Bek_Mmwg.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"生活/书籍/亲密关系.md","filePath":"生活/书籍/亲密关系.md"}'),i={name:"生活/书籍/亲密关系.md"},o=l("",14),r=[o];function _(n,c,s,d,h,p){return t(),e("div",null,r)}const f=a(i,[["render",_]]);export{m as __pageData,f as default};

@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,a2 as e}from"./chunks/framework.Bek_Mmwg.js";const g=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"前端业务/权限控制.md","filePath":"前端业务/权限控制.md"}'),t={name:"前端业务/权限控制.md"},p=e("",27),l=[p];function n(h,k,d,o,r,c){return a(),i("div",null,l)}const u=s(t,[["render",n]]);export{g as __pageData,u as default};

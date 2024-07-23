@@ -1,0 +1,1 @@
+import{_ as a,c as e,o as r,a2 as t}from"./chunks/framework.Bek_Mmwg.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"前端架构/大仓库/lerna.md","filePath":"前端架构/大仓库/lerna.md"}'),n={name:"前端架构/大仓库/lerna.md"},o=t("",6),l=[o];function c(s,h,_,i,p,d){return r(),e("div",null,l)}const u=a(n,[["render",c]]);export{m as __pageData,u as default};

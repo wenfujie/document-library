@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,a2 as n}from"./chunks/framework.Bek_Mmwg.js";const F=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"前端业务/压缩文件并下载.md","filePath":"前端业务/压缩文件并下载.md"}'),t={name:"前端业务/压缩文件并下载.md"},h=n("",16),l=[h];function p(k,e,E,r,d,g){return a(),i("div",null,l)}const o=s(t,[["render",p]]);export{F as __pageData,o as default};

@@ -1,0 +1,1 @@
+import{_ as o,c as e,o as t,a2 as a}from"./chunks/framework.Bek_Mmwg.js";const b=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"生活/书籍/人生的智慧.md","filePath":"生活/书籍/人生的智慧.md"}'),l={name:"生活/书籍/人生的智慧.md"},i=a("",21),r=[i];function p(c,s,n,_,h,u){return t(),e("div",null,r)}const m=o(l,[["render",p]]);export{b as __pageData,m as default};

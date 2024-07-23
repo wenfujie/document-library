@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,a2 as n}from"./chunks/framework.Bek_Mmwg.js";const F=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"前端基础/适配/PC适配.md","filePath":"前端基础/适配/PC适配.md"}'),h={name:"前端基础/适配/PC适配.md"},k=n("",6),l=[k];function p(t,e,E,r,d,g){return a(),i("div",null,l)}const c=s(h,[["render",p]]);export{F as __pageData,c as default};

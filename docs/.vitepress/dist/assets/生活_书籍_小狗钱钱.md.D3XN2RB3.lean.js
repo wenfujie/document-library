@@ -1,0 +1,1 @@
+import{_ as a,c as e,o as i,a2 as l}from"./chunks/framework.Bek_Mmwg.js";const f=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"生活/书籍/小狗钱钱.md","filePath":"生活/书籍/小狗钱钱.md"}'),o={name:"生活/书籍/小狗钱钱.md"},t=l("",14),r=[t];function d(h,n,c,p,s,_){return i(),e("div",null,r)}const m=a(o,[["render",d]]);export{f as __pageData,m as default};

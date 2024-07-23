@@ -1,0 +1,1 @@
+import{_ as o,c as a,o as t,a2 as e}from"./chunks/framework.Bek_Mmwg.js";const g=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"生活/书籍/刻意练习.md","filePath":"生活/书籍/刻意练习.md"}'),p={name:"生活/书籍/刻意练习.md"},l=e("",40),r=[l];function i(n,s,c,h,d,_){return t(),a("div",null,r)}const m=o(p,[["render",i]]);export{g as __pageData,m as default};

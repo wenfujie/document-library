@@ -16,8 +16,8 @@
 export default {
   setup() {
     // ...
-  },
-};
+  }
+}
 </script>
 ```
 
@@ -28,13 +28,13 @@ export default {
 ```js
 import {
   openBlock as _openBlock,
-  createElementBlock as _createElementBlock,
-} from "vue";
+  createElementBlock as _createElementBlock
+} from 'vue'
 
-const _hoisted_1 = { class: "helloWorld" };
+const _hoisted_1 = { class: 'helloWorld' }
 
 export function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return _openBlock(), _createElementBlock("div", _hoisted_1, " hello world ");
+  return _openBlock(), _createElementBlock('div', _hoisted_1, ' hello world ')
 }
 ```
 
@@ -59,10 +59,10 @@ export function render(_ctx, _cache, $props, $setup, $data, $options) {
 js 被加载后，会执行 `main.js` 入口文件代码
 
 ```js
-import { createApp } from "vue";
-import App from "./App.vue";
+import { createApp } from 'vue'
+import App from './App.vue'
 
-createApp(App).mount("#app");
+createApp(App).mount('#app')
 ```
 
 `createApp` 函数
@@ -78,10 +78,10 @@ function createAppAPI(render, hydrate) {
       _props: rootProps,
       mount(rootContainer, isHydrate, isSVG) {
         // ...
-      },
-    };
-    return app;
-  };
+      }
+    }
+    return app
+  }
 }
 ```
 
@@ -115,13 +115,13 @@ mount(rootContainer, isHydrate, isSVG) {
 
 ```js
 const vnode = {
-  type: "div",
+  type: 'div',
   props: {
-    class: "helloWorld",
+    class: 'helloWorld'
   },
-  children: "helloWorld",
+  children: 'helloWorld'
   // ...
-};
+}
 ```
 
 `createVNode` 函数
@@ -180,7 +180,7 @@ function createVNode(type, props = null, children = null) {
 
 ### 将 VNode 渲染为 DOM
 
-将 `VNode` 渲染为 `DOM` 用到了渲染器 `renderer` ，具体可阅读 [渲染器的设计](/docs/Vue3/Vue3设计和原理/renderer/渲染器的设计.md) ，这边不再赘述。
+将 `VNode` 渲染为 `DOM` 用到了渲染器 `renderer` ，具体可阅读 [渲染器的设计](./渲染器的设计.md) ，这边不再赘述。
 
 ## 总结
 

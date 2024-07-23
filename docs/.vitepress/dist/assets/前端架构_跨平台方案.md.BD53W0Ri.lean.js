@@ -1,0 +1,1 @@
+import{_ as e,c as a,o as t,a2 as r}from"./chunks/framework.Bek_Mmwg.js";const f=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"前端架构/跨平台方案.md","filePath":"前端架构/跨平台方案.md"}'),i={name:"前端架构/跨平台方案.md"},o=r("",7),_=[o];function n(l,c,d,s,p,u){return t(),a("div",null,_)}const m=e(i,[["render",n]]);export{f as __pageData,m as default};

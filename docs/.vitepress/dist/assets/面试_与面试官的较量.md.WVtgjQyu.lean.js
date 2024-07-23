@@ -1,0 +1,1 @@
+import{_ as l,c as i,o as a,a2 as e}from"./chunks/framework.Bek_Mmwg.js";const f=JSON.parse('{"title":"技术面","description":"","frontmatter":{},"headers":[],"relativePath":"面试/与面试官的较量.md","filePath":"面试/与面试官的较量.md"}'),r={name:"面试/与面试官的较量.md"},o=e("",28),t=[o];function h(n,s,d,c,p,u){return a(),i("div",null,t)}const x=l(r,[["render",h]]);export{f as __pageData,x as default};

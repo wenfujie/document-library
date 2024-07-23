@@ -11,7 +11,7 @@
 ## ES6
 
 1. [generator 函数](./code/generator.js)
-2. [17 行代码实现简版 Promise](/docs/前端基础/js/es6/promise/介绍和实现.md)
+2. [17 行代码实现简版 Promise](/前端基础/js/es6/promise/介绍和实现.md)
 
 ## 业务工具
 

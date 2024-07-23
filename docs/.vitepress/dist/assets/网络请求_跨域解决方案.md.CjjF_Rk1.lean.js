@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,a2 as n}from"./chunks/framework.Bek_Mmwg.js";const c=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"网络请求/跨域解决方案.md","filePath":"网络请求/跨域解决方案.md"}'),p={name:"网络请求/跨域解决方案.md"},h=n("",42),t=[h];function l(k,e,E,d,r,g){return a(),i("div",null,t)}const y=s(p,[["render",l]]);export{c as __pageData,y as default};

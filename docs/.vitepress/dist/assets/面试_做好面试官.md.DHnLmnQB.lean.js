@@ -1,0 +1,1 @@
+import{_ as a,c as e,o as i,a2 as l}from"./chunks/framework.Bek_Mmwg.js";const k=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"面试/做好面试官.md","filePath":"面试/做好面试官.md"}'),r={name:"面试/做好面试官.md"},h=l("",52),o=[h];function t(n,u,s,d,c,b){return i(),e("div",null,o)}const q=a(r,[["render",t]]);export{k as __pageData,q as default};
