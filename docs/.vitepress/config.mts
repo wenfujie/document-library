@@ -13,6 +13,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: '前端基础', link: '/前端基础/html/H5开发FAQ' },
+      { text: '前端工程化', link: '/前端工程化/开发/git使用' },
       { text: '面试', link: '/面试/前端面试资源汇总' }
     ],
 
@@ -105,7 +106,100 @@ export default defineConfig({
               ]
             }
           ]
+        },
+        {
+          text: '代码规范',
+          items: [{ text: '变量命名', link: '/前端基础/代码规范/变量命名' }]
+        },
+        {
+          text: '适配',
+          items: [
+            { text: '页面适配', link: '/前端基础/适配/页面适配' },
+            { text: 'PC适配', link: '/前端基础/适配/PC适配' }
+          ]
         }
+      ],
+      '/前端工程化/': [
+        {
+          text: '开发',
+          items: [
+            { text: 'git使用', link: '/前端工程化/开发/git使用' },
+            { text: 'npm使用', link: '/前端工程化/开发/npm使用' },
+            { text: 'pnpm介绍', link: '/前端工程化/开发/pnpm介绍' },
+            {
+              text: 'vscode快捷键和终端指令',
+              link: '/前端工程化/开发/vscode快捷键和终端指令'
+            },
+            { text: '常用vscode插件', link: '/前端工程化/开发/常用vscode插件' },
+            {
+              text: '脚手架',
+              items: [
+                {
+                  text: '搭建脚手架',
+                  link: '/前端工程化/开发/脚手架/搭建脚手架'
+                },
+                {
+                  text: 'commander使用',
+                  link: '/前端工程化/开发/脚手架/commander使用'
+                }
+              ]
+            },
+            {
+              text: '代码规范',
+              items: [
+                {
+                  text: 'eslint+prettier',
+                  link: '/前端工程化/开发/代码规范/eslint+prettier'
+                },
+                {
+                  text: 'husky约束commit规范',
+                  link: '/前端工程化/开发/代码规范/husky约束commit规范'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          text: '构建',
+          items: [
+            {
+              text: 'babel+polyfill浏览器兼容',
+              link: '/前端工程化/构建/babel+polyfill浏览器兼容'
+            },
+            { text: 'babel7', link: '/前端工程化/构建/babel7' },
+            {
+              text: 'vite',
+              items: [
+                { text: '插件', link: '/前端工程化/构建/vite/插件' },
+                { text: '构建拆包', link: '/前端工程化/构建/vite/构建拆包' },
+                { text: '什么是预构建', link: '/前端工程化/构建/vite/什么是预构建' },
+                { text: 'plugin-legacy插件', link: '/前端工程化/构建/vite/plugin-legacy插件' },
+                { text: '如何做到冷启动、热更快', link: '/前端工程化/构建/vite/如何做到冷启动、热更快' },
+              ]
+            },
+            {
+              text: 'webpack',
+              items: [
+                { text: '介绍', link: '/前端工程化/构建/webpack/介绍' },
+                { text: '热更新原理', link: '/前端工程化/构建/webpack/热更新原理' },
+                { text: 'Loader', link: '/前端工程化/构建/webpack/Loader' },
+              ]
+            }
+          ]
+        },
+        {
+          text: '测试',
+          items: [{ text: '端到端测试', link: '/前端工程化/测试/端到端测试' }]
+        },
+        {
+          text: '部署',
+          items: [
+            { text: 'Docker使用说明', link: '/前端工程化/部署/Docker使用说明' },
+            { text: 'gitlab-ci', link: '/前端工程化/部署/gitlab-ci' },
+            { text: 'nginx指南', link: '/前端工程化/部署/nginx指南' },
+            { text: 'node自动化部署', link: '/前端工程化/部署/node自动化部署' }
+          ]
+        },
       ],
       '/面试/': [
         { text: '前端面试资源汇总', link: '/面试/前端面试资源汇总' },
