@@ -10,13 +10,29 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    search: {
+      provider: 'local'
+    },
+    // TODO:待子目录完善后，添加一级分类下拉
     nav: [
       { text: 'Home', link: '/' },
-      { text: '前端基础', link: '/前端基础/html/H5开发FAQ' },
+      { 
+        text: '前端基础', 
+        items: [
+          { text: 'html', link: '/前端基础/html/H5开发FAQ' },
+          { text: 'css', link: '/前端基础/css/盒模型及BFC' },
+          { text: 'js', link: '/前端基础/js/基础/数据类型/数据类型的判断' },
+          { text: '代码规范', link: '/前端基础/代码规范/变量命名' },
+          { text: '适配', link: '/前端基础/适配/页面适配' },
+        ]
+      },
+      { text: '前端进阶', link: '/前端进阶/安全/加密和签名' },
       { text: '前端工程化', link: '/前端工程化/开发/git使用' },
-      { text: '浏览器', link: '/浏览器/谷歌浏览器开发者工具' },
       { text: '程序员储备', link: '/程序员储备/设计模式/设计模式' },
-      { text: '面试', link: '/面试/前端面试资源汇总' }
+      { text: '前端架构', link: '/前端架构/对BFF的理解' },
+      { text: '前端业务', link: '/前端业务/权限控制' },
+      { text: '面试', link: '/面试/前端面试资源汇总' },
+      { text: '生活', link: '/生活/书籍/人生的智慧' }
     ],
 
     sidebar: {
@@ -83,6 +99,10 @@ export default defineConfig({
                 {
                   text: '数组扁平化',
                   link: '/前端基础/js/封装/数组扁平化'
+                },
+                {
+                  text: '代码片段',
+                  link: '/前端基础/js/封装/代码片段'
                 }
               ]
             },
@@ -119,6 +139,13 @@ export default defineConfig({
             { text: '页面适配', link: '/前端基础/适配/页面适配' },
             { text: 'PC适配', link: '/前端基础/适配/PC适配' }
           ]
+        }
+      ],
+      // TODO: 待完善
+      '/前端进阶/': [
+        {
+          text: '安全',
+          items: [{ text: '加密和签名', link: '/前端进阶/安全/加密和签名' }]
         }
       ],
       '/前端工程化/': [
@@ -215,20 +242,12 @@ export default defineConfig({
           ]
         }
       ],
-      '/浏览器/': [
-        { text: '谷歌浏览器开发者工具', link: '/浏览器/谷歌浏览器开发者工具' },
-        { text: '浏览器渲染机制', link: '/浏览器/浏览器渲染机制' },
-        { text: 'BOM', link: '/浏览器/BOM' },
-        { text: 'DOM事件总结', link: '/浏览器/DOM事件总结' },
-        { text: 'V8引擎的垃圾回收', link: '/浏览器/V8引擎的垃圾回收' }
-      ],
       '/程序员储备/': [
-        // TODO: 这两篇添加后访问异常
         {
           text: '正则',
           items: [
-            { text: '学习正则表达式', link: '/程序员储备/正则/学习正则表达式' }
-            // { text: '正则mini书笔记', link: '/程序员储备/正则/正则mini书笔记' }
+            { text: '学习正则表达式', link: '/程序员储备/正则/学习正则表达式' },
+            { text: '正则mini书笔记', link: '/程序员储备/正则/正则mini书笔记' }
           ]
         },
         {
@@ -240,6 +259,19 @@ export default defineConfig({
           items: [
             { text: '基础算法', link: '/程序员储备/算法/基础算法' },
             { text: '算法深入', link: '/程序员储备/算法/算法深入' }
+          ]
+        },
+        {
+          text: '浏览器',
+          items: [
+            {
+              text: '谷歌浏览器开发者工具',
+              link: '/浏览器/谷歌浏览器开发者工具'
+            },
+            { text: '浏览器渲染机制', link: '/浏览器/浏览器渲染机制' },
+            { text: 'BOM', link: '/浏览器/BOM' },
+            { text: 'DOM事件总结', link: '/浏览器/DOM事件总结' },
+            { text: 'V8引擎的垃圾回收', link: '/浏览器/V8引擎的垃圾回收' }
           ]
         },
         {
@@ -265,12 +297,37 @@ export default defineConfig({
           ]
         }
       ],
+      // TODO: 待完善
+      '/前端架构/': [
+        {
+          text: '前端架构',
+          items: [{ text: '对BFF的理解', link: '/前端架构/对BFF的理解' }]
+        }
+      ],
+      // TODO: 待完善
+      '/前端业务/': [
+        {
+          text: '前端业务',
+          items: [{ text: '权限控制', link: '/前端业务/权限控制' }]
+        }
+      ],
       '/面试/': [
         { text: '前端面试资源汇总', link: '/面试/前端面试资源汇总' },
         { text: '与面试官的较量', link: '/面试/与面试官的较量' },
         { text: '做好面试官', link: '/面试/做好面试官' },
         { text: 'html面试题', link: '/面试/html面试题' },
         { text: '学习规划', link: '/面试/学习规划' }
+      ],
+      // TODO: 待完善
+      '/生活/': [
+        {
+          text: '书籍',
+          items: [{ text: '人生的智慧', link: '/生活/书籍/人生的智慧' }]
+        },
+        {
+          text: '心理学',
+          items: [{ text: '需求层次理论', link: '/生活/心理学/需求层次理论' }]
+        }
       ]
     },
 
