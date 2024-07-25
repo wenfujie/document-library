@@ -16,14 +16,14 @@ export default defineConfig({
     // TODO:待子目录完善后，添加一级分类下拉
     nav: [
       { text: 'Home', link: '/' },
-      { 
-        text: '前端基础', 
+      {
+        text: '前端基础',
         items: [
           { text: 'html', link: '/前端基础/html/H5开发FAQ' },
           { text: 'css', link: '/前端基础/css/盒模型及BFC' },
           { text: 'js', link: '/前端基础/js/基础/数据类型/数据类型的判断' },
           { text: '代码规范', link: '/前端基础/代码规范/变量命名' },
-          { text: '适配', link: '/前端基础/适配/页面适配' },
+          { text: '适配', link: '/前端基础/适配/页面适配' }
         ]
       },
       { text: '前端进阶', link: '/前端进阶/安全/加密和签名' },
@@ -145,7 +145,161 @@ export default defineConfig({
       '/前端进阶/': [
         {
           text: '安全',
-          items: [{ text: '加密和签名', link: '/前端进阶/安全/加密和签名' }]
+          items: [
+            { text: '加密和签名', link: '/前端进阶/安全/加密和签名' },
+            { text: '加密和签名', link: '/前端进阶/安全/CSP内容安全策略' },
+            { text: '加密和签名', link: '/前端进阶/安全/CSRF和XSS' }
+          ]
+        },
+        {
+          text: '动画',
+          items: [{ text: 'css动画', link: '/前端进阶/动画/css动画' }]
+        },
+        {
+          text: '库',
+          items: [
+            { text: 'lodash常用函数', link: '/前端进阶/库/lodash常用函数' },
+            { text: 'VueUse快速上手', link: '/前端进阶/库/VueUse快速上手' }
+          ]
+        },
+        {
+          text: '手写代码',
+          items: [
+            { text: '写代码小技巧', link: '/前端进阶/手写代码/写代码小技巧' },
+            { text: 'js小技巧', link: '/前端进阶/手写代码/js小技巧' }
+          ]
+        },
+        {
+          text: '网络请求',
+          items: [
+            {
+              text: 'http',
+              items: [
+                { text: 'http协议', link: '/前端进阶/网络请求/http/http协议' }
+              ]
+            },
+            { text: '本地域名映射', link: '/前端进阶/网络请求/本地域名映射' },
+            { text: '跨域解决方案', link: '/前端进阶/网络请求/跨域解决方案' },
+            {
+              text: '跨域资源共享cors',
+              link: '/前端进阶/网络请求/跨域资源共享cors'
+            }
+          ]
+        },
+        {
+          text: '性能优化',
+          items: [
+            {
+              text: '如何提升用户体验',
+              link: '/前端进阶/性能优化/如何提升用户体验'
+            },
+            { text: '性能优化', link: '/前端进阶/性能优化/性能优化' },
+            {
+              text: 'webpack打包优化',
+              link: '/前端进阶/性能优化/webpack打包优化'
+            }
+          ]
+        },
+        {
+          text: 'nuxt',
+          items: [
+            { text: 'nuxt服务端渲染', link: '/前端进阶/nuxt/nuxt服务端渲染' }
+          ]
+        },
+        {
+          text: 'ts',
+          items: [
+            { text: '介绍', link: '/前端进阶/ts/介绍' },
+            { text: '类型', link: '/前端进阶/ts/类型' },
+            { text: '类型工具', link: '/前端进阶/ts/类型工具' },
+            { text: '实战', link: '/前端进阶/ts/实战' },
+            { text: '常用配置', link: '/前端进阶/ts/常用配置' },
+            { text: '编写声明文件', link: '/前端进阶/ts/编写声明文件' }
+          ]
+        },
+        {
+          text: 'vue2',
+          items: [
+            {
+              text: '异步更新和nextTick',
+              link: '/前端进阶/vue2/异步更新和nextTick'
+            },
+            { text: 'Vue-Cli使用说明', link: '/前端进阶/vue2/Vue-Cli使用说明' },
+            { text: 'Vue高级特性', link: '/前端进阶/vue2/Vue高级特性' },
+            {
+              text: 'Vue和React横向对比',
+              link: '/前端进阶/vue2/Vue和React横向对比'
+            },
+            { text: 'vue原理', link: '/前端进阶/vue2/vue原理' },
+            {
+              text: 'Vue中的渲染函数&JSX',
+              link: '/前端进阶/vue2/Vue中的渲染函数&JSX'
+            },
+            { text: 'Vue中key的作用', link: '/前端进阶/vue2/Vue中key的作用' },
+            { text: 'Vue组件', link: '/前端进阶/vue2/Vue组件' }
+          ]
+        },
+        {
+          text: 'vue3',
+          items: [
+            {
+              text: '基础',
+              items: [
+                {
+                  text: 'Vue3开发注意事项',
+                  link: '/前端进阶/vue3/Vue3开发注意事项'
+                },
+                { text: 'Vue3快速上手', link: '/前端进阶/vue3/Vue3快速上手' }
+              ]
+            },
+            {
+              text: '设计和原理',
+              items: [
+                {
+                  text: 'computed实现',
+                  link: '/前端进阶/vue3/设计和原理/computed实现'
+                },
+                {
+                  text: 'Vue3做了哪些优化',
+                  link: '/前端进阶/vue3/设计和原理/Vue3做了哪些优化'
+                },
+                {
+                  text: 'reactive',
+                  items: [
+                    {
+                      text: '响应系统的设计',
+                      link: '/前端进阶/vue3/设计和原理/reactive/响应系统的设计'
+                    },
+                    {
+                      text: 'proxy的工作原理',
+                      link: '/前端进阶/vue3/设计和原理/reactive/proxy的工作原理'
+                    },
+                    {
+                      text: 'ref原始值的响应式',
+                      link: '/前端进阶/vue3/设计和原理/reactive/ref原始值的响应式'
+                    }
+                  ]
+                },
+                {
+                  text: 'renderer',
+                  items: [
+                    {
+                      text: '初始化组件实例过程',
+                      link: '/前端进阶/vue3/设计和原理/renderer/初始化组件实例过程'
+                    },
+                    {
+                      text: '渲染器的设计',
+                      link: '/前端进阶/vue3/设计和原理/renderer/渲染器的设计'
+                    },
+                    {
+                      text: '组件渲染成DOM的过程',
+                      link: '/前端进阶/vue3/设计和原理/renderer/组件渲染成DOM的过程'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ],
       '/前端工程化/': [
