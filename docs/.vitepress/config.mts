@@ -13,7 +13,6 @@ export default defineConfig({
     search: {
       provider: 'local'
     },
-    // TODO:待子目录完善后，添加一级分类下拉
     nav: [
       { text: 'Home', link: '/' },
       {
@@ -26,13 +25,35 @@ export default defineConfig({
           { text: '适配', link: '/前端基础/适配/页面适配' }
         ]
       },
-      { text: '前端进阶', link: '/前端进阶/安全/加密和签名' },
+      {
+        text: '前端进阶',
+        items: [
+          { text: 'vue3', link: '/前端进阶/vue3/Vue3开发注意事项' },
+          { text: 'vue2', link: '/前端进阶/vue2/异步更新和nextTick' },
+          { text: 'ts', link: '/前端进阶/ts/介绍' },
+          { text: 'nuxt', link: '/前端进阶/nuxt/nuxt服务端渲染' },
+          { text: '性能优化', link: '/前端进阶/性能优化/如何提升用户体验' },
+          { text: '网络请求', link: '/前端进阶/网络请求/http/http协议' },
+          { text: '安全', link: '/前端进阶/安全/加密和签名' },
+          { text: '动画', link: '/前端进阶/动画/css动画' },
+          { text: '库', link: '/前端进阶/库/lodash常用函数' },
+          { text: '手写代码', link: '/前端进阶/手写代码/写代码小技巧' }
+        ]
+      },
       { text: '前端工程化', link: '/前端工程化/开发/git使用' },
       { text: '程序员储备', link: '/程序员储备/设计模式/设计模式' },
       { text: '前端架构', link: '/前端架构/对BFF的理解' },
       { text: '前端业务', link: '/前端业务/权限控制' },
       { text: '面试', link: '/面试/前端面试资源汇总' },
-      { text: '生活', link: '/生活/书籍/人生的智慧' }
+      { 
+        text: '生活',
+        items: [
+          { text: '积累', link: '/生活/积累/沟通' },
+          { text: '书籍', link: '/生活/书籍/超级闲聊术' },
+          { text: '随想', link: '/生活/随想/催眠自己去跑步的文章' },
+          { text: '心理学', link: '/生活/心理学/需求层次理论' },
+        ]
+      }
     ],
 
     sidebar: {
@@ -141,104 +162,7 @@ export default defineConfig({
           ]
         }
       ],
-      // TODO: 待完善
       '/前端进阶/': [
-        {
-          text: '安全',
-          items: [
-            { text: '加密和签名', link: '/前端进阶/安全/加密和签名' },
-            { text: '加密和签名', link: '/前端进阶/安全/CSP内容安全策略' },
-            { text: '加密和签名', link: '/前端进阶/安全/CSRF和XSS' }
-          ]
-        },
-        {
-          text: '动画',
-          items: [{ text: 'css动画', link: '/前端进阶/动画/css动画' }]
-        },
-        {
-          text: '库',
-          items: [
-            { text: 'lodash常用函数', link: '/前端进阶/库/lodash常用函数' },
-            { text: 'VueUse快速上手', link: '/前端进阶/库/VueUse快速上手' }
-          ]
-        },
-        {
-          text: '手写代码',
-          items: [
-            { text: '写代码小技巧', link: '/前端进阶/手写代码/写代码小技巧' },
-            { text: 'js小技巧', link: '/前端进阶/手写代码/js小技巧' }
-          ]
-        },
-        {
-          text: '网络请求',
-          items: [
-            {
-              text: 'http',
-              items: [
-                { text: 'http协议', link: '/前端进阶/网络请求/http/http协议' }
-              ]
-            },
-            { text: '本地域名映射', link: '/前端进阶/网络请求/本地域名映射' },
-            { text: '跨域解决方案', link: '/前端进阶/网络请求/跨域解决方案' },
-            {
-              text: '跨域资源共享cors',
-              link: '/前端进阶/网络请求/跨域资源共享cors'
-            }
-          ]
-        },
-        {
-          text: '性能优化',
-          items: [
-            {
-              text: '如何提升用户体验',
-              link: '/前端进阶/性能优化/如何提升用户体验'
-            },
-            { text: '性能优化', link: '/前端进阶/性能优化/性能优化' },
-            {
-              text: 'webpack打包优化',
-              link: '/前端进阶/性能优化/webpack打包优化'
-            }
-          ]
-        },
-        {
-          text: 'nuxt',
-          items: [
-            { text: 'nuxt服务端渲染', link: '/前端进阶/nuxt/nuxt服务端渲染' }
-          ]
-        },
-        {
-          text: 'ts',
-          items: [
-            { text: '介绍', link: '/前端进阶/ts/介绍' },
-            { text: '类型', link: '/前端进阶/ts/类型' },
-            { text: '类型工具', link: '/前端进阶/ts/类型工具' },
-            { text: '实战', link: '/前端进阶/ts/实战' },
-            { text: '常用配置', link: '/前端进阶/ts/常用配置' },
-            { text: '编写声明文件', link: '/前端进阶/ts/编写声明文件' }
-          ]
-        },
-        {
-          text: 'vue2',
-          items: [
-            {
-              text: '异步更新和nextTick',
-              link: '/前端进阶/vue2/异步更新和nextTick'
-            },
-            { text: 'Vue-Cli使用说明', link: '/前端进阶/vue2/Vue-Cli使用说明' },
-            { text: 'Vue高级特性', link: '/前端进阶/vue2/Vue高级特性' },
-            {
-              text: 'Vue和React横向对比',
-              link: '/前端进阶/vue2/Vue和React横向对比'
-            },
-            { text: 'vue原理', link: '/前端进阶/vue2/vue原理' },
-            {
-              text: 'Vue中的渲染函数&JSX',
-              link: '/前端进阶/vue2/Vue中的渲染函数&JSX'
-            },
-            { text: 'Vue中key的作用', link: '/前端进阶/vue2/Vue中key的作用' },
-            { text: 'Vue组件', link: '/前端进阶/vue2/Vue组件' }
-          ]
-        },
         {
           text: 'vue3',
           items: [
@@ -299,6 +223,102 @@ export default defineConfig({
                 }
               ]
             }
+          ]
+        },
+        {
+          text: 'vue2',
+          items: [
+            {
+              text: '异步更新和nextTick',
+              link: '/前端进阶/vue2/异步更新和nextTick'
+            },
+            { text: 'Vue-Cli使用说明', link: '/前端进阶/vue2/Vue-Cli使用说明' },
+            { text: 'Vue高级特性', link: '/前端进阶/vue2/Vue高级特性' },
+            {
+              text: 'Vue和React横向对比',
+              link: '/前端进阶/vue2/Vue和React横向对比'
+            },
+            { text: 'vue原理', link: '/前端进阶/vue2/vue原理' },
+            {
+              text: 'Vue中的渲染函数&JSX',
+              link: '/前端进阶/vue2/Vue中的渲染函数&JSX'
+            },
+            { text: 'Vue中key的作用', link: '/前端进阶/vue2/Vue中key的作用' },
+            { text: 'Vue组件', link: '/前端进阶/vue2/Vue组件' }
+          ]
+        },
+        {
+          text: 'ts',
+          items: [
+            { text: '介绍', link: '/前端进阶/ts/介绍' },
+            { text: '类型', link: '/前端进阶/ts/类型' },
+            { text: '类型工具', link: '/前端进阶/ts/类型工具' },
+            { text: '实战', link: '/前端进阶/ts/实战' },
+            { text: '常用配置', link: '/前端进阶/ts/常用配置' },
+            { text: '编写声明文件', link: '/前端进阶/ts/编写声明文件' }
+          ]
+        },
+        {
+          text: 'nuxt',
+          items: [
+            { text: 'nuxt服务端渲染', link: '/前端进阶/nuxt/nuxt服务端渲染' }
+          ]
+        },
+        {
+          text: '性能优化',
+          items: [
+            {
+              text: '如何提升用户体验',
+              link: '/前端进阶/性能优化/如何提升用户体验'
+            },
+            { text: '性能优化', link: '/前端进阶/性能优化/性能优化' },
+            {
+              text: 'webpack打包优化',
+              link: '/前端进阶/性能优化/webpack打包优化'
+            }
+          ]
+        },
+        {
+          text: '网络请求',
+          items: [
+            {
+              text: 'http',
+              items: [
+                { text: 'http协议', link: '/前端进阶/网络请求/http/http协议' }
+              ]
+            },
+            { text: '本地域名映射', link: '/前端进阶/网络请求/本地域名映射' },
+            { text: '跨域解决方案', link: '/前端进阶/网络请求/跨域解决方案' },
+            {
+              text: '跨域资源共享cors',
+              link: '/前端进阶/网络请求/跨域资源共享cors'
+            }
+          ]
+        },
+        {
+          text: '安全',
+          items: [
+            { text: '加密和签名', link: '/前端进阶/安全/加密和签名' },
+            { text: '加密和签名', link: '/前端进阶/安全/CSP内容安全策略' },
+            { text: '加密和签名', link: '/前端进阶/安全/CSRF和XSS' }
+          ]
+        },
+        {
+          text: '动画',
+          items: [{ text: 'css动画', link: '/前端进阶/动画/css动画' }]
+        },
+        {
+          text: '库',
+          items: [
+            { text: 'lodash常用函数', link: '/前端进阶/库/lodash常用函数' },
+            { text: 'VueUse快速上手', link: '/前端进阶/库/VueUse快速上手' }
+          ]
+        },
+        {
+          text: '手写代码',
+          items: [
+            { text: '写代码小技巧', link: '/前端进阶/手写代码/写代码小技巧' },
+            { text: 'js小技巧', link: '/前端进阶/手写代码/js小技巧' }
           ]
         }
       ],
@@ -451,18 +471,29 @@ export default defineConfig({
           ]
         }
       ],
-      // TODO: 待完善
       '/前端架构/': [
         {
           text: '前端架构',
-          items: [{ text: '对BFF的理解', link: '/前端架构/对BFF的理解' }]
+          items: [
+            { text: '对BFF的理解', link: '/前端架构/对BFF的理解' },
+            { text: '函数式编程', link: '/前端架构/函数式编程' },
+            { text: '跨平台方案', link: '/前端架构/跨平台方案' },
+            {
+              text: '大仓库',
+              items: [{ text: 'lerna', link: '/前端架构/大仓库/lerna' }]
+            }
+          ]
         }
       ],
-      // TODO: 待完善
       '/前端业务/': [
         {
           text: '前端业务',
-          items: [{ text: '权限控制', link: '/前端业务/权限控制' }]
+          items: [
+            { text: '权限控制', link: '/前端业务/权限控制' },
+            { text: '压缩文件并下载', link: '/前端业务/压缩文件并下载' },
+            { text: '各种业务解决方案', link: '/前端业务/各种业务解决方案' },
+            { text: '系统选择文件弹窗', link: '/前端业务/系统选择文件弹窗/' }
+          ]
         }
       ],
       '/面试/': [
@@ -472,11 +503,33 @@ export default defineConfig({
         { text: 'html面试题', link: '/面试/html面试题' },
         { text: '学习规划', link: '/面试/学习规划' }
       ],
-      // TODO: 待完善
       '/生活/': [
         {
+          text: '积累',
+          items: [
+            { text: '沟通', link: '/生活/积累/沟通' },
+            { text: '良句', link: '/生活/积累/良句' }
+          ]
+        },
+        {
           text: '书籍',
-          items: [{ text: '人生的智慧', link: '/生活/书籍/人生的智慧' }]
+          items: [
+            { text: '超级闲聊术', link: '/生活/书籍/超级闲聊术' },
+            { text: '金字塔原理', link: '/生活/书籍/金字塔原理' },
+            { text: '刻意练习', link: '/生活/书籍/刻意练习' },
+            { text: '亲密关系', link: '/生活/书籍/亲密关系' },
+            { text: '人生的智慧', link: '/生活/书籍/人生的智慧' },
+            { text: '如何阅读一本书', link: '/生活/书籍/如何阅读一本书' },
+            { text: '小狗钱钱', link: '/生活/书籍/小狗钱钱' }
+          ]
+        },
+        {
+          text: '随想',
+          items: [
+            { text: '催眠自己去跑步的文章', link: '/生活/随想/催眠自己去跑步的文章' },
+            { text: '零碎想法', link: '/生活/随想/零碎想法' },
+            { text: '小事记录', link: '/生活/随想/小事记录' },
+          ]
         },
         {
           text: '心理学',
