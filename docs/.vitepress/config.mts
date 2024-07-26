@@ -10,9 +10,6 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    search: {
-      provider: 'local'
-    },
     nav: [
       { text: 'Home', link: '/' },
       {
@@ -33,7 +30,9 @@ export default defineConfig({
           { text: 'ts', link: '/前端进阶/ts/介绍' },
           { text: 'nuxt', link: '/前端进阶/nuxt/nuxt服务端渲染' },
           { text: '性能优化', link: '/前端进阶/性能优化/如何提升用户体验' },
+          { text: '前端架构', link: '/前端进阶/前端架构/对BFF的理解' },
           { text: '网络请求', link: '/前端进阶/网络请求/http/http协议' },
+          { text: '前端业务', link: '/前端进阶/前端业务/权限控制' },
           { text: '安全', link: '/前端进阶/安全/加密和签名' },
           { text: '动画', link: '/前端进阶/动画/css动画' },
           { text: '库', link: '/前端进阶/库/lodash常用函数' },
@@ -42,8 +41,6 @@ export default defineConfig({
       },
       { text: '前端工程化', link: '/前端工程化/开发/git使用' },
       { text: '程序员储备', link: '/程序员储备/设计模式/设计模式' },
-      { text: '前端架构', link: '/前端架构/对BFF的理解' },
-      { text: '前端业务', link: '/前端业务/权限控制' },
       { text: '面试', link: '/面试/前端面试资源汇总' },
       { 
         text: '生活',
@@ -57,11 +54,13 @@ export default defineConfig({
     ],
 
     sidebar: {
-      '/前端基础/': [
+      '/前端基础/html': [
         {
           text: 'html',
           items: [{ text: 'H5开发FAQ', link: '/前端基础/html/H5开发FAQ' }]
         },
+      ],
+      '/前端基础/css': [
         {
           text: 'css',
           items: [
@@ -74,6 +73,8 @@ export default defineConfig({
             }
           ]
         },
+      ],
+      '/前端基础/js': [
         {
           text: 'js',
           items: [
@@ -150,10 +151,14 @@ export default defineConfig({
             }
           ]
         },
+      ],
+      '/前端基础/代码规范': [
         {
           text: '代码规范',
           items: [{ text: '变量命名', link: '/前端基础/代码规范/变量命名' }]
         },
+      ],
+      '/前端基础/适配': [
         {
           text: '适配',
           items: [
@@ -162,7 +167,7 @@ export default defineConfig({
           ]
         }
       ],
-      '/前端进阶/': [
+      '/前端进阶/vue3': [
         {
           text: 'vue3',
           items: [
@@ -224,7 +229,9 @@ export default defineConfig({
               ]
             }
           ]
-        },
+        }
+      ],
+      '/前端进阶/vue2': [
         {
           text: 'vue2',
           items: [
@@ -246,7 +253,9 @@ export default defineConfig({
             { text: 'Vue中key的作用', link: '/前端进阶/vue2/Vue中key的作用' },
             { text: 'Vue组件', link: '/前端进阶/vue2/Vue组件' }
           ]
-        },
+        }
+      ],
+      '/前端进阶/ts': [
         {
           text: 'ts',
           items: [
@@ -257,13 +266,17 @@ export default defineConfig({
             { text: '常用配置', link: '/前端进阶/ts/常用配置' },
             { text: '编写声明文件', link: '/前端进阶/ts/编写声明文件' }
           ]
-        },
+        }
+      ],
+      '/前端进阶/nuxt': [
         {
           text: 'nuxt',
           items: [
             { text: 'nuxt服务端渲染', link: '/前端进阶/nuxt/nuxt服务端渲染' }
           ]
         },
+      ],
+      '/前端进阶/性能优化': [
         {
           text: '性能优化',
           items: [
@@ -278,6 +291,22 @@ export default defineConfig({
             }
           ]
         },
+      ],
+      '/前端进阶/前端架构': [
+        {
+          text: '前端架构',
+          items: [
+            { text: '对BFF的理解', link: '/前端进阶/前端架构/对BFF的理解' },
+            { text: '函数式编程', link: '/前端进阶/前端架构/函数式编程' },
+            { text: '跨平台方案', link: '/前端进阶/前端架构/跨平台方案' },
+            {
+              text: '大仓库',
+              items: [{ text: 'lerna', link: '/前端进阶/前端架构/大仓库/lerna' }]
+            }
+          ]
+        },
+      ],
+      '/前端进阶/网络请求': [
         {
           text: '网络请求',
           items: [
@@ -295,18 +324,35 @@ export default defineConfig({
             }
           ]
         },
+      ],
+      '/前端进阶/前端业务': [
+        {
+          text: '前端业务',
+          items: [
+            { text: '权限控制', link: '/前端进阶/前端业务/权限控制' },
+            { text: '压缩文件并下载', link: '/前端进阶/前端业务/压缩文件并下载' },
+            { text: '各种业务解决方案', link: '/前端进阶/前端业务/各种业务解决方案' },
+            { text: '系统选择文件弹窗', link: '/前端进阶/前端业务/系统选择文件弹窗/' }
+          ]
+        },
+      ],
+      '/前端进阶/安全': [
         {
           text: '安全',
           items: [
             { text: '加密和签名', link: '/前端进阶/安全/加密和签名' },
-            { text: '加密和签名', link: '/前端进阶/安全/CSP内容安全策略' },
-            { text: '加密和签名', link: '/前端进阶/安全/CSRF和XSS' }
+            { text: 'CSP内容安全策略', link: '/前端进阶/安全/CSP内容安全策略' },
+            { text: 'CSRF和XSS', link: '/前端进阶/安全/CSRF和XSS' }
           ]
         },
+      ],
+      '/前端进阶/动画': [
         {
           text: '动画',
           items: [{ text: 'css动画', link: '/前端进阶/动画/css动画' }]
         },
+      ],
+      '/前端进阶/库': [
         {
           text: '库',
           items: [
@@ -314,6 +360,8 @@ export default defineConfig({
             { text: 'VueUse快速上手', link: '/前端进阶/库/VueUse快速上手' }
           ]
         },
+      ],
+      '/前端进阶/手写代码': [
         {
           text: '手写代码',
           items: [
@@ -471,31 +519,6 @@ export default defineConfig({
           ]
         }
       ],
-      '/前端架构/': [
-        {
-          text: '前端架构',
-          items: [
-            { text: '对BFF的理解', link: '/前端架构/对BFF的理解' },
-            { text: '函数式编程', link: '/前端架构/函数式编程' },
-            { text: '跨平台方案', link: '/前端架构/跨平台方案' },
-            {
-              text: '大仓库',
-              items: [{ text: 'lerna', link: '/前端架构/大仓库/lerna' }]
-            }
-          ]
-        }
-      ],
-      '/前端业务/': [
-        {
-          text: '前端业务',
-          items: [
-            { text: '权限控制', link: '/前端业务/权限控制' },
-            { text: '压缩文件并下载', link: '/前端业务/压缩文件并下载' },
-            { text: '各种业务解决方案', link: '/前端业务/各种业务解决方案' },
-            { text: '系统选择文件弹窗', link: '/前端业务/系统选择文件弹窗/' }
-          ]
-        }
-      ],
       '/面试/': [
         { text: '前端面试资源汇总', link: '/面试/前端面试资源汇总' },
         { text: '与面试官的较量', link: '/面试/与面试官的较量' },
@@ -537,9 +560,15 @@ export default defineConfig({
         }
       ]
     },
-
     socialLinks: [
       { icon: 'github', link: 'https://github.com/wenfujie/document-library' }
-    ]
+    ],
+    search: {
+      provider: 'local'
+    },
+    outline: {
+      level: [2, 6],
+      label: '大纲'
+    }
   }
 })
