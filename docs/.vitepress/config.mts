@@ -42,13 +42,13 @@ export default defineConfig({
       { text: '前端工程化', link: '/前端工程化/开发/git使用' },
       { text: '程序员储备', link: '/程序员储备/设计模式/设计模式' },
       { text: '面试', link: '/面试/前端面试资源汇总' },
-      { 
+      {
         text: '生活',
         items: [
           { text: '积累', link: '/生活/积累/沟通' },
           { text: '书籍', link: '/生活/书籍/超级闲聊术' },
           { text: '随想', link: '/生活/随想/催眠自己去跑步的文章' },
-          { text: '心理学', link: '/生活/心理学/需求层次理论' },
+          { text: '心理学', link: '/生活/心理学/需求层次理论' }
         ]
       }
     ],
@@ -58,7 +58,7 @@ export default defineConfig({
         {
           text: 'html',
           items: [{ text: 'H5开发FAQ', link: '/前端基础/html/H5开发FAQ' }]
-        },
+        }
       ],
       '/前端基础/css': [
         {
@@ -72,7 +72,7 @@ export default defineConfig({
               link: '/前端基础/css/自适应和响应式布局'
             }
           ]
-        },
+        }
       ],
       '/前端基础/js': [
         {
@@ -150,13 +150,13 @@ export default defineConfig({
               ]
             }
           ]
-        },
+        }
       ],
       '/前端基础/代码规范': [
         {
           text: '代码规范',
           items: [{ text: '变量命名', link: '/前端基础/代码规范/变量命名' }]
-        },
+        }
       ],
       '/前端基础/适配': [
         {
@@ -274,7 +274,7 @@ export default defineConfig({
           items: [
             { text: 'nuxt服务端渲染', link: '/前端进阶/nuxt/nuxt服务端渲染' }
           ]
-        },
+        }
       ],
       '/前端进阶/性能优化': [
         {
@@ -290,7 +290,7 @@ export default defineConfig({
               link: '/前端进阶/性能优化/webpack打包优化'
             }
           ]
-        },
+        }
       ],
       '/前端进阶/前端架构': [
         {
@@ -301,10 +301,12 @@ export default defineConfig({
             { text: '跨平台方案', link: '/前端进阶/前端架构/跨平台方案' },
             {
               text: '大仓库',
-              items: [{ text: 'lerna', link: '/前端进阶/前端架构/大仓库/lerna' }]
+              items: [
+                { text: 'lerna', link: '/前端进阶/前端架构/大仓库/lerna' }
+              ]
             }
           ]
-        },
+        }
       ],
       '/前端进阶/网络请求': [
         {
@@ -323,18 +325,27 @@ export default defineConfig({
               link: '/前端进阶/网络请求/跨域资源共享cors'
             }
           ]
-        },
+        }
       ],
       '/前端进阶/前端业务': [
         {
           text: '前端业务',
           items: [
             { text: '权限控制', link: '/前端进阶/前端业务/权限控制' },
-            { text: '压缩文件并下载', link: '/前端进阶/前端业务/压缩文件并下载' },
-            { text: '各种业务解决方案', link: '/前端进阶/前端业务/各种业务解决方案' },
-            { text: '系统选择文件弹窗', link: '/前端进阶/前端业务/系统选择文件弹窗/' }
+            {
+              text: '压缩文件并下载',
+              link: '/前端进阶/前端业务/压缩文件并下载'
+            },
+            {
+              text: '各种业务解决方案',
+              link: '/前端进阶/前端业务/各种业务解决方案'
+            },
+            {
+              text: '系统选择文件弹窗',
+              link: '/前端进阶/前端业务/系统选择文件弹窗/'
+            }
           ]
-        },
+        }
       ],
       '/前端进阶/安全': [
         {
@@ -344,13 +355,13 @@ export default defineConfig({
             { text: 'CSP内容安全策略', link: '/前端进阶/安全/CSP内容安全策略' },
             { text: 'CSRF和XSS', link: '/前端进阶/安全/CSRF和XSS' }
           ]
-        },
+        }
       ],
       '/前端进阶/动画': [
         {
           text: '动画',
           items: [{ text: 'css动画', link: '/前端进阶/动画/css动画' }]
-        },
+        }
       ],
       '/前端进阶/库': [
         {
@@ -359,7 +370,7 @@ export default defineConfig({
             { text: 'lodash常用函数', link: '/前端进阶/库/lodash常用函数' },
             { text: 'VueUse快速上手', link: '/前端进阶/库/VueUse快速上手' }
           ]
-        },
+        }
       ],
       '/前端进阶/手写代码': [
         {
@@ -488,12 +499,18 @@ export default defineConfig({
           items: [
             {
               text: '谷歌浏览器开发者工具',
-              link: '/浏览器/谷歌浏览器开发者工具'
+              link: '/程序员储备/浏览器/谷歌浏览器开发者工具'
             },
-            { text: '浏览器渲染机制', link: '/浏览器/浏览器渲染机制' },
-            { text: 'BOM', link: '/浏览器/BOM' },
-            { text: 'DOM事件总结', link: '/浏览器/DOM事件总结' },
-            { text: 'V8引擎的垃圾回收', link: '/浏览器/V8引擎的垃圾回收' }
+            {
+              text: '浏览器渲染机制',
+              link: '/程序员储备/浏览器/浏览器渲染机制'
+            },
+            { text: 'BOM', link: '/程序员储备/浏览器/BOM' },
+            { text: 'DOM事件总结', link: '/程序员储备/浏览器/DOM事件总结' },
+            {
+              text: 'V8引擎的垃圾回收',
+              link: '/程序员储备/浏览器/V8引擎的垃圾回收'
+            }
           ]
         },
         {
@@ -549,9 +566,12 @@ export default defineConfig({
         {
           text: '随想',
           items: [
-            { text: '催眠自己去跑步的文章', link: '/生活/随想/催眠自己去跑步的文章' },
+            {
+              text: '催眠自己去跑步的文章',
+              link: '/生活/随想/催眠自己去跑步的文章'
+            },
             { text: '零碎想法', link: '/生活/随想/零碎想法' },
-            { text: '小事记录', link: '/生活/随想/小事记录' },
+            { text: '小事记录', link: '/生活/随想/小事记录' }
           ]
         },
         {
