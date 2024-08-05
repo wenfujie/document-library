@@ -147,6 +147,9 @@ git stash apply
 # 恢复最新存储代码，并将该存储记录删除
 git stash pop
 
+# 恢复指定的stash
+git stash apply stash@{1}
+
 # 删除最新的stash
 git stash drop
 
