@@ -39,6 +39,12 @@ export default defineConfig({
           { text: '手写代码', link: '/前端进阶/手写代码/写代码小技巧' }
         ]
       },
+      {
+        text: '解决方案',
+        items: [
+          { text: 'exceljs 导出表格数据为excel', link: 'https://github.com/wenfujie/demo/tree/main/use-download-excel' }
+        ]
+      },
       { text: '前端工程化', link: '/前端工程化/开发/git使用' },
       { text: '程序员储备', link: '/程序员储备/设计模式/设计模式' },
       { text: '面试', link: '/面试/前端面试资源汇总' },
