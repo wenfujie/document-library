@@ -4,9 +4,9 @@
   "description": "wenfujie 的文档库，包含了个人学习、工作中关于 `前端编程` 的经验文档。",
   "main": "index.js",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
   },
   "repository": {
     "type": "git",

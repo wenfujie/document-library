@@ -42,11 +42,23 @@ export default defineConfig({
       {
         text: '解决方案',
         items: [
-          { text: 'exceljs 导出表格数据为excel', link: 'https://github.com/wenfujie/demo/tree/main/use-download-excel' }
+          {
+            text: 'exceljs 导出表格数据为excel',
+            link: 'https://github.com/wenfujie/demo/tree/main/use-download-excel'
+          }
         ]
       },
       { text: '前端工程化', link: '/前端工程化/开发/git使用' },
-      { text: '程序员储备', link: '/程序员储备/设计模式/设计模式' },
+      {
+        text: '程序员储备',
+        items: [
+          { text: '正则', link: '/程序员储备/正则/学习正则表达式' },
+          { text: '设计模式&架构', link: '/程序员储备/设计模式/设计模式' },
+          { text: '算法', link: '/程序员储备/算法/基础算法' },
+          { text: '浏览器', link: '/程序员储备/浏览器/谷歌浏览器开发者工具' },
+          { text: '开发语言', link: '/程序员储备/开发语言/shell脚本编写' }
+        ]
+      },
       { text: '面试', link: '/面试/前端面试资源汇总' },
       {
         text: '生活',
@@ -481,25 +493,37 @@ export default defineConfig({
           ]
         }
       ],
-      '/程序员储备/': [
+      '/程序员储备/正则': [
         {
           text: '正则',
           items: [
             { text: '学习正则表达式', link: '/程序员储备/正则/学习正则表达式' },
             { text: '正则mini书笔记', link: '/程序员储备/正则/正则mini书笔记' }
           ]
-        },
+        }
+      ],
+      '/程序员储备/设计模式': [
         {
           text: '设计模式',
           items: [{ text: '设计模式', link: '/程序员储备/设计模式/设计模式' }]
         },
+        {
+          text: '架构',
+          items: [
+            { text: '洋葱圈架构', link: '/程序员储备/设计模式/洋葱圈架构' }
+          ]
+        }
+      ],
+      '/程序员储备/算法': [
         {
           text: '算法',
           items: [
             { text: '基础算法', link: '/程序员储备/算法/基础算法' },
             { text: '算法深入', link: '/程序员储备/算法/算法深入' }
           ]
-        },
+        }
+      ],
+      '/程序员储备/浏览器': [
         {
           text: '浏览器',
           items: [
@@ -518,7 +542,9 @@ export default defineConfig({
               link: '/程序员储备/浏览器/V8引擎的垃圾回收'
             }
           ]
-        },
+        }
+      ],
+      '/程序员储备/开发语言': [
         {
           text: '开发语言',
           items: [
