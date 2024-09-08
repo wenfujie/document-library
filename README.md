@@ -19,7 +19,7 @@ master 为主分支，在该分支修改即可。
 本地启动
 
 ```js
-pnpm docs:dev
+pnpm dev
 ```
 
 ### 部署
