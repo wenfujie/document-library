@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-06-16 17:11:17
- * @LastEditors: wfj
- * @LastEditTime: 2023-10
+ * @LastEditors: 温富杰 wenfujie@dianchu.com
+ * @LastEditTime: 2024-10-25 11:03:52
 -->
 
 - [实操](#实操)
@@ -44,7 +44,7 @@ git reset --soft commit_id
 
 # 不生效 => 重新提交暂存代码即可
 
-# 生效（暂存区代码按需求删除或提交）
+# 生效（暂存区代码按需求删除或提交；此时修改暂存区代码需用该指令提交，普通提交指令无法提交）
 git push origin HEAD --force
 ```
 
