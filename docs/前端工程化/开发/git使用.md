@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-06-16 17:11:17
  * @LastEditors: 温富杰 wenfujie@dianchu.com
- * @LastEditTime: 2024-10-25 11:03:52
+ * @LastEditTime: 2024-12-23 09:36:34
 -->
 
 - [实操](#实操)
@@ -9,6 +9,7 @@
 - [git 指令](#git-指令)
   - [git reset - 恢复代码删除 commit 记录](#git-reset---恢复代码删除-commit-记录)
   - [git revert - 提交新 commit 恢复代码](#git-revert---提交新-commit-恢复代码)
+  - [合并代码冲突处理](#合并代码冲突处理)
   - [git add](#git-add)
   - [git commit](#git-commit)
   - [git pull](#git-pull)
@@ -75,6 +76,12 @@ git revert commit_id
 
 # 撤回几个连续的 commit（..语法，左开右闭即：不含commit_id1包含commit_id2）
 git revert --no-commit commit_id1..commit_id2
+```
+
+### 合并代码冲突处理
+
+```bash
+git reset --hard HEAD
 ```
 
 ### git add
