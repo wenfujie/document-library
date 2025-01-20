@@ -1,7 +1,7 @@
 <!--
  * @Date: 2021-06-16 17:11:17
  * @LastEditors: 温富杰 wenfujie@dianchu.com
- * @LastEditTime: 2024-12-23 09:36:34
+ * @LastEditTime: 2025-01-20 19:57:32
 -->
 
 - [实操](#实操)
@@ -43,7 +43,7 @@ git reset 会直接删除指定的 commit ，旧记录不会保留。
 # 期间代码变动恢复到暂存区
 git reset --soft commit_id
 
-# 不生效 => 重新提交暂存代码即可
+# 不生效 => git reset --soft 最新commit_id（去网页查看）
 
 # 生效（暂存区代码按需求删除或提交；此时修改暂存区代码需用该指令提交，普通提交指令无法提交）
 git push origin HEAD --force
