@@ -16,6 +16,7 @@
 - [vscode 插件](#vscode-插件)
   - [koroFileHeader](#korofileheader)
   - [Turbo Console Log](#turbo-console-log)
+- [Mac 常用快捷键](#mac-常用快捷键)
 - [Mac 常用终端指令](#mac-常用终端指令)
 - [后语](#后语)
 
@@ -181,6 +182,14 @@ vscode 用得熟不熟，就看你是否会用快捷键。
 | option + shift + c   | 注释文件下所有 log |
 | option + shift + u   | 启用文件下所有 log |
 | option + shift + d   | 删除文件下所有 log |
+
+## Mac 常用快捷键
+
+| mac                                                 | 作用                              |
+| :-------------------------------------------------- | :-------------------------------- |
+| cmd + tab 选中应用后按住option松开cmd后再松开option | 打开被隐藏的应用（cmd+m/+w）      |
+| Cmd + tab                                           | 切换应用                          |
+| Cmd + ~                                             | 反向切换应用（cmd+tab后才能触发） |
 
 ## Mac 常用终端指令
 
