@@ -181,7 +181,8 @@ export default defineConfig({
           text: '适配',
           items: [
             { text: '页面适配', link: '/前端基础/适配/页面适配' },
-            { text: 'PC适配', link: '/前端基础/适配/PC适配' }
+            { text: 'PC适配', link: '/前端基础/适配/PC适配' },
+            { text: '移动端适配', link: '/前端基础/适配/移动端适配' }
           ]
         }
       ],
