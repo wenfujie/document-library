@@ -83,6 +83,7 @@ export default defineConfig({
           text: 'css',
           items: [
             { text: '盒模型及BFC', link: '/前端基础/css/盒模型及BFC' },
+            { text: 'H5开发常用', link: '/前端基础/css/H5开发常用' },
             { text: '面试题', link: '/前端基础/css/面试题' },
             { text: '有趣的css', link: '/前端基础/css/有趣的css' },
             {
