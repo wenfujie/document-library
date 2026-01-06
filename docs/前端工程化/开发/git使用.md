@@ -1,14 +1,15 @@
 <!--
  * @Date: 2021-06-16 17:11:17
- * @LastEditors: 温富杰 wenfujie@dianchu.com
- * @LastEditTime: 2025-01-20 19:57:32
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2026-01-06 11:31:37
 -->
 
 - [实操](#实操)
   - [撤销 git pull](#撤销-git-pull)
 - [git 指令](#git-指令)
-  - [git reset - 恢复代码删除 commit 记录](#git-reset---恢复代码删除-commit-记录)
-  - [git revert - 提交新 commit 恢复代码](#git-revert---提交新-commit-恢复代码)
+  - [【git reset】回滚代码并删除 commit 记录](#git-reset回滚代码并删除-commit-记录)
+  - [【git revert】 回滚代码不删除 commit 记录](#git-revert-回滚代码不删除-commit-记录)
+  - [【git rebase -i】删除单个/多个 commit](#git-rebase--i删除单个多个-commit)
   - [合并代码冲突处理](#合并代码冲突处理)
   - [git add](#git-add)
   - [git commit](#git-commit)
@@ -32,35 +33,29 @@ git reset --hard 2aee3f
 
 > HEAD 指代当前分支最新的 commit_id
 
-### git reset - 恢复代码删除 commit 记录
+### 【git reset】回滚代码并删除 commit 记录
 
-git reset 会直接删除指定的 commit ，旧记录不会保留。
+git reset 可将代码回滚到指定的 commit ，期间所有 commit 记录都被删除
 
-回滚到指定版本，保留期间代码
-
-```bash
-# 执行后，HEAD 会指向该 commit_id
-# 期间代码变动恢复到暂存区
-git reset --soft commit_id
-
-# 不生效 => git reset --soft 最新commit_id（去网页查看）
-
-# 生效（暂存区代码按需求删除或提交；此时修改暂存区代码需用该指令提交，普通提交指令无法提交）
-git push origin HEAD --force
-```
-
-回滚到指定版本，删除期间代码
+其中 --soft 可将回滚的代码恢复到暂存区，以供修改
 
 ```bash
-# 执行后，HEAD 会指向该 commit_id，commit 仓库存在期间commit记录
-git reset --hard commit_id
-# 清空 commit 仓库，完成回退
-git push origin HEAD --force
-# or 取消回退，master意为当前分支
-git push origin master
+git reset --soft commit_id # 本地回退
+git push origin HEAD --force # 同步到远程
+
+# 取消回退  git reset --soft 最新commit_id（去网页查看）
 ```
 
-### git revert - 提交新 commit 恢复代码
+其中 --hard 表示回滚代码在本地为已提交状态，代码不可编辑
+
+```bash
+git reset --hard commit_id # 本地回退
+git push origin HEAD --force # 同步到远程
+
+# 取消回退 git push origin [当前分支名]
+```
+
+### 【git revert】 回滚代码不删除 commit 记录
 
 git revert 是用一次新的 commit 来回滚之前的 commit ，旧的提交记录仍会保留。
 
@@ -76,6 +71,20 @@ git revert commit_id
 
 # 撤回几个连续的 commit（..语法，左开右闭即：不含commit_id1包含commit_id2）
 git revert --no-commit commit_id1..commit_id2
+```
+
+### 【git rebase -i】删除单个/多个 commit
+
+找到要删除 commit 的上一个 commit_id，然后执行如下命令：
+
+```bash
+git rebase -i commit_id
+```
+
+会进入 `vi/vim` 编辑器，输入 `i` 进入编辑模式，将要删除的 commit_id 前的 `pick` 修改为 `drop` ，按 `esc` 退出编辑模式，输入 `:wq` 保存此时本地已完成删除，再执行如下命令推送到远程即可
+
+```bash
+git push --force # 提交到远程
 ```
 
 ### 合并代码冲突处理
