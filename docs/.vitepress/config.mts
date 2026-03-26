@@ -68,10 +68,20 @@ export default defineConfig({
           { text: '随想', link: '/生活/随想/催眠自己去跑步的文章' },
           { text: '心理学', link: '/生活/心理学/需求层次理论' }
         ]
+      },
+      {
+        text: '工具',
+        items: [{ text: '提前还款计算', link: '/工具/提前还款计算' }]
       }
     ],
 
     sidebar: {
+      '/工具/': [
+        {
+          text: '工具',
+          items: [{ text: '提前还款计算', link: '/工具/提前还款计算' }]
+        }
+      ],
       '/前端基础/html': [
         {
           text: 'html',
