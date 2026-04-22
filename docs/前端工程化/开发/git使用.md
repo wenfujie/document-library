@@ -16,6 +16,7 @@
   - [git pull](#git-pull)
   - [git branch](#git-branch)
   - [git stash](#git-stash)
+  - [git worktree](#git-worktree)
 
 ## 实操
 
@@ -174,4 +175,37 @@ git stash drop stash@{0}
 
 # 删除所有stash
 git stash clear
+```
+
+### git worktree
+
+允许一个仓库有多个工作目录，每个工作目录都对应一个分支，解决多分支同时开发问题。
+
+**注意**
+
+- 工作目录建议放在与项目同级，避免嵌套
+- 一个分支只能被一个工作目录使用，否则报错
+- 删除主仓库，所有工作目录失效
+
+```bash
+
+# 查看工作目录
+git worktree list
+
+# 基于已有分支创建工作目录
+git worktree add ../<目录名> <分支名>
+
+# 基于新分支创建工作目录
+git worktree add -b <新分支名> ../<目录名> [起点分支/提交]
+
+# 删除工作目录
+git worktree remove ../<目录名>
+
+# 强制删除（含未提交修改）
+git worktree remove -f ../<目录名>
+
+# 亦可手动删除工作目录，并执行命令清除记录，否则记录仍然保留
+git worktree prune
+
+
 ```
