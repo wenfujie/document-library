@@ -315,6 +315,7 @@ export default defineConfig({
               link: '/前端进阶/性能优化/如何提升用户体验'
             },
             { text: '性能优化', link: '/前端进阶/性能优化/性能优化' },
+            { text: 'webpack性能优化常用工具', link: '/前端进阶/性能优化/webpack性能优化常用工具' },
             {
               text: 'webpack打包优化',
               link: '/前端进阶/性能优化/webpack打包优化'
