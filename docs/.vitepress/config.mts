@@ -45,7 +45,8 @@ export default defineConfig({
           {
             text: 'exceljs 导出表格数据为excel',
             link: 'https://github.com/wenfujie/demo/tree/main/use-download-excel'
-          }
+          },
+          { text: 'github-pages', link: '/解决方案/github-pages' }
         ]
       },
       { text: '前端工程化', link: '/前端工程化/开发/git使用' },
@@ -315,7 +316,10 @@ export default defineConfig({
               link: '/前端进阶/性能优化/如何提升用户体验'
             },
             { text: '性能优化', link: '/前端进阶/性能优化/性能优化' },
-            { text: 'webpack性能优化常用工具', link: '/前端进阶/性能优化/webpack性能优化常用工具' },
+            {
+              text: 'webpack性能优化常用工具',
+              link: '/前端进阶/性能优化/webpack性能优化常用工具'
+            },
             {
               text: 'webpack打包优化',
               link: '/前端进阶/性能优化/webpack打包优化'
