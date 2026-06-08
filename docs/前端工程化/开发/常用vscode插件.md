@@ -1,4 +1,8 @@
+### 清空【文件=>打开最近的文件】菜单中的无效地址
 
+插件：`Recently Opened Cleaner`
+
+使用：cmd + shift + p 后输入 `Clean Recently Opened List` 回车即可。
 
 ### 代码书签（bookMarks）
 
@@ -9,8 +13,6 @@
 | cmd+option+l | 跳转到下一个书签 |      |
 
 使用 cmd+shift+enter 显示命令面板后，输入bookmarks即可查看更多功能。
-
-
 
 ### 统计代码行数（SCode Counter）
 
