@@ -140,8 +140,8 @@ git branch -D <branch-nane>
 git push origin :<branch-nane>
 # 重新命名分支
 git branch -m <old-branch-name> <new-branch-name>
-# 更新远程分支列表
-git remote update origin -p
+# 更新本地远程分支列表，并删除多于的。-p为--prune简写
+git fetch origin -p
 ```
 
 ### git stash
