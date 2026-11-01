@@ -693,7 +693,7 @@ export const headerLink = makePermalink(
 
 如果对你有帮助，帮忙点个 👍🏻 喔！
 
-[markdown-it 使用 demo](/程序员储备/开发语言/MarkDown/demo/index.js)
+[markdown-it 使用 demo](/开发/程序员储备/开发语言/MarkDown/demo/index.js)
 
 参考：
 
