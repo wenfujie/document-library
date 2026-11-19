@@ -626,7 +626,8 @@ export default defineConfig({
             { text: '金字塔原理', link: '/书籍/金字塔原理' },
             { text: '人生的智慧', link: '/书籍/人生的智慧' },
             { text: '亲密关系', link: '/书籍/亲密关系' },
-            { text: '小狗钱钱', link: '/书籍/小狗钱钱' }
+            { text: '小狗钱钱', link: '/书籍/小狗钱钱' },
+            { text: '穷爸爸富爸爸', link: '/书籍/穷爸爸富爸爸' }
           ]
         }
       ]
